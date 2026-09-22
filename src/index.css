@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #060B18;
+    color: #F1F5F9;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B132B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1C3168;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2A4387;
+}
+
+/* Leaflet Custom Tooltip & Marker Styles */
+.leaflet-tooltip-dark {
+  background-color: #0B132B !important;
+  border: 1px solid #1C3168 !important;
+  color: #F1F5F9 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7) !important;
+  padding: 8px 12px !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
+}
+
+.leaflet-tooltip-dark:before {
+  border-top-color: #0B132B !important;
+}
+
+.custom-village-marker,
+.custom-shelter-marker,
+.custom-asset-marker {
+  background: transparent;
+  border: none;
+}
+
+.leaflet-container {
+  background: #060B18 !important;
+  outline: none;
+}
