@@ -14,6 +14,7 @@ export interface DataProvenance {
   confidence?: number;
   isFixture?: boolean;
   notes?: string;
+  licence?: string;
 }
 
 export type ConnectionStatus = 'connected' | 'not_configured' | 'error' | 'fixture_mode' | 'no_active_event';
@@ -37,6 +38,8 @@ export interface ServiceResponse<T> {
   source?: DataProvenance;
   updatedAt: string;
   isConfigured: boolean;
+  latencyMs?: number;
+  recordCount?: number;
 }
 
 export interface SystemDataSources {

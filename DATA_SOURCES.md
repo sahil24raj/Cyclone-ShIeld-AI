@@ -18,18 +18,40 @@ Every dataset and card in the system is assigned a strict `DataType`:
 
 ---
 
-## 2. Metric-by-Metric Data Sources
+## 2. Official IMD (India Meteorological Department) API Gateway Integration
+
+The platform includes first-class integration for official IMD endpoints:
+
+| Endpoint Name | IMD URL | Purpose | Output Format | Provenance Type |
+| :--- | :--- | :--- | :--- | :--- |
+| **Current Weather** | `https://api.imd.gov.in/api/v1/current_wx` | Live surface observations across all AWS / coastal stations | `IMDCurrentWxRecord[]` | `OBSERVATION` |
+| **City Forecast** | `https://api.imd.gov.in/api/v1/cityforecast?id=42182` | 7-day city weather and severe weather warnings | `IMDCityForecastRecord[]` | `OFFICIAL_FORECAST` |
+| **District Nowcast** | `https://api.imd.gov.in/api/v1/districtnowcast` | 3-hour severe convective / gale / cyclone warning alerts | `IMDNowcastRecord[]` | `OFFICIAL_FORECAST` |
+| **District Rainfall** | `https://api.imd.gov.in/api/v1/districtrainfall` | 24-hour recorded district rainfall accumulation & departure | `IMDDistrictRainfallRecord[]` | `OBSERVATION` |
+| **Subdivision Rainfall Forecast** | `https://api.imd.gov.in/api/v1/subdivision_rainfall_forecast` | 5-day meteorological subdivision precipitation probability | `IMDSubdivisionForecastRecord[]` | `OFFICIAL_FORECAST` |
+| **City Forecast Mapping** | `https://api.imd.gov.in/api/v1/cityforecast_mapping` | Directory of IMD Station IDs, lat/lon, and names | `IMDCityMappingRecord[]` | `HISTORICAL` |
+
+### Authentication Requirements for IMD API Gateway:
+IMD endpoints require authenticated headers:
+- `x-api-key`: Provided in `VITE_IMD_API_KEY`
+- `Authorization: Bearer <TOKEN>`: Provided in `VITE_IMD_AUTH_TOKEN`
+
+When keys are not set, the platform seamlessly falls back to Open-Meteo's open-access WMO feed so live observations are never interrupted.
+
+---
+
+## 3. Metric-by-Metric Data Sources
 
 ### A. Meteorological Observations
 
 | UI Metric / Card | Real Data Source | Update Frequency | Protocol / Format | Fallback State |
 | :--- | :--- | :--- | :--- | :--- |
-| **Temperature** (°C) | Open-Meteo / IMD AWS / ECMWF IFS | Hourly / 15-min | REST JSON (`WeatherObservation`) | `"Weather data unavailable"` |
-| **Relative Humidity** (%) | Open-Meteo / IMD AWS | Hourly | REST JSON (`WeatherObservation`) | `"Weather data unavailable"` |
-| **Atmospheric Pressure** (hPa) | Surface Buoy Network / AWS / WMO GTS | 15-min | REST JSON (`WeatherObservation`) | `"Weather data unavailable"` |
-| **Wind Speed & Gust** (km/h) | Coastal Radar / Scatterometer (ASCAT) | Real-time / Hourly | REST JSON (`WeatherObservation`) | `"Weather data unavailable"` |
-| **Wind Direction** (°) | Coastal Radar / Buoys | Real-time / Hourly | Degrees (0-360) | `"Weather data unavailable"` |
-| **Precipitation Accumulation** (mm) | IMD Doppler Radar (DWR) / GPM IMERG | Hourly | REST JSON | `"Weather data unavailable"` |
+| **Temperature** (°C) | IMD AWS / Open-Meteo / ECMWF IFS | Hourly / 15-min | REST JSON (`WeatherObservation`) | `"Weather data unavailable"` |
+| **Relative Humidity** (%) | IMD AWS / Open-Meteo | Hourly | REST JSON (`WeatherObservation`) | `"Weather data unavailable"` |
+| **Atmospheric Pressure** (hPa) | IMD MSLP Buoy Network / AWS | 15-min | REST JSON (`WeatherObservation`) | `"Weather data unavailable"` |
+| **Wind Speed & Gust** (km/h) | Coastal Radar / IMD AWS / ASCAT | Real-time / Hourly | REST JSON (`WeatherObservation`) | `"Weather data unavailable"` |
+| **Wind Direction** (°) | IMD AWS / Coastal Radar | Real-time / Hourly | Degrees (0-360) | `"Weather data unavailable"` |
+| **Precipitation Accumulation** (mm) | IMD District Rainfall / Doppler Radar (DWR) | Hourly | REST JSON | `"Weather data unavailable"` |
 | **Cloud Cover** (%) | INSAT-3D / 3DR Imager / Open-Meteo | 30-min | Percentage | `"Weather data unavailable"` |
 | **Visibility** (km) | Airport METAR / Coastal Station | Hourly | km | `"Weather data unavailable"` |
 
@@ -69,24 +91,3 @@ Every dataset and card in the system is assigned a strict `DataType`:
 | **Cyclone Yaas (2021)** | IMD Cyclone Bulletin Series / SDMA | Peak Winds: 140 km/h, Landfall: Dhamra Port, Tidal Inundation: High |
 | **Cyclone Mocha (2023)** | WMO ESCAP Panel Report | Peak Winds: 275 km/h, Min Pressure: 918 hPa |
 | **Severe Cyclone Dana (2024)** | IMD RSMC Verified Track Dataset | Peak Winds: 120 km/h, Landfall: Habalikhati Nature Camp, Evac: 800k+ |
-
----
-
-## 3. Configuration & API Endpoints
-
-To connect production data sources, set the corresponding environment variables in `.env.local`:
-
-```bash
-# Live Weather
-VITE_WEATHER_API_URL=https://api.open-meteo.com/v1/forecast
-
-# Cyclone Observation & Forecast Feed
-VITE_CYCLONE_FEED_URL=https://your-api-gateway.gov/cyclone-feed.json
-
-# ML Inference Microservice
-VITE_ML_SERVICE_URL=https://ml.cycloneshield.ai/predict
-
-# Geospatial Layers
-VITE_INFRASTRUCTURE_GEOJSON_URL=https://gis.cycloneshield.ai/infrastructure.geojson
-VITE_VILLAGES_GEOJSON_URL=https://gis.cycloneshield.ai/wards.geojson
-```
