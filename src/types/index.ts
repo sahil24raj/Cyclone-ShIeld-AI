@@ -132,3 +132,25 @@ export interface RiskBreakdown {
     category: 'hazard' | 'vulnerability' | 'exposure';
   }[];
 }
+
+export interface HistoricalCycloneEvent {
+  id: string;
+  name: string;
+  year: number;
+  dateRange: string;
+  basin: string;
+  landfallLocation: string;
+  peakCategory: string;
+  observedMaxWindKmh: number;
+  predictedMaxWindKmh: number;
+  observedPeakSurgeMeters: number;
+  predictedPeakSurgeMeters: number;
+  observedRainfallMm: number;
+  predictedRainfallMm: number;
+  evacuatedPopulation: number;
+  keyImpactSummary: string;
+  inundationAccuracyPct: number;
+  infrastructureDamageScore: number; // 0-100
+  lessonsLearned: string[];
+}
+

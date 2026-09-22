@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import { useAppState } from '../../context/AppStateContext';
 import { MOCK_CYCLONE_TRACK, CYCLONE_METADATA } from '../../data/cycloneData';
@@ -6,15 +6,15 @@ import { MOCK_VILLAGES } from '../../data/villageData';
 import { MOCK_ASSETS, MOCK_SHELTERS } from '../../data/infrastructureData';
 import { MOCK_EVACUATION_ROUTES } from '../../data/evacuationData';
 import { MapLegend } from './MapLegend';
-import { VillageRiskDrawer } from './VillageRiskDrawer';
-import { AssetDetailModal } from './AssetDetailModal';
 import { calculateVillageRisk, getRiskLevel } from '../../utils/riskCalculator';
+import { RotateCcw, Plus, Minus, Compass, Layers } from 'lucide-react';
 
 export const InteractiveMap: React.FC = () => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
   const tileLayerRef = useRef<L.TileLayer | null>(null);
   const layersGroupRef = useRef<L.LayerGroup | null>(null);
+  const [mouseCoords, setMouseCoords] = useState<string>('20.480°N, 86.820°E');
 
   const {
     mapLayers,
@@ -36,11 +36,14 @@ export const InteractiveMap: React.FC = () => {
       center: [20.48, 86.82],
       zoom: 11,
       zoomControl: false,
-      minZoom: 9,
-      maxZoom: 16,
+      minZoom: 8,
+      maxZoom: 18,
     });
 
-    L.control.zoom({ position: 'bottomright' }).addTo(map);
+    // Track mouse coordinates for GIS HUD
+    map.on('mousemove', (e) => {
+      setMouseCoords(`${e.latlng.lat.toFixed(3)}°N, ${e.latlng.lng.toFixed(3)}°E`);
+    });
 
     const layerGroup = L.layerGroup().addTo(map);
     layersGroupRef.current = layerGroup;
@@ -61,8 +64,6 @@ export const InteractiveMap: React.FC = () => {
       map.removeLayer(tileLayerRef.current);
     }
 
-    const cartoApiKey = import.meta.env.VITE_CARTO_API_KEY || 'cb1_3t5l_1_a644c0e42df5a70a5cea7a0f';
-
     let newTileLayer: L.TileLayer;
 
     if (basemapStyle === 'satellite') {
@@ -70,15 +71,6 @@ export const InteractiveMap: React.FC = () => {
         'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
         {
           attribution: '&copy; Esri World Imagery &copy; Earthstar Geographics',
-          maxZoom: 19,
-        }
-      );
-    } else if (basemapStyle === 'carto') {
-      newTileLayer = L.tileLayer(
-        `https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png?api_key=${cartoApiKey}`,
-        {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-          subdomains: 'abcd',
           maxZoom: 19,
         }
       );
@@ -101,6 +93,21 @@ export const InteractiveMap: React.FC = () => {
     newTileLayer.addTo(map);
     tileLayerRef.current = newTileLayer;
   }, [basemapStyle]);
+
+  // Center on Sundar Coast
+  const handleResetCenter = () => {
+    if (mapInstanceRef.current) {
+      mapInstanceRef.current.flyTo([20.48, 86.82], 11, { duration: 0.8 });
+    }
+  };
+
+  const handleZoomIn = () => {
+    if (mapInstanceRef.current) mapInstanceRef.current.zoomIn();
+  };
+
+  const handleZoomOut = () => {
+    if (mapInstanceRef.current) mapInstanceRef.current.zoomOut();
+  };
 
   // Update Dynamic Map Layers whenever toggles, phase, or simulation params change
   useEffect(() => {
@@ -222,7 +229,7 @@ export const InteractiveMap: React.FC = () => {
         const coneLeft: [number, number][] = [];
         const coneRight: [number, number][] = [];
 
-        adjustedTrack.forEach((pt, i) => {
+        adjustedTrack.forEach((pt) => {
           const radiusDeg = (pt.uncertaintyRadiusKm / 111) * 0.7;
           coneLeft.push([pt.lat + radiusDeg * 0.6, pt.lng - radiusDeg]);
           coneRight.push([pt.lat - radiusDeg * 0.6, pt.lng + radiusDeg]);
@@ -355,13 +362,18 @@ export const InteractiveMap: React.FC = () => {
     if (mapLayers.criticalInfrastructure) {
       MOCK_ASSETS.forEach((asset) => {
         const isCritical = asset.risk_score >= 80;
+        const isSelected = selectedAsset?.id === asset.id;
 
         const assetIcon = L.divIcon({
           className: 'custom-asset-marker',
           html: `
             <div class="w-6 h-6 rounded-full ${
-              isCritical ? 'bg-amber-600 border-2 border-amber-300' : 'bg-blue-600 border-2 border-blue-300'
-            } text-white shadow-md flex items-center justify-center text-[10px] font-mono font-bold cursor-pointer transition-transform hover:scale-125">
+              isSelected
+                ? 'bg-cyan-400 border-2 border-white ring-4 ring-cyan-500/50 scale-125'
+                : isCritical
+                ? 'bg-amber-600 border-2 border-amber-300'
+                : 'bg-blue-600 border-2 border-blue-300'
+            } text-white shadow-md flex items-center justify-center text-[10px] font-mono font-bold cursor-pointer transition-all hover:scale-125">
               ${asset.type === 'hospital' ? 'H' : asset.type === 'power_substation' ? '⚡' : '⚙'}
             </div>
           `,
@@ -380,7 +392,7 @@ export const InteractiveMap: React.FC = () => {
             <div class="font-bold text-amber-300">${asset.name}</div>
             <div>Risk Score: ${asset.risk_score}/100</div>
             <div>Status: ${asset.current_status}</div>
-            <div class="text-cyan-400 text-[10px] mt-1">Click for Action Checklist &gt;</div>
+            <div class="text-cyan-400 text-[10px] mt-1">Click to Inspect in Panel &gt;</div>
           </div>`,
           { className: 'leaflet-tooltip-dark' }
         );
@@ -389,10 +401,11 @@ export const InteractiveMap: React.FC = () => {
       });
     }
 
-    // 9. Village Risk Markers (Always on map)
+    // 9. Village Risk Markers
     MOCK_VILLAGES.forEach((village) => {
       const riskBreakdown = calculateVillageRisk(village, simulationParams);
       const level = getRiskLevel(riskBreakdown.overallRisk);
+      const isSelected = selectedVillage?.id === village.id;
 
       const colorBg =
         level === 'critical'
@@ -404,7 +417,9 @@ export const InteractiveMap: React.FC = () => {
           : 'bg-emerald-600';
 
       const ringColor =
-        level === 'critical'
+        isSelected
+          ? 'border-white ring-4 ring-cyan-400 scale-125'
+          : level === 'critical'
           ? 'border-red-300 shadow-red-500/60'
           : level === 'high'
           ? 'border-orange-300 shadow-orange-500/60'
@@ -447,48 +462,67 @@ export const InteractiveMap: React.FC = () => {
           <div>Risk: <b class="${level === 'critical' ? 'text-red-400' : 'text-orange-400'}">${riskBreakdown.overallRisk}/100 (${level.toUpperCase()})</b></div>
           <div>Priority: ${village.priority_level}</div>
           <div>Population: ${village.population.toLocaleString()}</div>
-          <div class="text-cyan-400 text-[10px] mt-1">Click to view Explainable Risk &gt;</div>
+          <div class="text-cyan-400 text-[10px] mt-1">Click to Inspect in Panel &gt;</div>
         </div>`,
         { className: 'leaflet-tooltip-dark' }
       );
 
       marker.addTo(group);
     });
-  }, [mapLayers, timelinePhase, simulationParams]);
+  }, [mapLayers, timelinePhase, simulationParams, selectedVillage, selectedAsset]);
 
   return (
-    <div className="relative w-full h-full min-h-[500px] flex-1 bg-navy-950 overflow-hidden">
-      {/* Map DOM Canvas */}
+    <div className="relative w-full h-full min-h-[450px] flex-1 bg-navy-950 overflow-hidden">
+      {/* Map Canvas */}
       <div ref={mapContainerRef} className="w-full h-full z-0" />
 
-      {/* Floating Map Legend & Layer Controls */}
-      <div className="absolute top-4 left-4 z-10 hidden sm:block">
+      {/* Floating Map Legend (Top Left) */}
+      <div className="absolute top-3 left-3 z-10 hidden md:block">
         <MapLegend />
       </div>
 
-      {/* Map Overlay Header Quick Bar */}
-      <div className="absolute top-4 right-4 z-10 bg-navy-900/90 backdrop-blur-md border border-navy-750 px-3 py-1.5 rounded-lg shadow-xl text-xs font-mono flex items-center gap-3 text-slate-300">
+      {/* GIS Floating HUD Bar (Top Right) */}
+      <div className="absolute top-3 right-3 z-10 bg-navy-900/90 backdrop-blur-md border border-navy-750 px-3 py-1.5 rounded-xl shadow-xl text-xs font-mono flex items-center gap-2.5 text-slate-300">
         <div className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
           <span className="text-cyan-300 font-bold">Sundar Coast GIS</span>
         </div>
-        <span className="h-3 w-px bg-navy-700" />
-        <span className="text-[11px] text-slate-400">
-          Center: 20.48°N, 86.82°E • Bay of Bengal
+        <span className="h-3 w-px bg-navy-800" />
+        <span className="text-[10px] text-slate-400 hidden sm:inline">
+          {mouseCoords}
         </span>
       </div>
 
-      {/* Village Risk Detail Drawer */}
-      <VillageRiskDrawer
-        village={selectedVillage}
-        onClose={() => setSelectedVillage(null)}
-      />
-
-      {/* Asset Detail Modal */}
-      <AssetDetailModal
-        asset={selectedAsset}
-        onClose={() => setSelectedAsset(null)}
-      />
+      {/* Floating Zoom & Center Controls (Bottom Right) */}
+      <div className="absolute bottom-3 right-3 z-10 flex flex-col gap-1.5">
+        <button
+          type="button"
+          onClick={handleZoomIn}
+          className="w-8 h-8 rounded-lg bg-navy-900/90 hover:bg-navy-800 backdrop-blur-md border border-navy-750 text-slate-200 hover:text-white flex items-center justify-center shadow-lg transition-colors font-bold"
+          title="Zoom In"
+          aria-label="Zoom In"
+        >
+          <Plus className="w-4 h-4" />
+        </button>
+        <button
+          type="button"
+          onClick={handleZoomOut}
+          className="w-8 h-8 rounded-lg bg-navy-900/90 hover:bg-navy-800 backdrop-blur-md border border-navy-750 text-slate-200 hover:text-white flex items-center justify-center shadow-lg transition-colors font-bold"
+          title="Zoom Out"
+          aria-label="Zoom Out"
+        >
+          <Minus className="w-4 h-4" />
+        </button>
+        <button
+          type="button"
+          onClick={handleResetCenter}
+          className="w-8 h-8 rounded-lg bg-navy-900/90 hover:bg-navy-800 backdrop-blur-md border border-navy-750 text-cyan-400 hover:text-cyan-300 flex items-center justify-center shadow-lg transition-colors"
+          title="Center on District"
+          aria-label="Center on District"
+        >
+          <RotateCcw className="w-3.5 h-3.5" />
+        </button>
+      </div>
     </div>
   );
 };

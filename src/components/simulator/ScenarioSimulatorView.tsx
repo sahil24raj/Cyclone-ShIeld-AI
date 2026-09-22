@@ -108,6 +108,19 @@ export const ScenarioSimulatorView: React.FC = () => {
           </p>
         </div>
 
+        {/* Operational Notice */}
+        <div className="bg-purple-950/40 border border-purple-800/50 rounded-xl px-4 py-2.5 flex items-center justify-between gap-4 text-xs font-mono">
+          <div className="flex items-center gap-2 text-purple-200">
+            <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse flex-shrink-0" />
+            <span>
+              <strong>Scenario Modeler:</strong> Perturb track trajectory, wind velocity, and tidal surge to compute real-time stress test deltas. Not an official IMD meteorological forecast.
+            </span>
+          </div>
+          <span className="text-[10px] text-purple-300/80 bg-purple-900/60 px-2 py-0.5 rounded border border-purple-700/50 whitespace-nowrap">
+            v2.4 Sensitivity Engine
+          </span>
+        </div>
+
         {/* Preset Buttons */}
         <div className="flex flex-wrap items-center gap-2">
           <button

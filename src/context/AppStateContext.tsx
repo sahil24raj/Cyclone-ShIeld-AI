@@ -11,6 +11,7 @@ export type ActiveTab =
   | 'simulator'
   | 'briefing'
   | 'alert'
+  | 'historical'
   | 'methodology';
 
 export interface MapLayerConfig {

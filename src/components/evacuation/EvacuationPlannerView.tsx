@@ -11,7 +11,7 @@ import {
   Bus,
   ShieldCheck,
   AlertTriangle,
-  Info
+  MapPin
 } from 'lucide-react';
 import {
   ResponsiveContainer,
@@ -26,13 +26,14 @@ import {
 import { MOCK_VILLAGES } from '../../data/villageData';
 import { MOCK_SHELTERS } from '../../data/infrastructureData';
 import { MOCK_EVACUATION_ROUTES, EVACUATION_SUMMARY } from '../../data/evacuationData';
-import { calculateVillageRisk } from '../../utils/riskCalculator';
+import { calculateVillageRisk, getRiskLevel } from '../../utils/riskCalculator';
 import { optimizeShelterAssignment } from '../../utils/shelterOptimizer';
-import { getPriorityBadgeClasses, formatIndianNumber } from '../../utils/formatters';
+import { PriorityBadge, RiskBadge } from '../ui/RiskBadge';
+import { formatIndianNumber } from '../../utils/formatters';
 import { useAppState } from '../../context/AppStateContext';
 
 export const EvacuationPlannerView: React.FC = () => {
-  const { simulationParams, openVillageRiskDetail, setActiveTab } = useAppState();
+  const { simulationParams, setSelectedVillage, setSelectedAsset, setActiveTab } = useAppState();
   const [filterPriority, setFilterPriority] = useState<string>('all');
 
   const villageRows = MOCK_VILLAGES.map((v) => {
@@ -61,7 +62,7 @@ export const EvacuationPlannerView: React.FC = () => {
   }));
 
   return (
-    <div className="space-y-5 p-4 md:p-6 max-w-[1600px] mx-auto font-sans">
+    <div className="space-y-5 p-4 md:p-6 max-w-[1650px] mx-auto font-sans">
       {/* Page Header Banner */}
       <div className="bg-navy-900 border border-navy-750 p-4 rounded-2xl shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
@@ -141,10 +142,17 @@ export const EvacuationPlannerView: React.FC = () => {
         </div>
 
         <button
-          onClick={() => openVillageRiskDetail('vil-01')}
+          onClick={() => {
+            const w7 = MOCK_VILLAGES.find(v => v.id === 'vil-01');
+            if (w7) {
+              setSelectedVillage(w7);
+              setSelectedAsset(null);
+              setActiveTab('command');
+            }
+          }}
           className="flex-shrink-0 bg-red-600 hover:bg-red-500 text-white text-xs font-mono font-bold px-3 py-2 rounded-lg transition-colors flex items-center gap-1.5 shadow-md"
         >
-          <span>Examine Ward 7 Route</span>
+          <span>Examine Ward 7 on GIS</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </button>
       </div>
@@ -172,28 +180,31 @@ export const EvacuationPlannerView: React.FC = () => {
                 <th className="py-3 px-3.5">Route &amp; Bottleneck Status</th>
                 <th className="py-3 px-3.5">Transit Time</th>
                 <th className="py-3 px-3.5">Departure Window</th>
-                <th className="py-3 px-3.5 text-right">Details</th>
+                <th className="py-3 px-3.5 text-right">GIS Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-navy-800/60 font-mono">
               {villageRows.map(({ village, risk, shelterOpt, departureDeadline }) => {
-                const priorityBadge = getPriorityBadgeClasses(village.priority_level);
+                const riskLevel = getRiskLevel(risk.overallRisk);
 
                 return (
                   <tr
                     key={village.id}
-                    onClick={() => openVillageRiskDetail(village.id)}
+                    onClick={() => {
+                      setSelectedVillage(village);
+                      setSelectedAsset(null);
+                      setActiveTab('command');
+                    }}
                     className="hover:bg-navy-850/60 cursor-pointer transition-colors group"
                   >
                     <td className="py-3.5 px-3.5">
-                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${priorityBadge.bg}`}>
-                        {village.priority_level}
-                      </span>
+                      <PriorityBadge priority={village.priority_level} size="sm" />
                     </td>
 
                     <td className="py-3.5 px-3.5 font-sans">
-                      <div className="font-bold text-white group-hover:text-cyan-300 transition-colors">
-                        {village.name}
+                      <div className="font-bold text-white group-hover:text-cyan-300 transition-colors flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5 text-cyan-400" />
+                        <span>{village.name}</span>
                       </div>
                       <div className="text-[10px] text-slate-400 font-mono">
                         Risk Score: <b className="text-red-400">{risk.overallRisk}/100</b> • Elev {village.elevation}m
@@ -255,11 +266,13 @@ export const EvacuationPlannerView: React.FC = () => {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          openVillageRiskDetail(village.id);
+                          setSelectedVillage(village);
+                          setSelectedAsset(null);
+                          setActiveTab('command');
                         }}
                         className="text-xs font-mono font-bold text-cyan-400 group-hover:text-cyan-200 group-hover:underline"
                       >
-                        Plan &gt;
+                        Inspect on GIS &gt;
                       </button>
                     </td>
                   </tr>
@@ -293,7 +306,7 @@ export const EvacuationPlannerView: React.FC = () => {
                 <XAxis dataKey="name" stroke="#94A3B8" fontSize={11} tickLine={false} />
                 <YAxis stroke="#94A3B8" fontSize={11} tickLine={false} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#0B132B', borderColor: '#1E293B', borderRadius: '8px' }}
+                  contentStyle={{ backgroundColor: '#0B132B', borderColor: '#1E293B', borderRadius: '8px', fontSize: '11px' }}
                 />
                 <Legend wrapperStyle={{ fontSize: '11px', fontFamily: 'monospace' }} />
                 <Bar dataKey="Occupied" fill="#EF4444" radius={[4, 4, 0, 0]} />
@@ -332,10 +345,11 @@ export const EvacuationPlannerView: React.FC = () => {
           </div>
 
           <button
-            onClick={() => setActiveTab('map')}
-            className="w-full bg-cyan-600/20 hover:bg-cyan-600/30 text-cyan-300 border border-cyan-500/40 font-mono text-xs py-2 rounded-lg transition-colors font-semibold"
+            onClick={() => setActiveTab('command')}
+            className="w-full bg-cyan-600/20 hover:bg-cyan-600/30 text-cyan-300 border border-cyan-500/40 font-mono text-xs py-2 rounded-lg transition-colors font-semibold flex items-center justify-center gap-1.5"
           >
-            Inspect Evacuation Corridors on GIS &gt;
+            <span>Inspect Evacuation Corridors on GIS Map</span>
+            <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
       </div>

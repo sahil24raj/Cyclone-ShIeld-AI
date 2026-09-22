@@ -6,12 +6,13 @@ import {
   Navigation,
   ArrowRight,
   ShieldAlert,
-  HelpCircle
+  HelpCircle,
+  MapPin
 } from 'lucide-react';
 import { MOCK_VILLAGES } from '../../data/villageData';
 import { calculateVillageRisk, getRiskLevel } from '../../utils/riskCalculator';
-import { getPriorityBadgeClasses, getRiskBadgeClasses, formatIndianNumber } from '../../utils/formatters';
 import { optimizeShelterAssignment } from '../../utils/shelterOptimizer';
+import { RiskBadge, PriorityBadge } from '../ui/RiskBadge';
 import { useAppState } from '../../context/AppStateContext';
 
 export const CriticalWardsTable: React.FC = () => {
@@ -27,25 +28,25 @@ export const CriticalWardsTable: React.FC = () => {
     .sort((a, b) => b.risk.overallRisk - a.risk.overallRisk);
 
   return (
-    <div className="bg-navy-900 border border-navy-750 rounded-xl p-4 shadow-lg space-y-3">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-navy-750 pb-2.5">
+    <div className="bg-navy-900 border border-navy-750 rounded-2xl p-4 md:p-5 shadow-xl space-y-3 font-sans">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-navy-750 pb-3">
         <div>
           <div className="flex items-center gap-2">
             <AlertOctagon className="w-4 h-4 text-orange-400" />
             <h3 className="font-bold text-sm text-white font-mono tracking-tight">
-              High Vulnerability Wards &amp; Evacuation Ranking
+              Ward Vulnerability &amp; Evacuation Priority Matrix
             </h3>
           </div>
           <p className="text-[11px] text-slate-400 font-mono mt-0.5">
-            Ranked deterministically using multi-hazard risk algorithm
+            Ranked deterministically using P-CHMVM v2.4 multi-hazard equations
           </p>
         </div>
 
         <button
           onClick={() => setActiveTab('evacuation')}
-          className="text-xs font-mono font-semibold text-cyan-400 hover:text-cyan-300 flex items-center gap-1 self-start sm:self-auto bg-navy-850 px-2.5 py-1.5 rounded-lg border border-navy-700 transition-colors"
+          className="text-xs font-mono font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1 self-start sm:self-auto bg-navy-850 hover:bg-navy-800 px-3 py-1.5 rounded-xl border border-navy-700 transition-colors shadow-sm"
         >
-          <span>Full Evacuation Matrix</span>
+          <span>Open Full Evacuation Matrix</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </button>
       </div>
@@ -53,67 +54,53 @@ export const CriticalWardsTable: React.FC = () => {
       <div className="overflow-x-auto">
         <table className="w-full text-left text-xs font-sans">
           <thead>
-            <tr className="border-b border-navy-800 text-slate-400 font-mono text-[10px] uppercase">
+            <tr className="border-b border-navy-800 text-slate-400 font-mono text-[10px] uppercase bg-navy-950/40">
               <th className="py-2.5 px-3">Ward / Village</th>
               <th className="py-2.5 px-3">Priority</th>
-              <th className="py-2.5 px-3">Risk Index</th>
+              <th className="py-2.5 px-3">Risk Score</th>
               <th className="py-2.5 px-3">Population</th>
-              <th className="py-2.5 px-3">Surge Prob / Depth</th>
-              <th className="py-2.5 px-3">Shelter Assignment</th>
-              <th className="py-2.5 px-3 text-right">Action</th>
+              <th className="py-2.5 px-3">Surge Exposure</th>
+              <th className="py-2.5 px-3">Assigned Safe Shelter</th>
+              <th className="py-2.5 px-3 text-right">Inspect</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-navy-800/60 font-mono">
             {sortedVillages.map(({ village, risk, shelterOpt }) => {
-              const priorityBadge = getPriorityBadgeClasses(village.priority_level);
               const riskLevel = getRiskLevel(risk.overallRisk);
-              const riskBadge = getRiskBadgeClasses(riskLevel);
 
               return (
                 <tr
                   key={village.id}
                   onClick={() => openVillageRiskDetail(village.id)}
-                  className="hover:bg-navy-800/50 cursor-pointer transition-colors group"
+                  className="hover:bg-navy-850/60 cursor-pointer transition-colors group"
                 >
                   <td className="py-3 px-3 font-medium text-slate-100 font-sans">
-                    <div className="font-bold group-hover:text-cyan-300 transition-colors">
-                      {village.name}
+                    <div className="font-bold text-white group-hover:text-cyan-300 transition-colors flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0" />
+                      <span>{village.name}</span>
                     </div>
                     <div className="text-[10px] text-slate-400 font-mono">
-                      {village.distance_to_coast}km to coast • {village.elevation}m elev
+                      {village.distance_to_coast}km coast • {village.elevation}m MSL
                     </div>
                   </td>
 
                   <td className="py-3 px-3">
-                    <span
-                      className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase ${priorityBadge.bg}`}
-                    >
-                      {village.priority_level}
-                    </span>
+                    <PriorityBadge priority={village.priority_level} size="sm" />
                   </td>
 
                   <td className="py-3 px-3">
-                    <div className="flex items-center gap-1.5">
-                      <span
-                        className={`text-sm font-bold font-mono px-2 py-0.5 rounded border ${riskBadge.bg} ${riskBadge.text} ${riskBadge.border}`}
-                      >
-                        {risk.overallRisk}
-                      </span>
-                      <span className="text-[10px] text-slate-400 uppercase">
-                        {riskLevel}
-                      </span>
-                    </div>
+                    <RiskBadge level={riskLevel} score={risk.overallRisk} size="sm" />
                   </td>
 
                   <td className="py-3 px-3 text-slate-200">
-                    <div>{formatIndianNumber(village.population)}</div>
-                    <div className="text-[10px] text-slate-400">
-                      {village.elderly_population + village.children_population} vuln
+                    <div className="font-semibold">{village.population.toLocaleString()}</div>
+                    <div className="text-[10px] text-orange-400">
+                      {village.elderly_population + village.children_population} dependents
                     </div>
                   </td>
 
                   <td className="py-3 px-3 text-cyan-300">
-                    <div>{village.flood_probability}% prob</div>
+                    <div>{village.flood_probability}% probability</div>
                     <div className="text-[10px] text-slate-400">
                       ~{village.estimated_water_depth.toFixed(1)}m water depth
                     </div>
@@ -121,16 +108,16 @@ export const CriticalWardsTable: React.FC = () => {
 
                   <td className="py-3 px-3">
                     {shelterOpt.isRerouted ? (
-                      <div className="text-red-400 text-[11px] font-semibold flex items-center gap-1">
+                      <div className="text-red-400 text-[11px] font-bold flex items-center gap-1">
                         <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-ping" />
                         <span>Rerouted: Shelter B</span>
                       </div>
                     ) : (
-                      <div className="text-emerald-400 text-[11px]">
+                      <div className="text-emerald-400 text-[11px] font-semibold">
                         {shelterOpt.assignedShelter.name.split('(')[0]}
                       </div>
                     )}
-                    <div className="text-[10px] text-slate-400 truncate max-w-[150px]">
+                    <div className="text-[10px] text-slate-400 truncate max-w-[170px]">
                       via {shelterOpt.recommendedCorridor}
                     </div>
                   </td>
@@ -143,7 +130,7 @@ export const CriticalWardsTable: React.FC = () => {
                       }}
                       className="text-xs font-mono font-bold text-cyan-400 group-hover:text-cyan-200 group-hover:underline"
                     >
-                      Explain &gt;
+                      Inspect &gt;
                     </button>
                   </td>
                 </tr>

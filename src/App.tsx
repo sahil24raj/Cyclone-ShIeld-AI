@@ -12,6 +12,7 @@ import { ScenarioSimulatorView } from './components/simulator/ScenarioSimulatorV
 import { AIBriefingView } from './components/briefing/AIBriefingView';
 import { AlertCentreView } from './components/alert/AlertCentreView';
 import { MethodologyView } from './components/methodology/MethodologyView';
+import { HistoricalAnalysisView } from './components/historical/HistoricalAnalysisView';
 
 const MainContent: React.FC = () => {
   const { activeTab } = useAppState();
@@ -20,7 +21,7 @@ const MainContent: React.FC = () => {
     <main className="flex-1 overflow-y-auto bg-navy-950">
       {activeTab === 'command' && <CommandCentreView />}
       {activeTab === 'map' && (
-        <div className="h-[calc(100vh-85px)] w-full">
+        <div className="h-[calc(100vh-80px)] w-full">
           <InteractiveMap />
         </div>
       )}
@@ -29,6 +30,7 @@ const MainContent: React.FC = () => {
       {activeTab === 'simulator' && <ScenarioSimulatorView />}
       {activeTab === 'briefing' && <AIBriefingView />}
       {activeTab === 'alert' && <AlertCentreView />}
+      {activeTab === 'historical' && <HistoricalAnalysisView />}
       {activeTab === 'methodology' && <MethodologyView />}
     </main>
   );
