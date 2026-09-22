@@ -7,25 +7,41 @@ import {
   ArrowRight,
   ShieldAlert,
   HelpCircle,
-  MapPin
+  MapPin,
+  Database
 } from 'lucide-react';
-import { MOCK_VILLAGES } from '../../data/villageData';
-import { calculateVillageRisk, getRiskLevel } from '../../utils/riskCalculator';
+import { DeterministicRiskEngine } from '../../services/riskEngine';
 import { optimizeShelterAssignment } from '../../utils/shelterOptimizer';
 import { RiskBadge, PriorityBadge } from '../ui/RiskBadge';
 import { useAppState } from '../../context/AppStateContext';
 
 export const CriticalWardsTable: React.FC = () => {
-  const { simulationParams, openVillageRiskDetail, setActiveTab } = useAppState();
+  const { simulationParams, openVillageRiskDetail, setActiveTab, villages } = useAppState();
 
   // Calculate sorted villages by risk
-  const sortedVillages = [...MOCK_VILLAGES]
+  const sortedVillages = [...villages]
     .map((v) => ({
       village: v,
-      risk: calculateVillageRisk(v, simulationParams),
+      risk: DeterministicRiskEngine.calculateRisk(v, simulationParams),
       shelterOpt: optimizeShelterAssignment(v),
     }))
     .sort((a, b) => b.risk.overallRisk - a.risk.overallRisk);
+
+  if (villages.length === 0) {
+    return (
+      <div className="bg-navy-900 border border-navy-750 rounded-2xl p-6 shadow-xl text-center space-y-3 font-sans">
+        <div className="p-3 rounded-full bg-navy-950 w-fit mx-auto border border-navy-800 text-slate-500">
+          <Database className="w-6 h-6" />
+        </div>
+        <h4 className="font-bold text-sm text-white font-mono">
+          Ward Vulnerability Matrix Unavailable
+        </h4>
+        <p className="text-xs text-slate-400 max-w-md mx-auto">
+          Population registry layer is unconfigured. Provide a GeoJSON endpoint via <code className="text-cyan-400">VITE_VILLAGES_GEOJSON_URL</code> or enable dev fixtures.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-navy-900 border border-navy-750 rounded-2xl p-4 md:p-5 shadow-xl space-y-3 font-sans">
@@ -38,7 +54,7 @@ export const CriticalWardsTable: React.FC = () => {
             </h3>
           </div>
           <p className="text-[11px] text-slate-400 font-mono mt-0.5">
-            Ranked deterministically using P-CHMVM v2.4 multi-hazard equations
+            Ranked deterministically using multi-hazard physical exposure formulations
           </p>
         </div>
 
@@ -66,7 +82,7 @@ export const CriticalWardsTable: React.FC = () => {
           </thead>
           <tbody className="divide-y divide-navy-800/60 font-mono">
             {sortedVillages.map(({ village, risk, shelterOpt }) => {
-              const riskLevel = getRiskLevel(risk.overallRisk);
+              const riskLevel = DeterministicRiskEngine.getRiskLevel(risk.overallRisk);
 
               return (
                 <tr

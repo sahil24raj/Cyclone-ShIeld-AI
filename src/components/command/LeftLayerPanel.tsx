@@ -16,8 +16,7 @@ import {
 } from 'lucide-react';
 import { LayerToggle } from '../ui/LayerToggle';
 import { useAppState } from '../../context/AppStateContext';
-import { MOCK_VILLAGES } from '../../data/villageData';
-import { calculateVillageRisk } from '../../utils/riskCalculator';
+import { DeterministicRiskEngine } from '../../services/riskEngine';
 
 export const LeftLayerPanel: React.FC = () => {
   const {
@@ -29,10 +28,13 @@ export const LeftLayerPanel: React.FC = () => {
     setSelectedVillage,
     setSelectedAsset,
     simulationParams,
+    villages,
+    activeCyclone,
+    assets
   } = useAppState();
 
-  const criticalVillages = MOCK_VILLAGES.filter(
-    (v) => calculateVillageRisk(v, simulationParams).overallRisk >= 70
+  const criticalVillages = villages.filter(
+    (v) => DeterministicRiskEngine.calculateRisk(v, simulationParams).overallRisk >= 70
   );
 
   return (
@@ -126,7 +128,7 @@ export const LeftLayerPanel: React.FC = () => {
 
           <div className="space-y-1">
             {criticalVillages.slice(0, 3).map((v) => {
-              const risk = calculateVillageRisk(v, simulationParams);
+              const risk = DeterministicRiskEngine.calculateRisk(v, simulationParams);
               const isSelected = selectedVillage?.id === v.id;
 
               return (

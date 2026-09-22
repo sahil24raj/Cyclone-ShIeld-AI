@@ -17,13 +17,13 @@ import {
   X,
   MapPin,
   Users,
-  CheckCircle2
+  CheckCircle2,
+  Database
 } from 'lucide-react';
 import { RiskBadge, PriorityBadge } from '../ui/RiskBadge';
 import { RiskBreakdownBar } from '../ui/RiskBreakdownBar';
 import { useAppState } from '../../context/AppStateContext';
-import { CYCLONE_METADATA } from '../../data/cycloneData';
-import { calculateVillageRisk, getRiskLevel } from '../../utils/riskCalculator';
+import { DeterministicRiskEngine } from '../../services/riskEngine';
 import { optimizeShelterAssignment } from '../../utils/shelterOptimizer';
 
 export const RightIntelligencePanel: React.FC = () => {
@@ -36,10 +36,18 @@ export const RightIntelligencePanel: React.FC = () => {
     toggleAssetAction,
     setActiveTab,
     simulationParams,
+    activeCyclone,
+    weather,
+    prediction
   } = useAppState();
 
-  const currentWind = Math.round(135 * simulationParams.windSpeedMultiplier);
-  const currentSurge = (3.4 + simulationParams.surgeHeightOffset).toFixed(1);
+  const isFixtureMode = import.meta.env.VITE_ENABLE_DEV_FIXTURES === 'true';
+  const currentWind = activeCyclone
+    ? Math.round(activeCyclone.maxWindSpeed * simulationParams.windSpeedMultiplier)
+    : (weather ? Math.round(weather.windSpeed) : 0);
+  const currentSurge = activeCyclone
+    ? (activeCyclone.stormSurgeMax + simulationParams.surgeHeightOffset).toFixed(1)
+    : '0.0';
 
   // Top prioritized critical assets sorted by risk score
   const topCriticalAssets = [...assets].sort((a, b) => b.risk_score - a.risk_score).slice(0, 3);
@@ -84,7 +92,7 @@ export const RightIntelligencePanel: React.FC = () => {
           <div className="bg-navy-950 p-3 rounded-xl border border-navy-800 flex items-center justify-between">
             <div>
               <div className="text-[10px] font-mono uppercase text-slate-400 font-semibold">
-                Composite Risk Assessment
+                Derived Risk Assessment
               </div>
               <div className="flex items-baseline gap-1.5 mt-0.5">
                 <span className="text-2xl font-black text-white font-mono">
@@ -131,11 +139,11 @@ export const RightIntelligencePanel: React.FC = () => {
             </div>
           </div>
 
-          {/* Explainable AI: "WHY THIS RISK?" */}
+          {/* Explainable Attribution: "WHY THIS RISK?" */}
           <div className="bg-navy-950 p-3.5 rounded-xl border border-navy-800 space-y-1.5 text-xs text-slate-300 leading-relaxed">
             <div className="font-bold text-amber-300 font-mono flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Why This Risk?</span>
+              <ShieldAlert className="w-3.5 h-3.5" />
+              <span>Derived Risk Explanation</span>
             </div>
             <p>
               {selectedAsset.type === 'hospital'
@@ -149,7 +157,7 @@ export const RightIntelligencePanel: React.FC = () => {
           {/* Action Directives (P1 / P2 / P3) */}
           <div className="space-y-2">
             <div className="flex items-center justify-between text-xs font-mono">
-              <span className="font-bold text-slate-300 uppercase">Action Protocols</span>
+              <span className="font-bold text-slate-300 uppercase">Emergency Protocols</span>
               <span className="text-cyan-400 font-semibold">
                 {completedCount} / {totalCount} Done
               </span>
@@ -209,8 +217,8 @@ export const RightIntelligencePanel: React.FC = () => {
   // SCENARIO B: A Village / Ward is Selected
   // ----------------------------------------------------
   if (selectedVillage) {
-    const risk = calculateVillageRisk(selectedVillage, simulationParams);
-    const level = getRiskLevel(risk.overallRisk);
+    const risk = DeterministicRiskEngine.calculateRisk(selectedVillage, simulationParams);
+    const level = DeterministicRiskEngine.getRiskLevel(risk.overallRisk);
     const shelterOpt = optimizeShelterAssignment(selectedVillage);
 
     return (
@@ -244,7 +252,7 @@ export const RightIntelligencePanel: React.FC = () => {
           <div className="bg-navy-950 p-3 rounded-xl border border-navy-800 flex items-center justify-between">
             <div>
               <div className="text-[10px] font-mono uppercase text-slate-400 font-semibold">
-                Multi-Hazard Risk Index
+                Derived Multi-Hazard Risk Index
               </div>
               <div className="flex items-baseline gap-1.5 mt-0.5">
                 <span className="text-2xl font-black text-white font-mono">
@@ -291,7 +299,7 @@ export const RightIntelligencePanel: React.FC = () => {
             <RiskBreakdownBar
               label="Road Access Submersion"
               score={selectedVillage.is_road_submerged ? 92 : 30}
-              subtext={selectedVillage.is_road_submerged ? 'Primary SH-12 Cutoff' : 'Access Open'}
+              subtext={selectedVillage.is_road_submerged ? 'Primary Route Submerged' : 'Access Open'}
             />
             <RiskBreakdownBar
               label="Dependent Demographic Weight"
@@ -303,7 +311,7 @@ export const RightIntelligencePanel: React.FC = () => {
           <div className="bg-navy-950 p-3.5 rounded-xl border border-navy-800 space-y-2 text-xs">
             <div className="font-bold text-cyan-300 font-mono flex items-center gap-1.5">
               <Navigation className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Optimized Safe Sanctuary</span>
+              <span>Assigned Cyclone Shelter</span>
             </div>
 
             <div className="bg-navy-900 p-2 rounded-lg border border-navy-750">
@@ -355,31 +363,41 @@ export const RightIntelligencePanel: React.FC = () => {
               <Flame className="w-4 h-4 text-red-400" />
               <span>Current Situation</span>
             </div>
-            <span className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/40">
-              ● IMD RSMC ACTIVE
-            </span>
+            {activeCyclone ? (
+              <span className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/40">
+                ● ACTIVE STORM FEED
+              </span>
+            ) : (
+              <span className="text-[10px] font-mono text-slate-400 font-bold bg-navy-950 px-2 py-0.5 rounded border border-navy-800">
+                STANDBY
+              </span>
+            )}
           </div>
 
           <div className="bg-navy-950 p-3 rounded-xl border border-navy-800 space-y-2 font-mono text-xs">
             <div className="flex items-center justify-between">
               <span className="text-slate-400">Cyclone System:</span>
-              <span className="font-bold text-white font-sans">{CYCLONE_METADATA.name}</span>
+              <span className="font-bold text-white font-sans">
+                {activeCyclone ? activeCyclone.name : 'No Active Tropical Cyclone'}
+              </span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-slate-400">Current Intensity:</span>
-              <span className="text-red-400 font-bold">{currentWind} km/h (Cat-3)</span>
+              <span className="text-slate-400">Intensity / Wind:</span>
+              <span className="text-red-400 font-bold">
+                {currentWind > 0 ? `${currentWind} km/h` : 'Calm / Standard'}
+              </span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-slate-400">Central Pressure:</span>
-              <span className="text-slate-200">974 hPa</span>
+              <span className="text-slate-200">
+                {activeCyclone ? `${activeCyclone.centralPressure} hPa` : (weather ? `${weather.pressure} hPa` : '1013 hPa')}
+              </span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-slate-400">Est. Landfall:</span>
-              <span className="text-orange-400 font-bold">~24h (Tomorrow 08:30 IST)</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-slate-400">Overall District Risk:</span>
-              <span className="text-red-400 font-bold">HIGH (74 / 100)</span>
+              <span className="text-orange-400 font-bold">
+                {activeCyclone ? activeCyclone.landfallETA : 'N/A'}
+              </span>
             </div>
           </div>
         </div>
@@ -395,52 +413,66 @@ export const RightIntelligencePanel: React.FC = () => {
           </div>
 
           <div className="space-y-1.5">
-            {topCriticalAssets.map((asset) => (
-              <button
-                key={asset.id}
-                onClick={() => {
-                  setSelectedAsset(asset);
-                  setSelectedVillage(null);
-                }}
-                className="w-full text-left p-2.5 rounded-xl bg-navy-950 hover:bg-navy-850 border border-navy-800 hover:border-cyan-500/40 transition-all flex items-center justify-between group"
-              >
-                <div className="truncate">
-                  <div className="font-bold text-xs text-white group-hover:text-cyan-300 transition-colors truncate">
-                    {asset.name}
+            {topCriticalAssets.length > 0 ? (
+              topCriticalAssets.map((asset) => (
+                <button
+                  key={asset.id}
+                  onClick={() => {
+                    setSelectedAsset(asset);
+                    setSelectedVillage(null);
+                  }}
+                  className="w-full text-left p-2.5 rounded-xl bg-navy-950 hover:bg-navy-850 border border-navy-800 hover:border-cyan-500/40 transition-all flex items-center justify-between group"
+                >
+                  <div className="truncate">
+                    <div className="font-bold text-xs text-white group-hover:text-cyan-300 transition-colors truncate">
+                      {asset.name}
+                    </div>
+                    <div className="text-[10px] font-mono text-slate-400 truncate">
+                      {asset.hazard_exposure}
+                    </div>
                   </div>
-                  <div className="text-[10px] font-mono text-slate-400 truncate">
-                    {asset.hazard_exposure}
-                  </div>
-                </div>
 
-                <div className="flex items-center gap-1.5 ml-2 flex-shrink-0">
-                  <span className="text-xs font-mono font-bold text-red-400 px-1.5 py-0.5 rounded bg-red-500/20 border border-red-500/30">
-                    {asset.risk_score}/100
-                  </span>
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-cyan-300" />
-                </div>
-              </button>
-            ))}
+                  <div className="flex items-center gap-1.5 ml-2 flex-shrink-0">
+                    <span className="text-xs font-mono font-bold text-red-400 px-1.5 py-0.5 rounded bg-red-500/20 border border-red-500/30">
+                      {asset.risk_score}/100
+                    </span>
+                    <ArrowRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-cyan-300" />
+                  </div>
+                </button>
+              ))
+            ) : (
+              <div className="bg-navy-950 p-3 rounded-xl border border-navy-800 text-xs text-slate-400 text-center font-mono">
+                No critical assets registered in active workspace.
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Section 3: AI SITUATION BRIEF */}
+        {/* Section 3: SITUATION BRIEF */}
         <div className="bg-gradient-to-br from-navy-950 to-navy-900 p-3.5 rounded-xl border border-navy-800 space-y-2 text-xs text-slate-300">
           <div className="flex items-center justify-between">
             <div className="font-bold text-cyan-300 font-mono flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-              <span>AI Situation Brief</span>
+              <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Operational Directives</span>
             </div>
-            <span className="text-[9px] font-mono text-slate-400">T-24h Model</span>
+            <span className="text-[9px] font-mono text-slate-400">Command Summary</span>
           </div>
 
           <p className="leading-relaxed text-[11px]">
-            Peak storm surge of <strong>{currentSurge}m</strong> projected to coincide with astronomical tide. Coastal road <strong>SH-12 is cutoff</strong> at Km 14.2. Priority P0 mandatory evacuations must complete via <strong>Elevated Corridor 2</strong> before 18:00 IST.
+            {activeCyclone ? (
+              <>
+                Peak storm surge of <strong>{currentSurge}m</strong> projected along coastal frontage. Priority P0 mandatory evacuations must proceed via designated elevated corridors.
+              </>
+            ) : (
+              <>
+                System in active surveillance mode. Surface weather observations streaming via WMO Open-Meteo station feed.
+              </>
+            )}
           </p>
 
           <div className="pt-1.5 border-t border-navy-800/80 text-[10px] font-mono text-slate-400 flex items-center justify-between">
-            <span>Data: GEE Sentinel-1 SAR + IMD</span>
-            <span className="text-emerald-400 font-bold">Conf: 88.4%</span>
+            <span>Provenance: {activeCyclone?.provenance.source || weather?.provenance.source || 'Standard Feed'}</span>
+            <span className="text-cyan-400 font-bold">{isFixtureMode ? 'Dev Fixture' : 'Live Data'}</span>
           </div>
         </div>
       </div>
@@ -452,7 +484,7 @@ export const RightIntelligencePanel: React.FC = () => {
           className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs font-mono shadow-lg flex items-center justify-center gap-1.5 transition-all"
         >
           <Sparkles className="w-3.5 h-3.5" />
-          <span>Open Full AI Briefing Document &gt;</span>
+          <span>Open Tactical Briefing Generator &gt;</span>
         </button>
       </div>
     </div>

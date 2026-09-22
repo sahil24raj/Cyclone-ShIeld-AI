@@ -11,7 +11,8 @@ import {
   Bus,
   ShieldCheck,
   AlertTriangle,
-  MapPin
+  MapPin,
+  Database
 } from 'lucide-react';
 import {
   ResponsiveContainer,
@@ -23,21 +24,26 @@ import {
   Legend,
   CartesianGrid
 } from 'recharts';
-import { MOCK_VILLAGES } from '../../data/villageData';
-import { MOCK_SHELTERS } from '../../data/infrastructureData';
-import { MOCK_EVACUATION_ROUTES, EVACUATION_SUMMARY } from '../../data/evacuationData';
-import { calculateVillageRisk, getRiskLevel } from '../../utils/riskCalculator';
+import { DeterministicRiskEngine } from '../../services/riskEngine';
 import { optimizeShelterAssignment } from '../../utils/shelterOptimizer';
 import { PriorityBadge, RiskBadge } from '../ui/RiskBadge';
 import { formatIndianNumber } from '../../utils/formatters';
 import { useAppState } from '../../context/AppStateContext';
 
 export const EvacuationPlannerView: React.FC = () => {
-  const { simulationParams, setSelectedVillage, setSelectedAsset, setActiveTab } = useAppState();
+  const {
+    simulationParams,
+    setSelectedVillage,
+    setSelectedAsset,
+    setActiveTab,
+    villages,
+    shelters,
+    evacuationRoutes
+  } = useAppState();
   const [filterPriority, setFilterPriority] = useState<string>('all');
 
-  const villageRows = MOCK_VILLAGES.map((v) => {
-    const risk = calculateVillageRisk(v, simulationParams);
+  const villageRows = villages.map((v) => {
+    const risk = DeterministicRiskEngine.calculateRisk(v, simulationParams);
     const shelterOpt = optimizeShelterAssignment(v);
 
     let departureDeadline = 'Immediate (T-24h to T-18h)';
@@ -54,12 +60,32 @@ export const EvacuationPlannerView: React.FC = () => {
   }).filter((row) => filterPriority === 'all' || row.village.priority_level === filterPriority);
 
   // Shelter capacity chart data
-  const shelterChartData = MOCK_SHELTERS.map((s) => ({
+  const shelterChartData = shelters.map((s) => ({
     name: s.name.split('(')[0].replace('Shelter ', 'Sh '),
     Occupied: s.current_occupancy,
     Available: Math.max(0, s.capacity - s.current_occupancy),
     isBlocked: s.access_road_status === 'blocked',
   }));
+
+  const p0Pop = villages
+    .filter(v => v.priority_level === 'P0')
+    .reduce((acc, v) => acc + v.population, 0);
+
+  if (villages.length === 0) {
+    return (
+      <div className="space-y-5 p-4 md:p-6 max-w-[1650px] mx-auto font-sans">
+        <div className="bg-navy-900 border border-navy-750 p-8 rounded-2xl shadow-xl text-center space-y-3">
+          <Database className="w-8 h-8 text-slate-500 mx-auto" />
+          <h3 className="text-base font-bold text-white font-mono">
+            Evacuation Matrix Layer Not Configured
+          </h3>
+          <p className="text-xs text-slate-400 max-w-md mx-auto">
+            Ward census and shelter registries are unconfigured in this deployment. Configure <code className="text-cyan-400">VITE_VILLAGES_GEOJSON_URL</code> or enable dev fixtures to view evacuation routing.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-5 p-4 md:p-6 max-w-[1650px] mx-auto font-sans">
@@ -71,14 +97,14 @@ export const EvacuationPlannerView: React.FC = () => {
               <Navigation className="w-4 h-4" />
             </span>
             <span className="text-xs font-mono uppercase tracking-wider text-red-400 font-bold">
-              Dynamic Evacuation Optimization Engine
+              Evacuation Routing Engine
             </span>
           </div>
           <h2 className="text-xl md:text-2xl font-black text-white tracking-tight">
             Vulnerability-Ranked Evacuation &amp; Shelter Routing
           </h2>
           <p className="text-xs text-slate-300 max-w-3xl mt-0.5">
-            AI-driven shelter routing penalizes flooded highways and dynamically redirects vulnerable coastal populations to elevated cyclone sanctuaries.
+            Deterministic shelter routing penalizes flooded highways and dynamically redirects vulnerable coastal populations to elevated cyclone sanctuaries.
           </p>
         </div>
 
@@ -92,7 +118,7 @@ export const EvacuationPlannerView: React.FC = () => {
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            All Wards (8)
+            All Wards ({villages.length})
           </button>
           <button
             onClick={() => setFilterPriority('P0')}
@@ -133,17 +159,17 @@ export const EvacuationPlannerView: React.FC = () => {
           <AlertOctagon className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
           <div>
             <h4 className="text-sm font-bold text-red-300 font-mono">
-              Active Optimization Exception: Coastal Ward 7 Rerouted
+              Active Routing Directive: Coastal Submersion Bypass
             </h4>
             <p className="text-xs text-slate-300 leading-relaxed mt-0.5">
-              <strong>Shelter A is closest (5.8 km)</strong>, but the access road (SH-12) is projected to flood under 0.8m storm surge backflow. The algorithm has assigned this village to <strong>Shelter B (Sundar Model High School Complex)</strong> through <strong>Elevated Corridor 2 (Puri-Sundar Bypass)</strong>.
+              Primary coastal routes with elevation &lt; 2.0m AMSL are classified as flood hazard zones. Wards are automatically redirected to inland elevated multi-purpose cyclone shelters via designated bypass corridors.
             </p>
           </div>
         </div>
 
         <button
           onClick={() => {
-            const w7 = MOCK_VILLAGES.find(v => v.id === 'vil-01');
+            const w7 = villages.find(v => v.id === 'V01' || v.id === 'vil-01');
             if (w7) {
               setSelectedVillage(w7);
               setSelectedAsset(null);
@@ -152,7 +178,7 @@ export const EvacuationPlannerView: React.FC = () => {
           }}
           className="flex-shrink-0 bg-red-600 hover:bg-red-500 text-white text-xs font-mono font-bold px-3 py-2 rounded-lg transition-colors flex items-center gap-1.5 shadow-md"
         >
-          <span>Examine Ward 7 on GIS</span>
+          <span>Examine Critical Ward on GIS</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </button>
       </div>
@@ -165,7 +191,7 @@ export const EvacuationPlannerView: React.FC = () => {
             <span>Evacuation Matrix &amp; Transport Allocation</span>
           </h3>
           <span className="text-[11px] text-slate-400 font-mono">
-            P0 Target Population: {formatIndianNumber(EVACUATION_SUMMARY.p0Population)}
+            P0 Target Population: {formatIndianNumber(p0Pop)}
           </span>
         </div>
 
@@ -185,7 +211,7 @@ export const EvacuationPlannerView: React.FC = () => {
             </thead>
             <tbody className="divide-y divide-navy-800/60 font-mono">
               {villageRows.map(({ village, risk, shelterOpt, departureDeadline }) => {
-                const riskLevel = getRiskLevel(risk.overallRisk);
+                const riskLevel = DeterministicRiskEngine.getRiskLevel(risk.overallRisk);
 
                 return (
                   <tr
@@ -284,75 +310,71 @@ export const EvacuationPlannerView: React.FC = () => {
       </div>
 
       {/* Shelter Capacity & Logistics Dashboard */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* Recharts Shelter Capacity Graph */}
-        <div className="lg:col-span-2 bg-navy-900 border border-navy-750 p-4 rounded-2xl shadow-xl space-y-3">
-          <div className="flex items-center justify-between border-b border-navy-750 pb-2">
-            <div className="flex items-center gap-2">
-              <Home className="w-4 h-4 text-emerald-400" />
+      {shelters.length > 0 && (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          {/* Recharts Shelter Capacity Graph */}
+          <div className="lg:col-span-2 bg-navy-900 border border-navy-750 p-4 rounded-2xl shadow-xl space-y-3">
+            <div className="flex items-center justify-between border-b border-navy-750 pb-2">
+              <div className="flex items-center gap-2">
+                <Home className="w-4 h-4 text-emerald-400" />
+                <h3 className="font-bold text-sm text-white font-mono">
+                  Multi-Purpose Cyclone Shelter Occupancy &amp; Deficit
+                </h3>
+              </div>
+              <span className="text-[10px] font-mono text-slate-400">
+                Total Shelters Registered: {shelters.length}
+              </span>
+            </div>
+
+            <div className="h-64 w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={shelterChartData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" vertical={false} />
+                  <XAxis dataKey="name" stroke="#94A3B8" fontSize={11} tickLine={false} />
+                  <YAxis stroke="#94A3B8" fontSize={11} tickLine={false} />
+                  <Tooltip
+                    contentStyle={{ backgroundColor: '#0B132B', borderColor: '#1E293B', borderRadius: '8px', fontSize: '11px' }}
+                  />
+                  <Legend wrapperStyle={{ fontSize: '11px', fontFamily: 'monospace' }} />
+                  <Bar dataKey="Occupied" fill="#EF4444" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="Available" fill="#10B981" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Quick Transit Action */}
+          <div className="bg-navy-900 border border-navy-750 p-4 rounded-2xl shadow-xl space-y-3 flex flex-col justify-between">
+            <div className="flex items-center gap-2 border-b border-navy-750 pb-2">
+              <Bus className="w-4 h-4 text-cyan-400" />
               <h3 className="font-bold text-sm text-white font-mono">
-                Multi-Purpose Cyclone Shelter Occupancy &amp; Deficit
+                Logistics &amp; Corridors
               </h3>
             </div>
-            <span className="text-[10px] font-mono text-slate-400">
-              Total Shelters: 68 • Capacity: 1.92 Lakh
-            </span>
-          </div>
 
-          <div className="h-64 w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={shelterChartData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" vertical={false} />
-                <XAxis dataKey="name" stroke="#94A3B8" fontSize={11} tickLine={false} />
-                <YAxis stroke="#94A3B8" fontSize={11} tickLine={false} />
-                <Tooltip
-                  contentStyle={{ backgroundColor: '#0B132B', borderColor: '#1E293B', borderRadius: '8px', fontSize: '11px' }}
-                />
-                <Legend wrapperStyle={{ fontSize: '11px', fontFamily: 'monospace' }} />
-                <Bar dataKey="Occupied" fill="#EF4444" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="Available" fill="#10B981" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
+            <div className="space-y-2.5 font-mono text-xs text-slate-300">
+              <div className="bg-navy-850 p-2.5 rounded-lg border border-navy-750 flex items-center justify-between">
+                <span>Evacuation Corridors:</span>
+                <span className="text-white font-bold">{evacuationRoutes.length} Active</span>
+              </div>
+              <div className="bg-navy-850 p-2.5 rounded-lg border border-navy-750 flex items-center justify-between">
+                <span>Total Shelter Capacity:</span>
+                <span className="text-emerald-400 font-bold">
+                  {shelters.reduce((acc, s) => acc + s.capacity, 0).toLocaleString()} beds
+                </span>
+              </div>
+            </div>
+
+            <button
+              onClick={() => setActiveTab('command')}
+              className="w-full bg-cyan-600/20 hover:bg-cyan-600/30 text-cyan-300 border border-cyan-500/40 font-mono text-xs py-2 rounded-lg transition-colors font-semibold flex items-center justify-center gap-1.5"
+            >
+              <span>Inspect Evacuation Corridors on GIS Map</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
           </div>
         </div>
-
-        {/* Transport Fleet & Logistic Readiness */}
-        <div className="bg-navy-900 border border-navy-750 p-4 rounded-2xl shadow-xl space-y-3 flex flex-col justify-between">
-          <div className="flex items-center gap-2 border-b border-navy-750 pb-2">
-            <Bus className="w-4 h-4 text-cyan-400" />
-            <h3 className="font-bold text-sm text-white font-mono">
-              Pre-Positioned Transport Fleet
-            </h3>
-          </div>
-
-          <div className="space-y-2.5 font-mono text-xs">
-            <div className="bg-navy-850 p-2.5 rounded-lg border border-navy-750 flex items-center justify-between">
-              <span className="text-slate-300">State Transport Buses:</span>
-              <span className="text-white font-bold">{EVACUATION_SUMMARY.transportFleetAssigned.busesStateTransport} units</span>
-            </div>
-            <div className="bg-navy-850 p-2.5 rounded-lg border border-navy-750 flex items-center justify-between">
-              <span className="text-slate-300">Tractors &amp; High Trailers:</span>
-              <span className="text-white font-bold">{EVACUATION_SUMMARY.transportFleetAssigned.tractorsAndTrailers} units</span>
-            </div>
-            <div className="bg-navy-850 p-2.5 rounded-lg border border-navy-750 flex items-center justify-between">
-              <span className="text-slate-300">Amphibious Rescue Craft:</span>
-              <span className="text-cyan-300 font-bold">{EVACUATION_SUMMARY.transportFleetAssigned.amphibiousRescueCraft} units</span>
-            </div>
-            <div className="bg-navy-850 p-2.5 rounded-lg border border-navy-750 flex items-center justify-between">
-              <span className="text-slate-300">NDRF Inflatable Boats:</span>
-              <span className="text-emerald-400 font-bold">{EVACUATION_SUMMARY.transportFleetAssigned.ndrfInflatableBoats} boats</span>
-            </div>
-          </div>
-
-          <button
-            onClick={() => setActiveTab('command')}
-            className="w-full bg-cyan-600/20 hover:bg-cyan-600/30 text-cyan-300 border border-cyan-500/40 font-mono text-xs py-2 rounded-lg transition-colors font-semibold flex items-center justify-center gap-1.5"
-          >
-            <span>Inspect Evacuation Corridors on GIS Map</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </button>
-        </div>
-      </div>
+      )}
     </div>
   );
 };

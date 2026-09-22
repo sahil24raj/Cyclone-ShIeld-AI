@@ -7,94 +7,124 @@ import {
   Flame,
   Clock,
   Navigation,
-  ShieldAlert
+  ShieldAlert,
+  CloudRain
 } from 'lucide-react';
 import { MetricCard } from '../ui/MetricCard';
 import { useAppState } from '../../context/AppStateContext';
+import { DeterministicRiskEngine } from '../../services/riskEngine';
 
 export const SummaryCards: React.FC = () => {
-  const { simulationParams, setActiveTab } = useAppState();
+  const {
+    activeCyclone,
+    weather,
+    villages,
+    assets,
+    prediction,
+    simulationParams,
+    setActiveTab,
+    dataSources
+  } = useAppState();
 
-  const currentWind = Math.round(135 * simulationParams.windSpeedMultiplier);
-  const popExposedLakhs = (
-    2.84 *
-    simulationParams.rainfallMultiplier *
-    (simulationParams.surgeHeightOffset >= 0 ? 1 + simulationParams.surgeHeightOffset * 0.12 : 0.9)
-  ).toFixed(2);
-  const criticalAssetsCount = Math.min(42, Math.round(14 * (currentWind / 135) * (simulationParams.surgeHeightOffset > 0 ? 1.2 : 1.0)));
-  const cutoffsCount = Math.round(7 + (simulationParams.rainfallMultiplier - 1) * 3 + (simulationParams.surgeHeightOffset > 0.5 ? 2 : 0));
-  const overallRisk = Math.min(98, Math.round(74 * (currentWind / 135) * (1 + simulationParams.surgeHeightOffset * 0.08)));
+  const isFixtureMode = import.meta.env.VITE_ENABLE_DEV_FIXTURES === 'true';
+
+  // 1. Wind Speed Metric
+  const currentWind = activeCyclone
+    ? Math.round(activeCyclone.maxWindSpeed * simulationParams.windSpeedMultiplier)
+    : (weather ? Math.round(weather.windSpeed) : null);
+
+  // 2. Population Exposed
+  const totalPop = villages.reduce((acc, v) => acc + v.population, 0);
+  const p0Pop = villages
+    .filter(v => v.priority_level === 'P0')
+    .reduce((acc, v) => acc + v.population, 0);
+
+  // 3. District Risk Score (Derived)
+  const averageRisk = villages.length > 0
+    ? Math.round(
+        villages.reduce(
+          (acc, v) => acc + DeterministicRiskEngine.calculateRisk(v, simulationParams).overallRisk,
+          0
+        ) / villages.length
+      )
+    : null;
+
+  // 4. Critical Assets in Inundation/Risk Zone
+  const assetsAtRisk = assets.filter(a => a.in_flood_zone || a.risk_score >= 70).length;
+
+  // 5. Road Cutoffs
+  const floodedWardsCount = villages.filter(v => v.is_road_submerged).length;
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 select-none">
       {/* 1. Wind Speed */}
       <MetricCard
         label="Wind Speed"
-        value={currentWind}
-        unit="km/h"
-        statusColor="red"
+        value={currentWind !== null ? currentWind : '--'}
+        unit={currentWind !== null ? 'km/h' : ''}
+        statusColor={currentWind && currentWind >= 100 ? 'red' : 'emerald'}
         icon={<Wind className="w-4 h-4" />}
         trend={{
-          text: '+12 km/h last 3h',
-          direction: 'up',
-          isWarning: true,
+          text: activeCyclone ? (isFixtureMode ? 'Fixture Active' : 'Observation Feed') : (weather ? 'Local WMO Station' : 'Feed Unset'),
+          direction: currentWind && currentWind >= 100 ? 'up' : 'neutral',
+          isWarning: !!(currentWind && currentWind >= 100),
         }}
         metadata={{
-          source: 'IMD RSMC',
-          timestamp: '10:30 IST',
+          source: activeCyclone ? activeCyclone.provenance.source : (weather?.provenance.source || 'Unconfigured'),
+          timestamp: weather ? 'Live WMO' : 'T-24h Lead',
         }}
       />
 
-      {/* 2. Landfall Window */}
+      {/* 2. Cyclone Landfall ETA / Status */}
       <MetricCard
-        label="Landfall Window"
-        value="~24"
-        unit="Hours"
-        statusColor="orange"
+        label="Storm Landfall ETA"
+        value={activeCyclone ? activeCyclone.landfallETA.split(' ')[0] : 'None'}
+        unit={activeCyclone ? '' : 'Active'}
+        statusColor={activeCyclone ? 'orange' : 'cyan'}
         icon={<Clock className="w-4 h-4" />}
         trend={{
-          text: 'ETA: 08:30 IST',
+          text: activeCyclone ? activeCyclone.category : 'RSMC Monitoring',
           direction: 'neutral',
         }}
         metadata={{
-          source: 'JTWC / IMD',
-          timestamp: 'Conf 88.4%',
+          source: 'IMD / JTWC Feed',
+          timestamp: activeCyclone ? 'Official Forecast' : 'Standby',
         }}
       />
 
-      {/* 3. Overall District Risk */}
+      {/* 3. Overall District Risk (Derived Assessment) */}
       <MetricCard
-        label="Overall District Risk"
-        value={overallRisk}
-        unit="/ 100"
-        statusColor={overallRisk >= 80 ? 'red' : 'orange'}
+        label="Derived District Risk"
+        value={averageRisk !== null ? averageRisk : '--'}
+        unit={averageRisk !== null ? '/ 100' : ''}
+        statusColor={averageRisk && averageRisk >= 80 ? 'red' : averageRisk && averageRisk >= 60 ? 'orange' : 'cyan'}
         icon={<ShieldAlert className="w-4 h-4" />}
         trend={{
-          text: overallRisk >= 80 ? 'CRITICAL RISK' : 'HIGH RISK',
-          direction: 'up',
-          isWarning: true,
+          text: averageRisk && averageRisk >= 75 ? 'P0 Priority Wards' : 'Derived Analysis',
+          direction: 'neutral',
+          isWarning: !!(averageRisk && averageRisk >= 75),
         }}
         metadata={{
-          source: 'P-CHMVM v2.4',
-          timestamp: '8 Wards',
+          source: 'Deterministic Risk Engine',
+          timestamp: `${villages.length} Wards Scored`,
         }}
       />
 
       {/* 4. Population Exposed */}
       <MetricCard
         label="Population Exposed"
-        value={popExposedLakhs}
-        unit="Lakh"
+        value={totalPop > 0 ? (totalPop / 100000).toFixed(2) : '--'}
+        unit={totalPop > 0 ? 'Lakh' : ''}
         statusColor="orange"
         icon={<Users className="w-4 h-4" />}
         trend={{
-          text: '22,600 P0 Evac',
-          direction: 'up',
-          isWarning: true,
+          text: p0Pop > 0 ? `${p0Pop.toLocaleString()} P0 Evac` : 'No Critical Wards',
+          direction: 'neutral',
+          isWarning: p0Pop > 0,
         }}
         metadata={{
-          source: 'Census / GEE',
-          timestamp: 'Coast Zone',
+          source: 'District Census',
+          timestamp: `${villages.length} Wards`,
         }}
       />
 
@@ -102,38 +132,38 @@ export const SummaryCards: React.FC = () => {
       <div onClick={() => setActiveTab('infrastructure')} className="cursor-pointer">
         <MetricCard
           label="Critical Assets"
-          value={`${criticalAssetsCount} / 42`}
-          unit="at risk"
-          statusColor="amber"
+          value={assets.length > 0 ? `${assetsAtRisk} / ${assets.length}` : '--'}
+          unit={assets.length > 0 ? 'at risk' : ''}
+          statusColor={assetsAtRisk > 0 ? 'amber' : 'emerald'}
           icon={<Building2 className="w-4 h-4" />}
           trend={{
-            text: 'Hospital + Substation',
-            direction: 'up',
-            isWarning: true,
+            text: assetsAtRisk > 0 ? 'Inundation/Wind Risk' : 'All Clear',
+            direction: 'neutral',
+            isWarning: assetsAtRisk > 0,
           }}
           metadata={{
-            source: 'OSM / District',
-            timestamp: '3 Inundated',
+            source: 'State Asset Registry',
+            timestamp: `${assets.length} Total Monitored`,
           }}
         />
       </div>
 
-      {/* 6. Roads at Risk */}
+      {/* 6. Roads & Route Cutoffs */}
       <div onClick={() => setActiveTab('evacuation')} className="cursor-pointer">
         <MetricCard
-          label="Roads at Risk"
-          value={cutoffsCount}
-          unit="cutoffs"
-          statusColor="purple"
+          label="Road Submersions"
+          value={villages.length > 0 ? floodedWardsCount : '--'}
+          unit={villages.length > 0 ? 'arterials' : ''}
+          statusColor={floodedWardsCount > 0 ? 'purple' : 'emerald'}
           icon={<Navigation className="w-4 h-4" />}
           trend={{
-            text: 'SH-12 0.8m Submerged',
-            direction: 'up',
-            isWarning: true,
+            text: floodedWardsCount > 0 ? 'Reroute Active' : 'Routes Operational',
+            direction: 'neutral',
+            isWarning: floodedWardsCount > 0,
           }}
           metadata={{
-            source: 'SAR Water Index',
-            timestamp: 'Bypass Active',
+            source: 'PWD Highway Network',
+            timestamp: 'Corridor Status',
           }}
         />
       </div>

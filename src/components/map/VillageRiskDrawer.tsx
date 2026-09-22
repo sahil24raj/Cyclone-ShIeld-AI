@@ -106,11 +106,11 @@ export const VillageRiskDrawer: React.FC<VillageRiskDrawerProps> = ({ village, o
           </div>
         </div>
 
-        {/* AI Model Reasoning Drivers */}
+        {/* Derived Risk Drivers */}
         <div className="bg-navy-850 p-3.5 rounded-xl border border-navy-750 space-y-2.5">
           <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-cyan-300">
             <Sparkles className="w-4 h-4 text-cyan-400" />
-            <span>AI Risk Attribution Drivers</span>
+            <span>Derived Risk Attribution Drivers</span>
           </div>
           <div className="space-y-1.5">
             {riskBreakdown.drivers.map((driver, idx) => (
@@ -206,13 +206,13 @@ export const VillageRiskDrawer: React.FC<VillageRiskDrawerProps> = ({ village, o
           </div>
         </div>
 
-        {/* Data Provenance & Confidence */}
+        {/* Data Provenance & Method Attribution */}
         <div className="bg-navy-950 p-2.5 rounded-lg border border-navy-800 text-[10px] font-mono text-slate-400 flex items-center justify-between">
           <div className="flex items-center gap-1.5">
             <Clock className="w-3 h-3 text-cyan-400" />
-            <span>Updated: 14 mins ago (Sentinel-1 Pass)</span>
+            <span>Method: Deterministic Formula (H+E+V+C)</span>
           </div>
-          <span className="text-emerald-400 font-bold">Confidence: 88.4%</span>
+          <span className="text-cyan-400 font-bold uppercase">DERIVED_ANALYSIS</span>
         </div>
       </div>
 

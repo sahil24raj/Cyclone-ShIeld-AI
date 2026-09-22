@@ -12,7 +12,8 @@ import {
   Calendar,
   Layers,
   FileCheck,
-  ArrowRight
+  ArrowRight,
+  Database
 } from 'lucide-react';
 import {
   ResponsiveContainer,
@@ -22,26 +23,36 @@ import {
   YAxis,
   Tooltip,
   Legend,
-  CartesianGrid,
-  RadarChart,
-  Radar,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis
+  CartesianGrid
 } from 'recharts';
-import { HISTORICAL_CYCLONE_EVENTS } from '../../data/historicalData';
 import { HistoricalCycloneEvent } from '../../types';
 import { useAppState } from '../../context/AppStateContext';
 
 export const HistoricalAnalysisView: React.FC = () => {
-  const { setActiveTab } = useAppState();
-  const [selectedEventId, setSelectedEventId] = useState<string>('fani-2019');
+  const { setActiveTab, historicalEvents } = useAppState();
+  const [selectedEventId, setSelectedEventId] = useState<string>('HIST-2019-FANI');
 
   const selectedEvent: HistoricalCycloneEvent =
-    HISTORICAL_CYCLONE_EVENTS.find((e) => e.id === selectedEventId) || HISTORICAL_CYCLONE_EVENTS[0];
+    historicalEvents.find((e) => e.id === selectedEventId) || historicalEvents[0];
+
+  if (!selectedEvent || historicalEvents.length === 0) {
+    return (
+      <div className="space-y-5 p-4 md:p-6 max-w-[1600px] mx-auto font-sans">
+        <div className="bg-navy-900 border border-navy-750 p-8 rounded-2xl shadow-xl text-center space-y-3">
+          <Database className="w-8 h-8 text-slate-500 mx-auto" />
+          <h3 className="text-base font-bold text-white font-mono">
+            Historical Benchmark Dataset Unavailable
+          </h3>
+          <p className="text-xs text-slate-400 max-w-md mx-auto">
+            Historical storm records could not be loaded from the archive service.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   // Comparison chart data for Observed vs Model Predicted across all storms
-  const comparisonData = HISTORICAL_CYCLONE_EVENTS.map((e) => ({
+  const comparisonData = historicalEvents.map((e) => ({
     name: e.name.split(' ')[e.name.split(' ').length - 1],
     ObservedWind: e.observedMaxWindKmh,
     PredictedWind: e.predictedMaxWindKmh,
@@ -49,12 +60,6 @@ export const HistoricalAnalysisView: React.FC = () => {
     PredictedSurge: e.predictedPeakSurgeMeters,
     Accuracy: e.inundationAccuracyPct,
   }));
-
-  const singleEventComparison = [
-    { metric: 'Max Wind (km/h)', Observed: selectedEvent.observedMaxWindKmh, Predicted: selectedEvent.predictedMaxWindKmh },
-    { metric: 'Peak Surge (m)', Observed: selectedEvent.observedPeakSurgeMeters * 30, Predicted: selectedEvent.predictedPeakSurgeMeters * 30, displayObs: `${selectedEvent.observedPeakSurgeMeters}m`, displayPred: `${selectedEvent.predictedPeakSurgeMeters}m` },
-    { metric: '24h Rain (mm)', Observed: selectedEvent.observedRainfallMm, Predicted: selectedEvent.predictedRainfallMm },
-  ];
 
   return (
     <div className="space-y-5 p-4 md:p-6 max-w-[1600px] mx-auto font-sans">
@@ -86,14 +91,14 @@ export const HistoricalAnalysisView: React.FC = () => {
           <span className="h-6 w-px bg-navy-800" />
           <div>
             <div className="text-[10px] text-slate-400">Historical Benchmarks</div>
-            <div className="font-bold text-cyan-300 text-sm">5 Major Cyclones</div>
+            <div className="font-bold text-cyan-300 text-sm">{historicalEvents.length} Major Cyclones</div>
           </div>
         </div>
       </div>
 
       {/* Cyclone Event Selector Tabs */}
       <div className="flex items-center gap-2 overflow-x-auto pb-1 font-mono text-xs">
-        {HISTORICAL_CYCLONE_EVENTS.map((event) => {
+        {historicalEvents.map((event) => {
           const isSelected = selectedEventId === event.id;
           return (
             <button
@@ -265,7 +270,7 @@ export const HistoricalAnalysisView: React.FC = () => {
             </div>
 
             <div className="space-y-2 font-mono text-xs">
-              {HISTORICAL_CYCLONE_EVENTS.map((e) => (
+              {historicalEvents.map((e) => (
                 <div key={e.id} className="bg-navy-950 p-2.5 rounded-lg border border-navy-800 flex items-center justify-between">
                   <span className="text-slate-300 font-sans">{e.name.split(' ')[e.name.split(' ').length - 1]} ({e.year})</span>
                   <div className="flex items-center gap-2">
