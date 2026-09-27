@@ -16,9 +16,9 @@ export const PrototypeBanner: React.FC = () => {
           PROTOTYPE SIMULATION
         </span>
         <p className="truncate text-slate-200">
-          <strong className="text-amber-300">Notice:</strong> {t('disclaimer')}{' '}
+          <strong className="text-amber-300">Prototype Simulation:</strong> Synthetic data only. Not an official warning.{' '}
           <span className="text-slate-400 hidden md:inline">
-            Values, storm tracks, and vulnerability scores are synthetic demonstration estimates for coastal APAC hackathon evaluation.
+            All outputs are model estimates generated deterministically for decision-support hackathon demonstration. Follow official IMD bulletins for actual disaster operations.
           </span>
         </p>
       </div>

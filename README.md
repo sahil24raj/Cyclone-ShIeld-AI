@@ -10,6 +10,50 @@ An AI-powered predictive risk and vulnerability modelling platform prototype for
 
 ---
 
+## 🧪 Mock Prediction Mode (Offline / Demo Engine)
+
+CycloneShield AI includes a **zero-dependency, deterministic Mock Prediction & Simulation Engine**. When running in mock mode, the application produces dynamic cyclone impact calculations, inundation models, evacuation routing assessments, AI SITREPs, and CAP alerts **without requiring any real weather API, Google Earth Engine, IMD API, Gemini API, database, API key, internet connection, or backend server.**
+
+### Mode Configuration
+Set in your `.env` or environment variables:
+```bash
+# Set to 'mock' for local deterministic simulation (default if omitted)
+VITE_DATA_MODE=mock
+
+# Set to 'live' when live adapters and API keys are connected
+# VITE_DATA_MODE=live
+```
+
+### Visual Mode Badges
+- 🟡 **"Mock Prediction Mode"** (Yellow/Orange): Active when running on local synthetic datasets and deterministic formulas.
+- 🟢 **"Live Data Mode"** (Green): Displayed only when real external data adapters are authenticated and operational.
+- 🟠 **"Data unavailable — using simulation"**: Automatically activated as a fallback when an external live adapter fails.
+
+### Disclaimer Notice
+The platform strictly displays:
+> **"Prototype Simulation — Synthetic data only. Not an official warning."**
+All calculated outputs and figures are explicitly labeled as **"Model estimate"**. The algorithm is a deterministic hackathon simulation engine designed for tactical decision-support prototyping, **not a validated operational forecast model**.
+
+### Mathematical Risk Engine Architecture
+The calculation engine runs locally in the browser with 100% deterministic output:
+
+$$\text{Overall Risk} = 0.35 \times \text{Hazard} + 0.25 \times \text{Exposure} + 0.25 \times \text{Vulnerability} + 0.15 \times \text{Criticality}$$
+
+- **Hazard Score (0–100)**: Wind (25%), Flood/Inundation (25%), Storm Surge (25%), Rainfall (15%), Track Proximity & Shift (10%).
+- **Exposure Score (0–100)**: Population (35%), Infrastructure Density (25%), Built-up Exposure (20%), Economic/Agriculture (20%).
+- **Vulnerability Score (0–100)**: Low Elevation (30%), Coast/River Proximity (20%), Road Accessibility (20%), Shelter Accessibility (15%), Social Vulnerability (15%).
+- **Criticality Score (0–100)**: Lifeline infrastructure (Hospitals, Power Substations, Bridges, Water Treatment, Telecom, Evacuation Corridors, Shelters).
+
+### Evacuation Priority Matrix
+$$\text{Evacuation Priority} = 0.40 \times \text{Overall Risk} + 0.25 \times \text{Pop. Vulnerability} + 0.20 \times \text{Shelter Access Risk} + 0.15 \times \text{Urgency Score}$$
+
+- **P0**: Immediate mandatory evacuation ($\ge 70$ score or Critical risk)
+- **P1**: Phased evacuation within 6 hours
+- **P2**: Prepare and monitor vulnerable households
+- **P3**: Shelter in place for permanent structures
+
+---
+
 ## 🌟 Key Features
 
 1. **Integrated Emergency Command Centre**:

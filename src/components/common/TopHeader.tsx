@@ -30,7 +30,9 @@ export const TopHeader: React.FC = () => {
     isStatusModalOpen,
     setIsStatusModalOpen,
     refreshData,
-    isLoading
+    isLoading,
+    dataMode,
+    modeBadgeText,
   } = useAppState();
   const [currentTime, setCurrentTime] = useState<string>('');
 
@@ -87,17 +89,27 @@ export const TopHeader: React.FC = () => {
                 <h1 className="font-extrabold text-sm md:text-base tracking-tight text-white font-mono flex items-center gap-1.5">
                   CYCLONE-X
                 </h1>
-                {isFixtureMode ? (
-                  <span className="inline-flex items-center gap-1 px-1.5 py-0.2 rounded text-[10px] font-mono font-bold uppercase bg-purple-500/20 text-purple-300 border border-purple-500/40">
-                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
-                    DEV FIXTURE
-                  </span>
-                ) : (
-                  <span className="inline-flex items-center gap-1 px-1.5 py-0.2 rounded text-[10px] font-mono font-bold uppercase bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    PRODUCTION
-                  </span>
-                )}
+                <span
+                  className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase border ${
+                    dataMode === 'live'
+                      ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40'
+                      : dataMode === 'fallback'
+                      ? 'bg-orange-500/20 text-orange-300 border-orange-500/40'
+                      : 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+                  }`}
+                  title="Operational Data Mode"
+                >
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full ${
+                      dataMode === 'live'
+                        ? 'bg-emerald-400 animate-pulse'
+                        : dataMode === 'fallback'
+                        ? 'bg-orange-400 animate-pulse'
+                        : 'bg-amber-400 animate-pulse'
+                    }`}
+                  />
+                  {modeBadgeText}
+                </span>
               </div>
               <p className="text-[10px] text-cyan-400 font-medium tracking-wide hidden sm:block">
                 {t('tagline')}

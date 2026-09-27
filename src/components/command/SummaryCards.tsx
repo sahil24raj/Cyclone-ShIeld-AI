@@ -3,169 +3,233 @@ import {
   Wind,
   Users,
   Building2,
-  AlertTriangle,
-  Flame,
   Clock,
   Navigation,
   ShieldAlert,
-  CloudRain
+  CloudRain,
+  Waves,
+  Home,
+  AlertOctagon,
+  Percent,
+  Sparkles
 } from 'lucide-react';
 import { MetricCard } from '../ui/MetricCard';
 import { useAppState } from '../../context/AppStateContext';
-import { DeterministicRiskEngine } from '../../services/riskEngine';
 
 export const SummaryCards: React.FC = () => {
   const {
     activeCyclone,
-    weather,
-    villages,
-    assets,
-    prediction,
-    simulationParams,
+    simulationSummary,
     setActiveTab,
-    dataSources
+    dataMode,
   } = useAppState();
 
-  const isFixtureMode = import.meta.env.VITE_ENABLE_DEV_FIXTURES === 'true';
-
-  // 1. Wind Speed Metric
-  const currentWind = activeCyclone
-    ? Math.round(activeCyclone.maxWindSpeed * simulationParams.windSpeedMultiplier)
-    : (weather ? Math.round(weather.windSpeed) : null);
-
-  // 2. Population Exposed
-  const totalPop = villages.reduce((acc, v) => acc + v.population, 0);
-  const p0Pop = villages
-    .filter(v => v.priority_level === 'P0')
-    .reduce((acc, v) => acc + v.population, 0);
-
-  // 3. District Risk Score (Derived)
-  const averageRisk = villages.length > 0
-    ? Math.round(
-        villages.reduce(
-          (acc, v) => acc + DeterministicRiskEngine.calculateRisk(v, simulationParams).overallRisk,
-          0
-        ) / villages.length
-      )
-    : null;
-
-  // 4. Critical Assets in Inundation/Risk Zone
-  const assetsAtRisk = assets.filter(a => a.in_flood_zone || a.risk_score >= 70).length;
-
-  // 5. Road Cutoffs
-  const floodedWardsCount = villages.filter(v => v.is_road_submerged).length;
+  const {
+    maxSustainedWindKmh,
+    rainfall24hMm,
+    stormSurgeEstimateMeters,
+    forecastConfidencePct,
+    totalPopulationExposed,
+    p0Population,
+    criticalAssetsAtRiskCount,
+    totalAssetsCount,
+    roadsAtRiskCount,
+    totalRoadsCount,
+    availableShelterCapacity,
+    shelterCapacityGap,
+    estimatedLandfallTime,
+  } = simulationSummary;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 select-none">
-      {/* 1. Wind Speed */}
-      <MetricCard
-        label="Wind Speed"
-        value={currentWind !== null ? currentWind : '--'}
-        unit={currentWind !== null ? 'km/h' : ''}
-        statusColor={currentWind && currentWind >= 100 ? 'red' : 'emerald'}
-        icon={<Wind className="w-4 h-4" />}
-        trend={{
-          text: activeCyclone ? (isFixtureMode ? 'Fixture Active' : 'Observation Feed') : (weather ? 'Local WMO Station' : 'Feed Unset'),
-          direction: currentWind && currentWind >= 100 ? 'up' : 'neutral',
-          isWarning: !!(currentWind && currentWind >= 100),
-        }}
-        metadata={{
-          source: activeCyclone ? activeCyclone.provenance.source : (weather?.provenance.source || 'Unconfigured'),
-          timestamp: weather ? 'Live WMO' : 'T-24h Lead',
-        }}
-      />
-
-      {/* 2. Cyclone Landfall ETA / Status */}
-      <MetricCard
-        label="Storm Landfall ETA"
-        value={activeCyclone ? activeCyclone.landfallETA.split(' ')[0] : 'None'}
-        unit={activeCyclone ? '' : 'Active'}
-        statusColor={activeCyclone ? 'orange' : 'cyan'}
-        icon={<Clock className="w-4 h-4" />}
-        trend={{
-          text: activeCyclone ? activeCyclone.category : 'RSMC Monitoring',
-          direction: 'neutral',
-        }}
-        metadata={{
-          source: 'IMD / JTWC Feed',
-          timestamp: activeCyclone ? 'Official Forecast' : 'Standby',
-        }}
-      />
-
-      {/* 3. Overall District Risk (Derived Assessment) */}
-      <MetricCard
-        label="Derived District Risk"
-        value={averageRisk !== null ? averageRisk : '--'}
-        unit={averageRisk !== null ? '/ 100' : ''}
-        statusColor={averageRisk && averageRisk >= 80 ? 'red' : averageRisk && averageRisk >= 60 ? 'orange' : 'cyan'}
-        icon={<ShieldAlert className="w-4 h-4" />}
-        trend={{
-          text: averageRisk && averageRisk >= 75 ? 'P0 Priority Wards' : 'Derived Analysis',
-          direction: 'neutral',
-          isWarning: !!(averageRisk && averageRisk >= 75),
-        }}
-        metadata={{
-          source: 'Deterministic Risk Engine',
-          timestamp: `${villages.length} Wards Scored`,
-        }}
-      />
-
-      {/* 4. Population Exposed */}
-      <MetricCard
-        label="Population Exposed"
-        value={totalPop > 0 ? (totalPop / 100000).toFixed(2) : '--'}
-        unit={totalPop > 0 ? 'Lakh' : ''}
-        statusColor="orange"
-        icon={<Users className="w-4 h-4" />}
-        trend={{
-          text: p0Pop > 0 ? `${p0Pop.toLocaleString()} P0 Evac` : 'No Critical Wards',
-          direction: 'neutral',
-          isWarning: p0Pop > 0,
-        }}
-        metadata={{
-          source: 'District Census',
-          timestamp: `${villages.length} Wards`,
-        }}
-      />
-
-      {/* 5. Critical Assets at Risk */}
-      <div onClick={() => setActiveTab('infrastructure')} className="cursor-pointer">
+    <div className="space-y-2 select-none">
+      {/* Primary Top Metric Bar (6 Core Parameters) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3">
+        {/* 1. Maximum Sustained Wind */}
         <MetricCard
-          label="Critical Assets"
-          value={assets.length > 0 ? `${assetsAtRisk} / ${assets.length}` : '--'}
-          unit={assets.length > 0 ? 'at risk' : ''}
-          statusColor={assetsAtRisk > 0 ? 'amber' : 'emerald'}
-          icon={<Building2 className="w-4 h-4" />}
+          label="Max Sustained Wind"
+          value={maxSustainedWindKmh}
+          unit="km/h"
+          statusColor={maxSustainedWindKmh >= 140 ? 'red' : maxSustainedWindKmh >= 100 ? 'orange' : 'emerald'}
+          icon={<Wind className="w-4 h-4" />}
           trend={{
-            text: assetsAtRisk > 0 ? 'Inundation/Wind Risk' : 'All Clear',
-            direction: 'neutral',
-            isWarning: assetsAtRisk > 0,
+            text: activeCyclone?.category || 'Model Estimate',
+            direction: maxSustainedWindKmh >= 135 ? 'up' : 'neutral',
+            isWarning: maxSustainedWindKmh >= 135,
           }}
           metadata={{
-            source: 'State Asset Registry',
-            timestamp: `${assets.length} Total Monitored`,
+            source: 'Cyclone Varuna Simulation',
+            timestamp: 'Model estimate',
+          }}
+        />
+
+        {/* 2. 24-Hour Rainfall */}
+        <MetricCard
+          label="24h Rainfall Total"
+          value={rainfall24hMm}
+          unit="mm"
+          statusColor={rainfall24hMm >= 250 ? 'red' : rainfall24hMm >= 150 ? 'orange' : 'cyan'}
+          icon={<CloudRain className="w-4 h-4" />}
+          trend={{
+            text: rainfall24hMm >= 200 ? 'Torrential Peak' : 'Accumulated Isohyet',
+            direction: 'neutral',
+          }}
+          metadata={{
+            source: 'Precipitation Model',
+            timestamp: 'Model estimate',
+          }}
+        />
+
+        {/* 3. Storm Surge Peak */}
+        <MetricCard
+          label="Storm Surge Peak"
+          value={stormSurgeEstimateMeters.toFixed(1)}
+          unit="m AMSL"
+          statusColor={stormSurgeEstimateMeters >= 2.5 ? 'red' : stormSurgeEstimateMeters >= 1.5 ? 'orange' : 'purple'}
+          icon={<Waves className="w-4 h-4" />}
+          trend={{
+            text: stormSurgeEstimateMeters >= 1.8 ? 'Tidal Overtopping' : 'Normal High Tide',
+            direction: 'neutral',
+            isWarning: stormSurgeEstimateMeters >= 1.8,
+          }}
+          metadata={{
+            source: 'SLOSH Hydrodynamic',
+            timestamp: 'Model estimate',
+          }}
+        />
+
+        {/* 4. Estimated Landfall Time */}
+        <MetricCard
+          label="Estimated Landfall"
+          value={estimatedLandfallTime.split(' ')[0]}
+          unit="lead"
+          statusColor="orange"
+          icon={<Clock className="w-4 h-4" />}
+          trend={{
+            text: '24h Base Window',
+            direction: 'neutral',
+          }}
+          metadata={{
+            source: 'Track Trajectory',
+            timestamp: 'Model estimate',
+          }}
+        />
+
+        {/* 5. Population Exposed */}
+        <MetricCard
+          label="Population Exposed"
+          value={(totalPopulationExposed / 100000).toFixed(2)}
+          unit="Lakh"
+          statusColor="orange"
+          icon={<Users className="w-4 h-4" />}
+          trend={{
+            text: p0Population > 0 ? `${p0Population.toLocaleString()} P0 Evac` : 'Low Hazard',
+            direction: 'neutral',
+            isWarning: p0Population > 0,
+          }}
+          metadata={{
+            source: 'Ward Census Model',
+            timestamp: `${simulationSummary.villages.length} Wards Scored`,
+          }}
+        />
+
+        {/* 6. Forecast / Model Confidence */}
+        <MetricCard
+          label="Model Confidence"
+          value={forecastConfidencePct}
+          unit="%"
+          statusColor={forecastConfidencePct >= 75 ? 'emerald' : forecastConfidencePct >= 60 ? 'cyan' : 'amber'}
+          icon={<Percent className="w-4 h-4" />}
+          trend={{
+            text: 'Deterministic Formula',
+            direction: 'neutral',
+          }}
+          metadata={{
+            source: 'P-CHMVM v2.4 Engine',
+            timestamp: 'Model estimate',
           }}
         />
       </div>
 
-      {/* 6. Roads & Route Cutoffs */}
-      <div onClick={() => setActiveTab('evacuation')} className="cursor-pointer">
-        <MetricCard
-          label="Road Submersions"
-          value={villages.length > 0 ? floodedWardsCount : '--'}
-          unit={villages.length > 0 ? 'arterials' : ''}
-          statusColor={floodedWardsCount > 0 ? 'purple' : 'emerald'}
-          icon={<Navigation className="w-4 h-4" />}
-          trend={{
-            text: floodedWardsCount > 0 ? 'Reroute Active' : 'Routes Operational',
-            direction: 'neutral',
-            isWarning: floodedWardsCount > 0,
-          }}
-          metadata={{
-            source: 'PWD Highway Network',
-            timestamp: 'Corridor Status',
-          }}
-        />
+      {/* Secondary Operational Status Bar (4 Action Metrics) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {/* 7. Critical Assets at Risk */}
+        <div onClick={() => setActiveTab('infrastructure')} className="cursor-pointer">
+          <MetricCard
+            label="Critical Assets at Risk"
+            value={`${criticalAssetsAtRiskCount} / ${totalAssetsCount}`}
+            unit="assets"
+            statusColor={criticalAssetsAtRiskCount > 0 ? 'amber' : 'emerald'}
+            icon={<Building2 className="w-4 h-4" />}
+            trend={{
+              text: criticalAssetsAtRiskCount > 0 ? 'Flood/Wind Stress' : 'All Secure',
+              direction: 'neutral',
+              isWarning: criticalAssetsAtRiskCount > 0,
+            }}
+            metadata={{
+              source: 'State Infrastructure Registry',
+              timestamp: 'Inspect Assets >',
+            }}
+          />
+        </div>
+
+        {/* 8. Roads at Risk / Submerged */}
+        <div onClick={() => setActiveTab('evacuation')} className="cursor-pointer">
+          <MetricCard
+            label="Roads & Routes at Risk"
+            value={`${roadsAtRiskCount} / ${totalRoadsCount}`}
+            unit="routes"
+            statusColor={roadsAtRiskCount > 0 ? 'purple' : 'emerald'}
+            icon={<Navigation className="w-4 h-4" />}
+            trend={{
+              text: roadsAtRiskCount > 0 ? 'Coastal Arterials Blocked' : 'Routes Open',
+              direction: 'neutral',
+              isWarning: roadsAtRiskCount > 0,
+            }}
+            metadata={{
+              source: 'Evacuation Corridor Engine',
+              timestamp: 'Inspect Routes >',
+            }}
+          />
+        </div>
+
+        {/* 9. Available Safe Shelter Capacity */}
+        <div onClick={() => setActiveTab('evacuation')} className="cursor-pointer">
+          <MetricCard
+            label="Available Shelter Capacity"
+            value={availableShelterCapacity.toLocaleString()}
+            unit="beds"
+            statusColor={availableShelterCapacity > 5000 ? 'emerald' : 'orange'}
+            icon={<Home className="w-4 h-4" />}
+            trend={{
+              text: 'Active Cyclone Sanctuaries',
+              direction: 'neutral',
+            }}
+            metadata={{
+              source: 'Multi-Purpose Shelters',
+              timestamp: 'Inspect Shelters >',
+            }}
+          />
+        </div>
+
+        {/* 10. Shelter Capacity Deficit / Gap */}
+        <div onClick={() => setActiveTab('evacuation')} className="cursor-pointer">
+          <MetricCard
+            label="Shelter Capacity Deficit"
+            value={shelterCapacityGap > 0 ? shelterCapacityGap.toLocaleString() : '0'}
+            unit="beds needed"
+            statusColor={shelterCapacityGap > 0 ? 'red' : 'emerald'}
+            icon={<AlertOctagon className="w-4 h-4" />}
+            trend={{
+              text: shelterCapacityGap > 0 ? 'Spillover Shelter Needed' : 'Capacity Sufficient',
+              direction: 'neutral',
+              isWarning: shelterCapacityGap > 0,
+            }}
+            metadata={{
+              source: 'Logistics Optimization',
+              timestamp: 'Evacuation Matrix >',
+            }}
+          />
+        </div>
       </div>
     </div>
   );

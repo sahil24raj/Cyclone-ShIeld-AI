@@ -14,81 +14,86 @@ import {
   Home,
   CheckCircle2,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  ShieldAlert,
+  Navigation
 } from 'lucide-react';
 import { useAppState } from '../../context/AppStateContext';
-import { MOCK_VILLAGES } from '../../data/villageData';
-import { calculateVillageRisk } from '../../utils/riskCalculator';
+import { DEFAULT_SCENARIO_INPUTS, BASE_STORM_SCENARIO } from '../../data/mockStorm';
 
 export const ScenarioSimulatorView: React.FC = () => {
-  const { simulationParams, setSimulationParams, resetSimulationParams, setActiveTab } = useAppState();
+  const {
+    scenarioInputs,
+    setScenarioInputs,
+    resetScenarioInputs,
+    simulationSummary,
+    setActiveTab,
+    dataMode,
+  } = useAppState();
 
-  const currentWind = Math.round(135 * simulationParams.windSpeedMultiplier);
-  const currentRain = Math.round(280 * simulationParams.rainfallMultiplier);
-  const currentSurge = (3.4 + simulationParams.surgeHeightOffset).toFixed(1);
+  const {
+    windSpeedKmh,
+    rainfallMm,
+    stormSurgeMeters,
+    trackShiftKm,
+    landfallHours,
+  } = scenarioInputs;
 
-  // Dynamic calculations
-  const totalVillagesCritical = MOCK_VILLAGES.filter(
-    (v) => calculateVillageRisk(v, simulationParams).overallRisk >= 75
-  ).length;
-
-  const baselineVillagesCritical = MOCK_VILLAGES.filter(
-    (v) => calculateVillageRisk(v).overallRisk >= 75
-  ).length;
-
-  const deltaVillages = totalVillagesCritical - baselineVillagesCritical;
-  const popExposedLakhs = (
-    2.84 * simulationParams.rainfallMultiplier * (simulationParams.surgeHeightOffset >= 0 ? 1 + simulationParams.surgeHeightOffset * 0.12 : 0.9)
-  ).toFixed(2);
-  const deltaPopLakhs = (parseFloat(popExposedLakhs) - 2.84).toFixed(2);
-
-  const assetsAtRisk = Math.round(42 * (currentWind / 135) * (simulationParams.rainfallMultiplier > 1 ? 1.15 : 1.0));
-  const deltaAssets = assetsAtRisk - 42;
-
-  const shelterGap = Math.round(92000 + simulationParams.surgeHeightOffset * 8000 + (simulationParams.trackShiftKm > 0 ? 4200 : 0));
-  const deltaShelterGap = shelterGap - 92000;
-
-  const floodedRoutes = Math.round(7 + (simulationParams.rainfallMultiplier - 1) * 3 + (simulationParams.trackShiftKm > 15 ? 2 : 0));
-  const deltaRoutes = floodedRoutes - 7;
-
-  // Preset Handlers
+  // Presets
   const applyPreset = (type: 'baseline' | 'north30' | 'superCyclone' | 'southTrack') => {
     switch (type) {
       case 'baseline':
-        resetSimulationParams();
+        resetScenarioInputs();
         break;
       case 'north30':
-        setSimulationParams({
-          windSpeedMultiplier: 1.05,
-          rainfallMultiplier: 1.25,
-          surgeHeightOffset: 0.6,
+        setScenarioInputs({
+          windSpeedKmh: 145,
+          rainfallMm: 225,
+          stormSurgeMeters: 2.4,
           trackShiftKm: 30,
-          landfallTimeShiftHours: -4,
+          landfallHours: 20,
         });
         break;
       case 'superCyclone':
-        setSimulationParams({
-          windSpeedMultiplier: 1.35,
-          rainfallMultiplier: 1.6,
-          surgeHeightOffset: 1.8,
-          trackShiftKm: 10,
-          landfallTimeShiftHours: -6,
+        setScenarioInputs({
+          windSpeedKmh: 205,
+          rainfallMm: 340,
+          stormSurgeMeters: 3.8,
+          trackShiftKm: 15,
+          landfallHours: 14,
         });
         break;
       case 'southTrack':
-        setSimulationParams({
-          windSpeedMultiplier: 0.95,
-          rainfallMultiplier: 0.85,
-          surgeHeightOffset: -0.5,
-          trackShiftKm: -30,
-          landfallTimeShiftHours: 4,
+        setScenarioInputs({
+          windSpeedKmh: 110,
+          rainfallMm: 120,
+          stormSurgeMeters: 1.2,
+          trackShiftKm: -40,
+          landfallHours: 32,
         });
         break;
     }
   };
 
+  // Deltas against baseline
+  const baselineCritical = 3; // Ward 7, Delta Nagar, East Embankment/Riverbend
+  const currentCritical = simulationSummary.criticalVillagesCount;
+  const deltaCritical = currentCritical - baselineCritical;
+
+  const baselineAssetsAtRisk = 4;
+  const currentAssetsAtRisk = simulationSummary.criticalAssetsAtRiskCount;
+  const deltaAssets = currentAssetsAtRisk - baselineAssetsAtRisk;
+
+  const baselineRoadsAtRisk = 2; // Coastal Road, Port Access Road
+  const currentRoadsAtRisk = simulationSummary.roadsAtRiskCount;
+  const deltaRoads = currentRoadsAtRisk - baselineRoadsAtRisk;
+
+  const baselineShelterGap = 0;
+  const currentShelterGap = simulationSummary.shelterCapacityGap;
+  const deltaShelterGap = currentShelterGap - baselineShelterGap;
+
   return (
-    <div className="space-y-5 p-4 md:p-6 max-w-[1600px] mx-auto font-sans">
+    <div className="space-y-5 p-4 md:p-6 max-w-[1600px] mx-auto font-sans select-none">
       {/* Page Header */}
       <div className="bg-navy-900 border border-navy-750 p-4 rounded-2xl shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
@@ -97,54 +102,69 @@ export const ScenarioSimulatorView: React.FC = () => {
               <Sliders className="w-4 h-4" />
             </span>
             <span className="text-xs font-mono uppercase tracking-wider text-purple-400 font-bold">
-              Predictive What-If Scenario Modeler
+              Deterministic Scenario Modeler
             </span>
           </div>
           <h2 className="text-xl md:text-2xl font-black text-white tracking-tight">
-            Meteorological Sensitivity &amp; Inundation Stress-Testing
+            Sensitivity &amp; Multi-Hazard Stress-Testing
           </h2>
           <p className="text-xs text-slate-300 max-w-3xl mt-0.5">
-            Test track deviations, sudden eyewall intensification, and storm surge amplifications with instantaneous deterministic recalculation.
+            Dynamically recalculates all village risk scores, infrastructure hazards, route cutoffs, and shelter assignments with zero server dependency.
           </p>
         </div>
 
-        {/* Operational Notice */}
-        <div className="bg-purple-950/40 border border-purple-800/50 rounded-xl px-4 py-2.5 flex items-center justify-between gap-4 text-xs font-mono">
-          <div className="flex items-center gap-2 text-purple-200">
-            <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse flex-shrink-0" />
-            <span>
-              <strong>Scenario Modeler:</strong> Perturb track trajectory, wind velocity, and tidal surge to compute real-time stress test deltas. Not an official IMD meteorological forecast.
-            </span>
-          </div>
-          <span className="text-[10px] text-purple-300/80 bg-purple-900/60 px-2 py-0.5 rounded border border-purple-700/50 whitespace-nowrap">
-            v2.4 Sensitivity Engine
-          </span>
-        </div>
-
-        {/* Preset Buttons */}
+        {/* Preset & Reset Buttons */}
         <div className="flex flex-wrap items-center gap-2">
           <button
+            type="button"
             onClick={() => applyPreset('baseline')}
-            className="px-3 py-1.5 rounded-lg bg-navy-850 hover:bg-navy-800 text-slate-300 border border-navy-700 text-xs font-mono font-medium transition-colors"
+            className={`px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors border ${
+              trackShiftKm === 0 && windSpeedKmh === 135 && rainfallMm === 180 && stormSurgeMeters === 1.8
+                ? 'bg-cyan-600 text-white border-cyan-400 font-bold shadow-sm'
+                : 'bg-navy-850 hover:bg-navy-800 text-slate-300 border-navy-700'
+            }`}
           >
-            Baseline T-24h
+            Baseline ({BASE_STORM_SCENARIO.name})
           </button>
           <button
+            type="button"
             onClick={() => applyPreset('north30')}
-            className="px-3 py-1.5 rounded-lg bg-purple-600/30 hover:bg-purple-600/50 text-purple-300 border border-purple-500/40 text-xs font-mono font-bold transition-colors"
+            className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-colors border ${
+              trackShiftKm === 30
+                ? 'bg-purple-600 text-white border-purple-400 shadow-sm'
+                : 'bg-purple-600/20 hover:bg-purple-600/40 text-purple-300 border-purple-500/40'
+            }`}
           >
             +30km North Shift
           </button>
           <button
+            type="button"
             onClick={() => applyPreset('superCyclone')}
-            className="px-3 py-1.5 rounded-lg bg-red-600/30 hover:bg-red-600/50 text-red-300 border border-red-500/40 text-xs font-mono font-bold transition-colors"
+            className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-colors border ${
+              windSpeedKmh >= 200
+                ? 'bg-red-600 text-white border-red-400 shadow-sm'
+                : 'bg-red-600/20 hover:bg-red-600/40 text-red-300 border-red-500/40'
+            }`}
           >
-            Super Cyclone Cat-5
+            Super Cyclone (205 km/h)
           </button>
           <button
-            onClick={resetSimulationParams}
+            type="button"
+            onClick={() => applyPreset('southTrack')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-colors border ${
+              trackShiftKm === -40
+                ? 'bg-blue-600 text-white border-blue-400 shadow-sm'
+                : 'bg-blue-600/20 hover:bg-blue-600/40 text-blue-300 border-blue-500/40'
+            }`}
+          >
+            -40km South Shift
+          </button>
+          <button
+            type="button"
+            onClick={resetScenarioInputs}
             className="p-2 rounded-lg bg-navy-800 hover:bg-navy-750 text-slate-400 hover:text-white transition-colors"
-            title="Reset to default"
+            title="Reset to Base Scenario"
+            aria-label="Reset Scenario"
           >
             <RotateCcw className="w-4 h-4" />
           </button>
@@ -157,254 +177,252 @@ export const ScenarioSimulatorView: React.FC = () => {
           <div className="flex items-center justify-between border-b border-navy-750 pb-2.5">
             <h3 className="font-bold text-sm text-white font-mono flex items-center gap-2">
               <Sliders className="w-4 h-4 text-cyan-400" />
-              <span>Variable Hazard Inputs</span>
+              <span>Multi-Hazard Parameter Sliders</span>
             </h3>
-            <span className="text-[11px] font-mono text-slate-400">
-              Interactive Multi-Parameter Model
+            <span className="text-[11px] font-mono text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/40">
+              Deterministic • Model Estimate
             </span>
           </div>
 
           <div className="space-y-4 font-mono text-xs">
-            {/* 1. Wind Speed Slider */}
+            {/* 1. Maximum Sustained Wind Speed */}
             <div className="bg-navy-950 p-4 rounded-xl border border-navy-800 space-y-2">
               <div className="flex items-center justify-between">
                 <span className="text-slate-300 flex items-center gap-2 font-sans font-semibold">
-                  <Wind className="w-4 h-4 text-red-400" /> Maximum Sustained Wind
+                  <Wind className="w-4 h-4 text-red-400" /> Maximum Sustained Wind Speed
                 </span>
                 <span className="text-base font-bold text-red-400 font-mono">
-                  {currentWind} km/h{' '}
+                  {windSpeedKmh} km/h{' '}
                   <span className="text-xs text-slate-400 font-normal">
-                    ({((simulationParams.windSpeedMultiplier - 1) * 100).toFixed(0)}%)
+                    (Base: 135 km/h)
                   </span>
                 </span>
               </div>
               <input
                 type="range"
-                min="0.8"
-                max="1.5"
-                step="0.05"
-                value={simulationParams.windSpeedMultiplier}
+                min="60"
+                max="220"
+                step="5"
+                value={windSpeedKmh}
                 onChange={(e) =>
-                  setSimulationParams((p) => ({ ...p, windSpeedMultiplier: parseFloat(e.target.value) }))
+                  setScenarioInputs((p) => ({ ...p, windSpeedKmh: parseInt(e.target.value) }))
                 }
                 className="w-full accent-red-500 cursor-pointer"
               />
               <div className="flex justify-between text-[10px] text-slate-500">
-                <span>108 km/h (Moderate)</span>
-                <span>135 km/h (Baseline)</span>
-                <span>202 km/h (Super Storm)</span>
+                <span>60 km/h (Depression)</span>
+                <span>135 km/h (Varuna Base)</span>
+                <span>220 km/h (Super Cyclone)</span>
               </div>
             </div>
 
-            {/* 2. Rainfall Accumulation Slider */}
+            {/* 2. 24-Hour Rainfall Accumulation */}
             <div className="bg-navy-950 p-4 rounded-xl border border-navy-800 space-y-2">
               <div className="flex items-center justify-between">
                 <span className="text-slate-300 flex items-center gap-2 font-sans font-semibold">
                   <CloudRain className="w-4 h-4 text-blue-400" /> 24-Hour Rainfall Accumulation
                 </span>
                 <span className="text-base font-bold text-blue-400 font-mono">
-                  {currentRain} mm{' '}
+                  {rainfallMm} mm{' '}
                   <span className="text-xs text-slate-400 font-normal">
-                    ({((simulationParams.rainfallMultiplier - 1) * 100).toFixed(0)}%)
+                    (Base: 180 mm)
                   </span>
                 </span>
               </div>
               <input
                 type="range"
-                min="0.5"
-                max="2.0"
-                step="0.1"
-                value={simulationParams.rainfallMultiplier}
+                min="0"
+                max="400"
+                step="10"
+                value={rainfallMm}
                 onChange={(e) =>
-                  setSimulationParams((p) => ({ ...p, rainfallMultiplier: parseFloat(e.target.value) }))
+                  setScenarioInputs((p) => ({ ...p, rainfallMm: parseInt(e.target.value) }))
                 }
                 className="w-full accent-blue-500 cursor-pointer"
               />
               <div className="flex justify-between text-[10px] text-slate-500">
-                <span>140 mm (Low)</span>
-                <span>280 mm (Baseline)</span>
-                <span>560 mm (Extreme Torrential)</span>
+                <span>0 mm (Dry)</span>
+                <span>180 mm (Base Rainfall)</span>
+                <span>400 mm (Extreme Torrential)</span>
               </div>
             </div>
 
-            {/* 3. Storm Surge Offset Slider */}
+            {/* 3. Storm Surge Peak */}
             <div className="bg-navy-950 p-4 rounded-xl border border-navy-800 space-y-2">
               <div className="flex items-center justify-between">
                 <span className="text-slate-300 flex items-center gap-2 font-sans font-semibold">
-                  <Waves className="w-4 h-4 text-purple-400" /> Coastal Storm Surge Peak
+                  <Waves className="w-4 h-4 text-purple-400" /> Peak Coastal Storm Surge
                 </span>
                 <span className="text-base font-bold text-purple-400 font-mono">
-                  {currentSurge} meters{' '}
+                  {stormSurgeMeters.toFixed(1)} meters{' '}
                   <span className="text-xs text-slate-400 font-normal">
-                    ({simulationParams.surgeHeightOffset >= 0 ? '+' : ''}
-                    {simulationParams.surgeHeightOffset.toFixed(1)}m)
+                    (Base: 1.8 m)
                   </span>
                 </span>
               </div>
               <input
                 type="range"
-                min="-1.0"
-                max="3.0"
-                step="0.2"
-                value={simulationParams.surgeHeightOffset}
+                min="0.0"
+                max="5.0"
+                step="0.1"
+                value={stormSurgeMeters}
                 onChange={(e) =>
-                  setSimulationParams((p) => ({ ...p, surgeHeightOffset: parseFloat(e.target.value) }))
+                  setScenarioInputs((p) => ({ ...p, stormSurgeMeters: parseFloat(e.target.value) }))
                 }
                 className="w-full accent-purple-500 cursor-pointer"
               />
               <div className="flex justify-between text-[10px] text-slate-500">
-                <span>2.4m (Minor)</span>
-                <span>3.4m (Baseline)</span>
-                <span>6.4m (Catastrophic)</span>
+                <span>0.0m (Astronomic Only)</span>
+                <span>1.8m (Base Surge)</span>
+                <span>5.0m (Catastrophic Surge)</span>
               </div>
             </div>
 
-            {/* 4. Cyclone Track Shift Slider */}
+            {/* 4. Cyclone Track Shift */}
             <div className="bg-navy-950 p-4 rounded-xl border border-navy-800 space-y-2">
               <div className="flex items-center justify-between">
                 <span className="text-slate-300 flex items-center gap-2 font-sans font-semibold">
-                  <Compass className="w-4 h-4 text-cyan-400" /> Track Cross-Axis Displacement
+                  <Compass className="w-4 h-4 text-cyan-400" /> Cyclone Track Cross-Axis Displacement
                 </span>
                 <span className="text-base font-bold text-cyan-400 font-mono">
-                  {simulationParams.trackShiftKm > 0
-                    ? `${simulationParams.trackShiftKm} km North`
-                    : simulationParams.trackShiftKm < 0
-                    ? `${Math.abs(simulationParams.trackShiftKm)} km South`
-                    : 'On Predicted Track'}
+                  {trackShiftKm > 0
+                    ? `+${trackShiftKm} km North`
+                    : trackShiftKm < 0
+                    ? `${trackShiftKm} km South`
+                    : '0 km (Nominal Track)'}
                 </span>
               </div>
               <input
                 type="range"
-                min="-50"
-                max="50"
+                min="-80"
+                max="80"
                 step="5"
-                value={simulationParams.trackShiftKm}
+                value={trackShiftKm}
                 onChange={(e) =>
-                  setSimulationParams((p) => ({ ...p, trackShiftKm: parseInt(e.target.value) }))
+                  setScenarioInputs((p) => ({ ...p, trackShiftKm: parseInt(e.target.value) }))
                 }
                 className="w-full accent-cyan-500 cursor-pointer"
               />
               <div className="flex justify-between text-[10px] text-slate-500">
-                <span>-50 km (Southwards into Sea)</span>
-                <span>0 km (Nominal Track)</span>
-                <span>+50 km (Northwards to Urban Core)</span>
+                <span>-80 km (South / Sea Shift)</span>
+                <span>0 km (Direct Impact)</span>
+                <span>+80 km (North Urban Core Shift)</span>
               </div>
             </div>
 
-            {/* 5. Landfall Lead Time Shift */}
+            {/* 5. Landfall Lead Time */}
             <div className="bg-navy-950 p-4 rounded-xl border border-navy-800 space-y-2">
               <div className="flex items-center justify-between">
                 <span className="text-slate-300 flex items-center gap-2 font-sans font-semibold">
-                  <Clock className="w-4 h-4 text-amber-400" /> Landfall Timing Offset
+                  <Clock className="w-4 h-4 text-amber-400" /> Estimated Time to Landfall
                 </span>
                 <span className="text-base font-bold text-amber-400 font-mono">
-                  {simulationParams.landfallTimeShiftHours > 0
-                    ? `+${simulationParams.landfallTimeShiftHours}h Delayed`
-                    : simulationParams.landfallTimeShiftHours < 0
-                    ? `${Math.abs(simulationParams.landfallTimeShiftHours)}h Accelerated`
-                    : 'Nominal 24h Window'}
+                  {landfallHours} Hours (T-{landfallHours}h)
                 </span>
               </div>
               <input
                 type="range"
-                min="-12"
-                max="12"
+                min="6"
+                max="72"
                 step="2"
-                value={simulationParams.landfallTimeShiftHours}
+                value={landfallHours}
                 onChange={(e) =>
-                  setSimulationParams((p) => ({ ...p, landfallTimeShiftHours: parseInt(e.target.value) }))
+                  setScenarioInputs((p) => ({ ...p, landfallHours: parseInt(e.target.value) }))
                 }
                 className="w-full accent-amber-500 cursor-pointer"
               />
               <div className="flex justify-between text-[10px] text-slate-500">
-                <span>-12h (Accelerating Forward)</span>
-                <span>0h</span>
-                <span>+12h (Slow-Moving Stalled Storm)</span>
+                <span>6h (Immediate Impact)</span>
+                <span>24h (Base Window)</span>
+                <span>72h (Early Surveillance)</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Dynamic Impact Delta Panel (Right 5 Cols) */}
+        {/* Dynamic Impact Summary Panel (Right 5 Cols) */}
         <div className="lg:col-span-5 bg-navy-900 border border-navy-750 p-5 rounded-2xl shadow-xl flex flex-col justify-between space-y-5">
           <div className="space-y-4">
             <div className="flex items-center justify-between border-b border-navy-750 pb-2.5">
               <div className="flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-orange-400" />
                 <h3 className="font-bold text-sm text-white font-mono">
-                  Impact Differential Summary
+                  Scenario Impact Summary
                 </h3>
               </div>
               <span className="text-[10px] font-mono text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/40">
-                Simulated Output
+                Model Estimate
               </span>
             </div>
 
-            {/* Structured Delta Card */}
-            <div className="bg-gradient-to-br from-navy-950 to-navy-900 border border-navy-750 rounded-xl p-4 space-y-3">
-              <h4 className="text-xs font-mono font-bold text-slate-200">
-                Projected Scenario Delta vs Nominal Baseline:
-              </h4>
+            {/* Impact Metrics Grid */}
+            <div className="bg-gradient-to-br from-navy-950 to-navy-900 border border-navy-750 rounded-xl p-4 space-y-2.5">
+              <div className="text-xs font-mono font-bold text-slate-200 mb-1">
+                Dynamic Recalculation Results:
+              </div>
 
               <div className="space-y-2 text-xs font-mono">
                 <div className="flex items-center justify-between p-2 rounded bg-navy-850 border border-navy-800">
-                  <span className="text-slate-300">P0 Critical Villages:</span>
-                  <span className={`font-bold ${deltaVillages > 0 ? 'text-red-400' : 'text-emerald-400'}`}>
-                    {totalVillagesCritical} ({deltaVillages >= 0 ? '+' : ''}{deltaVillages} change)
+                  <span className="text-slate-300 flex items-center gap-1.5">
+                    <AlertOctagon className="w-3.5 h-3.5 text-red-400" />
+                    Critical Risk Villages:
+                  </span>
+                  <span className={`font-bold ${currentCritical >= 3 ? 'text-red-400' : 'text-emerald-400'}`}>
+                    {currentCritical} / {simulationSummary.villages.length} ({deltaCritical >= 0 ? '+' : ''}{deltaCritical} vs base)
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between p-2 rounded bg-navy-850 border border-navy-800">
-                  <span className="text-slate-300">Population Exposed:</span>
-                  <span className={`font-bold ${parseFloat(deltaPopLakhs) > 0 ? 'text-red-400' : 'text-emerald-400'}`}>
-                    {popExposedLakhs} Lakh ({parseFloat(deltaPopLakhs) >= 0 ? '+' : ''}{deltaPopLakhs} L)
+                  <span className="text-slate-300 flex items-center gap-1.5">
+                    <Users className="w-3.5 h-3.5 text-orange-400" />
+                    P0 Immediate Evacuation:
+                  </span>
+                  <span className="font-bold text-orange-300">
+                    {simulationSummary.p0Population.toLocaleString()} residents
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between p-2 rounded bg-navy-850 border border-navy-800">
-                  <span className="text-slate-300">Critical Assets in Flood Zone:</span>
-                  <span className={`font-bold ${deltaAssets > 0 ? 'text-orange-400' : 'text-emerald-400'}`}>
-                    {assetsAtRisk} ({deltaAssets >= 0 ? '+' : ''}{deltaAssets} assets)
+                  <span className="text-slate-300 flex items-center gap-1.5">
+                    <Building2 className="w-3.5 h-3.5 text-amber-400" />
+                    Critical Assets at Risk:
+                  </span>
+                  <span className={`font-bold ${currentAssetsAtRisk > baselineAssetsAtRisk ? 'text-orange-400' : 'text-slate-200'}`}>
+                    {currentAssetsAtRisk} / {simulationSummary.totalAssetsCount} ({deltaAssets >= 0 ? '+' : ''}{deltaAssets})
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between p-2 rounded bg-navy-850 border border-navy-800">
-                  <span className="text-slate-300">Shelter Capacity Deficit:</span>
-                  <span className={`font-bold ${deltaShelterGap > 0 ? 'text-red-400' : 'text-emerald-400'}`}>
-                    {shelterGap.toLocaleString()} beds ({deltaShelterGap >= 0 ? '+' : ''}{deltaShelterGap.toLocaleString()})
+                  <span className="text-slate-300 flex items-center gap-1.5">
+                    <Navigation className="w-3.5 h-3.5 text-purple-400" />
+                    Roads at Risk / Blocked:
+                  </span>
+                  <span className={`font-bold ${currentRoadsAtRisk > 2 ? 'text-red-400' : 'text-emerald-400'}`}>
+                    {currentRoadsAtRisk} / {simulationSummary.totalRoadsCount} ({deltaRoads >= 0 ? '+' : ''}{deltaRoads})
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between p-2 rounded bg-navy-850 border border-navy-800">
-                  <span className="text-slate-300">Flooded Evacuation Arterials:</span>
-                  <span className={`font-bold ${deltaRoutes > 0 ? 'text-red-400' : 'text-emerald-400'}`}>
-                    {floodedRoutes} routes ({deltaRoutes >= 0 ? '+' : ''}{deltaRoutes} severed)
+                  <span className="text-slate-300 flex items-center gap-1.5">
+                    <Home className="w-3.5 h-3.5 text-cyan-400" />
+                    Shelter Capacity Gap:
+                  </span>
+                  <span className={`font-bold ${currentShelterGap > 0 ? 'text-red-400' : 'text-emerald-400'}`}>
+                    {currentShelterGap > 0 ? `${currentShelterGap.toLocaleString()} beds needed` : 'Adequate Capacity'}
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Textual Narrative Explanation */}
+            {/* Impact Text Block */}
             <div className="bg-navy-950 p-4 rounded-xl border border-navy-800 text-xs text-slate-300 space-y-2">
               <div className="font-bold text-amber-300 font-mono flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>Deterministic Scenario Assessment:</span>
+                <span>Scenario Impact Narrative:</span>
               </div>
-              <p className="leading-relaxed">
-                {simulationParams.trackShiftKm >= 20 ? (
-                  <>
-                    A <strong className="text-white">+{simulationParams.trackShiftKm} km North shift</strong> steers the severe eyewall toward dense urban settlements in <strong>Sundar Pur and Delta Nagar</strong>. Coastal hospital access will be severed 4 hours earlier due to intensified tidal surge piling in estuary bottlenecks.
-                  </>
-                ) : simulationParams.windSpeedMultiplier > 1.2 ? (
-                  <>
-                    Escalation to <strong className="text-white">{currentWind} km/h wind</strong> increases structural roofing failure risk by 68%. Overhead power transmission feeder lines must be pre-emptively shut down.
-                  </>
-                ) : (
-                  <>
-                    Conditions are aligned with the <strong className="text-white">Baseline T-24h scenario</strong>. Primary vulnerability is concentrated in Coastal Ward 7 and Delta Nagar with 0.8m road submersion on SH-12.
-                  </>
-                )}
-              </p>
+              <pre className="font-sans whitespace-pre-wrap leading-relaxed text-xs text-slate-300">
+                {simulationSummary.scenarioImpactSummary}
+              </pre>
             </div>
           </div>
 
@@ -412,14 +430,14 @@ export const ScenarioSimulatorView: React.FC = () => {
           <div className="pt-2 flex gap-2">
             <button
               onClick={() => setActiveTab('map')}
-              className="flex-1 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold py-2.5 px-4 rounded-lg text-xs shadow-lg flex items-center justify-center gap-1.5 transition-all"
+              className="flex-1 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold py-2.5 px-4 rounded-xl text-xs shadow-lg flex items-center justify-center gap-1.5 transition-all"
             >
               <span>Inspect On Dynamic Map</span>
               <ArrowRight className="w-4 h-4" />
             </button>
             <button
               onClick={() => setActiveTab('briefing')}
-              className="bg-navy-800 hover:bg-navy-750 text-cyan-300 border border-navy-700 px-3.5 py-2.5 rounded-lg text-xs font-mono font-medium transition-colors"
+              className="bg-navy-800 hover:bg-navy-750 text-cyan-300 border border-navy-700 px-4 py-2.5 rounded-xl text-xs font-mono font-medium transition-colors"
             >
               AI Briefing &gt;
             </button>

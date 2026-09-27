@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   Sparkles,
   FileText,
@@ -11,47 +11,79 @@ import {
   Copy,
   Check,
   ShieldCheck,
-  Code2,
   Terminal,
   Download,
   AlertOctagon,
   RefreshCw,
-  Database
+  Database,
+  Info,
+  ShieldAlert,
+  ArrowRight
 } from 'lucide-react';
 import { useAppState } from '../../context/AppStateContext';
-import { useLanguage } from '../../context/LanguageContext';
-import { DeterministicRiskEngine } from '../../services/riskEngine';
+import { generateLocalBriefing } from '../../services/mockBriefingGenerator';
 
 export const AIBriefingView: React.FC = () => {
-  const { simulationParams, setActiveTab, activeCyclone, weather, villages, assets } = useAppState();
-  const { language } = useLanguage();
+  const { simulationSummary, scenarioInputs, modeBadgeText } = useAppState();
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
   const [copied, setCopied] = useState<boolean>(false);
-  const [activeTabLang, setActiveTabLang] = useState<'en' | 'hi' | 'or' | 'bn'>('en');
+  const [activeTabLang, setActiveTabLang] = useState<'en' | 'hi'>('en');
 
-  const isFixtureMode = import.meta.env.VITE_ENABLE_DEV_FIXTURES === 'true';
-
-  const currentWind = activeCyclone
-    ? Math.round(activeCyclone.maxWindSpeed * simulationParams.windSpeedMultiplier)
-    : (weather ? Math.round(weather.windSpeed) : 0);
-
-  const currentSurge = activeCyclone
-    ? (activeCyclone.stormSurgeMax + simulationParams.surgeHeightOffset).toFixed(1)
-    : '0.0';
+  // Generate deterministic briefing directly from current scenario simulation outputs
+  const briefing = useMemo(() => {
+    return generateLocalBriefing(simulationSummary);
+  }, [simulationSummary]);
 
   const handleGenerate = () => {
     setIsGenerating(true);
     setTimeout(() => {
       setIsGenerating(false);
-    }, 600);
+    }, 450);
   };
 
   const handleCopy = () => {
+    const fullText = `
+# SITUATION REPORT: Cyclone Varuna (T-${scenarioInputs.landfallHours}h)
+Generated: ${new Date().toISOString()} (Deterministic Model Estimate)
+
+## 1. Executive Summary
+${briefing.executiveSummary}
+
+## 2. Top Five Systemic Risks
+${briefing.topFiveRisks.map((r, i) => `${i + 1}. ${r}`).join('\n')}
+
+## 3. Critical Assets Requiring Action
+${briefing.criticalAssetsRequiringAction.map((a) => `- ${a.assetName}: (Risk: ${a.riskScore}/100) -> Action: ${a.action}`).join('\n')}
+
+## 4. Immediate & Priority Evacuation Targets (P0 / P1)
+${briefing.p0AndP1Villages.map((v) => `- ${v.villageName} (${v.priority}, ${v.population.toLocaleString()} pop) -> Shelter: ${v.recommendedShelter}`).join('\n')}
+
+## 5. Shelter Capacity & Gap Assessment
+- Total Shelter Capacity: ${briefing.shelterCapacityStatus.totalCapacity.toLocaleString()} persons
+- Currently Occupied: ${briefing.shelterCapacityStatus.totalOccupied.toLocaleString()} persons
+- Available Bed Capacity: ${briefing.shelterCapacityStatus.availableBeds.toLocaleString()} persons
+- Capacity Deficit/Gap: ${briefing.shelterCapacityStatus.deficit.toLocaleString()} persons
+
+## 6. Recommended Operational Actions (Next 6 Hours)
+${briefing.recommendedActionsNext6Hours.map((a, i) => `${i + 1}. ${a}`).join('\n')}
+
+## 7. English Public Advisory
+${briefing.englishPublicAdvisory}
+
+## 8. Hindi Public Advisory
+${briefing.hindiPublicAdvisory}
+
+## 9. Model Confidence
+${briefing.modelConfidence}
+
+## 10. Limitations & Statutory Disclaimer
+${briefing.limitations}
+    `.trim();
+
+    navigator.clipboard.writeText(fullText);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
-
-  const SYSTEM_PROMPT = `You are an emergency disaster-management decision-support assistant. Use only the supplied structured meteorological observations and deterministic risk assessments. Do not invent unverified casualties, infrastructure damage, or official orders. Clearly distinguish between official meteorological forecasts (IMD), physical derived risk scores, and tactical recommendations.`;
 
   return (
     <div className="space-y-5 p-4 md:p-6 max-w-[1600px] mx-auto font-sans">
@@ -63,14 +95,14 @@ export const AIBriefingView: React.FC = () => {
               <Sparkles className="w-4 h-4" />
             </span>
             <span className="text-xs font-mono uppercase tracking-wider text-cyan-400 font-bold">
-              Decision-Support Situation Synthesizer
+              Autonomous Incident Intelligence Synthesizer
             </span>
           </div>
           <h2 className="text-xl md:text-2xl font-black text-white tracking-tight">
-            Automated Situation Report &amp; Tactical Briefing
+            AI Tactical Briefing &amp; Situation Report (SITREP)
           </h2>
           <p className="text-xs text-slate-300 max-w-3xl mt-0.5">
-            Structured decision-support generator transforming multi-source observations and deterministic risk matrices into actionable operational directives.
+            Local deterministic NLP briefing engine executing without cloud dependencies, API keys, or external network calls.
           </p>
         </div>
 
@@ -82,22 +114,22 @@ export const AIBriefingView: React.FC = () => {
             className="flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold text-xs py-2.5 px-5 rounded-xl shadow-lg shadow-cyan-950/60 transition-all cursor-pointer"
           >
             <RefreshCw className={`w-4 h-4 ${isGenerating ? 'animate-spin' : ''}`} />
-            <span>{isGenerating ? 'Synthesizing Data...' : 'Generate Situation Report'}</span>
+            <span>{isGenerating ? 'Recalculating...' : 'Generate Simulation Briefing'}</span>
           </button>
 
           <button
             onClick={handleCopy}
-            className="flex items-center gap-1.5 bg-navy-850 hover:bg-navy-800 text-slate-200 border border-navy-700 font-mono text-xs py-2.5 px-3 rounded-xl transition-colors"
+            className="flex items-center gap-1.5 bg-navy-850 hover:bg-navy-800 text-slate-200 border border-navy-700 font-mono text-xs py-2.5 px-3 rounded-xl transition-colors cursor-pointer"
             title="Copy SITREP Markdown"
           >
-            {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-            <span className="hidden sm:inline">{copied ? 'Copied!' : 'Copy'}</span>
+            {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4 text-slate-400" />}
+            <span className="hidden sm:inline">{copied ? 'Copied!' : 'Copy SITREP'}</span>
           </button>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
-        {/* Main Briefing Output Document (Left 8 Cols) */}
+        {/* Main Briefing Document (Left 8 Cols) */}
         <div className="lg:col-span-8 space-y-4">
           <div className="bg-navy-900 border border-navy-750 rounded-2xl shadow-xl overflow-hidden">
             {/* SITREP Header Bar */}
@@ -105,191 +137,280 @@ export const AIBriefingView: React.FC = () => {
               <div className="flex items-center gap-2 font-mono text-xs">
                 <FileText className="w-4 h-4 text-cyan-400" />
                 <span className="font-bold text-white">
-                  SITREP: {activeCyclone ? activeCyclone.name : 'District Baseline Surveillance'}
+                  SITREP: Cyclone Varuna (T-{scenarioInputs.landfallHours}h)
                 </span>
               </div>
               <div className="flex items-center gap-2 font-mono text-[11px]">
-                <span className="text-slate-400">Time: {new Date().toLocaleDateString('en-IN')} IST</span>
-                <span className="bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded border border-cyan-500/30 font-bold">
-                  {isFixtureMode ? 'Dev Fixture Mode' : 'Live Data Stream'}
+                <span className="text-slate-400">Timestamp: {new Date().toLocaleTimeString('en-IN')} IST</span>
+                <span className="bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30 font-bold">
+                  {modeBadgeText}
                 </span>
               </div>
             </div>
 
-            <div className="p-5 space-y-6 text-slate-200 text-xs leading-relaxed">
+            <div className="p-5 md:p-6 space-y-6 text-slate-200 text-xs leading-relaxed">
               {/* 1. Executive Summary */}
               <section className="space-y-2">
-                <h3 className="font-bold text-sm text-cyan-300 font-mono uppercase tracking-wide flex items-center gap-2 border-b border-navy-800 pb-1">
-                  1. Executive Summary
+                <h3 className="font-bold text-sm text-cyan-300 font-mono uppercase tracking-wide flex items-center gap-2 border-b border-navy-800 pb-1.5">
+                  <span>1. Executive Summary</span>
+                  <span className="text-[10px] text-cyan-400/70 font-normal lowercase">(model estimate)</span>
                 </h3>
-                <p>
-                  {activeCyclone ? (
-                    <>
-                      <strong>{activeCyclone.name}</strong> is monitored in the Bay of Bengal with sustained wind velocities of <strong>{currentWind} km/h</strong>. Projected landfall lead-time is <strong>{activeCyclone.landfallETA}</strong>.
-                    </>
-                  ) : (
-                    <>
-                      Currently, no active tropical cyclone advisory is registered by RSMC. Surface station observations show wind speeds of <strong>{currentWind} km/h</strong> and atmospheric pressure of <strong>{weather?.pressure || 1013} hPa</strong>.
-                    </>
-                  )}
-                </p>
-                <p>
-                  Deterministic hydrodynamic surge equations indicate peak water levels of <strong>{currentSurge} meters</strong> in direct coastal frontage. A total of <strong>{villages.length} wards</strong> are under active surveillance with <strong>{assets.length} critical infrastructure lifelines</strong> monitored.
+                <p className="text-slate-300 leading-relaxed font-sans whitespace-pre-line">
+                  {briefing.executiveSummary}
                 </p>
               </section>
 
-              {/* 2. Operational Priority Directives */}
+              {/* 2. Top Five Risks */}
               <section className="space-y-2">
-                <h3 className="font-bold text-sm text-red-400 font-mono uppercase tracking-wide flex items-center gap-2 border-b border-navy-800 pb-1">
-                  2. Operational Priorities &amp; Critical Directives
+                <h3 className="font-bold text-sm text-rose-400 font-mono uppercase tracking-wide flex items-center gap-2 border-b border-navy-800 pb-1.5">
+                  <AlertTriangle className="w-4 h-4" />
+                  <span>2. Top Five Systemic Risks</span>
                 </h3>
-                <ol className="list-decimal list-inside space-y-1.5 font-sans pl-1">
-                  <li>
-                    <strong>Tidal Surge Cutoff Mitigation:</strong> Evacuate low-elevation wards (&lt; 2.0m AMSL) via designated elevated corridors prior to deterioration of road surface accessibility.
-                  </li>
-                  <li>
-                    <strong>Medical Infrastructure Protection:</strong> Hospital ICU and emergency bays located in flood zones must elevate standby diesel power fuel lines and transfer ground-floor patients.
-                  </li>
-                  <li>
-                    <strong>Electrical Substation Isolation:</strong> Pre-emptively isolate exposed coastal 33kV distribution feeders before peak tidal surge to prevent transformer flashover.
-                  </li>
-                  <li>
-                    <strong>Multi-Purpose Shelter Pre-Fill:</strong> Ensure 48-hour drinking water, chlorine tablets, and dry rations are delivered to designated safe sanctuaries.
-                  </li>
+                <div className="space-y-1.5 font-sans">
+                  {briefing.topFiveRisks.map((risk, idx) => (
+                    <div key={idx} className="flex items-start gap-2 bg-navy-950 p-2.5 rounded-lg border border-navy-800 text-slate-300">
+                      <span className="font-mono text-rose-400 font-bold text-[11px] w-5 text-right flex-shrink-0">
+                        0{idx + 1}.
+                      </span>
+                      <span>{risk}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              {/* 3. Critical Assets Requiring Action */}
+              <section className="space-y-2">
+                <h3 className="font-bold text-sm text-amber-400 font-mono uppercase tracking-wide flex items-center gap-2 border-b border-navy-800 pb-1.5">
+                  <Building2 className="w-4 h-4" />
+                  <span>3. Critical Assets Requiring Action</span>
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {briefing.criticalAssetsRequiringAction.map((asset) => (
+                    <div key={asset.assetName} className="bg-navy-950 p-3 rounded-xl border border-navy-800 space-y-1">
+                      <div className="flex items-center justify-between">
+                        <span className="font-bold text-white text-xs">{asset.assetName}</span>
+                        <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300">
+                          Risk: {asset.riskScore}/100
+                        </span>
+                      </div>
+                      <div className="text-[11px] text-cyan-300 pt-1 font-mono">Directive: {asset.action}</div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              {/* 4. P0 and P1 Evacuation Targets */}
+              <section className="space-y-2">
+                <h3 className="font-bold text-sm text-purple-400 font-mono uppercase tracking-wide flex items-center gap-2 border-b border-navy-800 pb-1.5">
+                  <Users className="w-4 h-4" />
+                  <span>4. P0 &amp; P1 Evacuation Priority Targets</span>
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono">
+                  <div className="bg-rose-950/30 border border-rose-800/40 p-3 rounded-xl">
+                    <div className="text-xs font-bold text-rose-300 mb-1.5 flex items-center gap-1.5">
+                      <ShieldAlert className="w-3.5 h-3.5 text-rose-400" />
+                      P0: Immediate Evacuation (&lt; 2h)
+                    </div>
+                    {briefing.p0AndP1Villages.filter((v) => v.priority === 'P0').length > 0 ? (
+                      <ul className="list-disc list-inside text-[11px] text-rose-200 space-y-1">
+                        {briefing.p0AndP1Villages.filter((v) => v.priority === 'P0').map((v) => (
+                          <li key={v.villageName}>
+                            <strong>{v.villageName}</strong> ({v.population.toLocaleString()} pop) &rarr; {v.recommendedShelter}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <span className="text-[11px] text-slate-400">No villages currently in P0 priority</span>
+                    )}
+                  </div>
+
+                  <div className="bg-amber-950/30 border border-amber-800/40 p-3 rounded-xl">
+                    <div className="text-xs font-bold text-amber-300 mb-1.5 flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5 text-amber-400" />
+                      P1: Evacuate Within 6 Hours
+                    </div>
+                    {briefing.p0AndP1Villages.filter((v) => v.priority === 'P1').length > 0 ? (
+                      <ul className="list-disc list-inside text-[11px] text-amber-200 space-y-1">
+                        {briefing.p0AndP1Villages.filter((v) => v.priority === 'P1').map((v) => (
+                          <li key={v.villageName}>
+                            <strong>{v.villageName}</strong> ({v.population.toLocaleString()} pop) &rarr; {v.recommendedShelter}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <span className="text-[11px] text-slate-400">No villages currently in P1 priority</span>
+                    )}
+                  </div>
+                </div>
+              </section>
+
+              {/* 5. Shelter Capacity Status */}
+              <section className="space-y-2">
+                <h3 className="font-bold text-sm text-emerald-400 font-mono uppercase tracking-wide flex items-center gap-2 border-b border-navy-800 pb-1.5">
+                  <Home className="w-4 h-4" />
+                  <span>5. Shelter Capacity &amp; Gap Assessment</span>
+                </h3>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 font-mono text-center">
+                  <div className="bg-navy-950 p-2.5 rounded-xl border border-navy-800">
+                    <div className="text-[10px] text-slate-400 uppercase">Total Capacity</div>
+                    <div className="text-sm font-bold text-white mt-0.5">{briefing.shelterCapacityStatus.totalCapacity.toLocaleString()}</div>
+                  </div>
+                  <div className="bg-navy-950 p-2.5 rounded-xl border border-navy-800">
+                    <div className="text-[10px] text-slate-400 uppercase">Current Occupied</div>
+                    <div className="text-sm font-bold text-amber-300 mt-0.5">{briefing.shelterCapacityStatus.totalOccupied.toLocaleString()}</div>
+                  </div>
+                  <div className="bg-navy-950 p-2.5 rounded-xl border border-navy-800">
+                    <div className="text-[10px] text-slate-400 uppercase">Available Beds</div>
+                    <div className="text-sm font-bold text-emerald-400 mt-0.5">{briefing.shelterCapacityStatus.availableBeds.toLocaleString()}</div>
+                  </div>
+                  <div className={`p-2.5 rounded-xl border ${briefing.shelterCapacityStatus.deficit > 0 ? 'bg-rose-950/40 border-rose-800/60 text-rose-300' : 'bg-navy-950 border-navy-800 text-slate-300'}`}>
+                    <div className="text-[10px] uppercase">Capacity Deficit</div>
+                    <div className="text-sm font-bold mt-0.5">{briefing.shelterCapacityStatus.deficit > 0 ? `-${briefing.shelterCapacityStatus.deficit.toLocaleString()}` : '0'}</div>
+                  </div>
+                </div>
+              </section>
+
+              {/* 6. Recommended Operational Actions for Next 6 Hours */}
+              <section className="space-y-2">
+                <h3 className="font-bold text-sm text-blue-400 font-mono uppercase tracking-wide flex items-center gap-2 border-b border-navy-800 pb-1.5">
+                  <Clock className="w-4 h-4" />
+                  <span>6. Recommended Operational Directives (Next 6 Hours)</span>
+                </h3>
+                <ol className="list-decimal list-inside space-y-1.5 font-sans pl-1 text-slate-300">
+                  {briefing.recommendedActionsNext6Hours.map((action, idx) => (
+                    <li key={idx} className="leading-relaxed">{action}</li>
+                  ))}
                 </ol>
               </section>
 
-              {/* 3. Multilingual Public Advisories */}
+              {/* 7 & 8. Multilingual Public Warning Advisories (English & Hindi) */}
               <section className="space-y-3 pt-2">
-                <div className="flex items-center justify-between border-b border-navy-800 pb-1">
+                <div className="flex items-center justify-between border-b border-navy-800 pb-1.5">
                   <h3 className="font-bold text-sm text-purple-300 font-mono uppercase tracking-wide flex items-center gap-2">
-                    <Globe className="w-4 h-4" /> 3. Multilingual Public Warning Broadcasts
+                    <Globe className="w-4 h-4" />
+                    <span>7 &amp; 8. Multilingual Public Advisories</span>
                   </h3>
                   <div className="flex gap-1 font-mono text-[10px]">
                     <button
                       onClick={() => setActiveTabLang('en')}
-                      className={`px-2 py-0.5 rounded ${activeTabLang === 'en' ? 'bg-purple-600 text-white font-bold' : 'text-slate-400'}`}
+                      className={`px-3 py-1 rounded-lg transition-colors cursor-pointer ${
+                        activeTabLang === 'en' ? 'bg-purple-600 text-white font-bold' : 'bg-navy-950 text-slate-400 hover:text-slate-200'
+                      }`}
                     >
-                      English
+                      English Advisory (7)
                     </button>
                     <button
                       onClick={() => setActiveTabLang('hi')}
-                      className={`px-2 py-0.5 rounded ${activeTabLang === 'hi' ? 'bg-purple-600 text-white font-bold' : 'text-slate-400'}`}
+                      className={`px-3 py-1 rounded-lg transition-colors cursor-pointer ${
+                        activeTabLang === 'hi' ? 'bg-purple-600 text-white font-bold' : 'bg-navy-950 text-slate-400 hover:text-slate-200'
+                      }`}
                     >
-                      हिंदी
-                    </button>
-                    <button
-                      onClick={() => setActiveTabLang('or')}
-                      className={`px-2 py-0.5 rounded ${activeTabLang === 'or' ? 'bg-purple-600 text-white font-bold' : 'text-slate-400'}`}
-                    >
-                      ଓଡ଼ିଆ
-                    </button>
-                    <button
-                      onClick={() => setActiveTabLang('bn')}
-                      className={`px-2 py-0.5 rounded ${activeTabLang === 'bn' ? 'bg-purple-600 text-white font-bold' : 'text-slate-400'}`}
-                    >
-                      বাংলা
+                      हिंदी परामर्श (8)
                     </button>
                   </div>
                 </div>
 
                 <div className="bg-navy-950 p-4 rounded-xl border border-navy-800 text-slate-200">
-                  {activeTabLang === 'en' && (
+                  {activeTabLang === 'en' ? (
                     <div className="space-y-2">
-                      <div className="font-bold text-cyan-300 font-mono">[PUBLIC BROADCAST - ENGLISH]</div>
-                      <p>
-                        "EMERGENCY CYCLONE ADVISORY: Severe weather is expected along the coast. Residents in low-lying coastal wards must move immediately to designated cyclone shelters. Do not use flooded coastal highway routes; follow police diversions via elevated bypass corridors. Carry emergency drinking water, medication, and essential IDs."
+                      <div className="font-bold text-cyan-300 font-mono text-xs flex items-center justify-between">
+                        <span>[7. PUBLIC ADVISORY - ENGLISH]</span>
+                        <span className="text-[10px] text-slate-400 font-normal">Standard Citizen Bulletin</span>
+                      </div>
+                      <p className="font-sans leading-relaxed text-slate-300 text-xs whitespace-pre-line">
+                        "{briefing.englishPublicAdvisory}"
                       </p>
                     </div>
-                  )}
-
-                  {activeTabLang === 'hi' && (
+                  ) : (
                     <div className="space-y-2">
-                      <div className="font-bold text-cyan-300 font-mono">[सार्वजनिक प्रसारण - हिंदी]</div>
-                      <p>
-                        "आपातकालीन चक्रवात चेतावनी: तटीय क्षेत्र में भीषण मौसम की संभावना है। निचले तटीय क्षेत्रों के निवासी तुरंत सुरक्षित चक्रवात आश्रय में जाएं। जलमग्न तटीय मार्गों का उपयोग न करें; पुलिस द्वारा निर्देशित एलिवेटेड बाईपास मार्गों का उपयोग करें।"
-                      </p>
-                    </div>
-                  )}
-
-                  {activeTabLang === 'or' && (
-                    <div className="space-y-2">
-                      <div className="font-bold text-cyan-300 font-mono">[ସର୍ବସାଧାରଣ ସୂଚନା - ଓଡ଼ିଆ]</div>
-                      <p>
-                        "ଜରୁରୀକାଳୀନ ବାତ୍ୟା ସତର୍କତା: ଉପକୂଳ ଅଞ୍ଚଳରେ ପ୍ରବଳ ପାଣିପାଗ ସମ୍ଭାବନା ରହିଛି। ତଳିଆ ଉପକୂଳ ୱାର୍ଡର ସମସ୍ତ ବାସିନ୍ଦା ତୁରନ୍ତ ନିକଟସ୍ଥ ବାତ୍ୟା ଆଶ୍ରୟସ୍ଥଳୀକୁ ଯାଆନ୍ତୁ। ବନ୍ୟାପ୍ଲାବିତ ରାସ୍ତା ବଦଳରେ ସୁରକ୍ଷିତ ଏଲିଭେଟେଡ୍ ବାଇପାସ୍ ବ୍ୟବହାର କରନ୍ତୁ।"
-                      </p>
-                    </div>
-                  )}
-
-                  {activeTabLang === 'bn' && (
-                    <div className="space-y-2">
-                      <div className="font-bold text-cyan-300 font-mono">[জনসাধারণের জন্য সতর্কবার্তা - বাংলা]</div>
-                      <p>
-                        "জরুরি ঘূর্ণিঝড় সতর্কতা: উপকূলীয় অঞ্চলে দুর্যোগপূর্ণ আবহাওয়ার আশঙ্কা রয়েছে। নিচু উপকূলীয় এলাকার বাসিন্দাদের অবিলম্বে নিরাপদ আশ্রয়কেন্দ্রে যাওয়ার নির্দেশ দেওয়া হচ্ছে।"
+                      <div className="font-bold text-amber-300 font-mono text-xs flex items-center justify-between">
+                        <span>[8. सार्वजनिक परामर्श - हिंदी (MANDATORY FORMAT)]</span>
+                        <span className="text-[10px] text-slate-400 font-normal">नागरिक सुरक्षा प्रसारण</span>
+                      </div>
+                      <p className="font-sans leading-relaxed text-slate-200 text-xs bg-navy-900/60 p-3 rounded-lg border border-navy-800 whitespace-pre-line">
+                        "{briefing.hindiPublicAdvisory}"
                       </p>
                     </div>
                   )}
                 </div>
               </section>
 
-              {/* 4. Disclaimer & Limitations */}
-              <section className="bg-navy-950/80 p-3.5 rounded-xl border border-navy-800 text-[11px] text-slate-400 space-y-1">
-                <div className="font-bold text-amber-400 font-mono uppercase">
-                  Data Attribution &amp; Statutory Notice:
+              {/* 9 & 10. Model Confidence and Limitations */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                {/* 9. Model Confidence */}
+                <div className="bg-navy-950 p-3.5 rounded-xl border border-navy-800 space-y-1">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-xs text-cyan-300 font-mono">9. Model Confidence</span>
+                  </div>
+                  <p className="text-[11px] text-slate-300 font-mono">
+                    {briefing.modelConfidence}
+                  </p>
                 </div>
-                <p>
-                  This situation report provides automated decision-support based on deterministic physical vulnerability formulas and official meteorological feeds. It does not replace statutory orders from the India Meteorological Department (IMD) or State Disaster Management Authority (SDMA).
-                </p>
-              </section>
+
+                {/* 10. Limitations */}
+                <div className="bg-amber-950/20 p-3.5 rounded-xl border border-amber-800/40 space-y-1">
+                  <div className="font-bold text-xs text-amber-300 font-mono flex items-center gap-1.5">
+                    <Info className="w-3.5 h-3.5" />
+                    <span>10. Limitations &amp; Notice</span>
+                  </div>
+                  <p className="text-[11px] text-amber-200/80 leading-relaxed whitespace-pre-line">
+                    {briefing.limitations}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Right 4 Columns: System Schema & Data Sources */}
+        {/* Right 4 Columns: System Engine & Scenario Context */}
         <div className="lg:col-span-4 space-y-4">
-          {/* Data Sources Attribution Card */}
+          {/* Current Dynamic Inputs */}
           <div className="bg-navy-900 border border-navy-750 p-4 rounded-2xl shadow-xl space-y-3">
             <div className="flex items-center gap-2 border-b border-navy-750 pb-2">
               <Database className="w-4 h-4 text-cyan-400" />
               <h3 className="font-bold text-sm text-white font-mono">
-                Data Feeds Ingested
+                Active Scenario Parameters
               </h3>
             </div>
             <div className="space-y-2 font-mono text-xs">
               <div className="bg-navy-950 p-2.5 rounded-lg border border-navy-800 flex items-center justify-between">
-                <span className="text-slate-300">Surface Weather:</span>
-                <span className="text-cyan-300 font-bold">WMO Open-Meteo</span>
+                <span className="text-slate-400">Sustained Wind:</span>
+                <span className="text-cyan-300 font-bold">{scenarioInputs.windSpeedKmh} km/h</span>
               </div>
               <div className="bg-navy-950 p-2.5 rounded-lg border border-navy-800 flex items-center justify-between">
-                <span className="text-slate-300">Cyclone RSMC:</span>
-                <span className="text-rose-300 font-bold">IMD / JTWC Feeds</span>
+                <span className="text-slate-400">24h Rainfall:</span>
+                <span className="text-blue-300 font-bold">{scenarioInputs.rainfallMm} mm</span>
               </div>
               <div className="bg-navy-950 p-2.5 rounded-lg border border-navy-800 flex items-center justify-between">
-                <span className="text-slate-300">Risk Computation:</span>
-                <span className="text-amber-300 font-bold">P-CHMVM v2.4</span>
+                <span className="text-slate-400">Storm Surge:</span>
+                <span className="text-amber-300 font-bold">{scenarioInputs.stormSurgeMeters.toFixed(1)} m</span>
               </div>
               <div className="bg-navy-950 p-2.5 rounded-lg border border-navy-800 flex items-center justify-between">
-                <span className="text-slate-300">Historical Benchmarks:</span>
-                <span className="text-purple-300 font-bold">Verified Archives</span>
+                <span className="text-slate-400">Track Shift:</span>
+                <span className="text-purple-300 font-bold">{scenarioInputs.trackShiftKm > 0 ? `+${scenarioInputs.trackShiftKm}` : scenarioInputs.trackShiftKm} km</span>
+              </div>
+              <div className="bg-navy-950 p-2.5 rounded-lg border border-navy-800 flex items-center justify-between">
+                <span className="text-slate-400">Landfall ETA:</span>
+                <span className="text-rose-300 font-bold">T-{scenarioInputs.landfallHours}h</span>
               </div>
             </div>
           </div>
 
-          {/* Gemini System Prompt Schema */}
+          {/* Local Deterministic Engine Attribution */}
           <div className="bg-navy-900 border border-navy-750 p-4 rounded-2xl shadow-xl space-y-3">
             <div className="flex items-center gap-2 border-b border-navy-750 pb-2">
               <Terminal className="w-4 h-4 text-emerald-400" />
               <h3 className="font-bold text-sm text-white font-mono">
-                LLM Decision-Support Schema
+                Local Synthetic NLP Engine
               </h3>
             </div>
 
-            <div className="bg-navy-950 p-3 rounded-xl border border-navy-800 text-[11px] font-mono text-cyan-300/90 leading-relaxed max-h-48 overflow-y-auto">
-              {SYSTEM_PROMPT}
+            <div className="bg-navy-950 p-3 rounded-xl border border-navy-800 text-[11px] font-mono text-emerald-300/90 leading-relaxed">
+              Synthesized purely via deterministic decision logic from current sample datasets. No external LLM token expenditure or network roundtrip required.
             </div>
 
             <div className="text-[10px] text-slate-400 font-mono">
-              Ready for Google GenAI SDK (gemini-1.5-pro / gemini-2.0-flash) structured JSON schema output.
+              Ready for optional Google GenAI SDK (gemini-1.5-pro / gemini-2.0-flash) structured JSON streaming adapter in live data mode.
             </div>
           </div>
         </div>
@@ -297,3 +418,4 @@ export const AIBriefingView: React.FC = () => {
     </div>
   );
 };
+
