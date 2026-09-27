@@ -80,10 +80,17 @@ export const InteractiveMap: React.FC = () => {
 
       L.control.zoom({ position: 'bottomright' }).addTo(map);
 
-      // Dark theme tiles
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        maxZoom: 19,
-        subdomains: 'abcd',
+      const cartoApiKey = import.meta.env.VITE_CARTO_API_KEY || 'cb1_3t5l_1_a644c0e42df5a70a5cea7a0f';
+
+      // Professional dark EOC canvas tiles (clean, watermark-free, high-contrast)
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 16,
+        attribution: 'Esri & CARTO',
+      }).addTo(map);
+
+      // Reference labels overlay
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 16,
       }).addTo(map);
 
       const layerGroup = L.layerGroup().addTo(map);
