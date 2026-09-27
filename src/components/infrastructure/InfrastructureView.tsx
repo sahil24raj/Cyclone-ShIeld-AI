@@ -8,62 +8,76 @@ import {
   Truck,
   Anchor,
   AlertTriangle,
-  CheckSquare,
-  Square,
-  Search,
   MapPin,
   ShieldAlert,
-  ArrowRight,
   Clock,
   CheckCircle2,
   AlertOctagon,
   ShieldCheck,
-  Radio,
-  ExternalLink,
-  ChevronRight
+  ChevronRight,
+  Filter,
+  Layers,
+  LayoutGrid,
+  Sparkles,
+  Info
 } from 'lucide-react';
 import { useAppState } from '../../context/AppStateContext';
 import { CriticalAsset, AssetType } from '../../types';
 import { formatIndianNumber } from '../../utils/formatters';
 
 export const InfrastructureView: React.FC = () => {
-  const { assets, toggleAssetAction, setSelectedAsset, setActiveTab } = useAppState();
-  const [selectedAssetId, setSelectedAssetId] = useState<string>('infra-02'); // Default to Coastal Power Substation
+  const { simulationSummary, setSelectedAsset, setActiveTab } = useAppState();
+  const assets = simulationSummary.assets;
+
+  const [selectedAssetId, setSelectedAssetId] = useState<string>(assets[0]?.id || 'infra-power-1');
+  const [selectedTypeFilter, setSelectedTypeFilter] = useState<string>('all');
   const [activeQueueTab, setActiveQueueTab] = useState<'immediate' | 'next6h' | 'monitor'>('immediate');
+  const [viewMode, setViewMode] = useState<'matrix' | 'list'>('matrix');
 
   const selectedAsset = assets.find((a) => a.id === selectedAssetId) || assets[0];
 
-  const getAssetIcon = (type: AssetType) => {
+  const getAssetIcon = (type: AssetType | string, sizeClass = "w-3.5 h-3.5") => {
     switch (type) {
-      case 'hospital': return <Activity className="w-3.5 h-3.5 text-rose-400" />;
-      case 'power_substation': return <Zap className="w-3.5 h-3.5 text-amber-400" />;
-      case 'bridge': return <Truck className="w-3.5 h-3.5 text-blue-400" />;
-      case 'road': return <AlertTriangle className="w-3.5 h-3.5 text-red-400" />;
-      case 'telecom': return <Phone className="w-3.5 h-3.5 text-cyan-400" />;
-      case 'water_treatment': return <Droplet className="w-3.5 h-3.5 text-sky-400" />;
-      case 'port': return <Anchor className="w-3.5 h-3.5 text-purple-400" />;
-      default: return <Building2 className="w-3.5 h-3.5 text-slate-400" />;
+      case 'hospital': return <Activity className={`${sizeClass} text-rose-400`} />;
+      case 'power_substation': return <Zap className={`${sizeClass} text-amber-400`} />;
+      case 'bridge': return <Truck className={`${sizeClass} text-blue-400`} />;
+      case 'road': return <AlertTriangle className={`${sizeClass} text-red-400`} />;
+      case 'telecom': return <Phone className={`${sizeClass} text-cyan-400`} />;
+      case 'water_treatment': return <Droplet className={`${sizeClass} text-sky-400`} />;
+      case 'port': return <Anchor className={`${sizeClass} text-purple-400`} />;
+      default: return <Building2 className={`${sizeClass} text-slate-400`} />;
     }
   };
 
   const getRiskColor = (score: number) => {
-    if (score >= 80) return 'bg-red-500 text-white shadow-red-500/40';
-    if (score >= 60) return 'bg-orange-500 text-white shadow-orange-500/40';
-    if (score >= 40) return 'bg-amber-500 text-navy-950 shadow-amber-500/40';
-    return 'bg-teal-500 text-navy-950 shadow-teal-500/40';
+    if (score >= 80) return 'bg-red-500 text-white border-red-400 shadow-red-500/40';
+    if (score >= 60) return 'bg-orange-500 text-white border-orange-400 shadow-orange-500/40';
+    if (score >= 40) return 'bg-amber-500 text-navy-950 border-amber-300 shadow-amber-500/40';
+    return 'bg-teal-500 text-navy-950 border-teal-300 shadow-teal-500/40';
   };
 
-  const getCriticalityScore = (asset: CriticalAsset) => {
+  const getCriticalityScore = (asset: any): number => {
+    if (asset.criticalityScore !== undefined) return asset.criticalityScore;
     if (asset.criticality === 'critical') return 95;
     if (asset.criticality === 'high') return 75;
     if (asset.criticality === 'moderate') return 55;
-    return 35;
+    return 40;
   };
 
-  // Group assets for prioritized queue
-  const immediateActions = assets.filter((a) => a.risk_score >= 80 || a.criticality === 'critical');
-  const next6hActions = assets.filter((a) => a.risk_score >= 50 && a.risk_score < 80);
-  const monitorActions = assets.filter((a) => a.risk_score < 50);
+  const getRiskScore = (asset: any): number => {
+    return asset.calculatedRiskScore || asset.risk_score || asset.baseFloodRisk || 50;
+  };
+
+  // Filtered Assets for display
+  const filteredAssets = assets.filter((a) => {
+    if (selectedTypeFilter === 'all') return true;
+    return a.type === selectedTypeFilter;
+  });
+
+  // Action Queue buckets
+  const immediateActions = assets.filter((a) => getRiskScore(a) >= 75 || getCriticalityScore(a) >= 90);
+  const next6hActions = assets.filter((a) => getRiskScore(a) >= 50 && getRiskScore(a) < 75 && getCriticalityScore(a) < 90);
+  const monitorActions = assets.filter((a) => getRiskScore(a) < 50);
 
   const displayQueue =
     activeQueueTab === 'immediate'
@@ -72,9 +86,20 @@ export const InfrastructureView: React.FC = () => {
       ? next6hActions
       : monitorActions;
 
+  // Type Filter Tabs
+  const TYPE_TABS = [
+    { id: 'all', label: 'All Lifelines', count: assets.length },
+    { id: 'hospital', label: 'Hospitals', count: assets.filter(a => a.type === 'hospital').length },
+    { id: 'power_substation', label: 'Power Grid', count: assets.filter(a => a.type === 'power_substation').length },
+    { id: 'bridge', label: 'Bridges', count: assets.filter(a => a.type === 'bridge').length },
+    { id: 'telecom', label: 'Telecom', count: assets.filter(a => a.type === 'telecom').length },
+    { id: 'water_treatment', label: 'Water Plants', count: assets.filter(a => a.type === 'water_treatment').length },
+    { id: 'port', label: 'Marine Ports', count: assets.filter(a => a.type === 'port').length },
+  ];
+
   return (
     <div className="space-y-6 p-4 md:p-6 max-w-[1700px] mx-auto font-sans select-none text-slate-100">
-      {/* Page Header */}
+      {/* Header Banner */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-navy-900 border border-navy-750 p-4.5 rounded-2xl shadow-xl">
         <div>
           <div className="flex items-center gap-2 mb-1">
@@ -96,7 +121,7 @@ export const InfrastructureView: React.FC = () => {
           </p>
         </div>
 
-        {/* Action Stats */}
+        {/* Telemetry Summary */}
         <div className="flex items-center gap-3 bg-navy-950 border border-navy-800 p-2.5 rounded-xl font-mono text-xs">
           <div className="text-center px-2">
             <div className="text-[10px] text-slate-400">Total Monitored</div>
@@ -104,102 +129,279 @@ export const InfrastructureView: React.FC = () => {
           </div>
           <span className="h-6 w-px bg-navy-800" />
           <div className="text-center px-2">
-            <div className="text-[10px] text-red-400">P0 Protection</div>
+            <div className="text-[10px] text-red-400">P0 Urgent Defense</div>
             <div className="font-bold text-red-400 text-base">{immediateActions.length}</div>
           </div>
           <span className="h-6 w-px bg-navy-800" />
           <div className="text-center px-2">
             <div className="text-[10px] text-teal-300">Backup Ready</div>
             <div className="font-bold text-teal-300 text-base">
-              {assets.filter((a) => a.backup_power_ready).length}
+              {assets.filter((a) => a.backupPowerAvailable || a.backup_power_ready).length}
             </div>
           </div>
         </div>
       </div>
 
-      {/* TOP SECTION: Matrix + Asset Detail Split (2 Columns) */}
+      {/* Category Filter Toolbar & View Toggle */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-navy-900 border border-navy-750 p-2.5 rounded-2xl shadow-lg">
+        {/* Type Tabs */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 font-mono text-xs">
+          {TYPE_TABS.map((tab) => {
+            const isSelected = selectedTypeFilter === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setSelectedTypeFilter(tab.id)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl transition border flex-shrink-0 ${
+                  isSelected
+                    ? 'bg-cyan-600/30 text-cyan-300 border-cyan-500/50 font-bold shadow-sm'
+                    : 'bg-navy-950 hover:bg-navy-850 text-slate-400 hover:text-slate-200 border-navy-800'
+                }`}
+              >
+                <span>{tab.label}</span>
+                <span className="text-[10px] px-1.5 py-0.2 rounded bg-navy-900 border border-navy-750 text-slate-400">
+                  {tab.count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* View Mode Toggle */}
+        <div className="flex items-center gap-1 bg-navy-950 p-1 rounded-xl border border-navy-800 font-mono text-xs self-end sm:self-auto">
+          <button
+            onClick={() => setViewMode('matrix')}
+            className={`px-3 py-1 rounded-lg transition flex items-center gap-1.5 ${
+              viewMode === 'matrix' ? 'bg-cyan-600 text-white font-bold' : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            <Layers className="w-3.5 h-3.5" />
+            <span>2D Matrix</span>
+          </button>
+          <button
+            onClick={() => setViewMode('list')}
+            className={`px-3 py-1 rounded-lg transition flex items-center gap-1.5 ${
+              viewMode === 'list' ? 'bg-cyan-600 text-white font-bold' : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            <LayoutGrid className="w-3.5 h-3.5" />
+            <span>Inventory Grid</span>
+          </button>
+        </div>
+      </div>
+
+      {/* TOP SECTION: Matrix + Asset Detail Split */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         
-        {/* LEFT: Priority Matrix (7 Cols) */}
+        {/* LEFT: 2D Matrix Canvas (7 Cols) */}
         <div className="lg:col-span-7 bg-navy-900 border border-navy-750 rounded-2xl p-4.5 space-y-3 shadow-xl">
           <div className="flex items-center justify-between pb-1 border-b border-navy-800">
             <div>
               <h3 className="font-bold text-sm text-white font-mono flex items-center gap-2">
                 <ShieldAlert className="w-4 h-4 text-amber-400" />
-                <span>Criticality vs. Risk Priority Matrix</span>
+                <span>Tactical Decision Quadrant Matrix</span>
               </h3>
               <p className="text-[11px] text-slate-400">
-                Click any asset dot to examine operational defense orders and service disruption projections.
+                Click any asset point to load emergency directives, response crew deadlines, and failure impacts.
               </p>
             </div>
             <span className="text-[10px] font-mono text-slate-400 bg-navy-950 px-2 py-1 rounded border border-navy-800">
-              X: Risk Score • Y: Criticality
+              X: Calculated Risk (0-100) • Y: Criticality (0-100)
             </span>
           </div>
 
-          {/* 2D Grid Canvas */}
-          <div className="relative bg-navy-950 rounded-xl p-4 border border-navy-800 h-[380px] flex flex-col justify-between select-none">
-            {/* Background Risk Zones */}
-            <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 opacity-20 pointer-events-none rounded-xl overflow-hidden">
-              <div className="bg-amber-900/30 border-r border-b border-navy-750" />
-              <div className="bg-red-900/50 border-b border-navy-750" />
-              <div className="bg-teal-900/20 border-r border-navy-750" />
-              <div className="bg-orange-900/30" />
+          {viewMode === 'matrix' ? (
+            /* PROFESSIONAL 2D QUADRANT GRAPH */
+            <div className="relative bg-navy-950 rounded-2xl p-6 border border-navy-800 h-[420px] select-none flex flex-col justify-between overflow-hidden shadow-inner">
+              
+              {/* 4 QUADRANT BACKGROUND ZONES */}
+              <div className="absolute inset-x-12 inset-y-8 grid grid-cols-2 grid-rows-2 rounded-xl overflow-hidden border border-navy-800/80">
+                
+                {/* Quadrant II: Top Left (Amber - Vital Lifeline Standby) */}
+                <div className="bg-amber-950/15 border-r border-b border-navy-800/80 p-3 relative flex flex-col justify-between">
+                  <div className="text-[10px] font-mono text-amber-400/90 font-bold bg-amber-950/70 border border-amber-800/60 px-2 py-0.5 rounded self-start">
+                    QUADRANT II: VITAL LIFELINE STANDBY
+                  </div>
+                  <span className="text-[9px] font-mono text-amber-300/40">High Criticality • Moderate/Low Risk</span>
+                </div>
+
+                {/* Quadrant I: Top Right (Red - Critical P0 Urgent Action) */}
+                <div className="bg-red-950/25 border-b border-navy-800/80 p-3 relative flex flex-col justify-between">
+                  <div className="text-[10px] font-mono text-red-300 font-bold bg-red-950/80 border border-red-700/80 px-2 py-0.5 rounded self-end animate-pulse">
+                    QUADRANT I: CRITICAL P0 URGENT ACTION
+                  </div>
+                  <span className="text-[9px] font-mono text-red-300/50 text-right">High Criticality • Critical Risk &gt; 70</span>
+                </div>
+
+                {/* Quadrant IV: Bottom Left (Teal/Navy - Routine Standby) */}
+                <div className="bg-navy-900/30 border-r border-navy-800/80 p-3 relative flex flex-col justify-between">
+                  <span className="text-[9px] font-mono text-slate-500">Standard Criticality • Low Risk</span>
+                  <div className="text-[10px] font-mono text-slate-400 font-bold bg-navy-900/80 border border-navy-750 px-2 py-0.5 rounded self-start">
+                    QUADRANT IV: ROUTINE MONITORING
+                  </div>
+                </div>
+
+                {/* Quadrant III: Bottom Right (Orange - Secondary Hazard Mitigation) */}
+                <div className="bg-orange-950/15 p-3 relative flex flex-col justify-between">
+                  <span className="text-[9px] font-mono text-orange-400/40 text-right">Standard Criticality • High Risk</span>
+                  <div className="text-[10px] font-mono text-orange-400 font-bold bg-orange-950/70 border border-orange-800/60 px-2 py-0.5 rounded self-end">
+                    QUADRANT III: SECONDARY ACCESS MITIGATION
+                  </div>
+                </div>
+              </div>
+
+              {/* GRID TICK LINES */}
+              <div className="absolute inset-x-12 inset-y-8 pointer-events-none">
+                {/* 50% Center Lines */}
+                <div className="absolute top-0 bottom-0 left-1/2 w-px bg-cyan-500/20 border-dashed border-cyan-500/30" />
+                <div className="absolute left-0 right-0 top-1/2 h-px bg-cyan-500/20 border-dashed border-cyan-500/30" />
+
+                {/* 25% and 75% subtle lines */}
+                <div className="absolute top-0 bottom-0 left-1/4 w-px bg-navy-800/40" />
+                <div className="absolute top-0 bottom-0 left-3/4 w-px bg-navy-800/40" />
+                <div className="absolute left-0 right-0 top-1/4 h-px bg-navy-800/40" />
+                <div className="absolute left-0 right-0 top-3/4 h-px bg-navy-800/40" />
+              </div>
+
+              {/* Y-AXIS TICKS & LABELS (Left margin: 48px) */}
+              <div className="absolute left-2 top-8 bottom-8 flex flex-col justify-between text-[10px] font-mono text-slate-400 pointer-events-none">
+                <span className="text-red-400 font-bold">100 -</span>
+                <span>75 -</span>
+                <span className="text-cyan-400">50 -</span>
+                <span>25 -</span>
+                <span>0 -</span>
+              </div>
+
+              {/* Y-AXIS TITLE */}
+              <div className="absolute -left-10 top-1/2 -translate-y-1/2 -rotate-90 text-[10px] font-mono uppercase tracking-widest text-slate-400 font-bold pointer-events-none">
+                Criticality Weight &rarr;
+              </div>
+
+              {/* ASSET DOTS CANVAS */}
+              <div className="absolute inset-x-12 inset-y-8">
+                {filteredAssets.map((asset, index) => {
+                  const isSelected = selectedAsset.id === asset.id;
+                  const crit = getCriticalityScore(asset);
+                  const risk = getRiskScore(asset);
+
+                  // Calculate exact mathematical coordinates with collision spread
+                  const rawX = (risk / 100) * 88 + 6;
+                  const rawY = (crit / 100) * 84 + 8;
+
+                  // Small deterministic offset to avoid overlap for assets with close scores
+                  const offsetX = ((index % 3) - 1) * 2.2;
+                  const offsetY = (((index * 2) % 3) - 1) * 2.2;
+
+                  const posX = Math.min(94, Math.max(6, rawX + offsetX));
+                  const posY = Math.min(92, Math.max(8, rawY + offsetY));
+
+                  return (
+                    <div
+                      key={asset.id}
+                      style={{
+                        left: `${posX}%`,
+                        bottom: `${posY}%`,
+                      }}
+                      className="absolute -translate-x-1/2 translate-y-1/2 z-20 group"
+                    >
+                      <button
+                        onClick={() => setSelectedAssetId(asset.id)}
+                        className={`relative rounded-xl p-1.5 transition-all flex items-center gap-1.5 border-2 shadow-lg ${
+                          isSelected
+                            ? 'bg-navy-900 border-cyan-300 ring-4 ring-cyan-400/40 scale-110 z-30'
+                            : 'bg-navy-950/90 border-navy-700 hover:border-cyan-400 hover:scale-105 z-10'
+                        }`}
+                      >
+                        {/* Icon Container */}
+                        <div className={`p-1 rounded-lg ${getRiskColor(risk)}`}>
+                          {getAssetIcon(asset.type, "w-3.5 h-3.5")}
+                        </div>
+
+                        {/* Text Label Pill */}
+                        <span className={`text-[10px] font-mono font-bold whitespace-nowrap max-w-[110px] truncate ${
+                          isSelected ? 'text-cyan-300' : 'text-slate-200'
+                        }`}>
+                          {asset.name.replace('Sundar ', '').replace('Emergency ', '')}
+                        </span>
+
+                        {/* Selected Indicator Ping */}
+                        {isSelected && (
+                          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping absolute -top-1 -right-1" />
+                        )}
+                      </button>
+
+                      {/* Tooltip on Hover */}
+                      <div className="absolute left-1/2 -top-10 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition pointer-events-none bg-navy-900 border border-cyan-500 text-[10px] text-white p-1.5 rounded-lg font-mono whitespace-nowrap shadow-2xl z-40">
+                        <div className="font-bold text-cyan-300">{asset.name}</div>
+                        <div className="text-slate-300">
+                          Risk: <b className="text-red-400">{risk}/100</b> • Criticality: <b className="text-white">{crit}/100</b>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* X-AXIS TICKS & LABELS (Bottom margin: 32px) */}
+              <div className="absolute inset-x-12 bottom-1 flex justify-between text-[10px] font-mono text-slate-400 pointer-events-none">
+                <span>| 0 (Safe)</span>
+                <span>| 25</span>
+                <span className="text-cyan-400">| 50 (Elevated)</span>
+                <span>| 75</span>
+                <span className="text-red-400 font-bold">| 100 (Extreme)</span>
+              </div>
+
+              {/* X-AXIS TITLE */}
+              <div className="absolute inset-x-0 bottom-0 text-center text-[10px] font-mono uppercase tracking-widest text-slate-400 font-bold pointer-events-none">
+                Calculated Hazard Risk Score &rarr;
+              </div>
             </div>
-
-            {/* Matrix Corner Badges */}
-            <span className="absolute top-2 right-2 text-[10px] font-mono text-red-400 bg-red-950/80 px-2 py-0.5 rounded border border-red-800/80">
-              HIGH CRITICALITY + HIGH RISK (P0)
-            </span>
-            <span className="absolute bottom-2 left-2 text-[10px] font-mono text-slate-500 bg-navy-900/80 px-2 py-0.5 rounded border border-navy-800">
-              LOW RISK / STANDARD STANDBY
-            </span>
-
-            {/* Y-Axis Label */}
-            <div className="absolute -left-6 top-1/2 -translate-y-1/2 -rotate-90 text-[10px] font-mono text-slate-400 tracking-wider">
-              CRITICALITY WEIGHT &rarr;
-            </div>
-
-            {/* Asset Dots Positioned by Risk vs Criticality */}
-            <div className="relative w-full h-full">
-              {assets.map((asset) => {
+          ) : (
+            /* TABULAR / GRID INVENTORY VIEW */
+            <div className="h-[420px] overflow-y-auto space-y-2 pr-1">
+              {filteredAssets.map((asset) => {
                 const isSelected = selectedAsset.id === asset.id;
-                const critScore = getCriticalityScore(asset);
-                const left = Math.min(92, Math.max(8, (asset.risk_score / 100) * 88 + 6));
-                const bottom = Math.min(88, Math.max(10, (critScore / 100) * 78 + 10));
+                const risk = getRiskScore(asset);
+                const crit = getCriticalityScore(asset);
 
                 return (
-                  <button
+                  <div
                     key={asset.id}
                     onClick={() => setSelectedAssetId(asset.id)}
-                    style={{ left: `${left}%`, bottom: `${bottom}%` }}
-                    className={`absolute -translate-x-1/2 -translate-y-1/2 group transition-transform ${
-                      isSelected ? 'scale-125 z-30' : 'hover:scale-115 z-10'
+                    className={`p-3 rounded-xl border transition cursor-pointer flex items-center justify-between gap-3 ${
+                      isSelected
+                        ? 'bg-navy-800 border-cyan-400 ring-1 ring-cyan-500/40 shadow-lg'
+                        : 'bg-navy-950 border-navy-800 hover:border-navy-700'
                     }`}
                   >
-                    <div
-                      className={`w-7 h-7 rounded-full flex items-center justify-center border-2 transition-all shadow-md ${
-                        isSelected
-                          ? 'border-cyan-300 ring-2 ring-cyan-400/50 ' + getRiskColor(asset.risk_score)
-                          : 'border-navy-950 ' + getRiskColor(asset.risk_score)
-                      }`}
-                    >
-                      {getAssetIcon(asset.type)}
+                    <div className="flex items-center gap-2.5">
+                      <div className="p-2 rounded-xl bg-navy-900 border border-navy-800">
+                        {getAssetIcon(asset.type)}
+                      </div>
+                      <div>
+                        <h5 className="font-bold text-white text-xs">{asset.name}</h5>
+                        <span className="text-[10px] font-mono text-slate-400 uppercase">
+                          {asset.type.replace('_', ' ')} • ID: {asset.id}
+                        </span>
+                      </div>
                     </div>
-                    {/* Tooltip on Hover */}
-                    <div className="absolute left-1/2 -top-7 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition pointer-events-none bg-navy-900 border border-cyan-500/50 text-[10px] text-white px-2 py-0.5 rounded font-mono whitespace-nowrap shadow-xl z-40">
-                      {asset.name} ({asset.risk_score})
+
+                    <div className="flex items-center gap-3 text-xs font-mono">
+                      <div className="text-right">
+                        <span className="text-[10px] text-slate-400 block">Criticality</span>
+                        <span className="font-bold text-white">{crit}/100</span>
+                      </div>
+                      <span className={`px-2.5 py-1 rounded-lg font-bold ${
+                        risk >= 80 ? 'bg-red-500/20 text-red-300 border border-red-500/40' : 'bg-orange-500/20 text-orange-300 border border-orange-500/40'
+                      }`}>
+                        {risk} Risk
+                      </span>
                     </div>
-                  </button>
+                  </div>
                 );
               })}
             </div>
-
-            {/* X-Axis Label */}
-            <div className="text-center text-[10px] font-mono text-slate-400 tracking-wider pt-2 border-t border-navy-800">
-              CALCULATED HAZARD RISK &rarr;
-            </div>
-          </div>
+          )}
 
           {/* Matrix Legend */}
           <div className="flex flex-wrap items-center justify-between text-[11px] font-mono text-slate-400 pt-1">
@@ -217,7 +419,7 @@ export const InfrastructureView: React.FC = () => {
                 <span>Medium (40-59)</span>
               </span>
             </div>
-            <span className="text-cyan-400">{assets.length} Lifelines Mapped</span>
+            <span className="text-cyan-400">{filteredAssets.length} Lifelines Mapped</span>
           </div>
         </div>
 
@@ -238,14 +440,14 @@ export const InfrastructureView: React.FC = () => {
 
             <span
               className={`text-xs font-mono font-bold px-2.5 py-1 rounded-lg border ${
-                selectedAsset.risk_score >= 80
+                getRiskScore(selectedAsset) >= 80
                   ? 'bg-red-500/20 text-red-300 border-red-500/40'
-                  : selectedAsset.risk_score >= 60
+                  : getRiskScore(selectedAsset) >= 60
                   ? 'bg-orange-500/20 text-orange-300 border-orange-500/40'
                   : 'bg-teal-500/20 text-teal-300 border-teal-500/40'
               }`}
             >
-              Risk: {selectedAsset.risk_score}/100
+              Risk: {getRiskScore(selectedAsset)}/100
             </span>
           </div>
 
@@ -259,7 +461,7 @@ export const InfrastructureView: React.FC = () => {
               <div>
                 <span className="text-[10px] text-slate-400 block">Operational Status</span>
                 <span className="text-sm font-bold text-teal-300">
-                  Operational (Standby)
+                  {selectedAsset.status || 'Operational (Standby)'}
                 </span>
               </div>
             </div>
@@ -270,7 +472,8 @@ export const InfrastructureView: React.FC = () => {
                 <span>Primary Hazard Threat</span>
               </div>
               <div className="text-slate-200">
-                {selectedAsset.hazard_exposure || 'Storm surge inundation + wind shear gusts > 130 km/h'}
+                {selectedAsset.hazard_exposure ||
+                  `Storm surge flood risk ${selectedAsset.calculatedFloodRisk || 85}% • Wind shear ${selectedAsset.calculatedWindRisk || 80}%`}
               </div>
             </div>
 
@@ -290,11 +493,12 @@ export const InfrastructureView: React.FC = () => {
                 <span>Recommended Protective Action</span>
               </div>
               <div className="text-slate-100 font-medium">
-                {selectedAsset.recommended_actions?.[0] ||
+                {selectedAsset.recommendedAction ||
+                  selectedAsset.recommended_actions?.[0] ||
                   'Activate backup generator, elevate electrical control modules, and pre-position repair crew.'}
               </div>
               <div className="pt-2 flex items-center justify-between text-[11px] font-mono text-slate-400 border-t border-navy-800">
-                <span>Owner: <b>District Response Team</b></span>
+                <span>Contact: <b>{selectedAsset.contact_person || 'District Response Team'}</b></span>
                 <span className="text-red-400 font-bold">Deadline: Within 4 hrs</span>
               </div>
             </div>
@@ -302,7 +506,9 @@ export const InfrastructureView: React.FC = () => {
             <div className="bg-navy-950 p-2.5 rounded-xl border border-navy-800 flex items-center justify-between text-[11px] font-mono">
               <span className="text-slate-400">Backup Option:</span>
               <span className="text-cyan-300 font-bold">
-                Auxiliary Grid Link &amp; Mobile Diesel Genset
+                {selectedAsset.backupPowerAvailable || selectedAsset.backup_power_ready
+                  ? 'Auxiliary Rooftop Generator Verified'
+                  : 'Mobile Diesel Genset Required'}
               </span>
             </div>
           </div>
@@ -320,7 +526,7 @@ export const InfrastructureView: React.FC = () => {
         </div>
       </div>
 
-      {/* BOTTOM SECTION: Compact Prioritized Action Queue */}
+      {/* BOTTOM SECTION: Tactical Action Queue */}
       <div className="bg-navy-900 border border-navy-750 rounded-2xl p-4.5 space-y-3 shadow-xl">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-navy-800 pb-3">
           <div>
@@ -370,47 +576,50 @@ export const InfrastructureView: React.FC = () => {
 
         {/* Action Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          {displayQueue.map((asset) => (
-            <div
-              key={asset.id}
-              onClick={() => setSelectedAssetId(asset.id)}
-              className={`p-3.5 rounded-xl border transition cursor-pointer bg-navy-950 ${
-                selectedAsset.id === asset.id
-                  ? 'border-cyan-400 ring-1 ring-cyan-500/40'
-                  : 'border-navy-800 hover:border-navy-700'
-              }`}
-            >
-              <div className="flex items-start justify-between gap-2">
-                <div className="flex items-center gap-2">
-                  <div className="p-1.5 rounded-lg bg-navy-900 border border-navy-800">
-                    {getAssetIcon(asset.type)}
+          {displayQueue.map((asset) => {
+            const risk = getRiskScore(asset);
+            return (
+              <div
+                key={asset.id}
+                onClick={() => setSelectedAssetId(asset.id)}
+                className={`p-3.5 rounded-xl border transition cursor-pointer bg-navy-950 ${
+                  selectedAsset.id === asset.id
+                    ? 'border-cyan-400 ring-1 ring-cyan-500/40'
+                    : 'border-navy-800 hover:border-navy-700'
+                }`}
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <div className="p-1.5 rounded-lg bg-navy-900 border border-navy-800">
+                      {getAssetIcon(asset.type)}
+                    </div>
+                    <div>
+                      <h5 className="font-bold text-white text-xs leading-snug">{asset.name}</h5>
+                      <span className="text-[10px] font-mono text-slate-400">{asset.type}</span>
+                    </div>
                   </div>
-                  <div>
-                    <h5 className="font-bold text-white text-xs leading-snug">{asset.name}</h5>
-                    <span className="text-[10px] font-mono text-slate-400">{asset.type}</span>
-                  </div>
+                  <span
+                    className={`text-[10px] font-mono px-1.5 py-0.5 rounded font-bold ${
+                      risk >= 80 ? 'bg-red-500/20 text-red-300' : 'bg-orange-500/20 text-orange-300'
+                    }`}
+                  >
+                    {risk} Risk
+                  </span>
                 </div>
-                <span
-                  className={`text-[10px] font-mono px-1.5 py-0.5 rounded font-bold ${
-                    asset.risk_score >= 80 ? 'bg-red-500/20 text-red-300' : 'bg-orange-500/20 text-orange-300'
-                  }`}
-                >
-                  {asset.risk_score} Risk
-                </span>
-              </div>
 
-              <p className="text-[11px] text-slate-300 mt-2 line-clamp-2">
-                {asset.recommended_actions?.[0] || 'Inspect foundations and prepare emergency mitigation team.'}
-              </p>
+                <p className="text-[11px] text-slate-300 mt-2 line-clamp-2">
+                  {asset.recommendedAction || asset.recommended_actions?.[0] || 'Inspect foundations and prepare emergency mitigation team.'}
+                </p>
 
-              <div className="mt-2.5 pt-2 border-t border-navy-900 flex items-center justify-between text-[10px] font-mono text-slate-400">
-                <span>Owner: Field Operations</span>
-                <span className="text-cyan-400 font-bold flex items-center gap-0.5">
-                  Inspect <ChevronRight className="w-3 h-3" />
-                </span>
+                <div className="mt-2.5 pt-2 border-t border-navy-900 flex items-center justify-between text-[10px] font-mono text-slate-400">
+                  <span>Contact: {asset.contact_person ? asset.contact_person.split(' ')[0] : 'Field Ops'}</span>
+                  <span className="text-cyan-400 font-bold flex items-center gap-0.5">
+                    Inspect <ChevronRight className="w-3 h-3" />
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>
