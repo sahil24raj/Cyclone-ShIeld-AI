@@ -196,6 +196,11 @@ export interface CalculatedAssetOutput extends MockInfrastructureAsset {
   recommended_actions: string[];
   action_status: { [actionKey: string]: boolean };
   backup_power_ready?: boolean;
+  current_occupancy?: number;
+  has_generator?: boolean;
+  is_operational?: boolean;
+  access_road_status?: string;
+  distance_km?: number;
 }
 
 export interface CalculatedRouteOutput extends MockRoadRoute {

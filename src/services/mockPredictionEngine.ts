@@ -468,6 +468,12 @@ export function calculateAssetRisk(
     recommended_actions: [asset.recommendedAction],
     action_status: asset.action_status || { [asset.recommendedAction]: false },
     backup_power_ready: asset.backupPowerAvailable,
+    // Shelter compatibility fields
+    current_occupancy: asset.currentOccupancy || 0,
+    has_generator: asset.backupPowerAvailable ?? true,
+    is_operational: calculatedStatus !== 'isolated',
+    access_road_status: inFloodZone || calculatedStatus === 'isolated' ? 'blocked' : calculatedStatus === 'at_risk' ? 'vulnerable' : 'clear',
+    distance_km: 2.5,
   };
 }
 

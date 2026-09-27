@@ -296,8 +296,9 @@ export const InteractiveMap: React.FC = () => {
     // 6. Evacuation Routes
     if (mapLayers.evacuationRoutes && evacuationRoutes.length > 0) {
       evacuationRoutes.forEach((route) => {
-        const isBlocked = route.status === 'blocked' || route.status === 'flooded';
-        const isElevated = route.is_elevated;
+        const routeStatusStr = (route.status || (route as any).calculatedStatus || 'clear').toLowerCase();
+        const isBlocked = routeStatusStr === 'blocked' || routeStatusStr === 'flooded' || routeStatusStr === 'at risk';
+        const isElevated = route.is_elevated || (route as any).isElevated;
 
         const poly = L.polyline(route.coordinates, {
           color: isBlocked ? '#EF4444' : isElevated ? '#10B981' : '#F59E0B',
@@ -306,12 +307,16 @@ export const InteractiveMap: React.FC = () => {
           opacity: isBlocked ? 0.8 : 0.95,
         });
 
+        const statusDisplay = (route.status || (route as any).calculatedStatus || 'Safe').toString().toUpperCase();
+        const transitMin = route.estimated_travel_time_min || (route as any).calculatedTravelTimeMin || 20;
+        const distKm = route.distance_km || (route as any).distanceKm || 5;
+
         poly.bindTooltip(
           `<div class="font-mono text-xs">
             <div class="font-bold ${isBlocked ? 'text-red-400' : 'text-emerald-400'}">${route.name}</div>
-            <div>Status: <b>${route.status.toUpperCase()}</b></div>
+            <div>Status: <b>${statusDisplay}</b></div>
             <div>Elevated Corridor: ${isElevated ? 'YES (Flood Safe)' : 'NO'}</div>
-            <div>Transit: ~${route.estimated_travel_time_min} mins (${route.distance_km} km)</div>
+            <div>Transit: ~${transitMin} mins (${distKm} km)</div>
           </div>`,
           { className: 'leaflet-tooltip-dark' }
         );
@@ -323,7 +328,15 @@ export const InteractiveMap: React.FC = () => {
     // 7. Cyclone Shelters
     if (shelters.length > 0) {
       shelters.forEach((shelter) => {
-        const isBlocked = shelter.access_road_status === 'blocked' || !shelter.is_operational;
+        const roadStatus = ((shelter as any).access_road_status || (shelter as any).calculatedStatus || 'clear').toString();
+        const isBlocked = roadStatus === 'blocked' || roadStatus === 'isolated' || !(shelter.is_operational ?? true);
+        const currOcc = (shelter as any).current_occupancy ?? (shelter as any).currentOccupancy ?? 0;
+        const cap = shelter.capacity ?? (shelter as any).capacity ?? 0;
+        const hasGen = (shelter as any).has_generator ?? (shelter as any).backupPowerAvailable ?? true;
+        const lat = shelter.lat || (shelter as any).latitude;
+        const lng = shelter.lng || (shelter as any).longitude;
+
+        if (!lat || !lng) return;
 
         const shelterIcon = L.divIcon({
           className: 'custom-shelter-marker',
@@ -347,13 +360,13 @@ export const InteractiveMap: React.FC = () => {
           iconAnchor: [12, 12],
         });
 
-        const marker = L.marker([shelter.lat, shelter.lng], { icon: shelterIcon });
+        const marker = L.marker([lat, lng], { icon: shelterIcon });
         marker.bindTooltip(
           `<div class="font-mono text-xs">
             <div class="font-bold ${isBlocked ? 'text-red-400' : 'text-emerald-400'}">${shelter.name}</div>
-            <div>Capacity: ${shelter.current_occupancy} / ${shelter.capacity}</div>
-            <div>Road Access: <b class="${isBlocked ? 'text-red-400' : 'text-emerald-400'}">${shelter.access_road_status.toUpperCase()}</b></div>
-            <div>Generator: ${shelter.has_generator ? 'READY' : 'NONE'}</div>
+            <div>Capacity: ${currOcc.toLocaleString()} / ${cap.toLocaleString()}</div>
+            <div>Road Access: <b class="${isBlocked ? 'text-red-400' : 'text-emerald-400'}">${roadStatus.toUpperCase()}</b></div>
+            <div>Generator: ${hasGen ? 'READY' : 'NONE'}</div>
           </div>`,
           { className: 'leaflet-tooltip-dark' }
         );
