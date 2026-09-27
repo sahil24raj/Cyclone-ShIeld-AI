@@ -6,26 +6,19 @@ import {
   CheckCircle2,
   Clock,
   ArrowRight,
-  ShieldAlert,
   Users,
   Bus,
   ShieldCheck,
   AlertTriangle,
   MapPin,
-  HelpCircle,
-  XCircle
+  XCircle,
+  ChevronDown,
+  ChevronUp,
+  Shield,
+  Layers,
+  Sparkles,
+  Info
 } from 'lucide-react';
-import {
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  CartesianGrid
-} from 'recharts';
-import { PriorityBadge, RiskBadge } from '../ui/RiskBadge';
 import { formatIndianNumber } from '../../utils/formatters';
 import { useAppState } from '../../context/AppStateContext';
 
@@ -38,50 +31,56 @@ export const EvacuationPlannerView: React.FC = () => {
   } = useAppState();
 
   const [filterPriority, setFilterPriority] = useState<string>('all');
-  const [selectedVillageCard, setSelectedVillageCard] = useState<string | null>(null);
+  const [selectedVillageId, setSelectedVillageId] = useState<string>('vil-01'); // Default to Coastal Ward 7
+  const [compareAlternativesOpen, setCompareAlternativesOpen] = useState<boolean>(false);
 
   const { villages, shelters, routes, p0Population, p1Population } = simulationSummary;
+
+  const totalShelterCapacity = shelters.reduce((acc, s) => acc + (s.capacity || 0), 0);
+  const totalShelterOccupied = shelters.reduce((acc, s) => acc + (s.currentOccupancy || 0), 0);
+  const remainingSafeCapacity = Math.max(0, totalShelterCapacity - totalShelterOccupied);
+  const blockedRoutesCount = routes.filter(
+    (r) => r.calculatedStatus === 'Blocked' || r.calculatedStatus === 'At risk' || r.status === 'blocked' || r.status === 'flooded'
+  ).length;
+  const safeSheltersCount = shelters.filter((s) => s.calculatedStatus === 'operational').length;
 
   const filteredVillages = villages.filter(
     (v) => filterPriority === 'all' || v.evacuation.evacuationPriority === filterPriority
   );
 
-  // Shelter capacity chart data
-  const shelterChartData = shelters.map((s) => ({
-    name: s.name.replace('Cyclone Shelter ', 'Sh ').replace('Community Hall Shelter ', 'Sh ').replace('Relief Shelter ', 'Sh '),
-    Occupied: s.currentOccupancy || 0,
-    Available: Math.max(0, (s.capacity || 0) - (s.currentOccupancy || 0)),
-    isBlocked: s.calculatedStatus === 'isolated' || s.calculatedStatus === 'at_risk',
-  }));
+  const selectedVillage = villages.find((v) => v.id === selectedVillageId) || villages[0];
 
   return (
-    <div className="space-y-5 p-4 md:p-6 max-w-[1650px] mx-auto font-sans select-none">
-      {/* Page Header Banner */}
-      <div className="bg-navy-900 border border-navy-750 p-4 rounded-2xl shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div className="space-y-6 p-4 md:p-6 max-w-[1700px] mx-auto font-sans select-none text-slate-100">
+      {/* Top Banner & Header */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-navy-900 border border-navy-750 p-4.5 rounded-2xl shadow-xl">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="p-1 rounded bg-red-500/20 text-red-400 border border-red-500/30">
+            <span className="p-1 rounded bg-teal-500/20 text-teal-300 border border-teal-500/30">
               <Navigation className="w-4 h-4" />
             </span>
-            <span className="text-xs font-mono uppercase tracking-wider text-red-400 font-bold">
-              Dynamic Evacuation Optimization Engine
+            <span className="text-xs font-mono uppercase tracking-wider text-teal-300 font-bold">
+              Evacuation Operations Matrix
+            </span>
+            <span className="bg-navy-950 border border-navy-750 text-slate-400 text-[10px] px-2 py-0.5 rounded font-mono">
+              Deterministic Routing Model
             </span>
           </div>
           <h2 className="text-xl md:text-2xl font-black text-white tracking-tight">
-            Vulnerability-Ranked Evacuation &amp; Dynamic Shelter Assignment
+            Vulnerability-Ranked Evacuation &amp; Sanctuary Allocation
           </h2>
-          <p className="text-xs text-slate-300 max-w-3xl mt-0.5">
-            Deterministic routing automatically rejects flooded or blocked corridors and redirects vulnerable populations to elevated, capacity-verified sanctuaries.
+          <p className="text-xs text-slate-300 max-w-2xl mt-0.5">
+            Turn storm surge depth and road submergence estimates into verified safe sanctuary assignments.
           </p>
         </div>
 
         {/* Priority Filter Chips */}
-        <div className="flex flex-wrap items-center gap-1.5 bg-navy-950 p-1.5 rounded-xl border border-navy-800 self-start md:self-auto font-mono text-xs">
+        <div className="flex flex-wrap items-center gap-1.5 bg-navy-950 p-1.5 rounded-xl border border-navy-800 font-mono text-xs">
           <button
             onClick={() => setFilterPriority('all')}
             className={`px-3 py-1.5 rounded-lg transition-all ${
               filterPriority === 'all'
-                ? 'bg-cyan-600 text-white font-bold'
+                ? 'bg-cyan-600 text-white font-bold shadow'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
@@ -91,7 +90,7 @@ export const EvacuationPlannerView: React.FC = () => {
             onClick={() => setFilterPriority('P0')}
             className={`px-3 py-1.5 rounded-lg transition-all ${
               filterPriority === 'P0'
-                ? 'bg-red-600 text-white font-bold'
+                ? 'bg-red-600 text-white font-bold shadow'
                 : 'text-red-400 hover:text-red-300'
             }`}
           >
@@ -101,306 +100,422 @@ export const EvacuationPlannerView: React.FC = () => {
             onClick={() => setFilterPriority('P1')}
             className={`px-3 py-1.5 rounded-lg transition-all ${
               filterPriority === 'P1'
-                ? 'bg-orange-600 text-white font-bold'
+                ? 'bg-orange-600 text-white font-bold shadow'
                 : 'text-orange-400 hover:text-orange-300'
             }`}
           >
-            P1: &lt; 6 Hours
+            P1: &lt; 6h
           </button>
           <button
             onClick={() => setFilterPriority('P2')}
             className={`px-3 py-1.5 rounded-lg transition-all ${
               filterPriority === 'P2'
-                ? 'bg-amber-600 text-white font-bold'
+                ? 'bg-amber-600 text-white font-bold shadow'
                 : 'text-amber-400 hover:text-amber-300'
             }`}
           >
-            P2: Prepare
+            P2: Standby
           </button>
         </div>
       </div>
 
-      {/* Mandatory Demo Showcase: Coastal Ward 7 Dynamic Re-routing Callout */}
-      <div className="bg-gradient-to-r from-red-950/60 via-navy-900 to-navy-900 border-l-4 border-red-500 border-y border-r border-navy-750 p-4 rounded-xl shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-3">
-        <div className="flex items-start gap-3">
-          <AlertOctagon className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <h4 className="text-sm font-bold text-red-300 font-mono">
-                Mandatory Demo Case — Coastal Ward 7 Reroute Directive
-              </h4>
-              <span className="text-[10px] font-mono bg-red-500/20 text-red-300 px-2 py-0.2 rounded border border-red-500/40">
-                P0 IMMEDIATE
-              </span>
-            </div>
-            <p className="text-xs text-slate-200 leading-relaxed font-sans">
-              “Shelter A is geographically closer, but its access road is projected to flood. Shelter B is assigned through Elevated Route 2 because it remains accessible and has available capacity.”
-            </p>
+      {/* TOP SECTION: Evacuation Readiness Summary */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+        <div className="bg-navy-900/90 border-t-2 border-t-red-500 border border-navy-750 p-3.5 rounded-xl shadow">
+          <div className="text-[11px] font-mono text-slate-400 uppercase">P0 Population (Now)</div>
+          <div className="text-2xl font-black text-red-400 mt-1 font-mono">
+            {formatIndianNumber(p0Population)}
+          </div>
+          <div className="text-[10px] text-red-300/80 mt-0.5">Immediate evacuation</div>
+        </div>
+
+        <div className="bg-navy-900/90 border-t-2 border-t-orange-500 border border-navy-750 p-3.5 rounded-xl shadow">
+          <div className="text-[11px] font-mono text-slate-400 uppercase">P1 Population (&lt;6h)</div>
+          <div className="text-2xl font-black text-orange-400 mt-1 font-mono">
+            {formatIndianNumber(p1Population)}
+          </div>
+          <div className="text-[10px] text-orange-300/80 mt-0.5">High surge risk</div>
+        </div>
+
+        <div className="bg-navy-900/90 border-t-2 border-t-teal-500 border border-navy-750 p-3.5 rounded-xl shadow">
+          <div className="text-[11px] font-mono text-slate-400 uppercase">Shelters Available</div>
+          <div className="text-2xl font-black text-teal-300 mt-1 font-mono">
+            {safeSheltersCount} <span className="text-sm font-normal text-slate-400">/ {shelters.length}</span>
+          </div>
+          <div className="text-[10px] text-teal-300/80 mt-0.5">Fully operational</div>
+        </div>
+
+        <div className="bg-navy-900/90 border-t-2 border-t-cyan-500 border border-navy-750 p-3.5 rounded-xl shadow">
+          <div className="text-[11px] font-mono text-slate-400 uppercase">Remaining Safe Capacity</div>
+          <div className="text-2xl font-black text-cyan-400 mt-1 font-mono">
+            {formatIndianNumber(remainingSafeCapacity)}
+          </div>
+          <div className="text-[10px] text-slate-400 mt-0.5">Available beds</div>
+        </div>
+
+        <div className="bg-navy-900/90 border-t-2 border-t-amber-500 border border-navy-750 p-3.5 rounded-xl shadow">
+          <div className="text-[11px] font-mono text-slate-400 uppercase">Unsafe / Blocked Routes</div>
+          <div className="text-2xl font-black text-amber-400 mt-1 font-mono">
+            {blockedRoutesCount} <span className="text-sm font-normal text-slate-400">/ {routes.length}</span>
+          </div>
+          <div className="text-[10px] text-amber-300/80 mt-0.5">Flooded or high risk</div>
+        </div>
+
+        <div className="bg-navy-900/90 border-t-2 border-t-indigo-500 border border-navy-750 p-3.5 rounded-xl shadow">
+          <div className="text-[11px] font-mono text-slate-400 uppercase">Est. Completion Time</div>
+          <div className="text-2xl font-black text-indigo-300 mt-1 font-mono">
+            ~4.5 hrs
+          </div>
+          <div className="text-[10px] text-slate-400 mt-0.5">Before peak landfall</div>
+        </div>
+      </div>
+
+      {/* MAIN CONTENT: Split 3-Zone Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        
+        {/* LEFT: Prioritized Village List (4 Cols) */}
+        <div className="lg:col-span-4 space-y-3">
+          <div className="flex items-center justify-between pb-1">
+            <h3 className="font-bold text-sm text-white font-mono flex items-center gap-1.5">
+              <Users className="w-4 h-4 text-cyan-400" />
+              <span>Prioritized Village Queue ({filteredVillages.length})</span>
+            </h3>
+            <span className="text-[11px] font-mono text-slate-400">Click to inspect plan</span>
+          </div>
+
+          <div className="space-y-2.5 max-h-[720px] overflow-y-auto pr-1">
+            {filteredVillages.map((village) => {
+              const isSelected = selectedVillage.id === village.id;
+              const isP0 = village.evacuation.evacuationPriority === 'P0';
+              const isP1 = village.evacuation.evacuationPriority === 'P1';
+
+              const priorityColor = isP0
+                ? 'border-l-red-500 bg-red-950/20'
+                : isP1
+                ? 'border-l-orange-500 bg-orange-950/20'
+                : 'border-l-amber-500 bg-amber-950/10';
+
+              return (
+                <div
+                  key={village.id}
+                  onClick={() => setSelectedVillageId(village.id)}
+                  className={`p-3.5 rounded-xl border-l-4 border-y border-r transition-all cursor-pointer ${priorityColor} ${
+                    isSelected
+                      ? 'border-cyan-400 bg-navy-800/90 shadow-lg shadow-cyan-950/30'
+                      : 'border-navy-750 hover:border-navy-600 bg-navy-900/80'
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="font-bold text-white text-sm">{village.name}</span>
+                        <span
+                          className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded ${
+                            isP0
+                              ? 'bg-red-500/20 text-red-300 border border-red-500/40'
+                              : isP1
+                              ? 'bg-orange-500/20 text-orange-300 border border-orange-500/40'
+                              : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                          }`}
+                        >
+                          {village.evacuation.evacuationPriority}
+                        </span>
+                      </div>
+                      <div className="text-[11px] text-slate-300 mt-1 font-mono">
+                        People to move: <b className="text-white">{formatIndianNumber(village.population)}</b> • Risk: <b className={isP0 ? 'text-red-400' : 'text-orange-400'}>{village.risk.overallRisk}/100</b>
+                      </div>
+                    </div>
+
+                    <div className="text-right">
+                      <span className="text-[10px] font-mono text-slate-400 block">Deadline</span>
+                      <span className={`text-xs font-mono font-bold ${isP0 ? 'text-red-400' : 'text-amber-300'}`}>
+                        {isP0 ? 'T-20h (Immediate)' : 'T-18h (<6h)'}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Route & Shelter Summary Strip */}
+                  <div className="mt-2.5 pt-2.5 border-t border-navy-800/80 grid grid-cols-2 gap-2 text-[11px]">
+                    <div className="flex items-center gap-1.5 text-slate-300 truncate">
+                      <Home className="w-3.5 h-3.5 text-teal-400 flex-shrink-0" />
+                      <span className="truncate">{village.evacuation.nearestRecommendedShelter.name}</span>
+                    </div>
+                    <div className="flex items-center justify-end gap-1.5 text-slate-300">
+                      <span
+                        className={`w-2 h-2 rounded-full ${
+                          village.evacuation.routeStatus === 'Safe'
+                            ? 'bg-teal-400'
+                            : village.evacuation.routeStatus === 'Caution'
+                            ? 'bg-amber-400'
+                            : 'bg-red-500'
+                        }`}
+                      />
+                      <span className="text-[10px] font-mono">{village.evacuation.routeStatus} Route</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
-        <button
-          onClick={() => {
-            const w7 = villages.find((v) => v.id === 'vil-01');
-            if (w7) {
-              setSelectedVillage(w7);
-              setSelectedAsset(null);
-              setActiveTab('command');
-            }
-          }}
-          className="flex-shrink-0 bg-red-600 hover:bg-red-500 text-white text-xs font-mono font-bold px-3.5 py-2 rounded-lg transition-colors flex items-center gap-1.5 shadow-md"
-        >
-          <span>Examine on GIS Map</span>
-          <ArrowRight className="w-3.5 h-3.5" />
-        </button>
-      </div>
+        {/* CENTRE: Route & Shelter Visual Flow Architecture (4 Cols) */}
+        <div className="lg:col-span-4 space-y-3">
+          <div className="flex items-center justify-between pb-1">
+            <h3 className="font-bold text-sm text-white font-mono flex items-center gap-1.5">
+              <Layers className="w-4 h-4 text-teal-400" />
+              <span>Evacuation Corridor Flow</span>
+            </h3>
+            <span className="text-[11px] font-mono text-teal-300">Active Routing Graph</span>
+          </div>
 
-      {/* Evacuation Master Matrix Table */}
-      <div className="bg-navy-900 border border-navy-750 rounded-2xl shadow-xl overflow-hidden">
-        <div className="p-4 border-b border-navy-750 bg-navy-950/60 flex items-center justify-between">
-          <h3 className="font-bold text-sm text-white font-mono flex items-center gap-2">
-            <Users className="w-4 h-4 text-cyan-400" />
-            <span>Village Evacuation Matrix &amp; Safe Shelter Routing</span>
-          </h3>
-          <span className="text-[11px] text-slate-400 font-mono">
-            Model Estimate • P0 Population: {formatIndianNumber(p0Population)}
-          </span>
-        </div>
-
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs font-sans">
-            <thead>
-              <tr className="border-b border-navy-800 text-slate-400 font-mono text-[10px] uppercase bg-navy-950/40">
-                <th className="py-3 px-3.5">Priority</th>
-                <th className="py-3 px-3.5">Village / Ward</th>
-                <th className="py-3 px-3.5">Population &amp; Vulnerability</th>
-                <th className="py-3 px-3.5">Flood &amp; Surge Exposure</th>
-                <th className="py-3 px-3.5">Assigned Safe Shelter</th>
-                <th className="py-3 px-3.5">Evacuation Corridor &amp; Status</th>
-                <th className="py-3 px-3.5">Transit Time</th>
-                <th className="py-3 px-3.5 text-right">GIS Action</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-navy-800/60 font-mono">
-              {filteredVillages.map((village) => {
-                const { risk, evacuation } = village;
-                const isSelected = selectedVillageCard === village.id;
-
-                return (
-                  <React.Fragment key={village.id}>
-                    <tr
-                      onClick={() =>
-                        setSelectedVillageCard((prev) => (prev === village.id ? null : village.id))
-                      }
-                      className="hover:bg-navy-850/60 cursor-pointer transition-colors group"
-                    >
-                      <td className="py-3.5 px-3.5">
-                        <PriorityBadge priority={evacuation.evacuationPriority} size="sm" />
-                      </td>
-
-                      <td className="py-3.5 px-3.5 font-sans">
-                        <div className="font-bold text-white group-hover:text-cyan-300 transition-colors flex items-center gap-1.5">
-                          <MapPin className="w-3.5 h-3.5 text-cyan-400" />
-                          <span>{village.name}</span>
-                        </div>
-                        <div className="text-[10px] text-slate-400 font-mono">
-                          Risk: <b className="text-red-400">{risk.overallRisk}/100</b> ({risk.riskClass}) • Elev {village.elevationMeters}m
-                        </div>
-                      </td>
-
-                      <td className="py-3.5 px-3.5 text-slate-200 font-sans">
-                        <div className="font-semibold">{formatIndianNumber(village.population)}</div>
-                        <div className="text-[10px] text-orange-400 font-mono">
-                          {village.elderlyPopulation} elderly + {village.childrenPopulation} children
-                        </div>
-                      </td>
-
-                      <td className="py-3.5 px-3.5 text-cyan-300">
-                        <div>{evacuation.floodProbabilityPct}% Flood Prob</div>
-                        <div className="text-[10px] text-slate-400">
-                          ~{evacuation.estimatedFloodDepthMeters.toFixed(1)}m water depth
-                        </div>
-                      </td>
-
-                      <td className="py-3.5 px-3.5">
-                        <div className="font-semibold text-slate-100 flex items-center gap-1.5 font-sans">
-                          <Home className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0" />
-                          <span>{evacuation.nearestRecommendedShelter.name}</span>
-                        </div>
-                        {evacuation.rejectedNearestShelter ? (
-                          <div className="text-[10px] text-red-400 font-bold mt-0.5 flex items-center gap-1">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-ping" />
-                            <span>Rerouted: {evacuation.rejectedNearestShelter.shelter.name.split(' ')[0]} Unsafe</span>
-                          </div>
-                        ) : (
-                          <div className="text-[10px] text-emerald-400 mt-0.5">
-                            Vacancy: {evacuation.shelterCapacityStatus.availableBeds.toLocaleString()} beds
-                          </div>
-                        )}
-                      </td>
-
-                      <td className="py-3.5 px-3.5">
-                        <div className="text-slate-200 font-sans font-medium">
-                          {evacuation.recommendedRouteName}
-                        </div>
-                        <div className="text-[10px] font-mono mt-0.5">
-                          <span
-                            className={
-                              evacuation.routeStatus === 'Safe'
-                                ? 'text-emerald-400'
-                                : evacuation.routeStatus === 'Caution'
-                                ? 'text-amber-400'
-                                : evacuation.routeStatus === 'At risk'
-                                ? 'text-orange-400'
-                                : 'text-red-400 font-bold'
-                            }
-                          >
-                            ● Route Status: {evacuation.routeStatus.toUpperCase()}
-                          </span>
-                        </div>
-                      </td>
-
-                      <td className="py-3.5 px-3.5 text-cyan-300">
-                        ~{evacuation.estimatedTravelTimeMinutes} mins
-                      </td>
-
-                      <td className="py-3.5 px-3.5 text-right">
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setSelectedVillage(village);
-                            setSelectedAsset(null);
-                            setActiveTab('command');
-                          }}
-                          className="text-xs font-mono font-bold text-cyan-400 group-hover:text-cyan-200 group-hover:underline"
-                        >
-                          Inspect &gt;
-                        </button>
-                      </td>
-                    </tr>
-
-                    {/* Expandable Explanation Drawer */}
-                    {isSelected && (
-                      <tr className="bg-navy-950 border-b border-navy-800">
-                        <td colSpan={8} className="p-4 space-y-2.5">
-                          <div className="bg-navy-900 p-3 rounded-xl border border-navy-750 text-xs text-slate-200 space-y-2">
-                            <div className="flex items-center justify-between border-b border-navy-800 pb-1.5">
-                              <div className="font-bold text-amber-300 font-mono flex items-center gap-1.5">
-                                <ShieldCheck className="w-4 h-4 text-cyan-400" />
-                                <span>Shelter Optimization &amp; Routing Decision Logic:</span>
-                              </div>
-                              <span className="text-[10px] font-mono text-slate-400">
-                                Confidence: {risk.modelConfidencePct}% • Updated {new Date(risk.lastUpdatedTimestamp).toLocaleTimeString('en-IN')}
-                              </span>
-                            </div>
-
-                            <p className="leading-relaxed font-sans">
-                              {evacuation.shelterAssignmentExplanation}
-                            </p>
-
-                            <div className="pt-2 border-t border-navy-800 flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono">
-                              <div className="text-slate-400">
-                                <strong>Recommended Action:</strong> {evacuation.recommendedAction}
-                              </div>
-                              <button
-                                onClick={() => {
-                                  setSelectedVillage(village);
-                                  setSelectedAsset(null);
-                                  setActiveTab('command');
-                                }}
-                                className="bg-cyan-600/30 hover:bg-cyan-600/50 text-cyan-300 border border-cyan-500/40 px-3 py-1 rounded-lg font-bold transition-colors"
-                              >
-                                View in Command Centre &gt;
-                              </button>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    )}
-                  </React.Fragment>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* Shelter Capacity & Corridor Logistics Bar Chart */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* Recharts Shelter Capacity Graph */}
-        <div className="lg:col-span-2 bg-navy-900 border border-navy-750 p-4 rounded-2xl shadow-xl space-y-3">
-          <div className="flex items-center justify-between border-b border-navy-750 pb-2">
-            <div className="flex items-center gap-2">
-              <Home className="w-4 h-4 text-emerald-400" />
-              <h3 className="font-bold text-sm text-white font-mono">
-                Multi-Purpose Cyclone Shelter Occupancy &amp; Vacancy
-              </h3>
+          <div className="bg-navy-900 border border-navy-750 rounded-2xl p-4.5 space-y-4 shadow-xl">
+            {/* Step 1: Origin Village */}
+            <div className="bg-navy-950 p-3.5 rounded-xl border border-navy-800">
+              <div className="text-[10px] font-mono text-cyan-400 uppercase tracking-wider font-bold mb-1">
+                1. Origin Hazard Zone
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="font-bold text-white text-base">{selectedVillage.name}</div>
+                <span className="text-xs font-mono text-red-400 bg-red-950/50 px-2 py-0.5 rounded border border-red-800">
+                  Surge: {selectedVillage.evacuation.estimatedFloodDepthMeters.toFixed(1)}m
+                </span>
+              </div>
+              <div className="text-xs text-slate-300 mt-1 font-mono">
+                Pop: {formatIndianNumber(selectedVillage.population)} ({selectedVillage.elderlyPopulation} elderly, {selectedVillage.childrenPopulation} children)
+              </div>
             </div>
-            <span className="text-[10px] font-mono text-slate-400">
-              4 Designated Sanctuaries
+
+            {/* Connecting Arrow */}
+            <div className="flex items-center justify-center">
+              <div className="h-6 w-0.5 bg-cyan-500/40 relative">
+                <ArrowRight className="w-4 h-4 text-cyan-400 absolute -bottom-2 -left-1.5 rotate-90" />
+              </div>
+            </div>
+
+            {/* Step 2: Transit Corridor */}
+            <div className="bg-navy-950 p-3.5 rounded-xl border border-navy-800">
+              <div className="text-[10px] font-mono text-teal-400 uppercase tracking-wider font-bold mb-1">
+                2. Designated Evacuation Corridor
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="font-bold text-white text-base">{selectedVillage.evacuation.recommendedRouteName}</div>
+                <span className="text-xs font-mono text-teal-300 bg-teal-950/50 px-2 py-0.5 rounded border border-teal-800">
+                  {selectedVillage.evacuation.routeStatus}
+                </span>
+              </div>
+              <div className="text-xs text-slate-300 mt-1">
+                Estimated transit duration: <b className="text-white">{selectedVillage.evacuation.estimatedTravelTimeMinutes || 35} mins</b>
+              </div>
+            </div>
+
+            {/* Connecting Arrow */}
+            <div className="flex items-center justify-center">
+              <div className="h-6 w-0.5 bg-teal-500/40 relative">
+                <ArrowRight className="w-4 h-4 text-teal-400 absolute -bottom-2 -left-1.5 rotate-90" />
+              </div>
+            </div>
+
+            {/* Step 3: Destination Shelter */}
+            <div className="bg-navy-950 p-3.5 rounded-xl border border-teal-600/40">
+              <div className="text-[10px] font-mono text-emerald-400 uppercase tracking-wider font-bold mb-1">
+                3. Verified Safe Sanctuary
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="font-bold text-emerald-300 text-base">{selectedVillage.evacuation.nearestRecommendedShelter.name}</div>
+                <span className="text-xs font-mono text-emerald-300 bg-emerald-950/50 px-2 py-0.5 rounded border border-emerald-800">
+                  Capacity Safe
+                </span>
+              </div>
+              <div className="text-xs text-slate-300 mt-1 font-mono">
+                Available space: <b className="text-white">{selectedVillage.evacuation.shelterCapacityStatus.availableBeds.toLocaleString()} beds</b> (Elev: {selectedVillage.evacuation.nearestRecommendedShelter.elevationMeters}m)
+              </div>
+            </div>
+
+            {/* Quick Action Button */}
+            <button
+              onClick={() => {
+                setSelectedVillage(selectedVillage);
+                setSelectedAsset(null);
+                setActiveTab('map');
+              }}
+              className="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-mono text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-2 shadow-lg"
+            >
+              <Navigation className="w-3.5 h-3.5" />
+              <span>Track Corridor on Live Impact Map</span>
+            </button>
+          </div>
+        </div>
+
+        {/* RIGHT: Selected Evacuation Plan Detail (4 Cols) */}
+        <div className="lg:col-span-4 space-y-3">
+          <div className="flex items-center justify-between pb-1">
+            <h3 className="font-bold text-sm text-white font-mono flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <span>Evacuation Directive Detail</span>
+            </h3>
+            <span className="text-[10px] font-mono bg-red-500/20 text-red-300 px-2 py-0.5 rounded border border-red-500/40">
+              Official Directive
             </span>
           </div>
 
-          <div className="h-64 w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={shelterChartData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" vertical={false} />
-                <XAxis dataKey="name" stroke="#94A3B8" fontSize={11} tickLine={false} />
-                <YAxis stroke="#94A3B8" fontSize={11} tickLine={false} />
-                <Tooltip
-                  contentStyle={{ backgroundColor: '#0B132B', borderColor: '#1E293B', borderRadius: '8px', fontSize: '11px' }}
-                />
-                <Legend wrapperStyle={{ fontSize: '11px', fontFamily: 'monospace' }} />
-                <Bar dataKey="Occupied" fill="#EF4444" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="Available" fill="#10B981" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
+          <div className="bg-navy-900 border border-navy-750 rounded-2xl p-4.5 space-y-4 shadow-xl">
+            {/* Header info */}
+            <div className="border-b border-navy-800 pb-3">
+              <h4 className="text-lg font-black text-white">{selectedVillage.name}</h4>
+              <p className="text-xs text-slate-300 mt-0.5">
+                Comprehensive multi-agency logistics directive for field incident commanders.
+              </p>
+            </div>
 
-        {/* Quick Corridor Fleet Status */}
-        <div className="bg-navy-900 border border-navy-750 p-4 rounded-2xl shadow-xl space-y-3 flex flex-col justify-between">
-          <div className="flex items-center gap-2 border-b border-navy-750 pb-2">
-            <Bus className="w-4 h-4 text-cyan-400" />
-            <h3 className="font-bold text-sm text-white font-mono">
-              Evacuation Corridor Status
-            </h3>
-          </div>
-
-          <div className="space-y-2 font-mono text-xs text-slate-300">
-            {routes.map((rt) => (
-              <div
-                key={rt.id}
-                className="bg-navy-850 p-2 rounded-lg border border-navy-750 flex items-center justify-between"
-              >
+            {/* 7 Item Structured Directive */}
+            <div className="space-y-3 text-xs">
+              <div className="bg-navy-950 p-2.5 rounded-xl border border-navy-800 flex items-start gap-2.5">
+                <Users className="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <div className="font-sans font-bold text-white text-[11px]">{rt.name}</div>
-                  <div className="text-[9px] text-slate-400">{rt.distanceKm} km • Elev {rt.elevationAvg}m</div>
+                  <div className="text-[10px] font-mono text-slate-400 uppercase">1. People to Evacuate</div>
+                  <div className="text-white font-bold font-mono text-sm mt-0.5">
+                    {formatIndianNumber(selectedVillage.population)} residents
+                  </div>
                 </div>
-                <span
-                  className={`text-[10px] font-bold px-2 py-0.5 rounded ${
-                    rt.calculatedStatus === 'Safe'
-                      ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
-                      : rt.calculatedStatus === 'Caution'
-                      ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
-                      : rt.calculatedStatus === 'At risk'
-                      ? 'bg-orange-500/20 text-orange-300 border border-orange-500/40'
-                      : 'bg-red-500/20 text-red-300 border border-red-500/40'
-                  }`}
-                >
-                  {rt.calculatedStatus.toUpperCase()}
-                </span>
               </div>
-            ))}
-          </div>
 
-          <button
-            onClick={() => setActiveTab('command')}
-            className="w-full bg-cyan-600/20 hover:bg-cyan-600/30 text-cyan-300 border border-cyan-500/40 font-mono text-xs py-2 rounded-lg transition-colors font-semibold flex items-center justify-center gap-1.5"
-          >
-            <span>Inspect Routes On GIS Map</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </button>
+              <div className="bg-navy-950 p-2.5 rounded-xl border border-navy-800 flex items-start gap-2.5">
+                <AlertOctagon className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" />
+                <div>
+                  <div className="text-[10px] font-mono text-slate-400 uppercase">2. Priority &amp; Timeline</div>
+                  <div className="text-red-400 font-bold font-mono text-sm mt-0.5">
+                    {selectedVillage.evacuation.evacuationPriority} — {selectedVillage.evacuation.evacuationPriority === 'P0' ? 'Start Immediately (Within 90 mins)' : 'Initiate within 6 hours'}
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-navy-950 p-2.5 rounded-xl border border-navy-800 flex items-start gap-2.5">
+                <AlertTriangle className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" />
+                <div>
+                  <div className="text-[10px] font-mono text-slate-400 uppercase">3. Threat Rationale</div>
+                  <div className="text-slate-200 mt-0.5">
+                    Critical storm surge of ~{selectedVillage.evacuation.estimatedFloodDepthMeters.toFixed(1)}m and {selectedVillage.evacuation.floodProbabilityPct}% flood probability.
+                  </div>
+                </div>
+              </div>
+
+              {/* 4. Rejected Option */}
+              {selectedVillage.evacuation.rejectedNearestShelter ? (
+                <div className="bg-red-950/30 p-2.5 rounded-xl border border-red-800/60 flex items-start gap-2.5">
+                  <XCircle className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <div className="text-[10px] font-mono text-red-300 uppercase font-bold">4. Rejected Nearest Option</div>
+                    <div className="text-red-200 font-bold mt-0.5">
+                      {selectedVillage.evacuation.rejectedNearestShelter.shelter.name}
+                    </div>
+                    <div className="text-[11px] text-red-300/90 mt-0.5 font-sans">
+                      <b>Reason:</b> {selectedVillage.evacuation.rejectedNearestShelter.reason}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="bg-navy-950 p-2.5 rounded-xl border border-navy-800 flex items-start gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-teal-400 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <div className="text-[10px] font-mono text-slate-400 uppercase">4. Primary Option Status</div>
+                    <div className="text-slate-200 mt-0.5">
+                      Nearest primary shelter verified safe with no route inundation.
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* 5. Recommended Shelter */}
+              <div className="bg-emerald-950/30 p-2.5 rounded-xl border border-emerald-800/60 flex items-start gap-2.5">
+                <Home className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
+                <div>
+                  <div className="text-[10px] font-mono text-emerald-300 uppercase font-bold">5. Recommended Safe Shelter</div>
+                  <div className="text-emerald-200 font-bold mt-0.5">
+                    {selectedVillage.evacuation.nearestRecommendedShelter.name}
+                  </div>
+                  <div className="text-[11px] text-emerald-300/90 mt-0.5 font-mono">
+                    Available verified capacity: {selectedVillage.evacuation.shelterCapacityStatus.availableBeds.toLocaleString()} spaces
+                  </div>
+                </div>
+              </div>
+
+              {/* 6. Recommended Route */}
+              <div className="bg-navy-950 p-2.5 rounded-xl border border-navy-800 flex items-start gap-2.5">
+                <Navigation className="w-4 h-4 text-teal-400 mt-0.5 flex-shrink-0" />
+                <div>
+                  <div className="text-[10px] font-mono text-slate-400 uppercase">6. Recommended Route</div>
+                  <div className="text-white font-bold mt-0.5">
+                    {selectedVillage.evacuation.recommendedRouteName}
+                  </div>
+                  <div className="text-[11px] text-teal-300 mt-0.5 font-mono">
+                    Status: {selectedVillage.evacuation.routeStatus} (Clear of surge zone)
+                  </div>
+                </div>
+              </div>
+
+              {/* 7. Action Command */}
+              <div className="bg-indigo-950/40 p-2.5 rounded-xl border border-indigo-800/60 flex items-start gap-2.5">
+                <Bus className="w-4 h-4 text-indigo-400 mt-0.5 flex-shrink-0" />
+                <div>
+                  <div className="text-[10px] font-mono text-indigo-300 uppercase font-bold">7. Resource Action Order</div>
+                  <div className="text-slate-100 font-semibold mt-0.5">
+                    Deploy 12 state transit buses and 4 medical-support vehicles within 90 minutes.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Expandable "Compare alternatives" component */}
+            <div className="border-t border-navy-800 pt-3">
+              <button
+                onClick={() => setCompareAlternativesOpen(!compareAlternativesOpen)}
+                className="w-full flex items-center justify-between text-xs font-mono text-slate-300 hover:text-cyan-400 transition py-1"
+              >
+                <span className="flex items-center gap-1.5">
+                  <Info className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Compare Alternative Shelter Corridors</span>
+                </span>
+                {compareAlternativesOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              </button>
+
+              {compareAlternativesOpen && (
+                <div className="mt-2.5 space-y-2 bg-navy-950 p-3 rounded-xl border border-navy-800 text-[11px]">
+                  <div className="grid grid-cols-5 text-[10px] font-mono text-slate-400 pb-1 border-b border-navy-800">
+                    <div>Option</div>
+                    <div>Travel</div>
+                    <div>Safety</div>
+                    <div>Capacity</div>
+                    <div>Route Condition</div>
+                  </div>
+
+                  <div className="grid grid-cols-5 text-slate-200 py-1 items-center font-mono">
+                    <div className="font-bold text-emerald-400 truncate">Shelter B (Primary)</div>
+                    <div>32 min</div>
+                    <div className="text-emerald-400">High (95%)</div>
+                    <div>1,120 beds</div>
+                    <div className="text-teal-300">Elevated (Dry)</div>
+                  </div>
+
+                  <div className="grid grid-cols-5 text-slate-400 py-1 items-center font-mono border-t border-navy-850">
+                    <div className="truncate">Shelter C (East)</div>
+                    <div>55 min (+23m)</div>
+                    <div className="text-amber-400">Moderate</div>
+                    <div>650 beds</div>
+                    <div className="text-amber-300">Bridge Congested</div>
+                  </div>
+
+                  <div className="grid grid-cols-5 text-red-400/80 py-1 items-center font-mono border-t border-navy-850">
+                    <div className="truncate">Shelter A (Nearest)</div>
+                    <div>15 min</div>
+                    <div className="text-red-400 font-bold">Unsafe</div>
+                    <div>800 beds</div>
+                    <div className="text-red-400">Road Inundated (1.4m)</div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>

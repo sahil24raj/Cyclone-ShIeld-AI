@@ -1,18 +1,56 @@
 # 🌀 CycloneShield AI
-> **Tagline:** *Predict. Protect. Respond.*
+> **Tagline:** *Predict. Protect. Respond.*  
+> **Supporting Line:** *Turn cyclone forecasts into local, actionable decisions.*
 
-An AI-powered predictive risk and vulnerability modelling platform prototype for Bay of Bengal and coastal APAC cyclones. Developed for disaster-management authorities, municipal bodies, and emergency response teams to simulate storm surge, forecast flood pathways, rank village vulnerability, and generate automated multilingual decision briefings.
+An AI-powered, simulation-driven Emergency Operations Centre (EOC) predictive risk and vulnerability decision-support platform designed for coastal disaster-management authorities. CycloneShield AI turns raw meteorological forecasts into local action directives: ranking ward vulnerability, testing single-point lifeline failures, routing evacuees away from flooded corridors, and generating CAP v1.2 emergency bulletins.
 
 ---
 
-### ⚠️ Statutory & Prototype Disclaimer
+## 🚀 How to Run the Simulation Demo
+
+Follow these simple steps to run the complete simulation locally:
+
+### 1. Prerequisites & Installation
+```bash
+# Clone the repository
+git clone https://github.com/sahil24raj/Cyclone-ShIeld-AI.git
+cd "Cyclone-ShIeld-AI"
+
+# Install dependencies (Node.js 18+)
+npm install
+```
+
+### 2. Start Local Development Server
+```bash
+# Run local Vite development server
+npm run dev
+
+# Or build and test the production preview
+npm run build
+npm run preview
+```
+Open **`http://localhost:5173`** (or `http://localhost:4173` for preview) in your browser.
+
+### 3. Interactive Guided Demo Walkthrough (3-Minute Tour)
+Click the **"Start Guided Demo"** button on the Overview page header to step through:
+1. **Overview**: Current storm story of **Cyclone Varuna** at **T-24h**, 135 km/h winds, and 2.84 Lakh exposed population.
+2. **Coastal Ward 7 Inspection**: Click on Coastal Ward 7 to see its **Critical Risk (86/100)** and why low elevation (2.1m) + surge (1.8m) triggers P0 evacuation.
+3. **Evacuation Corridor Allocation**: View the automatic rejection of **Shelter A** (access road flooded) and redirection to **Municipal Cyclone Shelter B** via **Elevated Route 2**.
+4. **Lifeline Infrastructure Matrix**: Open the Criticality vs Risk matrix to inspect **Coastal Power Substation** (95/100 criticality) and power disruption mitigation actions.
+5. **Scenario Simulator (+30km North Shift)**: Shift the cyclone track by +30 km North to see dynamic increases: **+7 critical villages, +4,200 shelter gap, +3 road cutoffs**.
+6. **AI Situation Brief**: Generate structured decision-support SITREPs with dual English/Hindi advisories.
+7. **CAP Alert Authorization**: Review standardized OASIS CAP v1.2 JSON drafts and cell broadcast mobile alerts under simulated human-in-the-loop review.
+
+---
+
+### ⚠️ Statutory & Prototype Simulation Notice
 > **IMPORTANT NOTICE:** This prototype platform is designed strictly for decision-support demonstration and hackathon evaluation. **It does not supersede official warnings issued by the India Meteorological Department (IMD), National Disaster Management Authority (NDMA), or State Disaster Management Authorities (SDMA / OSDMA).** All risk scores, flooded segments, and demographic figures are synthetic demonstration values.
 
 ---
 
-## 🧪 Mock Prediction Mode (Offline / Demo Engine)
+## 🧪 Mock Prediction Engine (Offline / Zero-Dependency)
 
-CycloneShield AI includes a **zero-dependency, deterministic Mock Prediction & Simulation Engine**. When running in mock mode, the application produces dynamic cyclone impact calculations, inundation models, evacuation routing assessments, AI SITREPs, and CAP alerts **without requiring any real weather API, Google Earth Engine, IMD API, Gemini API, database, API key, internet connection, or backend server.**
+CycloneShield AI includes a **zero-dependency, deterministic Mock Prediction & Simulation Engine**. When running in simulation mode, the application produces dynamic cyclone impact calculations, inundation models, evacuation routing assessments, AI SITREPs, and CAP alerts **without requiring any real weather API, Google Earth Engine, IMD API, Gemini API, database, API key, internet connection, or backend server.**
 
 ### Mode Configuration
 Set in your `.env` or environment variables:
@@ -24,221 +62,54 @@ VITE_DATA_MODE=mock
 # VITE_DATA_MODE=live
 ```
 
-### Visual Mode Badges
-- 🟡 **"Mock Prediction Mode"** (Yellow/Orange): Active when running on local synthetic datasets and deterministic formulas.
-- 🟢 **"Live Data Mode"** (Green): Displayed only when real external data adapters are authenticated and operational.
-- 🟠 **"Data unavailable — using simulation"**: Automatically activated as a fallback when an external live adapter fails.
-
-### Disclaimer Notice
-The platform strictly displays:
-> **"Prototype Simulation — Synthetic data only. Not an official warning."**
-All calculated outputs and figures are explicitly labeled as **"Model estimate"**. The algorithm is a deterministic hackathon simulation engine designed for tactical decision-support prototyping, **not a validated operational forecast model**.
-
-### Mathematical Risk Engine Architecture
-The calculation engine runs locally in the browser with 100% deterministic output:
+### Mathematical Risk Formulation
+The calculation engine runs client-side with 100% deterministic output:
 
 $$\text{Overall Risk} = 0.35 \times \text{Hazard} + 0.25 \times \text{Exposure} + 0.25 \times \text{Vulnerability} + 0.15 \times \text{Criticality}$$
 
-- **Hazard Score (0–100)**: Wind (25%), Flood/Inundation (25%), Storm Surge (25%), Rainfall (15%), Track Proximity & Shift (10%).
-- **Exposure Score (0–100)**: Population (35%), Infrastructure Density (25%), Built-up Exposure (20%), Economic/Agriculture (20%).
-- **Vulnerability Score (0–100)**: Low Elevation (30%), Coast/River Proximity (20%), Road Accessibility (20%), Shelter Accessibility (15%), Social Vulnerability (15%).
-- **Criticality Score (0–100)**: Lifeline infrastructure (Hospitals, Power Substations, Bridges, Water Treatment, Telecom, Evacuation Corridors, Shelters).
-
-### Evacuation Priority Matrix
-$$\text{Evacuation Priority} = 0.40 \times \text{Overall Risk} + 0.25 \times \text{Pop. Vulnerability} + 0.20 \times \text{Shelter Access Risk} + 0.15 \times \text{Urgency Score}$$
-
-- **P0**: Immediate mandatory evacuation ($\ge 70$ score or Critical risk)
-- **P1**: Phased evacuation within 6 hours
-- **P2**: Prepare and monitor vulnerable households
-- **P3**: Shelter in place for permanent structures
+- **Hazard (35%)**: Peak wind speed, storm surge tidal depth, rainfall accumulation, and radial track proximity.
+- **Exposure (25%)**: Population density, elderly/children count, infrastructure density, and economic assets.
+- **Vulnerability (25%)**: Ground elevation above sea level, coast distance, road cutoff risk, and shelter distance.
+- **Criticality (15%)**: Hospitals, 33kV substations, water treatment plants, and evacuation corridors.
 
 ---
 
-## 🌟 Key Features
+## 🌟 Core Decision-Support Modules
 
-1. **Integrated Emergency Command Centre**:
-   - Live KPI overview: Sustained Wind (135 km/h) with sparkline trends, Population Exposed (2.84 Lakh), Critical Assets at Risk (42), Shelter Capacity Gap (92,000), and Flooded Roads (31 segments).
-   - Real-time tactical alerts feed for EOC dispatchers.
-   - High-vulnerability ward prioritization ranking.
+1. **Overview (Situation at a Glance)**:
+   - Storm Story: Category, wind speed, rainfall, surge, confidence, and illustrated progress timeline.
+   - Immediate Actions: Clickable P0 metrics and next 6-hour tactical directives.
+   - Priority Wards: Visual risk cards for Coastal Ward 7, Delta Nagar, and East Embankment with horizontal risk distribution bar.
 
-2. **Full-Width Interactive GIS Map (Sundar Coast District)**:
-   - Built on CartoDB Dark Matter / OpenStreetMap tiles.
-   - Dynamic layers: Cyclone track points (T-48h to T+6h), Forecast uncertainty cone, 135 km/h Gale wind radius, Storm surge inundation overlay, Sentinel-1 SAR flood extent polygon, CHIRPS rainfall isohyet (>250mm), and Evacuation corridors.
-   - Interactive village markers with explainable risk breakdown.
-   - Shelter status markers (Green for operational; Red with pulsating warning for blocked/submerged access).
+2. **Live Impact GIS Map**:
+   - Leaflet map of Sundar Coast District with toggleable layer stack (Surge, Flood, Wind, Critical Assets, Evacuation Routes).
+   - Bottom scenario timeline scrubber (T-48h to T+6h) that updates hazard footprints in real-time.
+   - Contextual right-hand drawer with contributing-factor bars.
 
-3. **Explainable Multi-Hazard Risk Model**:
-   - Transparent mathematical equation:
-     $$\text{Overall Risk} = 0.35 \times \text{Hazard} + 0.25 \times \text{Exposure} + 0.25 \times \text{Vulnerability} + 0.15 \times \text{Criticality}$$
-   - Granular driver attribution: `+18 pts` wind, `+22 pts` low elevation, `+15 pts` rainfall, `+14 pts` road submersion cutoff, `+11 pts` dependent demographics.
+3. **Evacuation Plan**:
+   - Evacuation Readiness summary header (P0/P1 population, shelter vacancies, blocked roads).
+   - Priority village list with corridor flow architecture and 7-item actionable logistics directives.
+   - Expandable alternative corridor comparison.
 
-4. **Dynamic Shelter Rerouting Engine**:
-   - Automated hazard avoidance: When Coastal Ward 7's primary access road (SH-12) floods under 0.8m storm surge, the system redirects evacuees from Shelter A to **Shelter B (Sundar Model High School)** via **Elevated Corridor 2 (Puri-Sundar Bypass)**.
-   - Capacity deficit tracking and transit time estimations.
+4. **Infrastructure Resilience Matrix**:
+   - 2D Criticality vs Risk matrix with interactive asset dots.
+   - Detailed asset defense panel with potential service disruptions and response owner deadlines.
+   - Time-staged action queue (Immediate, Next 6 Hours, Monitor).
 
-5. **Critical Infrastructure Resilience Registry**:
-   - 42 tracked assets across Hospitals, Power Substations, Bridges, Road Corridors, Ports, Water Treatment, and Telecom Towers.
-   - Interactive operational action checklists (e.g., ICU relocation to 2nd floor, de-energizing 33kV coastal feeders, diesel generator verification).
+5. **Scenario Simulator**:
+   - 5 simple sliders with baseline indicators (Wind, Rain, Surge, Track Shift, Landfall Time).
+   - Before/after comparative diff panel and meaningful impact deltas (+7 villages, +4,200 shelter gap).
+   - Automated causal explanation synthesizer.
 
-6. **Sensitivity Scenario Simulator**:
-   - Interactive sliders for Wind Speed, Rainfall Accumulation, Storm Surge Peak Offset, North/South Track Shifts (-50km to +50km), and Landfall Timing.
-   - Real-time before/after differential analysis showing exact increases in vulnerable villages, flooded routes, and shelter deficits.
+6. **AI Situation Brief**:
+   - 7 structured sections: Summary, Priorities, Evacuation Targets, Infrastructure Actions, Shelter/Route Status, Dual-Language Public Advisories (EN/HI), Confidence & Limitations.
 
-7. **Multimodal AI Briefing Synthesizer**:
-   - Structured situation reports (SITREP) with executive summaries, top 5 operational risks, critical infrastructure directives, and next 6-hour action checklists.
-   - Native multilingual public advisories in **English**, **Hindi (हिंदी)**, **Bengali (বাংলা)**, and **Odia (ଓଡ଼ିଆ)**.
-   - Gemini API prompt integration contract schema.
+7. **Alert Drafts Studio**:
+   - 4-stage authorization workflow (`Draft → Review → Approve → Simulated Dispatch`).
+   - OASIS CAP v1.2 JSON tab and mobile cell broadcast notification preview in English & Hindi.
 
-8. **CAP v1.2 Standardized Alert Composer**:
-   - Common Alerting Protocol (CAP) compliant JSON/XML payload generator.
-   - Multi-channel dissemination preview: Cell Broadcast SMS, WhatsApp, Siren Actuators, and Megaphones.
-   - Explicit "Simulated Dispatch Only" safety guardrail.
-
----
-
-## 🚀 Quick Start & Installation
-
-### Prerequisites
-- Node.js (v18 or higher)
-- npm or yarn / pnpm
-
-### Installation Steps
-
-```bash
-# 1. Clone or navigate to the directory
-cd "cycloneShield AI"
-
-# 2. Configure environment variables (CARTO Map API Key)
-# A configured .env file is included with your CARTO API key:
-# VITE_CARTO_API_KEY=cb1_3t5l_1_a644c0e42df5a70a5cea7a0f
-
-# 3. Install dependencies
-npm install
-
-# 4. Start local development server
-npm run dev
-```
-
-The application will be available at `http://localhost:3000`.
-
-To build for production:
-```bash
-npm run build
-npm run preview
-```
-
----
-
-## 🏗️ Project Architecture
-
-```
-src/
-├── types/
-│   └── index.ts                 # Type definitions (Village, Asset, Shelter, CAPAlert, etc.)
-├── data/
-│   ├── cycloneData.ts           # Cyclone Varuna track points, pressure, wind curves
-│   ├── villageData.ts           # 8 coastal wards with demographics and coordinates
-│   ├── infrastructureData.ts    # 42 critical lifeline assets & shelter registries
-│   ├── evacuationData.ts        # Evacuation corridors, elevation routes, bottlenecks
-│   └── methodologyData.ts       # Mathematical equations, data sources, limitations
-├── utils/
-│   ├── riskCalculator.ts        # Explainable composite 0-100 risk scoring engine
-│   ├── shelterOptimizer.ts      # Flood-avoidance shelter assignment optimizer
-│   └── formatters.ts            # Indian number formatting (Lakhs) & risk badges
-├── context/
-│   ├── AppStateContext.tsx      # Global simulation state, alerts, selected entities
-│   └── LanguageContext.tsx      # Multilingual translation dictionary (EN/HI/BN/OR)
-├── components/
-│   ├── common/                  # TopHeader, Sidebar, PrototypeBanner, Modals
-│   ├── map/                     # Leaflet InteractiveMap, MapLegend, VillageRiskDrawer
-│   ├── command/                 # SummaryCards, Sparklines, CriticalWardsTable, Feeds
-│   ├── evacuation/              # Evacuation matrix, Shelter capacity Recharts
-│   ├── infrastructure/          # Filterable asset cards & action checklists
-│   ├── simulator/               # Real-time sensitivity sliders & impact delta
-│   ├── briefing/                # Gemini SITREP generator & reasoning traces
-│   ├── alert/                   # CAP JSON alert composer & simulated dispatch
-│   └── methodology/             # Scientific equations & limitation disclaimers
-├── App.tsx
-├── main.tsx
-└── index.css
-```
-
----
-
-## 🔌 API Integration Guide: Replacing Mock Data with Real APIs
-
-When moving from this prototype to production deployment, follow the integration blueprints below:
-
-### 1. Google Earth Engine (GEE) Python/JS Backend
-Replace the static SAR and CHIRPS mock layers with dynamic Earth Engine endpoints:
-```python
-# Backend FastAPI endpoint consuming Google Earth Engine
-import ee
-ee.Initialize()
-
-def get_sar_flood_extent(bounds, pre_event_date, post_event_date):
-    s1 = ee.ImageCollection('COPERNICUS/S1_GRD') \
-           .filterBounds(bounds) \
-           .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VV'))
-    
-    before = s1.filterDate(pre_event_date[0], pre_event_date[1]).mosaic()
-    after = s1.filterDate(post_event_date[0], post_event_date[1]).mosaic()
-    
-    # SAR Ratio change detection (Water Index)
-    difference = after.divide(before)
-    flooded = difference.lt(1.25)
-    return flooded.getDownloadURL({'format': 'GEO_TIFF'})
-```
-
-### 2. India Meteorological Department (IMD) / RSMC New Delhi
-Replace `src/data/cycloneData.ts` with real-time JSON polling from RSMC bulletins:
-```typescript
-async function fetchLiveCycloneTrack(bulletinId: string) {
-  const response = await fetch(`https://api.imd.gov.in/cyclone/v1/track/${bulletinId}`);
-  const data = await response.json();
-  return data.points.map((pt: any) => ({
-    time: pt.leadTime,
-    lat: pt.latitude,
-    lng: pt.longitude,
-    wind: pt.sustainedWindKmh,
-    pressure: pt.centralPressureHpa,
-    category: pt.cycloneGrade
-  }));
-}
-```
-
-### 3. Google Gemini Multimodal Reasoning Engine
-Integrate `@google/genai` or `@google/generative-ai` in `src/components/briefing/AIBriefingView.tsx`:
-```typescript
-import { GoogleGenerativeAI } from '@google/generative-ai';
-
-const genAI = new GoogleGenerativeAI(process.env.VITE_GEMINI_API_KEY!);
-
-async function generateOperationalBriefing(structuredData: object) {
-  const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro' });
-  const prompt = `You are a disaster-management decision-support assistant.
-Use this structured hazard dataset: ${JSON.stringify(structuredData)}.
-Generate executive summary, top 5 risks, evacuation instructions, and public advisories in English and Hindi.`;
-  
-  const result = await model.generateContent(prompt);
-  return result.response.text();
-}
-```
-
-### 4. State Disaster Management Authority (SDMA / OSDMA) Shelter API
-Connect real-time shelter occupancy and generator statuses directly via state API endpoints.
-
----
-
-## 🎯 Verification Demo Flow (Hackathon Walkthrough)
-
-1. **Command Centre**: Open app to see **Cyclone Varuna** at **T-24h**, wind speed **135 km/h**, and **2.84 Lakh** exposed population.
-2. **Impact Map**: Inspect the fictional **Sundar Coast District** map. Toggle layers (Surge, Flood, Wind Radii, Evacuation Routes).
-3. **Examine Coastal Ward 7**: Click on **Coastal Ward 7** marker to open the explainable risk breakdown (+18 wind, +22 low elevation, +14 road submerged).
-4. **Evacuation Planner**: Observe the automatic rerouting notification: **Shelter A is blocked due to 0.8m surge; village redirected to Shelter B via Elevated Route 2**.
-5. **Scenario Simulator**: Shift the cyclone track **+30 km North** and observe the real-time impact delta (+7 critical villages, +4,200 shelter deficit).
-6. **AI Briefing**: Click **Generate AI Briefing** to review structured SITREP and multilingual advisories (English, Hindi, Odia, Bengali).
-7. **Alert Centre**: Review the CAP v1.2 JSON payload and test the **Simulated Dispatch** workflow.
+8. **Data Provenance & Method**:
+   - Transparent plain-language explanation of formulas, synthetic baseline parameters, production satellite connections, and model limitations.
 
 ---
 

@@ -10,7 +10,13 @@ import {
   CheckCircle2,
   RefreshCw,
   Database,
-  AlertCircle
+  AlertCircle,
+  UserCheck,
+  ChevronDown,
+  Sparkles,
+  Sliders,
+  Shield,
+  Layers
 } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useAppState } from '../../context/AppStateContext';
@@ -18,14 +24,13 @@ import { Language, TimelinePhase } from '../../types';
 import { SystemStatusModal } from './SystemStatusModal';
 
 export const TopHeader: React.FC = () => {
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage } = useLanguage();
   const {
     timelinePhase,
     setTimelinePhase,
     alerts,
     setActiveTab,
     activeCyclone,
-    weather,
     dataSources,
     isStatusModalOpen,
     setIsStatusModalOpen,
@@ -33,10 +38,10 @@ export const TopHeader: React.FC = () => {
     isLoading,
     dataMode,
     modeBadgeText,
+    scenarioInputs,
   } = useAppState();
-  const [currentTime, setCurrentTime] = useState<string>('');
 
-  const isFixtureMode = import.meta.env.VITE_ENABLE_DEV_FIXTURES === 'true';
+  const [currentTime, setCurrentTime] = useState<string>('');
 
   // Live ticking IST clock
   useEffect(() => {
@@ -57,27 +62,19 @@ export const TopHeader: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const PHASES: { id: TimelinePhase; label: string; activeDesc: string }[] = [
-    { id: 'T-48h', label: 'T-48h', activeDesc: 'Deep Depression in Bay of Bengal' },
-    { id: 'T-36h', label: 'T-36h', activeDesc: 'Upgraded to Severe Storm' },
-    { id: 'T-24h', label: 'T-24h', activeDesc: 'Very Severe Storm (135 km/h) • Current' },
-    { id: 'T-12h', label: 'T-12h', activeDesc: 'Pre-Landfall Evacuation Cutoff' },
-    { id: 'T-00h', label: 'Landfall', activeDesc: 'Peak Surge & Gale Impact' },
-    { id: 'T+06h', label: 'T+6h', activeDesc: 'Inland Weakening & Flood Inundation' },
-  ];
-
   return (
     <>
-      <header className="bg-navy-900 border-b border-navy-750 px-3.5 py-2 sticky top-0 z-30 flex items-center justify-between shadow-xl select-none">
-        {/* Brand & Live Telemetry Badge */}
+      <header className="bg-navy-900 border-b border-navy-750 px-3.5 py-2.5 sticky top-0 z-30 flex items-center justify-between shadow-xl select-none">
+        {/* Left: CycloneShield AI Brand & Tagline */}
         <div className="flex items-center gap-3 lg:gap-4">
           <button
             type="button"
             onClick={() => setActiveTab('command')}
             className="flex items-center gap-2.5 text-left group focus:outline-none"
+            title="Go to Overview"
           >
-            <div className="relative flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-600 via-blue-700 to-navy-900 border border-cyan-400/40 shadow-md shadow-cyan-950">
-              <ShieldAlert className="w-4 h-4 text-cyan-200 group-hover:scale-110 transition-transform" />
+            <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-teal-500 via-cyan-600 to-navy-900 border border-teal-400/40 shadow-lg shadow-teal-950/40">
+              <Shield className="w-5 h-5 text-teal-100 group-hover:scale-105 transition-transform" />
               <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
@@ -86,136 +83,59 @@ export const TopHeader: React.FC = () => {
 
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="font-extrabold text-sm md:text-base tracking-tight text-white font-mono flex items-center gap-1.5">
-                  CYCLONE-X
+                <h1 className="font-extrabold text-base md:text-lg tracking-tight text-white font-sans flex items-center gap-1.5">
+                  CycloneShield <span className="text-teal-400 font-mono text-sm font-bold bg-teal-500/10 px-1.5 py-0.5 rounded border border-teal-500/30">AI</span>
                 </h1>
-                <span
-                  className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase border ${
-                    dataMode === 'live'
-                      ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40'
-                      : dataMode === 'fallback'
-                      ? 'bg-orange-500/20 text-orange-300 border-orange-500/40'
-                      : 'bg-amber-500/20 text-amber-300 border-amber-500/40'
-                  }`}
-                  title="Operational Data Mode"
-                >
-                  <span
-                    className={`w-1.5 h-1.5 rounded-full ${
-                      dataMode === 'live'
-                        ? 'bg-emerald-400 animate-pulse'
-                        : dataMode === 'fallback'
-                        ? 'bg-orange-400 animate-pulse'
-                        : 'bg-amber-400 animate-pulse'
-                    }`}
-                  />
-                  {modeBadgeText}
-                </span>
               </div>
-              <p className="text-[10px] text-cyan-400 font-medium tracking-wide hidden sm:block">
-                {t('tagline')}
+              <p className="text-[11px] text-slate-300 font-medium tracking-wide hidden sm:block">
+                Predict. Protect. Respond.
               </p>
             </div>
           </button>
+        </div>
 
-          {/* Active Storm Quick Telemetry Card */}
-          <div className="hidden xl:flex items-center gap-2 pl-3 border-l border-navy-750">
-            {activeCyclone ? (
-              <div className="bg-navy-950 px-2.5 py-1 rounded-lg border border-navy-800 flex items-center gap-2.5 font-mono text-xs">
-                <div className="flex items-center gap-1.5">
-                  <Radio className="w-3 h-3 text-red-400 animate-pulse" />
-                  <span className="text-slate-400 text-[10px]">Storm:</span>
-                  <span className="font-bold text-white text-[11px]">{activeCyclone.name}</span>
-                </div>
-                <span className="h-3 w-px bg-navy-800" />
-                <div className="flex items-center gap-1 text-[11px] text-orange-400 font-bold">
-                  <Flame className="w-3 h-3" />
-                  <span>{activeCyclone.maxWindSpeed} km/h</span>
-                </div>
-                <span className="h-3 w-px bg-navy-800" />
-                <div className="text-[10px] text-slate-400">
-                  Landfall: <b className="text-cyan-300">{activeCyclone.landfallETA}</b>
-                </div>
-              </div>
-            ) : (
-              <div className="bg-navy-950 px-2.5 py-1 rounded-lg border border-navy-800 flex items-center gap-2 font-mono text-xs text-slate-400">
-                <span className="w-2 h-2 rounded-full bg-cyan-400" />
-                <span>NO ACTIVE CYCLONE • IMD RSMC STANDBY</span>
-              </div>
-            )}
+        {/* Center: Scenario Selector & Status Chips */}
+        <div className="hidden md:flex items-center gap-2">
+          {/* Current Scenario Chip */}
+          <div className="bg-navy-950 px-3 py-1.5 rounded-lg border border-navy-750 flex items-center gap-2 text-xs">
+            <Radio className="w-3.5 h-3.5 text-rose-400 animate-pulse" />
+            <span className="text-slate-300 font-medium">Cyclone Varuna</span>
+            <span className="text-slate-500">•</span>
+            <span className="text-teal-300 font-mono">Sundar Coast District</span>
+          </div>
+
+          {/* Scenario Time Chip */}
+          <div className="bg-navy-950 px-2.5 py-1.5 rounded-lg border border-navy-750 flex items-center gap-1.5 text-xs font-mono text-slate-300">
+            <Clock className="w-3.5 h-3.5 text-cyan-400" />
+            <span>T–24h to Landfall</span>
+          </div>
+
+          {/* Prototype Simulation Chip */}
+          <div className="bg-amber-500/15 border border-amber-500/40 text-amber-300 px-2.5 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+            <span>Prototype Simulation</span>
           </div>
         </div>
 
-        {/* Center Lead-Time Phase Selector */}
-        <div className="hidden md:flex items-center gap-1 bg-navy-950 p-1 rounded-xl border border-navy-800 font-mono text-xs">
-          <div className="flex items-center gap-1 px-2 text-[10px] text-slate-400 font-mono">
-            <Clock className="w-3 h-3 text-cyan-400" />
-            <span className="hidden lg:inline">Phase:</span>
-          </div>
-          {PHASES.map((p) => {
-            const isSelected = timelinePhase === p.id;
-            return (
-              <button
-                key={p.id}
-                onClick={() => setTimelinePhase(p.id)}
-                className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all relative ${
-                  isSelected
-                    ? 'bg-cyan-600 text-white font-bold shadow-md shadow-cyan-950 border border-cyan-400/60'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-navy-850'
-                }`}
-                title={p.activeDesc}
-              >
-                {p.label}
-                {isSelected && (
-                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-cyan-300 rounded-full" />
-                )}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Right Controls: Data Sources Status, Clock, Language & Alerts */}
+        {/* Right: Language, Confidence, Model Update, Role Menu */}
         <div className="flex items-center gap-2 md:gap-3">
-          {/* Data Sources Status Button */}
-          <button
-            onClick={() => setIsStatusModalOpen(true)}
-            className="flex items-center gap-1.5 bg-navy-850 hover:bg-navy-800 text-slate-300 hover:text-white border border-navy-750 px-2.5 py-1.5 rounded-lg text-xs font-mono transition-colors"
-            title="Inspect Data Source & Provenance Status"
-          >
-            <Database className="w-3.5 h-3.5 text-cyan-400" />
-            <span className="hidden sm:inline">Data Feeds</span>
-            <span
-              className={`w-2 h-2 rounded-full ${
-                isFixtureMode
-                  ? 'bg-purple-400 animate-pulse'
-                  : 'bg-emerald-400'
-              }`}
-            />
-          </button>
+          {/* Confidence Chip */}
+          <div className="hidden lg:flex items-center gap-1.5 bg-navy-950 border border-navy-750 px-2.5 py-1.5 rounded-lg text-xs font-mono">
+            <Activity className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="text-slate-300">78% confidence</span>
+          </div>
 
-          {/* Refresh Data Button */}
-          <button
-            onClick={() => refreshData()}
-            disabled={isLoading}
-            className="p-1.5 rounded-lg bg-navy-850 hover:bg-navy-800 text-slate-400 hover:text-white border border-navy-750 transition-colors"
-            title="Refresh All Feeds"
-            aria-label="Refresh Data"
-          >
-            <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin text-cyan-400' : ''}`} />
-          </button>
-
-          {/* Live Clock */}
-          <div className="hidden lg:flex flex-col items-end text-right font-mono pr-1">
-            <div className="text-xs font-bold text-white flex items-center gap-1">
+          {/* Last Update */}
+          <div className="hidden xl:flex flex-col text-right text-[10px] font-mono text-slate-400 pr-1">
+            <span className="text-slate-200 font-semibold flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              <span>{currentTime || '18:25:00 IST'}</span>
-            </div>
-            <div className="text-[9px] text-slate-400 font-mono">
-              IST • Asian/Kolkata
-            </div>
+              Updated just now
+            </span>
+            <span>{currentTime || '18:25:00 IST'}</span>
           </div>
 
           {/* Language Selector */}
-          <div className="relative flex items-center bg-navy-850 border border-navy-750 rounded-lg px-2 py-1 text-xs">
+          <div className="relative flex items-center bg-navy-950 border border-navy-750 rounded-lg px-2 py-1 text-xs">
             <Globe className="w-3.5 h-3.5 text-slate-400 mr-1.5" />
             <select
               value={language}
@@ -230,10 +150,31 @@ export const TopHeader: React.FC = () => {
             </select>
           </div>
 
-          {/* CAP Notifications Bell */}
+          {/* User/Role Menu */}
+          <div className="hidden sm:flex items-center gap-2 bg-navy-950 border border-navy-750 px-2.5 py-1.5 rounded-lg text-xs">
+            <div className="w-5 h-5 rounded-full bg-teal-500/20 text-teal-300 border border-teal-500/40 flex items-center justify-center">
+              <UserCheck className="w-3 h-3" />
+            </div>
+            <div className="text-left leading-tight hidden md:block">
+              <div className="text-[11px] font-bold text-slate-100">District Emergency Officer</div>
+              <div className="text-[9px] text-slate-400 font-mono">EOC Sundar Coast</div>
+            </div>
+          </div>
+
+          {/* Data Sources Status Modal Button */}
+          <button
+            onClick={() => setIsStatusModalOpen(true)}
+            className="p-2 rounded-lg bg-navy-950 hover:bg-navy-800 text-slate-300 hover:text-white border border-navy-750 transition-colors"
+            title="Inspect Data Source & Provenance Status"
+            aria-label="Data Sources"
+          >
+            <Database className="w-4 h-4 text-cyan-400" />
+          </button>
+
+          {/* Notifications Bell */}
           <button
             onClick={() => setActiveTab('alert')}
-            className="relative p-2 rounded-lg bg-navy-850 hover:bg-navy-800 text-slate-300 hover:text-white border border-navy-750 transition-colors"
+            className="relative p-2 rounded-lg bg-navy-950 hover:bg-navy-800 text-slate-300 hover:text-white border border-navy-750 transition-colors"
             title="Active CAP Advisories"
             aria-label="Active CAP Advisories"
           >
@@ -247,6 +188,26 @@ export const TopHeader: React.FC = () => {
         </div>
       </header>
 
+      {/* Information Strip Below Navigation */}
+      <div className="bg-navy-950 border-b border-navy-800 px-4 py-1.5 text-xs text-slate-300 flex items-center justify-between font-sans shadow-sm">
+        <div className="flex items-center gap-2">
+          <span className="inline-block w-2 h-2 rounded-full bg-amber-400 flex-shrink-0" />
+          <span>
+            <strong className="text-amber-300 font-semibold font-mono uppercase tracking-wide">Simulation mode:</strong> All predictions are calculated from synthetic sample data and are not official warnings.
+          </span>
+        </div>
+        <div className="hidden lg:flex items-center gap-3 font-mono text-[11px] text-slate-400">
+          <span>Turn cyclone forecasts into local, actionable decisions.</span>
+          <span className="text-slate-600">|</span>
+          <button
+            onClick={() => setActiveTab('methodology')}
+            className="text-teal-400 hover:text-teal-300 hover:underline"
+          >
+            Model Methodology &rarr;
+          </button>
+        </div>
+      </div>
+
       {/* System Data Sources Modal */}
       <SystemStatusModal
         isOpen={isStatusModalOpen}
@@ -256,3 +217,4 @@ export const TopHeader: React.FC = () => {
     </>
   );
 };
+

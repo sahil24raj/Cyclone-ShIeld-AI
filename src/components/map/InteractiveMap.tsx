@@ -1,303 +1,233 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import {
+  Layers,
+  Eye,
+  EyeOff,
+  Navigation,
+  Shield,
+  Building2,
+  Clock,
+  RotateCcw,
+  X,
+  Info,
+  Waves,
+  Flame,
+  CloudRain,
+  MapPin,
+  AlertTriangle,
+  CheckCircle2,
+  Maximize2
+} from 'lucide-react';
 import { useAppState } from '../../context/AppStateContext';
-import { MapLegend } from './MapLegend';
-import { DeterministicRiskEngine } from '../../services/riskEngine';
-import { RotateCcw, Plus, Minus, Compass, Layers } from 'lucide-react';
+import { TimelinePhase } from '../../types';
+import { CalculatedVillageOutput, CalculatedAssetOutput } from '../../types/disaster';
+import { MOCK_GEOJSON_TRACK, MOCK_GEOJSON_SURGE_ZONE, MOCK_GEOJSON_FLOOD_ZONE } from '../../data/mockGeoJson';
 
 export const InteractiveMap: React.FC = () => {
-  const mapContainerRef = useRef<HTMLDivElement>(null);
-  const mapInstanceRef = useRef<L.Map | null>(null);
-  const tileLayerRef = useRef<L.TileLayer | null>(null);
-  const layersGroupRef = useRef<L.LayerGroup | null>(null);
-  const [mouseCoords, setMouseCoords] = useState<string>('20.480°N, 86.820°E');
-
   const {
-    mapLayers,
-    basemapStyle,
     timelinePhase,
-    simulationParams,
-    selectedVillage,
-    setSelectedVillage,
-    selectedAsset,
-    setSelectedAsset,
-    activeCyclone,
+    setTimelinePhase,
+    mapLayers,
+    toggleMapLayer,
     villages,
     assets,
     shelters,
     evacuationRoutes,
+    selectedVillage,
+    setSelectedVillage,
+    selectedAsset,
+    setSelectedAsset,
+    scenarioInputs,
+    setScenarioInputs,
+    simulationSummary,
   } = useAppState();
 
-  // Initialize Leaflet Map once
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const mapInstanceRef = useRef<L.Map | null>(null);
+  const layerGroupRef = useRef<L.LayerGroup | null>(null);
+
+  // Top Hazard Filter Selector
+  const [activeHazardView, setActiveHazardView] = useState<'combined' | 'wind' | 'rainfall' | 'surge' | 'flood'>('combined');
+
+  // Center Coordinates for Sundar Coast District: ~20.48 N, 86.85 E
+  const CENTER_LAT = 20.48;
+  const CENTER_LNG = 86.85;
+
+  const PHASES: { id: TimelinePhase; label: string; offsetHours: number }[] = [
+    { id: 'T-48h', label: 'T–48h', offsetHours: 48 },
+    { id: 'T-36h', label: 'T–36h', offsetHours: 36 },
+    { id: 'T-24h', label: 'T–24h', offsetHours: 24 },
+    { id: 'T-12h', label: 'T–12h', offsetHours: 12 },
+    { id: 'T-00h', label: 'Landfall', offsetHours: 0 },
+    { id: 'T+06h', label: 'T+6h', offsetHours: -6 },
+  ];
+
+  // Initialize Leaflet Map
   useEffect(() => {
-    if (!mapContainerRef.current || mapInstanceRef.current) return;
+    if (!mapContainerRef.current) return;
 
-    // Center on Sundar Coast District (Bay of Bengal coast)
-    const map = L.map(mapContainerRef.current, {
-      center: [20.48, 86.82],
-      zoom: 11,
-      zoomControl: false,
-      minZoom: 8,
-      maxZoom: 18,
-    });
+    if (!mapInstanceRef.current) {
+      const map = L.map(mapContainerRef.current, {
+        center: [CENTER_LAT, CENTER_LNG],
+        zoom: 11,
+        minZoom: 9,
+        maxZoom: 16,
+        zoomControl: false,
+        attributionControl: false,
+      });
 
-    // Track mouse coordinates for GIS HUD
-    map.on('mousemove', (e) => {
-      setMouseCoords(`${e.latlng.lat.toFixed(3)}°N, ${e.latlng.lng.toFixed(3)}°E`);
-    });
+      L.control.zoom({ position: 'bottomright' }).addTo(map);
 
-    const layerGroup = L.layerGroup().addTo(map);
-    layersGroupRef.current = layerGroup;
-    mapInstanceRef.current = map;
+      // Dark theme tiles
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        maxZoom: 19,
+        subdomains: 'abcd',
+      }).addTo(map);
+
+      const layerGroup = L.layerGroup().addTo(map);
+      layerGroupRef.current = layerGroup;
+      mapInstanceRef.current = map;
+    }
 
     return () => {
-      map.remove();
-      mapInstanceRef.current = null;
+      // Cleanup on unmount if needed
     };
   }, []);
 
-  // Manage Dynamic Basemap Layer
+  // Update Map Layers & GeoJSON Features dynamically on state change
   useEffect(() => {
-    const map = mapInstanceRef.current;
-    if (!map) return;
-
-    if (tileLayerRef.current) {
-      map.removeLayer(tileLayerRef.current);
-    }
-
-    let newTileLayer: L.TileLayer;
-
-    if (basemapStyle === 'satellite') {
-      newTileLayer = L.tileLayer(
-        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-        {
-          attribution: '&copy; Esri World Imagery &copy; Earthstar Geographics',
-          maxZoom: 19,
-        }
-      );
-    } else if (basemapStyle === 'osm') {
-      newTileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 19,
-      });
-    } else {
-      // Default: Clean Dark Gray Canvas (Watermark-free)
-      newTileLayer = L.tileLayer(
-        'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',
-        {
-          attribution: '&copy; Esri &copy; OpenStreetMap contributors &copy; GIS Community',
-          maxZoom: 16,
-        }
-      );
-    }
-
-    newTileLayer.addTo(map);
-    tileLayerRef.current = newTileLayer;
-  }, [basemapStyle]);
-
-  // Center on District
-  const handleResetCenter = () => {
-    if (mapInstanceRef.current) {
-      mapInstanceRef.current.flyTo([20.48, 86.82], 11, { duration: 0.8 });
-    }
-  };
-
-  const handleZoomIn = () => {
-    if (mapInstanceRef.current) mapInstanceRef.current.zoomIn();
-  };
-
-  const handleZoomOut = () => {
-    if (mapInstanceRef.current) mapInstanceRef.current.zoomOut();
-  };
-
-  // Update Dynamic Map Layers whenever toggles, phase, or simulation params change
-  useEffect(() => {
-    const map = mapInstanceRef.current;
-    const group = layersGroupRef.current;
-    if (!map || !group) return;
-
+    if (!mapInstanceRef.current || !layerGroupRef.current) return;
+    const group = layerGroupRef.current;
     group.clearLayers();
 
-    const trackShift = simulationParams.trackShiftKm * 0.009; // deg approx
+    const trackShiftDeg = scenarioInputs.trackShiftKm * 0.008;
 
-    // 1. Sundar Coast District Boundary (Always visible as reference)
-    const districtCoords: [number, number][] = [
-      [20.72, 86.55],
-      [20.70, 87.15],
-      [20.50, 87.08],
-      [20.30, 86.80],
-      [20.25, 86.50],
-      [20.45, 86.50],
-      [20.72, 86.55],
-    ];
-
-    L.polygon(districtCoords, {
-      color: '#38BDF8',
-      weight: 1.5,
-      dashArray: '4, 4',
-      fillOpacity: 0.03,
-      fillColor: '#0284C7',
-    }).addTo(group);
-
-    // 2. Storm Surge Inundation Zone (If enabled and storm/simulation active)
-    if (mapLayers.stormSurge && activeCyclone) {
-      const surgeMultiplier = 1 + simulationParams.surgeHeightOffset / 3.4;
+    // 1. Storm Surge Hazard Inundation Overlay (Purple/Blue)
+    if (activeHazardView === 'combined' || activeHazardView === 'surge') {
       const surgeCoords: [number, number][] = [
-        [20.52, 87.05 + trackShift * 0.5],
-        [20.46, 86.92 + trackShift * 0.5],
-        [20.42, 86.85 + trackShift * 0.5],
-        [20.35, 86.72 + trackShift * 0.5],
-        [20.28, 86.60 + trackShift * 0.5],
-        [20.22, 86.48],
-        [20.18, 86.62],
-        [20.30, 86.88],
-        [20.45, 87.18],
+        [20.30 + trackShiftDeg, 86.60],
+        [20.44 + trackShiftDeg, 86.80],
+        [20.52 + trackShiftDeg, 86.96],
+        [20.65 + trackShiftDeg, 87.05],
+        [20.58 + trackShiftDeg, 87.15],
+        [20.35 + trackShiftDeg, 86.95],
       ];
 
+      const surgeOpacity = Math.min(0.7, 0.2 + (scenarioInputs.stormSurgeMeters / 5.0) * 0.45);
       L.polygon(surgeCoords, {
         color: '#8B5CF6',
-        weight: 2,
         fillColor: '#8B5CF6',
-        fillOpacity: Math.min(0.65, 0.35 * surgeMultiplier),
+        fillOpacity: surgeOpacity,
+        weight: 1.5,
+        dashArray: '4, 4',
       })
-        .bindTooltip(`<b>Storm Surge Hazard Zone</b><br>Projected Surge: ${(activeCyclone.stormSurgeMax + simulationParams.surgeHeightOffset).toFixed(1)}m<br>Peak Tide Inundation`, {
-          className: 'leaflet-tooltip-dark',
-        })
+        .bindTooltip(
+          `<div class="font-mono text-xs">
+            <div class="font-bold text-purple-300">Storm Surge Inundation Zone</div>
+            <div>Model Estimate: ${scenarioInputs.stormSurgeMeters.toFixed(1)}m Peak Surge</div>
+            <div class="text-[10px] text-slate-400">Low elevation coastal belt &lt; 3.0m AMSL</div>
+          </div>`,
+          { className: 'leaflet-tooltip-dark' }
+        )
         .addTo(group);
     }
 
-    // 3. Flood Extent / Inland Water Inundation (Sentinel-1 SAR detected polygon)
-    if (mapLayers.floodExtent) {
+    // 2. Flood Extent Overlay (Cyan/Blue)
+    if (activeHazardView === 'combined' || activeHazardView === 'flood' || activeHazardView === 'rainfall') {
       const floodCoords: [number, number][] = [
-        [20.48, 86.78],
-        [20.45, 86.83],
-        [20.41, 86.74],
-        [20.38, 86.68],
-        [20.43, 86.65],
+        [20.36 + trackShiftDeg, 86.68],
+        [20.45 + trackShiftDeg, 86.74],
+        [20.48 + trackShiftDeg, 86.90],
+        [20.42 + trackShiftDeg, 86.85],
       ];
 
+      const floodOpacity = Math.min(0.65, 0.2 + (scenarioInputs.rainfallMm / 400) * 0.4);
       L.polygon(floodCoords, {
         color: '#06B6D4',
-        weight: 1.5,
         fillColor: '#06B6D4',
-        fillOpacity: 0.32 * simulationParams.rainfallMultiplier,
+        fillOpacity: floodOpacity,
+        weight: 1.5,
       })
-        .bindTooltip('<b>Sentinel-1 SAR Flood Inundation Extent</b><br>Surface Water Index: SAR Change Detected<br>Depth Range: 0.8 - 2.3m', {
-          className: 'leaflet-tooltip-dark',
-        })
+        .bindTooltip(
+          `<div class="font-mono text-xs">
+            <div class="font-bold text-cyan-300">Riverine &amp; Delta Flood Zone</div>
+            <div>Model Estimate: ${scenarioInputs.rainfallMm}mm 24h Accumulation</div>
+            <div class="text-[10px] text-slate-400">Mahanadi Delta Catchment Overflow</div>
+          </div>`,
+          { className: 'leaflet-tooltip-dark' }
+        )
         .addTo(group);
     }
 
-    // 4. Rainfall Layer
-    if (mapLayers.rainfall) {
-      const rainCoords: [number, number][] = [
-        [20.65, 86.70],
-        [20.62, 87.05],
-        [20.35, 86.95],
-        [20.32, 86.58],
+    // 3. Cyclone Track & Forecast Cone
+    if (mapLayers.cycloneTrack) {
+      const trackPoints: [number, number][] = [
+        [19.00, 87.80],
+        [19.60, 87.40],
+        [20.10 + trackShiftDeg * 0.5, 87.05], // T-24h
+        [20.48 + trackShiftDeg, 86.85],       // Landfall
+        [20.90 + trackShiftDeg * 1.2, 86.50], // T+6h
       ];
-      L.polygon(rainCoords, {
-        color: '#3B82F6',
-        weight: 1,
-        dashArray: '2, 6',
-        fillColor: '#3B82F6',
-        fillOpacity: 0.22 * simulationParams.rainfallMultiplier,
-      })
-        .bindTooltip(`<b>24h Precipitation Forecast</b><br>Accumulation: ${Math.round(280 * simulationParams.rainfallMultiplier)}mm`, {
-          className: 'leaflet-tooltip-dark',
-        })
-        .addTo(group);
-    }
-
-    // 5. Cyclone Track, Uncertainty Cone & Gale Radii (Only if active cyclone exists)
-    if (mapLayers.cycloneTrack && activeCyclone) {
-      const allPoints = [...activeCyclone.observedTrack, ...activeCyclone.forecastTrack];
-      const adjustedTrack = allPoints.map((pt) => ({
-        ...pt,
-        lat: pt.lat + trackShift,
-      }));
-
-      const trackLatlngs = adjustedTrack.map((pt) => [pt.lat, pt.lng] as [number, number]);
 
       // Track Line
-      L.polyline(trackLatlngs, {
+      L.polyline(trackPoints, {
         color: '#F43F5E',
         weight: 3.5,
         opacity: 0.9,
       }).addTo(group);
 
-      // Uncertainty Cone Polygon
-      if (mapLayers.forecastCone) {
-        const coneLeft: [number, number][] = [];
-        const coneRight: [number, number][] = [];
+      // Forecast Cone
+      const conePolygon: [number, number][] = [
+        [20.10 + trackShiftDeg * 0.5, 87.05],
+        [20.65 + trackShiftDeg + 0.15, 86.75],
+        [21.05 + trackShiftDeg * 1.2 + 0.25, 86.35],
+        [20.75 + trackShiftDeg * 1.2 - 0.25, 86.60],
+        [20.30 + trackShiftDeg - 0.15, 86.95],
+      ];
 
-        adjustedTrack.forEach((pt) => {
-          const radiusDeg = (pt.uncertaintyRadiusKm / 111) * 0.7;
-          coneLeft.push([pt.lat + radiusDeg * 0.6, pt.lng - radiusDeg]);
-          coneRight.push([pt.lat - radiusDeg * 0.6, pt.lng + radiusDeg]);
-        });
+      L.polygon(conePolygon, {
+        color: '#F43F5E',
+        fillColor: '#F43F5E',
+        fillOpacity: 0.12,
+        weight: 1,
+        dashArray: '5, 5',
+      }).addTo(group);
 
-        const conePolygon = [...coneLeft, ...coneRight.reverse()];
-
-        L.polygon(conePolygon, {
-          color: '#FDA4AF',
-          weight: 1,
-          dashArray: '4, 4',
-          fillColor: '#F43F5E',
-          fillOpacity: 0.12,
-        }).addTo(group);
-      }
-
-      // Track Points & Time Labels
-      adjustedTrack.forEach((pt) => {
-        const isCurrent = pt.time === 'T-24h';
-        const isSelectedPhase = pt.time === timelinePhase;
-
-        const circleMarker = L.circleMarker([pt.lat, pt.lng], {
-          radius: isCurrent || isSelectedPhase ? 9 : 5,
-          color: isCurrent ? '#FFFFFF' : '#F43F5E',
-          fillColor: isCurrent ? '#EF4444' : '#FB7185',
-          fillOpacity: 1,
-          weight: isCurrent ? 3 : 1.5,
-        });
-
-        circleMarker.bindTooltip(
-          `<div class="font-mono text-xs">
-            <div class="font-bold text-red-400">${pt.time}: ${pt.category}</div>
-            <div>Max Wind: ${Math.round(pt.wind * simulationParams.windSpeedMultiplier)} km/h</div>
-            <div>Central Pressure: ${pt.pressure} hPa</div>
-          </div>`,
-          { className: 'leaflet-tooltip-dark' }
-        );
-
-        circleMarker.addTo(group);
+      // Landfall Center Marker
+      const eyeIcon = L.divIcon({
+        className: 'cyclone-eye-icon',
+        html: `
+          <div class="relative flex items-center justify-center">
+            <div class="w-8 h-8 rounded-full bg-rose-500/30 border-2 border-rose-400 animate-ping absolute"></div>
+            <div class="w-6 h-6 rounded-full bg-rose-600 text-white font-mono font-bold text-[10px] flex items-center justify-center shadow-lg border border-white">
+              🌀
+            </div>
+          </div>
+        `,
+        iconSize: [24, 24],
+        iconAnchor: [12, 12],
       });
 
-      // Gale Wind Radius Buffer
-      if (mapLayers.windRadius) {
-        const currentPt = adjustedTrack.find((p) => p.time === 'T-24h') || adjustedTrack[2] || adjustedTrack[0];
-        const currentWindSpeed = activeCyclone.maxWindSpeed * simulationParams.windSpeedMultiplier;
-
-        L.circle([currentPt.lat, currentPt.lng], {
-          radius: currentWindSpeed * 550, // in meters
-          color: '#F97316',
-          weight: 1.5,
-          dashArray: '6, 6',
-          fillColor: '#F97316',
-          fillOpacity: 0.1,
-        })
-          .bindTooltip(`<b>Gale Wind Radius (50 knot / 92 km/h boundary)</b><br>Max Sustained: ${Math.round(currentWindSpeed)} km/h`, {
-            className: 'leaflet-tooltip-dark',
-          })
-          .addTo(group);
-      }
+      L.marker([20.48 + trackShiftDeg, 86.85], { icon: eyeIcon })
+        .bindTooltip(
+          `<div class="font-mono text-xs">
+            <div class="font-bold text-rose-300">Projected Cyclone Landfall (T–00h)</div>
+            <div>Max Wind: ${scenarioInputs.windSpeedKmh} km/h</div>
+            <div>Peak Surge: ${scenarioInputs.stormSurgeMeters.toFixed(1)}m</div>
+            <div class="text-[10px] text-slate-400">Track Shift: ${scenarioInputs.trackShiftKm > 0 ? '+' : ''}${scenarioInputs.trackShiftKm} km</div>
+          </div>`,
+          { className: 'leaflet-tooltip-dark' }
+        )
+        .addTo(group);
     }
 
-    // 6. Evacuation Routes
+    // 4. Evacuation Routes
     if (mapLayers.evacuationRoutes && evacuationRoutes.length > 0) {
       evacuationRoutes.forEach((route) => {
-        const routeStatusStr = (route.status || (route as any).calculatedStatus || 'clear').toLowerCase();
-        const isBlocked = routeStatusStr === 'blocked' || routeStatusStr === 'flooded' || routeStatusStr === 'at risk';
+        const routeStatusStr = (route.status || (route as any).calculatedStatus || 'Safe').toLowerCase();
+        const isBlocked = routeStatusStr === 'blocked' || routeStatusStr === 'at risk';
         const isElevated = route.is_elevated || (route as any).isElevated;
 
         const poly = L.polyline(route.coordinates, {
@@ -307,16 +237,12 @@ export const InteractiveMap: React.FC = () => {
           opacity: isBlocked ? 0.8 : 0.95,
         });
 
-        const statusDisplay = (route.status || (route as any).calculatedStatus || 'Safe').toString().toUpperCase();
-        const transitMin = route.estimated_travel_time_min || (route as any).calculatedTravelTimeMin || 20;
-        const distKm = route.distance_km || (route as any).distanceKm || 5;
-
         poly.bindTooltip(
           `<div class="font-mono text-xs">
             <div class="font-bold ${isBlocked ? 'text-red-400' : 'text-emerald-400'}">${route.name}</div>
-            <div>Status: <b>${statusDisplay}</b></div>
+            <div>Status: <b>${(route.status || (route as any).calculatedStatus || 'Safe').toUpperCase()}</b></div>
             <div>Elevated Corridor: ${isElevated ? 'YES (Flood Safe)' : 'NO'}</div>
-            <div>Transit: ~${transitMin} mins (${distKm} km)</div>
+            <div>Transit: ~${(route as any).calculatedTravelTimeMin || 20} mins</div>
           </div>`,
           { className: 'leaflet-tooltip-dark' }
         );
@@ -325,14 +251,13 @@ export const InteractiveMap: React.FC = () => {
       });
     }
 
-    // 7. Cyclone Shelters
+    // 5. Cyclone Shelters
     if (shelters.length > 0) {
       shelters.forEach((shelter) => {
         const roadStatus = ((shelter as any).access_road_status || (shelter as any).calculatedStatus || 'clear').toString();
         const isBlocked = roadStatus === 'blocked' || roadStatus === 'isolated' || !(shelter.is_operational ?? true);
         const currOcc = (shelter as any).current_occupancy ?? (shelter as any).currentOccupancy ?? 0;
         const cap = shelter.capacity ?? (shelter as any).capacity ?? 0;
-        const hasGen = (shelter as any).has_generator ?? (shelter as any).backupPowerAvailable ?? true;
         const lat = shelter.lat || (shelter as any).latitude;
         const lng = shelter.lng || (shelter as any).longitude;
 
@@ -366,7 +291,6 @@ export const InteractiveMap: React.FC = () => {
             <div class="font-bold ${isBlocked ? 'text-red-400' : 'text-emerald-400'}">${shelter.name}</div>
             <div>Capacity: ${currOcc.toLocaleString()} / ${cap.toLocaleString()}</div>
             <div>Road Access: <b class="${isBlocked ? 'text-red-400' : 'text-emerald-400'}">${roadStatus.toUpperCase()}</b></div>
-            <div>Generator: ${hasGen ? 'READY' : 'NONE'}</div>
           </div>`,
           { className: 'leaflet-tooltip-dark' }
         );
@@ -375,10 +299,10 @@ export const InteractiveMap: React.FC = () => {
       });
     }
 
-    // 8. Critical Infrastructure Assets
+    // 6. Critical Infrastructure Assets
     if (mapLayers.criticalInfrastructure && assets.length > 0) {
       assets.forEach((asset) => {
-        const isCritical = asset.risk_score >= 80;
+        const isCritical = (asset.risk_score || (asset as any).calculatedRiskScore || 50) >= 75;
         const isSelected = selectedAsset?.id === asset.id;
 
         const assetIcon = L.divIcon({
@@ -386,7 +310,7 @@ export const InteractiveMap: React.FC = () => {
           html: `
             <div class="w-6 h-6 rounded-full ${
               isSelected
-                ? 'bg-cyan-400 border-2 border-white ring-4 ring-cyan-500/50 scale-125'
+                ? 'bg-teal-400 border-2 border-white ring-4 ring-teal-500/50 scale-125'
                 : isCritical
                 ? 'bg-amber-600 border-2 border-amber-300'
                 : 'bg-blue-600 border-2 border-blue-300'
@@ -398,7 +322,7 @@ export const InteractiveMap: React.FC = () => {
           iconAnchor: [12, 12],
         });
 
-        const marker = L.marker([asset.lat, asset.lng], { icon: assetIcon });
+        const marker = L.marker([asset.lat || (asset as any).latitude, asset.lng || (asset as any).longitude], { icon: assetIcon });
         marker.on('click', () => {
           setSelectedAsset(asset);
           setSelectedVillage(null);
@@ -407,9 +331,8 @@ export const InteractiveMap: React.FC = () => {
         marker.bindTooltip(
           `<div class="font-mono text-xs">
             <div class="font-bold text-amber-300">${asset.name}</div>
-            <div>Risk Score: ${asset.risk_score}/100</div>
-            <div>Status: ${asset.current_status}</div>
-            <div class="text-cyan-400 text-[10px] mt-1">Click to Inspect in Panel &gt;</div>
+            <div>Risk Score: ${(asset as any).calculatedRiskScore || asset.risk_score}/100</div>
+            <div class="text-teal-400 text-[10px] mt-1">Click to Inspect in Panel &gt;</div>
           </div>`,
           { className: 'leaflet-tooltip-dark' }
         );
@@ -418,48 +341,45 @@ export const InteractiveMap: React.FC = () => {
       });
     }
 
-    // 9. Village Risk Markers
+    // 7. Village Markers with Risk Scores
     if (villages.length > 0) {
       villages.forEach((village) => {
-        const riskBreakdown = DeterministicRiskEngine.calculateRisk(village, simulationParams);
-        const level = DeterministicRiskEngine.getRiskLevel(riskBreakdown.overallRisk);
+        const calculatedVillage = village as unknown as CalculatedVillageOutput;
+        const riskScore = calculatedVillage.risk?.overallRisk || calculatedVillage.overall_risk || 50;
+        const riskClass = calculatedVillage.risk?.riskClass || 'High';
+        const isCrit = riskClass === 'Critical';
         const isSelected = selectedVillage?.id === village.id;
 
         const colorBg =
-          level === 'critical'
+          isCrit
             ? 'bg-red-600'
-            : level === 'high'
+            : riskClass === 'High'
             ? 'bg-orange-600'
-            : level === 'moderate'
+            : riskClass === 'Moderate'
             ? 'bg-amber-600'
             : 'bg-emerald-600';
 
-        const ringColor =
-          isSelected
-            ? 'border-white ring-4 ring-cyan-400 scale-125'
-            : level === 'critical'
-            ? 'border-red-300 shadow-red-500/60'
-            : level === 'high'
-            ? 'border-orange-300 shadow-orange-500/60'
-            : level === 'moderate'
-            ? 'border-amber-300'
-            : 'border-emerald-300';
+        const ringColor = isSelected
+          ? 'border-white ring-4 ring-teal-400 scale-125'
+          : isCrit
+          ? 'border-red-300 shadow-red-500/60'
+          : 'border-orange-300';
 
-        const isP0 = village.priority_level === 'P0';
+        const isP0 = (calculatedVillage.evacuation?.evacuationPriority || calculatedVillage.priority_level) === 'P0';
 
         const villageIcon = L.divIcon({
           className: 'custom-village-marker',
           html: `
             <div class="relative flex items-center justify-center group cursor-pointer">
               <div class="w-8 h-8 rounded-full ${colorBg} border-2 ${ringColor} text-white shadow-xl flex items-center justify-center font-mono font-extrabold text-xs transition-all transform group-hover:scale-125">
-                ${riskBreakdown.overallRisk}
+                ${riskScore}
               </div>
               ${
                 isP0
                   ? '<span class="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 bg-red-500 rounded-full animate-ping opacity-75"></span>'
                   : ''
               }
-              <div class="absolute -bottom-5 bg-navy-950/90 text-slate-100 text-[10px] font-mono px-1.5 py-0.2 rounded border border-navy-700 whitespace-nowrap shadow-md pointer-events-none">
+              <div class="absolute -bottom-5 bg-navy-950/95 text-slate-100 text-[10px] font-mono px-1.5 py-0.2 rounded border border-navy-700 whitespace-nowrap shadow-md pointer-events-none">
                 ${village.name}
               </div>
             </div>
@@ -468,19 +388,19 @@ export const InteractiveMap: React.FC = () => {
           iconAnchor: [16, 16],
         });
 
-        const marker = L.marker([village.lat, village.lng], { icon: villageIcon });
+        const marker = L.marker([village.lat || (village as any).latitude, village.lng || (village as any).longitude], { icon: villageIcon });
         marker.on('click', () => {
-          setSelectedVillage(village);
+          setSelectedVillage(calculatedVillage);
           setSelectedAsset(null);
         });
 
         marker.bindTooltip(
           `<div class="font-mono text-xs">
             <div class="font-bold text-white">${village.name}</div>
-            <div>Risk: <b class="${level === 'critical' ? 'text-red-400' : 'text-orange-400'}">${riskBreakdown.overallRisk}/100 (${level.toUpperCase()})</b></div>
-            <div>Priority: ${village.priority_level}</div>
+            <div>Risk: <b class="${isCrit ? 'text-red-400' : 'text-orange-400'}">${riskScore}/100 (${riskClass.toUpperCase()})</b></div>
+            <div>Priority: ${calculatedVillage.evacuation?.evacuationPriority || 'P0'}</div>
             <div>Population: ${village.population.toLocaleString()}</div>
-            <div class="text-cyan-400 text-[10px] mt-1">Click to Inspect in Panel &gt;</div>
+            <div class="text-teal-300 text-[10px] mt-1">Click to Inspect in Panel &gt;</div>
           </div>`,
           { className: 'leaflet-tooltip-dark' }
         );
@@ -490,68 +410,376 @@ export const InteractiveMap: React.FC = () => {
     }
   }, [
     mapLayers,
+    activeHazardView,
     timelinePhase,
-    simulationParams,
-    selectedVillage,
-    selectedAsset,
-    activeCyclone,
+    scenarioInputs,
     villages,
     assets,
     shelters,
     evacuationRoutes,
+    selectedVillage,
+    selectedAsset,
   ]);
 
+  const handleResetMap = () => {
+    if (mapInstanceRef.current) {
+      mapInstanceRef.current.setView([CENTER_LAT, CENTER_LNG], 11);
+    }
+  };
+
+  const selectedVillageData = selectedVillage as unknown as CalculatedVillageOutput | null;
+
   return (
-    <div className="relative w-full h-full min-h-[450px] flex-1 bg-navy-950 overflow-hidden">
-      {/* Map Canvas */}
-      <div ref={mapContainerRef} className="w-full h-full z-0" />
-
-      {/* Floating Map Legend (Top Left) */}
-      <div className="absolute top-3 left-3 z-10 hidden md:block">
-        <MapLegend />
-      </div>
-
-      {/* GIS Floating HUD Bar (Top Right) */}
-      <div className="absolute top-3 right-3 z-10 bg-navy-900/90 backdrop-blur-md border border-navy-750 px-3 py-1.5 rounded-xl shadow-xl text-xs font-mono flex items-center gap-2.5 text-slate-300">
-        <div className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-          <span className="text-cyan-300 font-bold">GIS Viewport</span>
+    <div className="h-[calc(100vh-80px)] w-full flex flex-col bg-navy-950 text-slate-100 font-sans select-none relative overflow-hidden">
+      {/* Top Map Control Bar */}
+      <div className="bg-navy-900 border-b border-navy-750 px-4 py-2.5 z-20 flex flex-wrap items-center justify-between gap-3 shadow-md">
+        {/* Forecast Time Selector */}
+        <div className="flex items-center gap-1 bg-navy-950 p-1 rounded-xl border border-navy-800 font-mono text-xs">
+          <div className="flex items-center gap-1 px-2 text-[10px] text-slate-400">
+            <Clock className="w-3.5 h-3.5 text-teal-400" />
+            <span className="hidden sm:inline">Phase:</span>
+          </div>
+          {PHASES.map((p) => (
+            <button
+              key={p.id}
+              onClick={() => setTimelinePhase(p.id)}
+              className={`px-2.5 py-1 rounded-lg text-xs transition-all ${
+                timelinePhase === p.id
+                  ? 'bg-teal-600 text-white font-bold shadow-md shadow-teal-950'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-navy-850'
+              }`}
+            >
+              {p.label}
+            </button>
+          ))}
         </div>
-        <span className="h-3 w-px bg-navy-800" />
-        <span className="text-[10px] text-slate-400 hidden sm:inline">
-          {mouseCoords}
-        </span>
+
+        {/* Hazard Selector */}
+        <div className="flex items-center gap-1 bg-navy-950 p-1 rounded-xl border border-navy-800 font-mono text-xs">
+          <button
+            onClick={() => setActiveHazardView('combined')}
+            className={`px-2.5 py-1 rounded-lg transition-all ${
+              activeHazardView === 'combined'
+                ? 'bg-teal-600 text-white font-bold'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            Combined Risk
+          </button>
+          <button
+            onClick={() => setActiveHazardView('surge')}
+            className={`px-2.5 py-1 rounded-lg transition-all ${
+              activeHazardView === 'surge'
+                ? 'bg-purple-600 text-white font-bold'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            Storm Surge
+          </button>
+          <button
+            onClick={() => setActiveHazardView('flood')}
+            className={`px-2.5 py-1 rounded-lg transition-all ${
+              activeHazardView === 'flood'
+                ? 'bg-cyan-600 text-white font-bold'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            Flood Inundation
+          </button>
+          <button
+            onClick={() => setActiveHazardView('wind')}
+            className={`px-2.5 py-1 rounded-lg transition-all ${
+              activeHazardView === 'wind'
+                ? 'bg-rose-600 text-white font-bold'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            Wind Hazard
+          </button>
+        </div>
+
+        {/* Quick Toggles & Reset Map */}
+        <div className="flex items-center gap-2 text-xs font-mono">
+          <button
+            onClick={() => toggleMapLayer('criticalInfrastructure')}
+            className={`px-2.5 py-1.5 rounded-lg border flex items-center gap-1.5 transition-all ${
+              mapLayers.criticalInfrastructure
+                ? 'bg-navy-800 text-amber-300 border-amber-500/40'
+                : 'bg-navy-950 text-slate-500 border-navy-800'
+            }`}
+          >
+            <Building2 className="w-3.5 h-3.5" />
+            <span>Assets</span>
+          </button>
+
+          <button
+            onClick={() => toggleMapLayer('evacuationRoutes')}
+            className={`px-2.5 py-1.5 rounded-lg border flex items-center gap-1.5 transition-all ${
+              mapLayers.evacuationRoutes
+                ? 'bg-navy-800 text-emerald-300 border-emerald-500/40'
+                : 'bg-navy-950 text-slate-500 border-navy-800'
+            }`}
+          >
+            <Navigation className="w-3.5 h-3.5" />
+            <span>Routes</span>
+          </button>
+
+          <button
+            onClick={handleResetMap}
+            className="p-1.5 bg-navy-850 hover:bg-navy-800 text-slate-300 rounded-lg border border-navy-750 transition-colors"
+            title="Reset Map View"
+            aria-label="Reset Map View"
+          >
+            <RotateCcw className="w-3.5 h-3.5" />
+          </button>
+        </div>
       </div>
 
-      {/* Floating Zoom & Center Controls (Bottom Right) */}
-      <div className="absolute bottom-3 right-3 z-10 flex flex-col gap-1.5">
-        <button
-          type="button"
-          onClick={handleZoomIn}
-          className="w-8 h-8 rounded-lg bg-navy-900/90 hover:bg-navy-800 backdrop-blur-md border border-navy-750 text-slate-200 hover:text-white flex items-center justify-center shadow-lg transition-colors font-bold"
-          title="Zoom In"
-          aria-label="Zoom In"
-        >
-          <Plus className="w-4 h-4" />
-        </button>
-        <button
-          type="button"
-          onClick={handleZoomOut}
-          className="w-8 h-8 rounded-lg bg-navy-900/90 hover:bg-navy-800 backdrop-blur-md border border-navy-750 text-slate-200 hover:text-white flex items-center justify-center shadow-lg transition-colors font-bold"
-          title="Zoom Out"
-          aria-label="Zoom Out"
-        >
-          <Minus className="w-4 h-4" />
-        </button>
-        <button
-          type="button"
-          onClick={handleResetCenter}
-          className="w-8 h-8 rounded-lg bg-navy-900/90 hover:bg-navy-800 backdrop-blur-md border border-navy-750 text-cyan-400 hover:text-cyan-300 flex items-center justify-center shadow-lg transition-colors"
-          title="Center on District"
-          aria-label="Center on District"
-        >
-          <RotateCcw className="w-3.5 h-3.5" />
-        </button>
+      {/* Main Map Body (Map + Left Layers + Right Insight Drawer) */}
+      <div className="flex-1 relative flex overflow-hidden">
+        {/* Left Vertical Map Legend / Layers Control */}
+        <div className="absolute top-4 left-4 z-10 bg-navy-900/90 backdrop-blur-md border border-navy-750 p-3 rounded-2xl shadow-2xl max-w-[210px] space-y-2.5 font-mono text-xs">
+          <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+            <Layers className="w-3.5 h-3.5 text-teal-400" />
+            <span>GIS Layer Control</span>
+          </div>
+
+          <div className="space-y-1.5">
+            <button
+              onClick={() => toggleMapLayer('cycloneTrack')}
+              className={`w-full flex items-center justify-between p-1.5 rounded-lg border text-[11px] transition-colors ${
+                mapLayers.cycloneTrack
+                  ? 'bg-rose-500/15 text-rose-200 border-rose-500/30'
+                  : 'bg-navy-950 text-slate-500 border-navy-800'
+              }`}
+            >
+              <span>Storm Track &amp; Cone</span>
+              {mapLayers.cycloneTrack ? <Eye className="w-3 h-3 text-rose-400" /> : <EyeOff className="w-3 h-3 text-slate-600" />}
+            </button>
+
+            <button
+              onClick={() => toggleMapLayer('stormSurge')}
+              className={`w-full flex items-center justify-between p-1.5 rounded-lg border text-[11px] transition-colors ${
+                mapLayers.stormSurge
+                  ? 'bg-purple-500/15 text-purple-200 border-purple-500/30'
+                  : 'bg-navy-950 text-slate-500 border-navy-800'
+              }`}
+            >
+              <span>Surge Inundation</span>
+              {mapLayers.stormSurge ? <Eye className="w-3 h-3 text-purple-400" /> : <EyeOff className="w-3 h-3 text-slate-600" />}
+            </button>
+
+            <button
+              onClick={() => toggleMapLayer('floodExtent')}
+              className={`w-full flex items-center justify-between p-1.5 rounded-lg border text-[11px] transition-colors ${
+                mapLayers.floodExtent
+                  ? 'bg-cyan-500/15 text-cyan-200 border-cyan-500/30'
+                  : 'bg-navy-950 text-slate-500 border-navy-800'
+              }`}
+            >
+              <span>Delta Flood Extent</span>
+              {mapLayers.floodExtent ? <Eye className="w-3 h-3 text-cyan-400" /> : <EyeOff className="w-3 h-3 text-slate-600" />}
+            </button>
+
+            <button
+              onClick={() => toggleMapLayer('evacuationRoutes')}
+              className={`w-full flex items-center justify-between p-1.5 rounded-lg border text-[11px] transition-colors ${
+                mapLayers.evacuationRoutes
+                  ? 'bg-emerald-500/15 text-emerald-200 border-emerald-500/30'
+                  : 'bg-navy-950 text-slate-500 border-navy-800'
+              }`}
+            >
+              <span>Evacuation Routes</span>
+              {mapLayers.evacuationRoutes ? <Eye className="w-3 h-3 text-emerald-400" /> : <EyeOff className="w-3 h-3 text-slate-600" />}
+            </button>
+          </div>
+
+          <div className="pt-1 border-t border-navy-800 text-[9px] text-slate-400">
+            Model estimate • Sundar Coast
+          </div>
+        </div>
+
+        {/* Map Container Canvas */}
+        <div ref={mapContainerRef} className="flex-1 h-full w-full z-0" />
+
+        {/* Right Contextual Narrative Insight Drawer */}
+        <div className="w-80 md:w-96 bg-navy-900 border-l border-navy-750 p-4 flex flex-col justify-between shadow-2xl z-10 overflow-y-auto font-sans">
+          {selectedVillageData ? (
+            <div className="space-y-4">
+              <div className="flex items-start justify-between border-b border-navy-750 pb-3">
+                <div>
+                  <span
+                    className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase ${
+                      selectedVillageData.risk.riskClass === 'Critical'
+                        ? 'bg-red-500/20 text-red-300 border border-red-500/40'
+                        : 'bg-orange-500/20 text-orange-300 border border-orange-500/40'
+                    }`}
+                  >
+                    {selectedVillageData.risk.riskClass} Risk • {selectedVillageData.risk.overallRisk}/100
+                  </span>
+                  <h3 className="text-xl font-black text-white mt-1">
+                    {selectedVillageData.name}
+                  </h3>
+                  <p className="text-xs text-slate-300">
+                    Population: <strong className="text-white font-mono">{selectedVillageData.population.toLocaleString()}</strong> ({selectedVillageData.elderlyPopulation + selectedVillageData.childrenPopulation} vulnerable)
+                  </p>
+                </div>
+                <button
+                  onClick={() => setSelectedVillage(null)}
+                  className="p-1 rounded-lg hover:bg-navy-800 text-slate-400 hover:text-white"
+                  aria-label="Close detail"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Narrative Risk Attribution with Contributing Factor Bars */}
+              <div className="space-y-2">
+                <div className="text-xs font-mono font-bold text-teal-300 uppercase tracking-wider">
+                  Why It Is At Risk
+                </div>
+
+                <div className="space-y-2">
+                  <div className="bg-navy-950 p-2.5 rounded-xl border border-navy-800 space-y-1">
+                    <div className="flex justify-between text-xs">
+                      <span className="text-slate-300">Low Elevation ({selectedVillageData.elevationMeters.toFixed(1)}m AMSL)</span>
+                      <span className="font-mono text-red-400 font-bold">+22 pts</span>
+                    </div>
+                    <div className="h-1.5 bg-navy-850 rounded-full overflow-hidden">
+                      <div className="h-full bg-red-500 rounded-full" style={{ width: '85%' }} />
+                    </div>
+                  </div>
+
+                  <div className="bg-navy-950 p-2.5 rounded-xl border border-navy-800 space-y-1">
+                    <div className="flex justify-between text-xs">
+                      <span className="text-slate-300">Storm Surge ({scenarioInputs.stormSurgeMeters.toFixed(1)}m Peak)</span>
+                      <span className="font-mono text-rose-400 font-bold">+20 pts</span>
+                    </div>
+                    <div className="h-1.5 bg-navy-850 rounded-full overflow-hidden">
+                      <div className="h-full bg-rose-500 rounded-full" style={{ width: '75%' }} />
+                    </div>
+                  </div>
+
+                  <div className="bg-navy-950 p-2.5 rounded-xl border border-navy-800 space-y-1">
+                    <div className="flex justify-between text-xs">
+                      <span className="text-slate-300">Flood Inundation Probability ({selectedVillageData.evacuation.floodProbabilityPct}%)</span>
+                      <span className="font-mono text-blue-400 font-bold">+18 pts</span>
+                    </div>
+                    <div className="h-1.5 bg-navy-850 rounded-full overflow-hidden">
+                      <div className="h-full bg-blue-500 rounded-full" style={{ width: '78%' }} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Directives */}
+              <div className="bg-navy-950 p-3.5 rounded-xl border border-teal-500/30 space-y-2 text-xs">
+                <div>
+                  <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">
+                    Recommended Action
+                  </div>
+                  <div className="font-bold text-teal-300 mt-0.5">
+                    Begin {selectedVillageData.evacuation.evacuationPriority} evacuation immediately.
+                  </div>
+                </div>
+
+                <div className="pt-2 border-t border-navy-800">
+                  <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">
+                    Recommended Destination
+                  </div>
+                  <div className="font-bold text-white flex items-center justify-between mt-0.5">
+                    <span>{selectedVillageData.evacuation.nearestRecommendedShelter.name}</span>
+                    <span className="text-[10px] font-mono text-teal-400">
+                      {selectedVillageData.evacuation.shelterCapacityStatus.availableBeds.toLocaleString()} beds free
+                    </span>
+                  </div>
+                </div>
+
+                <div className="pt-2 border-t border-navy-800">
+                  <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">
+                    Safe Evacuation Route
+                  </div>
+                  <div className="font-bold text-slate-200 mt-0.5">
+                    {selectedVillageData.evacuation.recommendedRouteName} ({selectedVillageData.evacuation.routeStatus})
+                  </div>
+                </div>
+              </div>
+
+              {/* Rejection Note if Shelter A was rejected */}
+              {selectedVillageData.evacuation.rejectedNearestShelter && (
+                <div className="bg-amber-500/10 border border-amber-500/30 p-2.5 rounded-xl text-[11px] text-amber-200 flex items-start gap-2">
+                  <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
+                  <span>
+                    <strong>Shelter Rerouted:</strong> {selectedVillageData.evacuation.rejectedNearestShelter.reason}
+                  </span>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="h-full flex flex-col items-center justify-center text-center p-6 text-slate-400 space-y-3">
+              <div className="p-3 rounded-2xl bg-navy-950 border border-navy-800 text-teal-400">
+                <MapPin className="w-6 h-6" />
+              </div>
+              <h4 className="text-sm font-bold text-slate-200">
+                Contextual Risk Inspector
+              </h4>
+              <p className="text-xs text-slate-400">
+                Select a village, road, shelter or critical asset on the map to understand its risk breakdown and evacuation path.
+              </p>
+            </div>
+          )}
+
+          {/* Bottom Disclaimers */}
+          <div className="pt-4 border-t border-navy-750 text-[10px] font-mono text-slate-400 flex items-center justify-between">
+            <span>Prototype Simulation</span>
+            <span className="text-teal-400">78% Confidence</span>
+          </div>
+        </div>
+      </div>
+
+      {/* BOTTOM TIME SCRUBBER (Interactive Cinematic Timeline) */}
+      <div className="bg-navy-900 border-t border-navy-750 px-6 py-2.5 z-20 flex items-center justify-between gap-4 shadow-xl">
+        <div className="flex items-center gap-2 font-mono text-xs text-slate-400 flex-shrink-0">
+          <Clock className="w-4 h-4 text-teal-400" />
+          <span className="font-bold text-white">Scenario Scrubber:</span>
+        </div>
+
+        <div className="flex-1 max-w-3xl flex items-center gap-2 relative">
+          <div className="w-full flex items-center justify-between relative">
+            <div className="absolute top-1/2 left-0 right-0 h-1 bg-navy-950 rounded-full -translate-y-1/2" />
+            {PHASES.map((p) => {
+              const isCurrent = timelinePhase === p.id;
+              return (
+                <button
+                  key={p.id}
+                  onClick={() => setTimelinePhase(p.id)}
+                  className={`relative z-10 flex flex-col items-center group focus:outline-none transition-all ${
+                    isCurrent ? 'scale-110' : 'opacity-70 hover:opacity-100'
+                  }`}
+                >
+                  <div
+                    className={`w-4 h-4 rounded-full border-2 transition-all ${
+                      isCurrent
+                        ? 'bg-teal-400 border-white ring-4 ring-teal-500/40'
+                        : 'bg-navy-800 border-navy-700'
+                    }`}
+                  />
+                  <span
+                    className={`text-[10px] font-mono font-bold mt-1 ${
+                      isCurrent ? 'text-teal-300' : 'text-slate-400'
+                    }`}
+                  >
+                    {p.label}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="text-xs font-mono text-slate-400 flex-shrink-0 hidden md:block">
+          Landfall in <strong className="text-teal-300">24 Hours</strong>
+        </div>
       </div>
     </div>
   );

@@ -9,16 +9,16 @@ export default {
     extend: {
       colors: {
         navy: {
-          950: '#060B18',
-          900: '#0B132B',
-          850: '#0F1A36',
-          800: '#142145',
-          750: '#1A2C5B',
-          700: '#1C3168',
-          600: '#2A4387',
+          950: '#071A2B', // Main background
+          900: '#0B2238', // Deep card/panel surface
+          850: '#0E2C4A', // Secondary panel / header
+          800: '#13395E', // Interactive card hover / container
+          750: '#1A4975', // Borders & dividers
+          700: '#225B91', // Subtle active state
+          600: '#2E75B6', // Highlight accent
         },
         slate: {
-          850: '#151E2E',
+          850: '#0F243A',
         },
         hazard: {
           critical: '#EF4444',

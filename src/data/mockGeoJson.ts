@@ -2,8 +2,9 @@ import { ScenarioInputs } from '../types/disaster';
 import { MOCK_VILLAGES_LIST } from './mockVillages';
 import { MOCK_INFRASTRUCTURE_LIST } from './mockInfrastructure';
 import { MOCK_ROADS_LIST } from './mockRoads';
+import { DEFAULT_SCENARIO_INPUTS } from './mockStorm';
 
-export function getMockGeoJson(inputs: ScenarioInputs) {
+export function getMockGeoJson(inputs: ScenarioInputs = DEFAULT_SCENARIO_INPUTS) {
   const trackShiftDeg = inputs.trackShiftKm * 0.009;
 
   // Track coordinates
@@ -118,3 +119,8 @@ export function getMockGeoJson(inputs: ScenarioInputs) {
     ],
   };
 }
+
+const defaultGeoJson = getMockGeoJson(DEFAULT_SCENARIO_INPUTS);
+export const MOCK_GEOJSON_TRACK = defaultGeoJson.features.find((f: any) => f.properties?.type === 'cyclone_track');
+export const MOCK_GEOJSON_SURGE_ZONE = defaultGeoJson.features.find((f: any) => f.properties?.type === 'storm_surge');
+export const MOCK_GEOJSON_FLOOD_ZONE = defaultGeoJson.features.find((f: any) => f.properties?.type === 'flood_extent');
