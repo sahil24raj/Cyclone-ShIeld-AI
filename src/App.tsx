@@ -41,10 +41,7 @@ export const App: React.FC = () => {
     <LanguageProvider>
       <AppStateProvider>
         <div className="min-h-screen bg-navy-950 text-slate-100 flex flex-col font-sans">
-          {/* Top Statutory Disclaimer Banner */}
-          <PrototypeBanner />
-
-          {/* Emergency Operations Header */}
+          {/* Emergency Operations Header & Sub-Bar */}
           <TopHeader />
 
           {/* Body with Sidebar and Main Tab Content */}

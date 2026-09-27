@@ -1,44 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import {
-  ShieldAlert,
   Bell,
   Globe,
   Clock,
   Radio,
-  Flame,
   Activity,
-  CheckCircle2,
-  RefreshCw,
   Database,
-  AlertCircle,
   UserCheck,
-  ChevronDown,
-  Sparkles,
-  Sliders,
   Shield,
-  Layers
+  ChevronDown
 } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useAppState } from '../../context/AppStateContext';
-import { Language, TimelinePhase } from '../../types';
+import { Language } from '../../types';
 import { SystemStatusModal } from './SystemStatusModal';
 
 export const TopHeader: React.FC = () => {
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
   const {
-    timelinePhase,
-    setTimelinePhase,
     alerts,
     setActiveTab,
-    activeCyclone,
     dataSources,
     isStatusModalOpen,
     setIsStatusModalOpen,
-    refreshData,
-    isLoading,
-    dataMode,
-    modeBadgeText,
-    scenarioInputs,
   } = useAppState();
 
   const [currentTime, setCurrentTime] = useState<string>('');
@@ -64,9 +48,9 @@ export const TopHeader: React.FC = () => {
 
   return (
     <>
-      <header className="bg-navy-900 border-b border-navy-750 px-3.5 py-2.5 sticky top-0 z-30 flex items-center justify-between shadow-xl select-none">
+      <header className="bg-navy-900 border-b border-navy-750 px-4 py-2.5 sticky top-0 z-30 flex items-center justify-between shadow-xl select-none">
         {/* Left: CycloneShield AI Brand & Tagline */}
-        <div className="flex items-center gap-3 lg:gap-4">
+        <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={() => setActiveTab('command')}
@@ -84,63 +68,55 @@ export const TopHeader: React.FC = () => {
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="font-extrabold text-base md:text-lg tracking-tight text-white font-sans flex items-center gap-1.5">
-                  CycloneShield <span className="text-teal-400 font-mono text-sm font-bold bg-teal-500/10 px-1.5 py-0.5 rounded border border-teal-500/30">AI</span>
+                  {t('app_title')} <span className="text-teal-400 font-mono text-xs font-bold bg-teal-500/10 px-1.5 py-0.5 rounded border border-teal-500/30">AI</span>
                 </h1>
               </div>
               <p className="text-[11px] text-slate-300 font-medium tracking-wide hidden sm:block">
-                Predict. Protect. Respond.
+                {t('tagline')}
               </p>
             </div>
           </button>
         </div>
 
-        {/* Center: Scenario Selector & Status Chips */}
-        <div className="hidden md:flex items-center gap-2">
-          {/* Current Scenario Chip */}
-          <div className="bg-navy-950 px-3 py-1.5 rounded-lg border border-navy-750 flex items-center gap-2 text-xs">
+        {/* Center: Clean Strategic Status Chips (No clutter, no redundant prototype box) */}
+        <div className="hidden md:flex items-center gap-2.5">
+          {/* Active Scenario Location */}
+          <div className="bg-navy-950/80 px-3 py-1.5 rounded-lg border border-navy-750 flex items-center gap-2 text-xs backdrop-blur-sm">
             <Radio className="w-3.5 h-3.5 text-rose-400 animate-pulse" />
-            <span className="text-slate-300 font-medium">Cyclone Varuna</span>
-            <span className="text-slate-500">•</span>
-            <span className="text-teal-300 font-mono">Sundar Coast District</span>
+            <span className="text-slate-200 font-medium">{t('active_scenario')}</span>
           </div>
 
-          {/* Scenario Time Chip */}
-          <div className="bg-navy-950 px-2.5 py-1.5 rounded-lg border border-navy-750 flex items-center gap-1.5 text-xs font-mono text-slate-300">
-            <Clock className="w-3.5 h-3.5 text-cyan-400" />
-            <span>T–24h to Landfall</span>
+          {/* Time to Landfall */}
+          <div className="bg-navy-950/80 px-2.5 py-1.5 rounded-lg border border-navy-750 flex items-center gap-1.5 text-xs font-mono text-teal-300 backdrop-blur-sm">
+            <Clock className="w-3.5 h-3.5 text-teal-400" />
+            <span>{t('time_to_landfall')}</span>
           </div>
 
-          {/* Prototype Simulation Chip */}
-          <div className="bg-amber-500/15 border border-amber-500/40 text-amber-300 px-2.5 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-            <span>Prototype Simulation</span>
+          {/* Confidence Pill */}
+          <div className="hidden lg:flex items-center gap-1.5 bg-navy-950/80 border border-navy-750 px-2.5 py-1.5 rounded-lg text-xs font-mono backdrop-blur-sm">
+            <Activity className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="text-slate-300">{t('confidence_chip')}</span>
           </div>
         </div>
 
-        {/* Right: Language, Confidence, Model Update, Role Menu */}
+        {/* Right: Language Dropdown, Live IST Clock, Officer Profile, Actions */}
         <div className="flex items-center gap-2 md:gap-3">
-          {/* Confidence Chip */}
-          <div className="hidden lg:flex items-center gap-1.5 bg-navy-950 border border-navy-750 px-2.5 py-1.5 rounded-lg text-xs font-mono">
-            <Activity className="w-3.5 h-3.5 text-emerald-400" />
-            <span className="text-slate-300">78% confidence</span>
-          </div>
-
-          {/* Last Update */}
+          {/* Live IST Clock */}
           <div className="hidden xl:flex flex-col text-right text-[10px] font-mono text-slate-400 pr-1">
             <span className="text-slate-200 font-semibold flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              Updated just now
+              {t('updated_just_now')}
             </span>
-            <span>{currentTime || '18:25:00 IST'}</span>
+            <span>{currentTime || '19:30:00 IST'}</span>
           </div>
 
-          {/* Language Selector */}
-          <div className="relative flex items-center bg-navy-950 border border-navy-750 rounded-lg px-2 py-1 text-xs">
-            <Globe className="w-3.5 h-3.5 text-slate-400 mr-1.5" />
+          {/* Language Selector Dropdown with high clarity */}
+          <div className="relative flex items-center bg-navy-950 border border-teal-500/30 hover:border-teal-500/60 rounded-lg px-2 py-1 text-xs shadow-sm transition-colors">
+            <Globe className="w-3.5 h-3.5 text-teal-400 mr-1.5" />
             <select
               value={language}
               onChange={(e) => setLanguage(e.target.value as Language)}
-              className="bg-transparent text-slate-200 text-xs font-medium focus:outline-none cursor-pointer pr-1 font-sans"
+              className="bg-transparent text-slate-100 text-xs font-semibold focus:outline-none cursor-pointer pr-1 font-sans"
               aria-label="Language selector"
             >
               <option value="en" className="bg-navy-900 text-slate-100">English (EN)</option>
@@ -156,8 +132,8 @@ export const TopHeader: React.FC = () => {
               <UserCheck className="w-3 h-3" />
             </div>
             <div className="text-left leading-tight hidden md:block">
-              <div className="text-[11px] font-bold text-slate-100">District Emergency Officer</div>
-              <div className="text-[9px] text-slate-400 font-mono">EOC Sundar Coast</div>
+              <div className="text-[11px] font-bold text-slate-100">{t('role_officer')}</div>
+              <div className="text-[9px] text-slate-400 font-mono">{t('role_station')}</div>
             </div>
           </div>
 
@@ -188,22 +164,20 @@ export const TopHeader: React.FC = () => {
         </div>
       </header>
 
-      {/* Information Strip Below Navigation */}
+      {/* Clean Single Information Sub-Strip */}
       <div className="bg-navy-950 border-b border-navy-800 px-4 py-1.5 text-xs text-slate-300 flex items-center justify-between font-sans shadow-sm">
         <div className="flex items-center gap-2">
           <span className="inline-block w-2 h-2 rounded-full bg-amber-400 flex-shrink-0" />
-          <span>
-            <strong className="text-amber-300 font-semibold font-mono uppercase tracking-wide">Simulation mode:</strong> All predictions are calculated from synthetic sample data and are not official warnings.
-          </span>
+          <span>{t('simulation_notice')}</span>
         </div>
         <div className="hidden lg:flex items-center gap-3 font-mono text-[11px] text-slate-400">
-          <span>Turn cyclone forecasts into local, actionable decisions.</span>
+          <span>{t('hero_subtitle')}</span>
           <span className="text-slate-600">|</span>
           <button
             onClick={() => setActiveTab('methodology')}
-            className="text-teal-400 hover:text-teal-300 hover:underline"
+            className="text-teal-400 hover:text-teal-300 hover:underline font-semibold"
           >
-            Model Methodology &rarr;
+            {t('model_methodology_link')}
           </button>
         </div>
       </div>
@@ -217,4 +191,3 @@ export const TopHeader: React.FC = () => {
     </>
   );
 };
-

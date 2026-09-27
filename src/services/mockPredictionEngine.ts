@@ -341,7 +341,7 @@ export function calculateOverallRisk(
     vulnerabilityBreakdown,
     mainRiskDrivers: drivers,
     modelConfidencePct: confidence,
-    lastUpdatedTimestamp: new Date().toISOString(),
+    lastUpdatedTimestamp: '2026-09-27T18:00:00.000Z',
   };
 }
 

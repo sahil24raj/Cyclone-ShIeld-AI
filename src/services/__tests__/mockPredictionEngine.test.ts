@@ -163,6 +163,10 @@ export function runTests(): { passed: number; failed: number; errors: string[] }
 
   console.log(`\n========================================`);
   console.log(`TEST RESULTS: ${passed} Passed, ${failed} Failed`);
+  if (errors.length > 0) {
+    console.log('FAILURES:');
+    errors.forEach((err) => console.log('  - ' + err));
+  }
   console.log(`========================================\n`);
 
   return { passed, failed, errors };

@@ -21,6 +21,7 @@ import {
   Play
 } from 'lucide-react';
 import { useAppState } from '../../context/AppStateContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { CalculatedVillageOutput } from '../../types/disaster';
 import { GuidedDemoModal } from '../common/GuidedDemoModal';
 
@@ -32,6 +33,7 @@ export const CommandCentreView: React.FC = () => {
     setSelectedVillage,
     scenarioInputs,
   } = useAppState();
+  const { t } = useLanguage();
 
   const [isDemoOpen, setIsDemoOpen] = useState(false);
   const [activeWhyModalVillage, setActiveWhyModalVillage] = useState<CalculatedVillageOutput | null>(null);
@@ -70,14 +72,14 @@ export const CommandCentreView: React.FC = () => {
           <div className="flex items-center gap-2">
             <span className="h-2.5 w-2.5 rounded-full bg-teal-400 animate-pulse" />
             <span className="text-xs font-mono uppercase tracking-wider text-teal-300 font-bold">
-              Emergency Operations Center (EOC) • Sundar Coast Sector
+              {t('eoc_title')}
             </span>
           </div>
           <h2 className="text-xl md:text-2xl font-black text-white tracking-tight mt-1">
-            Situation at a Glance
+            {t('situation_at_glance')}
           </h2>
           <p className="text-xs text-slate-300 mt-0.5">
-            Turn cyclone forecasts into local, actionable decisions before landfall.
+            {t('hero_subtitle')}
           </p>
         </div>
 
@@ -88,7 +90,7 @@ export const CommandCentreView: React.FC = () => {
             className="flex items-center gap-2 bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-white font-bold py-2.5 px-4 rounded-xl shadow-lg shadow-teal-950/50 transition-all font-mono text-xs"
           >
             <Play className="w-4 h-4 fill-white" />
-            <span>Start Guided Demo (3 Min)</span>
+            <span>{t('start_guided_demo')}</span>
           </button>
 
           <button
@@ -96,7 +98,7 @@ export const CommandCentreView: React.FC = () => {
             className="flex items-center gap-1.5 bg-navy-800 hover:bg-navy-750 text-cyan-300 border border-cyan-500/30 font-bold py-2.5 px-3.5 rounded-xl transition-all text-xs font-mono"
           >
             <Sparkles className="w-3.5 h-3.5" />
-            <span>AI Briefing</span>
+            <span>{t('ai_briefing_btn')}</span>
           </button>
         </div>
       </div>
@@ -130,45 +132,45 @@ export const CommandCentreView: React.FC = () => {
               <div className="bg-navy-950 p-3 rounded-xl border border-navy-800">
                 <div className="flex items-center gap-1.5 text-slate-400 text-xs font-mono">
                   <Flame className="w-3.5 h-3.5 text-rose-400" />
-                  <span>Sustained Wind</span>
+                  <span>{t('sustained_wind')}</span>
                 </div>
                 <div className="text-xl font-bold font-mono text-white mt-1">
                   {scenarioInputs.windSpeedKmh} <span className="text-xs font-normal text-slate-400">km/h</span>
                 </div>
-                <div className="text-[10px] text-rose-400 font-mono mt-0.5">Gale force winds</div>
+                <div className="text-[10px] text-rose-400 font-mono mt-0.5">{t('gale_winds')}</div>
               </div>
 
               <div className="bg-navy-950 p-3 rounded-xl border border-navy-800">
                 <div className="flex items-center gap-1.5 text-slate-400 text-xs font-mono">
                   <CloudRain className="w-3.5 h-3.5 text-blue-400" />
-                  <span>24h Rainfall</span>
+                  <span>{t('rainfall_24h')}</span>
                 </div>
                 <div className="text-xl font-bold font-mono text-white mt-1">
                   {scenarioInputs.rainfallMm} <span className="text-xs font-normal text-slate-400">mm</span>
                 </div>
-                <div className="text-[10px] text-blue-400 font-mono mt-0.5">Heavy precipitation</div>
+                <div className="text-[10px] text-blue-400 font-mono mt-0.5">{t('heavy_rain')}</div>
               </div>
 
               <div className="bg-navy-950 p-3 rounded-xl border border-navy-800">
                 <div className="flex items-center gap-1.5 text-slate-400 text-xs font-mono">
                   <Waves className="w-3.5 h-3.5 text-purple-400" />
-                  <span>Peak Surge</span>
+                  <span>{t('peak_surge')}</span>
                 </div>
                 <div className="text-xl font-bold font-mono text-white mt-1">
                   {scenarioInputs.stormSurgeMeters.toFixed(1)} <span className="text-xs font-normal text-slate-400">m</span>
                 </div>
-                <div className="text-[10px] text-purple-400 font-mono mt-0.5">Inundation risk</div>
+                <div className="text-[10px] text-purple-400 font-mono mt-0.5">{t('inundation_risk')}</div>
               </div>
 
               <div className="bg-navy-950 p-3 rounded-xl border border-navy-800">
                 <div className="flex items-center gap-1.5 text-slate-400 text-xs font-mono">
                   <Activity className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Confidence</span>
+                  <span>{t('confidence')}</span>
                 </div>
                 <div className="text-xl font-bold font-mono text-emerald-300 mt-1">
                   78%
                 </div>
-                <div className="text-[10px] text-emerald-400 font-mono mt-0.5">High confidence</div>
+                <div className="text-[10px] text-emerald-400 font-mono mt-0.5">{t('high_confidence')}</div>
               </div>
             </div>
 
@@ -179,8 +181,7 @@ export const CommandCentreView: React.FC = () => {
                 className="flex items-center gap-2 bg-teal-600 hover:bg-teal-500 text-white font-bold px-4 py-2.5 rounded-xl shadow-md transition-all text-xs font-mono"
               >
                 <MapIcon className="w-4 h-4" />
-                <span>View Fullscreen Impact Map</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <span>{t('view_fullscreen_map')}</span>
               </button>
             </div>
           </div>
@@ -189,9 +190,9 @@ export const CommandCentreView: React.FC = () => {
           <div className="lg:col-span-5 bg-navy-950 p-4 rounded-2xl border border-navy-800 space-y-3">
             <div className="flex items-center justify-between text-xs font-mono">
               <span className="text-slate-400 font-bold uppercase tracking-wider">
-                Cyclone Trajectory Timeline
+                {t('cyclone_trajectory_timeline')}
               </span>
-              <span className="text-teal-300 font-bold">Landfall in 24 Hours</span>
+              <span className="text-teal-300 font-bold">{t('landfall_in_24h')}</span>
             </div>
 
             <div className="relative pt-4 pb-2">
@@ -226,7 +227,7 @@ export const CommandCentreView: React.FC = () => {
             <div className="bg-navy-900/80 p-2.5 rounded-xl border border-navy-800/80 text-[11px] text-slate-300 flex items-start gap-2">
               <Info className="w-4 h-4 text-teal-400 flex-shrink-0 mt-0.5" />
               <span>
-                <strong>T–24h Tactical Phase:</strong> Gale winds and surge begin within 18 hours. Complete all P0 village evacuations before nightfall.
+                {t('tactical_phase_desc')}
               </span>
             </div>
           </div>
@@ -238,10 +239,10 @@ export const CommandCentreView: React.FC = () => {
         <div className="flex items-center justify-between">
           <h3 className="text-base font-bold text-white tracking-tight flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-amber-400" />
-            <span>What Needs Attention Now</span>
+            <span>{t('what_needs_attention')}</span>
           </h3>
           <span className="text-xs font-mono text-slate-400">
-            Click any metric to drill down
+            {t('click_to_drill_down')}
           </span>
         </div>
 
@@ -252,7 +253,7 @@ export const CommandCentreView: React.FC = () => {
             className="bg-navy-900 hover:bg-navy-850 p-4 rounded-2xl border border-red-500/30 hover:border-red-500/60 transition-all text-left shadow-lg group"
           >
             <div className="flex items-center justify-between text-xs font-mono text-slate-400">
-              <span>Evacuation Priority</span>
+              <span>{t('evac_priority_title')}</span>
               <Navigation className="w-4 h-4 text-red-400 group-hover:translate-x-0.5 transition-transform" />
             </div>
             <div className="text-2xl font-black font-mono text-red-400 mt-2">
@@ -268,7 +269,7 @@ export const CommandCentreView: React.FC = () => {
             className="bg-navy-900 hover:bg-navy-850 p-4 rounded-2xl border border-amber-500/30 hover:border-amber-500/60 transition-all text-left shadow-lg group"
           >
             <div className="flex items-center justify-between text-xs font-mono text-slate-400">
-              <span>Critical Assets</span>
+              <span>{t('critical_assets_title')}</span>
               <Building2 className="w-4 h-4 text-amber-400 group-hover:translate-x-0.5 transition-transform" />
             </div>
             <div className="text-2xl font-black font-mono text-amber-400 mt-2">
@@ -284,7 +285,7 @@ export const CommandCentreView: React.FC = () => {
             className="bg-navy-900 hover:bg-navy-850 p-4 rounded-2xl border border-rose-500/30 hover:border-rose-500/60 transition-all text-left shadow-lg group"
           >
             <div className="flex items-center justify-between text-xs font-mono text-slate-400">
-              <span>Road Corridors</span>
+              <span>{t('roads_risk_title')}</span>
               <AlertTriangle className="w-4 h-4 text-rose-400 group-hover:translate-x-0.5 transition-transform" />
             </div>
             <div className="text-2xl font-black font-mono text-rose-400 mt-2">
@@ -300,7 +301,7 @@ export const CommandCentreView: React.FC = () => {
             className="bg-navy-900 hover:bg-navy-850 p-4 rounded-2xl border border-purple-500/30 hover:border-purple-500/60 transition-all text-left shadow-lg group"
           >
             <div className="flex items-center justify-between text-xs font-mono text-slate-400">
-              <span>Shelter Capacity Gap</span>
+              <span>{t('shelter_gap_title')}</span>
               <Shield className="w-4 h-4 text-purple-400 group-hover:translate-x-0.5 transition-transform" />
             </div>
             <div className="text-2xl font-black font-mono text-purple-300 mt-2">
