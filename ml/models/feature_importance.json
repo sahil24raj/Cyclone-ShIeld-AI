@@ -1,0 +1,42 @@
+[
+  {
+    "feature": "storm_surge",
+    "importance": 0.245,
+    "description": "Peak coastal surge overtopping vs ground elevation"
+  },
+  {
+    "feature": "surface_water_occurrence",
+    "importance": 0.201,
+    "description": "JRC 30m historical water occurrence %"
+  },
+  {
+    "feature": "max_wind",
+    "importance": 0.185,
+    "description": "Sustained cyclonic wind velocity & gust loading"
+  },
+  {
+    "feature": "rainfall_24h",
+    "importance": 0.124,
+    "description": "Open-Meteo / IMERG 24h catchment precipitation"
+  },
+  {
+    "feature": "road_accessibility",
+    "importance": 0.098,
+    "description": "Ingress transport corridor flood viability"
+  },
+  {
+    "feature": "asset_criticality",
+    "importance": 0.082,
+    "description": "Operational lifeline tier (Hospital=95, Substation=90, Bridge=85)"
+  },
+  {
+    "feature": "backup_power",
+    "importance": 0.045,
+    "description": "Auxiliary diesel generator presence"
+  },
+  {
+    "feature": "distance_to_coast",
+    "importance": 0.02,
+    "description": "Orthodromic distance to shoreline"
+  }
+]

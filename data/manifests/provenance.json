@@ -1,0 +1,123 @@
+{
+  "project": "CycloneShield AI",
+  "version": "2.4.0",
+  "timestamp": "2026-09-28T21:53:00Z",
+  "pipeline_mode": "REAL_DATA_FIRST",
+  "data_quality": "REAL",
+  "target_geography": {
+    "district": "Kakinada / East Godavari Coastal Basin, Andhra Pradesh, India",
+    "bounding_box": {
+      "west": 81.75,
+      "south": 16.50,
+      "east": 82.75,
+      "north": 17.50
+    },
+    "reference_station": {
+      "latitude": 16.977152,
+      "longitude": 82.23394,
+      "elevation_asl_m": 6.0
+    }
+  },
+  "datasets": [
+    {
+      "id": "noaa_ibtracs_v04r01",
+      "name": "NOAA IBTrACS v04r01 Tropical Cyclone Best Track",
+      "agency": "NOAA NCEI / WMO World Data Center for Meteorology",
+      "path": "data/raw/cyclone/ibtracs.since1980.list.v04r01.csv",
+      "format": "CSV",
+      "records_count": 309724,
+      "temporal_coverage": "1980-2026",
+      "crs": "EPSG:4326",
+      "fields_used": ["SID", "NAME", "ISO_TIME", "LAT", "LON", "USA_WIND", "USA_PRES", "DIST2LAND", "STORM_SPEED", "STORM_DIR"],
+      "quality_status": "VALID",
+      "is_real_data": true
+    },
+    {
+      "id": "openmeteo_kakinada_hourly",
+      "name": "Open-Meteo Historical & Reanalysis Hourly Meteorological Archive",
+      "agency": "Open-Meteo / ECMWF ERA5",
+      "path": "data/raw/weather/katinda_openmetro.csv",
+      "format": "JSON",
+      "records_count": 409728,
+      "temporal_coverage": "1980-01-01T00:00 to 2026-09-27T23:00",
+      "crs": "EPSG:4326",
+      "fields_used": ["temperature_2m", "precipitation", "surface_pressure", "wind_speed_10m", "wind_gusts_10m", "wind_direction_10m"],
+      "quality_status": "VALID",
+      "is_real_data": true
+    },
+    {
+      "id": "jrc_global_surface_water_v1_5",
+      "name": "JRC Global Surface Water Occurrence v1.5",
+      "agency": "European Commission Joint Research Centre (JRC)",
+      "path": "data/raw/surface_water/JRC_occurrence_80E_20N_v1_5_2024.tif",
+      "format": "GeoTIFF",
+      "resolution": "0.00025 deg (~30m)",
+      "tile": "80E_20N",
+      "crs": "EPSG:4326",
+      "fields_used": ["surface_water_occurrence_percent"],
+      "quality_status": "VALID",
+      "is_real_data": true
+    },
+    {
+      "id": "nasa_gpm_imerg_v07",
+      "name": "NASA GPM IMERG Final Run V07 Precipitation Mean",
+      "agency": "NASA Goddard Space Flight Center / Giovanni",
+      "path": "data/raw/rainfall/imerg/GIOVANNI-g4.timeAvgMap.GPM_3IMERGDF_07_precipitation.20240101-20240104.180W_90S_180E_90N.tif",
+      "format": "GeoTIFF",
+      "resolution": "0.1 deg x 0.1 deg",
+      "crs": "EPSG:4326",
+      "fields_used": ["precipitation_rate_mm_hr"],
+      "quality_status": "VALID",
+      "is_real_data": true
+    },
+    {
+      "id": "osm_kakinada_infrastructure",
+      "name": "OpenStreetMap Real Infrastructure Points (Hospitals, Power, Bridges, Roads)",
+      "agency": "OpenStreetMap Contributors / HOT Export",
+      "paths": [
+        "data/raw/infrastructure/hospitals/hospitals.geojson",
+        "data/raw/infrastructure/power/power_assets.geojson",
+        "data/raw/infrastructure/bridges/bridges.geojson",
+        "data/raw/infrastructure/roads/roads_1.geojson",
+        "data/raw/infrastructure/roads/roads_2.geojson"
+      ],
+      "format": "GeoJSON",
+      "deduplicated_assets_count": 510,
+      "breakdown": {
+        "hospitals": 94,
+        "power_substations": 5,
+        "bridges": 244,
+        "road_segments": 167
+      },
+      "crs": "EPSG:4326",
+      "quality_status": "VALID",
+      "is_real_data": true
+    },
+    {
+      "id": "dfo_flood_archive",
+      "name": "Dartmouth Flood Observatory Global Flood Archive",
+      "agency": "Dartmouth Flood Observatory / University of Colorado",
+      "path": "data/raw/flood/FloodArchive.xlsx",
+      "format": "XLSX",
+      "records_count": 5130,
+      "india_records_count": 283,
+      "temporal_coverage": "1985-2021",
+      "crs": "EPSG:4326",
+      "quality_status": "VALID_MACRO_CONTEXT_ONLY",
+      "note": "Used strictly for regional macro-event flood context. Excluded from asset-level failure labeling to prevent circular/synthetic validation.",
+      "is_real_data": true
+    }
+  ],
+  "quarantine_audit": [
+    {
+      "file": "data/quarantine/WRONG_LOCATION_Berlin_open-meteo.csv",
+      "reason": "Geographic mismatch (Berlin 52.52N, 13.42E)",
+      "status": "QUARANTINED_EXCLUDED"
+    },
+    {
+      "file": "data/quarantine/INCOMPLETE_IMERG_download.crdownload",
+      "reason": "Incomplete binary download",
+      "status": "QUARANTINED_EXCLUDED"
+    }
+  ]
+}

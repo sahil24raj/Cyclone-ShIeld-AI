@@ -28,3 +28,13 @@ dist-ssr
 .env.production
 .env.development
 !.env.example
+
+# Large dataset raw files (>50MB) and downloads
+*.crdownload
+*.nc
+*.tif
+*.tiff
+*.parquet
+src/dataset/**/*.csv
+data/raw/**/*.nc
+data/raw/**/*.tif

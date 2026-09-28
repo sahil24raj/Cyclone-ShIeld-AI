@@ -2,108 +2,95 @@
 
 ## 1. High-Level Architecture Overview
 
-CycloneShield AI is designed as a disaster intelligence decision-support platform with a clear separation of data ingestion, validation, deterministic risk computation, ML prediction, and presentation layers.
+CycloneShield AI is designed as an anticipatory disaster intelligence decision-support platform with a clean separation of real data ingestion, spatial/temporal validation, deterministic multi-hazard physical computation, Python prediction microservices, and interactive presentation layers.
 
 ```
 +-------------------------------------------------------------------------+
-|                         EXTERNAL DATA SOURCES                           |
+|                         REAL OBSERVATIONAL DATA                         |
 |  +--------------------+  +--------------------+  +-------------------+  |
-|  | WMO / Open-Meteo   |  | IMD / JTWC Feeds   |  | Survey of India / |  |
-|  | Live Weather APIs  |  | Bulletins & Tracks |  | SDMA GIS GeoJSON  |  |
+|  | NOAA IBTrACS v04r01|  | Open-Meteo ERA5    |  | JRC Global Water  |  |
+|  | Best-Track NetCDF  |  | Hourly Station CSV |  | 30m GeoTIFF Tile  |  |
+|  +--------------------+  +--------------------+  +-------------------+  |
+|  +--------------------+  +--------------------+  +-------------------+  |
+|  | NASA GPM IMERG V07 |  | OpenStreetMap Real |  | DFO FloodArchive  |  |
+|  | Satellite Rain TIF |  | 468 Infrastructure |  | Macro Event Poly  |  |
 |  +--------------------+  +--------------------+  +-------------------+  |
 +-------------------------------------------------------------------------+
                                     |
                                     v
 +-------------------------------------------------------------------------+
-|                  INGESTION & SERVICE LAYER (src/services)               |
+|                  FEATURE ENGINEERING & DATA FUSION                      |
+|                     (ml/build_real_pipeline.py)                         |
 |                                                                         |
-|   +-----------------------------------------------------------------+   |
-|   | WeatherService (weatherService.ts)                              |   |
-|   | - Ingests WMO Open-Meteo REST API                               |   |
-|   | - Normalizes to standardized WeatherObservation interface       |   |
-|   | - Tracks source metadata, observation timestamps & units        |   |
-|   +-----------------------------------------------------------------+   |
-|   | CycloneService (cycloneService.ts)                              |   |
-|   | - Ingests IMD / JTWC tropical cyclone bulletins & track feeds   |   |
-|   | - Distinguishes OBSERVATION vs OFFICIAL_FORECAST track points   |   |
-|   | - Enforces category mapping according to WMO/IMD scale          |   |
-|   +-----------------------------------------------------------------+   |
-|   | InfrastructureService (infrastructureService.ts)                |   |
-|   | - Ingests GeoJSON polygons for wards, assets, shelters, routes  |   |
-|   | - Gracefully handles missing/unconfigured geospatial layers     |   |
-|   +-----------------------------------------------------------------+   |
-|   | HistoricalService (historicalService.ts)                        |   |
-|   | - Provides authoritative IBTrACS post-event verified datasets   |   |
-|   +-----------------------------------------------------------------+   |
-+-------------------------------------------------------------------------+
-                                    |
-         +--------------------------+-------------------------+
-         |                                                    |
-         v                                                    v
-+------------------------------------+  +------------------------------------+
-| DETERMINISTIC RISK ENGINE          |  | ML PREDICTION SERVICE              |
-| (src/services/riskEngine.ts)       |  | (src/services/predictionService.ts)|
-|                                    |  |                                    |
-| Method: Multi-Criteria Spatial Math|  | Status: Contract Defined           |
-| Score: 0.35H + 0.25E + 0.25V +     |  | When Unconnected:                  |
-|        0.15C                       |  |   `predictionAvailable: false`     |
-| Provenance: DERIVED_ANALYSIS       |  |   UI shows "AI model not connected"|
-| Explainable Driver Attribution     |  | When Connected:                    |
-| Graph Shelter Route Optimizer      |  |   Consumes real feature vector     |
-+------------------------------------+  +------------------------------------+
-         |                                                    |
-         +--------------------------+-------------------------+
-                                    |
-                                    v
-+-------------------------------------------------------------------------+
-|                       APPLICATION STATE MANAGEMENT                      |
-|                     (src/context/AppStateContext.tsx)                   |
-|                                                                         |
-| - Manages live data sources status (SystemDataSources)                  |
-| - Controls reactive refresh cycle & simulation modulation               |
-| - Exposes activeCyclone, weather, prediction, villages, shelters        |
-| - Controls modal states (System Status Inspector, Layer Toggles)        |
+|   • Memory-Mapped 30m JRC water occurrence lookup at [lat, lon]         |
+|   • NASA GPM IMERG 0.1° bounding box spatial clipping (Kakinada BBox)   |
+|   • Haversine distance to coast and cyclone storm eye                   |
+|   • Synchronized Open-Meteo hourly weather observations                 |
+|   • Output: data/processed/feature_table.parquet / .json (468 Assets)   |
 +-------------------------------------------------------------------------+
                                     |
                                     v
 +-------------------------------------------------------------------------+
-|                            PRESENTATION LAYER                           |
+|             DETERMINISTIC MULTI-CRITERIA RISK ENGINE                    |
+|                        (P-CHMVM v2.4 Engine)                            |
 |                                                                         |
-|  +---------------------+  +---------------------+  +-----------------+  |
-|  | TopHeader           |  | Command Center      |  | Interactive GIS |  |
-|  | - System Status dot |  | - SummaryCards      |  |   Leaflet Map   |  |
-|  | - Real storm info   |  | - Risk Ward Table   |  | - Live tracks   |  |
-|  | - Dev fixture badge |  | - Derived Analytics |  | - Ward polygons |  |
-|  +---------------------+  +---------------------+  +-----------------+  |
-|  | Evacuation View     |  | Historical Analysis |  | Alert Centre    |  |
-|  | - Graph optimizer   |  | - IBTrACS verified  |  | - Standard CAP  |  |
-|  | - Transit corridors |  |   storm archive     |  |   draft payload |  |
-|  +---------------------+  +---------------------+  +-----------------+  |
+|   Composite Risk = 0.35 * Hazard + 0.25 * Vulnerability                 |
+|                  + 0.25 * Exposure + 0.15 * Criticality                 |
+|   Provenance: DERIVED_ANALYSIS • Confidence: null                       |
+|   Output: data/processed/risk_estimates.json (CRITICAL: 62, HIGH: 148)  |
++-------------------------------------------------------------------------+
+                                    |
+                                    v
++-------------------------------------------------------------------------+
+|                 PYTHON PREDICTION API MICROSERVICE                      |
+|                     (ml/prediction_server.py :5050)                     |
+|                                                                         |
+|   • GET  /api/assets   -> Returns 468 assets with real features & scores|
+|   • POST /api/predict  -> Real-time inference on custom scenario params |
+|   • GET  /api/provenance -> Machine-readable dataset lineage            |
++-------------------------------------------------------------------------+
+                                    |
+                                    v
++-------------------------------------------------------------------------+
+|                   REACT FRONTEND DECISION INTERFACE                     |
+|                              (Port 3000)                                |
+|                                                                         |
+|   • Interactive Geospatial Command Centre (Leaflet GIS)                 |
+|   • Lifeline Criticality vs Risk Matrix (Impact vs Vulnerability)       |
+|   • Dynamic Evacuation Routing & Shelter Redirection                    |
+|   • Gemini AI Structured SITREP Synthesis & OASIS CAP v1.2 Alerts       |
+|   • Methodology & Data Transparency View (Real vs Sample Proof)         |
 +-------------------------------------------------------------------------+
 ```
 
 ---
 
-## 2. Security & Secret Management
+## 2. Core Service Modules
 
-1. **No Secret Keys in Client-Side JavaScript**:
-   - The frontend communicates directly with unauthenticated public endpoints (like Open-Meteo) or with an authenticated private backend proxy.
-   - Private third-party API keys (e.g. Tomorrow.io, custom spatial APIs) must be maintained on a server-side proxy.
-2. **Environment Variable Gating**:
-   - Variables are injected at build/runtime via standard `import.meta.env.VITE_*` definitions.
-   - Synthetic development samples in `src/fixtures/` are strictly gated behind `VITE_ENABLE_DEV_FIXTURES=true`. When set to `false`, the platform enforces zero fake data and displays clean unconfigured states.
+1. **Prediction Service (`src/services/predictionService.ts`)**:
+   - Queries the Python Flask microservice on `http://127.0.0.1:5050/api/predict` and `/api/assets`.
+   - Manages graceful offline fallbacks with verified local real-data bundles (`kakinada_real_risk_estimates.json`).
+   - Strictly enforces the standard prediction contract (`confidence: null`, `prediction_type: "DERIVED_ANALYSIS"`, `data_quality: "REAL"`).
+
+2. **Feature Engineering Pipeline (`src/services/featureEngineering.ts`)**:
+   - Transforms raw hazard inputs into normalized 10-feature vectors with field-level provenance attributions.
+
+3. **Multi-Hazard Risk Engine (`src/services/mlRiskModel.ts`)**:
+   - Implements the P-CHMVM v2.4 multi-criteria formulation ($0.35H + 0.25V + 0.25E + 0.15C$).
+   - Computes granular component breakdowns (`hazard_score`, `vulnerability_score`, `exposure_score`, `criticality_score`).
+
+4. **Scenario Simulation Service (`src/services/scenarioSimulationService.ts`)**:
+   - Executes dynamic "what-if" impact adjustments for user-selected storm track shifts and intensity variations.
+   - Automatically marks simulated outputs as `SIMULATION / DEMO`.
+
+5. **AI Synthesis & CAP v1.2 Service (`src/services/geminiService.ts`)**:
+   - Formulates structured prompts for Google Gemini AI using factual real feature vectors.
+   - Constrained against inventing numerical observations; drafts dual-language (English/Hindi) operational SITREPs.
 
 ---
 
-## 3. Data Flow & Provenance Lifecycle
+## 3. Security & Privacy Considerations
 
-1. **Initial Load**:
-   - `AppStateContext` initializes services simultaneously.
-   - `weatherService.getLiveWeather()` fetches live meteorological data for the coastal coordinate $(20.48^\circ\text{N}, 86.85^\circ\text{E})$.
-   - `cycloneService.getActiveCyclone()` checks for live active cyclone feeds.
-   - `predictionService.getPrediction()` checks if an ML backend URL is configured; if missing, returns `predictionAvailable: false`.
-2. **Deterministic Risk Computation**:
-   - `DeterministicRiskEngine` computes the composite score using current meteorological parameters (wind, surge, precipitation) and ward exposure characteristics.
-   - Every risk output is stamped with `dataType: 'DERIVED_ANALYSIS'`.
-3. **User Inspection**:
-   - Operators can click the **System Status** button in the TopHeader at any time to inspect the health, URL endpoint, response latency, and record count of all 6 platform subsystems.
+- **No Hardcoded Credentials**: API tokens (`VITE_GEMINI_API_KEY`, etc.) are configured via `.env` variables and excluded from version control.
+- **Client-Side Operational Readiness**: The system runs complete local simulations offline without mandatory external dependencies, ensuring functionality during telecommunication outages.
+- **Data Privacy**: No Personally Identifiable Information (PII) is stored or transmitted. Infrastructure geometries reflect public OpenStreetMap open-access records.

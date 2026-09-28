@@ -1,0 +1,269 @@
+{
+  "ibtracs": {
+    "file_path": "C:\\Users\\sr24s\\OneDrive\\Documents\\MY Projects\\cycloneShield AI\\src\\dataset\\CycloneShield-AI-Dataset-Package\\data\\raw\\cyclone\\ibtracs.since1980.list.v04r01.csv",
+    "file_size_mb": 137.4,
+    "status": "VALID",
+    "format": "CSV (NOAA IBTrACS v04r01)",
+    "crs": "EPSG:4326 (WGS84 Lat/Lon in decimal degrees)",
+    "total_records": 309724,
+    "global_unique_storms": 4991,
+    "bay_of_bengal_storms": 472,
+    "temporal_range": "1980 - 2026",
+    "spatial_extent_bob": {
+      "lat_min": 0.7,
+      "lat_max": 31.0,
+      "lon_min": 41.8,
+      "lon_max": 100.0
+    },
+    "kakinada_coastal_storms_count": 18,
+    "notable_regional_storms": [
+      "UNNAMED",
+      "RASHMI",
+      "LAILA",
+      "HELEN",
+      "LEHAR",
+      "MADI",
+      "HUDHUD",
+      "ROANU",
+      "KYANT",
+      "TITLI",
+      "PHETHAI",
+      "FANI"
+    ],
+    "units": {
+      "LAT/LON": "degrees decimal (WGS84)",
+      "WMO_WIND / USA_WIND": "knots (10-min / 1-min sustained max wind)",
+      "WMO_PRES / USA_PRES": "hPa / mb (minimum central pressure)",
+      "DIST2LAND": "km (distance to nearest coastline)",
+      "STORM_SPEED": "knots (translational forward velocity)",
+      "STORM_DIR": "degrees (heading azimuth 0-360\u00b0)"
+    },
+    "missing_rate_wmo_wind": 54.9,
+    "missing_rate_usa_wind": 27.0,
+    "has_real_observations": true,
+    "intended_use": "Historical cyclone best-track records, wind speeds, minimum pressure, translational velocity, and track proximity calculations."
+  },
+  "dfo_flood": {
+    "file_path": "C:\\Users\\sr24s\\OneDrive\\Documents\\MY Projects\\cycloneShield AI\\src\\dataset\\CycloneShield-AI-Dataset-Package\\data\\raw\\flood\\FloodArchive.xlsx",
+    "file_size_mb": 0.48,
+    "status": "VALID",
+    "format": "XLSX (Dartmouth Flood Observatory FloodArchive)",
+    "crs": "EPSG:4326 (WGS84 Lat/Lon point centroid + affected area polygon)",
+    "total_records": 5130,
+    "india_flood_records": 283,
+    "andhra_east_coast_records": 36,
+    "temporal_range": "1985-01-01 to 2021-10-09",
+    "columns": [
+      "ID",
+      "GlideNumber",
+      "Country",
+      "OtherCountry",
+      "long",
+      "lat",
+      "Area",
+      "Began",
+      "Ended",
+      "Validation",
+      "Dead",
+      "Displaced",
+      "MainCause",
+      "Severity"
+    ],
+    "spatial_extent_india": {
+      "lat_min": 9.35,
+      "lat_max": 33.94,
+      "lon_min": 68.87,
+      "lon_max": 95.61
+    },
+    "has_real_observations": true,
+    "is_infrastructure_failure_label": false,
+    "intended_use": "Macro-level historical flood event context, severity indices, and temporal event cross-referencing. NOT direct asset failure labels.",
+    "limitations": "Centroid points with broad area polygons, no asset-level damage or operational status labels."
+  },
+  "jrc_surface_water": {
+    "file_path": "C:\\Users\\sr24s\\OneDrive\\Documents\\MY Projects\\cycloneShield AI\\src\\dataset\\CycloneShield-AI-Dataset-Package\\data\\raw\\surface_water\\JRC_occurrence_80E_20N_v1_5_2024.tif",
+    "file_size_mb": 21.03,
+    "status": "VALID",
+    "format": "GeoTIFF (JRC Global Surface Water v1.5, 2024 Release)",
+    "tile": "80E_20N (covers 80\u00b0E\u201390\u00b0E, 10\u00b0N\u201320\u00b0N)",
+    "crs": "EPSG:4326 (WGS84 Geographic Lat/Lon)",
+    "raster_shape": [
+      40000,
+      40000
+    ],
+    "dtype": "uint8",
+    "spatial_extent": {
+      "west": 80.0,
+      "south": 10.0,
+      "east": 90.0,
+      "north": 20.0
+    },
+    "kakinada_coverage": "Fully covered (Kakinada at 16.99\u00b0N, 82.25\u00b0E is inside tile)",
+    "pixel_resolution": "~30 meters (0.00025\u00b0 x 0.00025\u00b0 per pixel)",
+    "value_interpretation": {
+      "0-100": "Historical water occurrence percentage (0% = dry land, 100% = permanent water)",
+      "255": "No data / ocean background"
+    },
+    "has_real_observations": true,
+    "intended_use": "High-resolution baseline surface-water exposure, permanent water body proximity, and coastal wetland inundation baseline."
+  },
+  "infrastructure": {
+    "hospitals": {
+      "files_found": [
+        "C:\\Users\\sr24s\\OneDrive\\Documents\\MY Projects\\cycloneShield AI\\src\\dataset\\CycloneShield-AI-Dataset-Package\\data\\raw\\infrastructure\\hospitals\\hospitals.geojson"
+      ],
+      "raw_feature_count": 94,
+      "deduplicated_feature_count": 94,
+      "crs": "EPSG:4326 (WGS84 Lat/Lon in GeoJSON specification)",
+      "bounding_box": {
+        "lon_min": 82.1182,
+        "lon_max": 82.2547,
+        "lat_min": 16.7508,
+        "lat_max": 16.9986
+      },
+      "geometry_types": [
+        "Point"
+      ]
+    },
+    "power": {
+      "files_found": [
+        "C:\\Users\\sr24s\\OneDrive\\Documents\\MY Projects\\cycloneShield AI\\src\\dataset\\CycloneShield-AI-Dataset-Package\\data\\raw\\infrastructure\\power\\power_assets.geojson"
+      ],
+      "raw_feature_count": 5,
+      "deduplicated_feature_count": 5,
+      "crs": "EPSG:4326 (WGS84 Lat/Lon in GeoJSON specification)",
+      "bounding_box": {
+        "lon_min": 82.2131,
+        "lon_max": 82.2727,
+        "lat_min": 16.7505,
+        "lat_max": 16.9961
+      },
+      "geometry_types": [
+        "Point"
+      ]
+    },
+    "bridges": {
+      "files_found": [
+        "C:\\Users\\sr24s\\OneDrive\\Documents\\MY Projects\\cycloneShield AI\\src\\dataset\\CycloneShield-AI-Dataset-Package\\data\\raw\\infrastructure\\bridges\\bridges.geojson"
+      ],
+      "raw_feature_count": 244,
+      "deduplicated_feature_count": 244,
+      "crs": "EPSG:4326 (WGS84 Lat/Lon in GeoJSON specification)",
+      "bounding_box": {
+        "lon_min": 82.1017,
+        "lon_max": 82.2684,
+        "lat_min": 16.7506,
+        "lat_max": 16.9966
+      },
+      "geometry_types": [
+        "Point"
+      ]
+    },
+    "roads": {
+      "files_found": [
+        "C:\\Users\\sr24s\\OneDrive\\Documents\\MY Projects\\cycloneShield AI\\src\\dataset\\CycloneShield-AI-Dataset-Package\\data\\raw\\infrastructure\\roads\\roads_1.geojson",
+        "C:\\Users\\sr24s\\OneDrive\\Documents\\MY Projects\\cycloneShield AI\\src\\dataset\\CycloneShield-AI-Dataset-Package\\data\\raw\\infrastructure\\roads\\roads_2.geojson"
+      ],
+      "raw_feature_count": 219,
+      "deduplicated_feature_count": 167,
+      "crs": "EPSG:4326 (WGS84 Lat/Lon in GeoJSON specification)",
+      "bounding_box": {
+        "lon_min": 82.08,
+        "lon_max": 82.2567,
+        "lat_min": 16.7439,
+        "lat_max": 17.0061
+      },
+      "geometry_types": [
+        "Point"
+      ]
+    },
+    "total_deduplicated_assets": 510
+  },
+  "nasa_imerg": {
+    "file_path": "C:\\Users\\sr24s\\OneDrive\\Documents\\MY Projects\\cycloneShield AI\\src\\dataset\\CycloneShield-AI-Dataset-Package\\data\\raw\\rainfall\\imerg\\GIOVANNI-g4.timeAvgMap.GPM_3IMERGDF_07_precipitation.20240101-20240104.180W_90S_180E_90N.tif",
+    "file_size_mb": 24.73,
+    "status": "VALID",
+    "format": "GeoTIFF (NASA GPM IMERG Final V07 Precipitation Mean)",
+    "dataset_name": "GPM_3IMERGDF_07_precipitation",
+    "temporal_coverage": "2024-01-01 to 2024-01-04 (Multi-day accumulation / daily average)",
+    "crs": "EPSG:4326 (WGS84 0.1\u00b0 x 0.1\u00b0 grid)",
+    "raster_shape": [
+      1800,
+      3600
+    ],
+    "is_global_grid": true,
+    "units": "mm/hr precipitation rate",
+    "dtype": "float32",
+    "data_stats": {
+      "min_precipitation": -9999.9,
+      "max_precipitation": 121.784,
+      "mean_precipitation": 0.834
+    },
+    "kakinada_clip_required": true,
+    "kakinada_bounding_box": {
+      "west": 81.75,
+      "south": 16.5,
+      "east": 82.75,
+      "north": 17.5
+    },
+    "has_real_observations": true,
+    "intended_use": "Satellite precipitation observation baseline over Kakinada and Bay of Bengal."
+  },
+  "weather": {
+    "file_path": "C:\\Users\\sr24s\\OneDrive\\Documents\\MY Projects\\cycloneShield AI\\src\\dataset\\CycloneShield-AI-Dataset-Package\\data\\raw\\weather\\katinda_openmetro.csv",
+    "file_size_kb": 25753.93,
+    "status": "VALID",
+    "format": "JSON (Open-Meteo Historical Weather Archive for Kakinada)",
+    "coordinates": {
+      "latitude": 16.977152,
+      "longitude": 82.23394,
+      "elevation_m": 6.0,
+      "timezone": "Asia/Kolkata"
+    },
+    "is_kakinada_region": true,
+    "temporal_range": "1980-01-01T00:00 to 2026-09-27T23:00",
+    "total_hourly_records": 409728,
+    "variables_available": [
+      "time",
+      "temperature_2m",
+      "precipitation",
+      "rain",
+      "showers",
+      "weather_code",
+      "surface_pressure",
+      "cloud_cover",
+      "wind_speed_10m",
+      "wind_gusts_10m",
+      "wind_direction_10m"
+    ],
+    "units": {
+      "time": "iso8601",
+      "temperature_2m": "\u00b0C",
+      "precipitation": "mm",
+      "rain": "mm",
+      "showers": "mm",
+      "weather_code": "wmo code",
+      "surface_pressure": "hPa",
+      "cloud_cover": "%",
+      "wind_speed_10m": "km/h",
+      "wind_gusts_10m": "km/h",
+      "wind_direction_10m": "\u00b0"
+    },
+    "has_real_observations": true,
+    "intended_use": "Real historical and operational hourly meteorological observations for Kakinada (temperature, precipitation, pressure, wind speed, wind gusts, wind direction)."
+  },
+  "quarantined": [
+    {
+      "filename": "INCOMPLETE_IMERG_download.crdownload",
+      "size_kb": 176993.94,
+      "reason_quarantined": "Incomplete download (.crdownload artifact)",
+      "action": "Quarantined for audit trail; strictly prohibited from ML training or inference."
+    },
+    {
+      "filename": "WRONG_LOCATION_Berlin_open-meteo.csv",
+      "size_kb": 11.38,
+      "reason_quarantined": "Wrong geography (Berlin 52.52N, 13.42E)",
+      "action": "Quarantined for audit trail; strictly prohibited from ML training or inference."
+    }
+  ]
+}

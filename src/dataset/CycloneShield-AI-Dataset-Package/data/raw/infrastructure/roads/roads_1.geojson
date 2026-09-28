@@ -1,0 +1,1764 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2026-09-28T08:42:20Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/238763089",
+        "highway": "trunk",
+        "lanes": "2",
+        "ref": "NH216",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2318485,
+          16.8384567
+        ]
+      },
+      "id": "way/238763089"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/288611513",
+        "bridge": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "layer": "1",
+        "ref": "NH216",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2310509,
+          16.8552533
+        ]
+      },
+      "id": "way/288611513"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362421200",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2347191,
+          16.9531858
+        ]
+      },
+      "id": "way/362421200"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362421201",
+        "highway": "trunk",
+        "lanes": "2",
+        "ref": "NH216",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2329836,
+          16.8756365
+        ]
+      },
+      "id": "way/362421201"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362421202",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "surface": "concrete",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2333643,
+          16.942861
+        ]
+      },
+      "id": "way/362421202"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362421954",
+        "highway": "primary",
+        "name": "Kakinada - Rajanagaram (ADB) Road",
+        "network": "IN:SH:AP",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2399096,
+          16.9420835
+        ]
+      },
+      "id": "way/362421954"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362422111",
+        "highway": "primary",
+        "name": "Karapa - Chintapalli Road",
+        "network": "IN:SH:AP",
+        "ref": "SH195",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1641776,
+          16.9033426
+        ]
+      },
+      "id": "way/362422111"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362422847",
+        "highway": "primary",
+        "name": "Karapa - Chintapalli Road",
+        "network": "IN:SH:AP",
+        "ref": "SH195",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1386218,
+          16.9096794
+        ]
+      },
+      "id": "way/362422847"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362422884",
+        "highway": "primary",
+        "name": "Karapa - Chintapalli Road",
+        "network": "IN:SH:AP",
+        "ref": "SH195",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1594149,
+          16.9044588
+        ]
+      },
+      "id": "way/362422884"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362423206",
+        "highway": "secondary",
+        "ref": "MDR02",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1672904,
+          16.921628
+        ]
+      },
+      "id": "way/362423206"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362423966",
+        "highway": "secondary",
+        "oneway": "yes",
+        "ref": "MDR0211",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2359154,
+          16.9439534
+        ]
+      },
+      "id": "way/362423966"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362424014",
+        "highway": "secondary",
+        "oneway": "yes",
+        "ref": "MDR0211",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2363831,
+          16.9505386
+        ]
+      },
+      "id": "way/362424014"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362424015",
+        "highway": "primary",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1891111,
+          16.8802064
+        ]
+      },
+      "id": "way/362424015"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362424467",
+        "highway": "trunk",
+        "name": "Kakinada - Rajanagaram (ADB) Road",
+        "network": "IN:SH:AP",
+        "ref": "NH516F",
+        "ref:old": "SH15",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2566869,
+          16.948374
+        ]
+      },
+      "id": "way/362424467"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/366343220",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "oneway": "yes",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2313302,
+          16.9437214
+        ]
+      },
+      "id": "way/366343220"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/366343229",
+        "highway": "primary",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.229106,
+          16.9501876
+        ]
+      },
+      "id": "way/366343229"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373698",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR02",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1627232,
+          16.9403585
+        ]
+      },
+      "id": "way/396373698"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373710",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1856952,
+          16.8662436
+        ]
+      },
+      "id": "way/396373710"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373723",
+        "highway": "secondary",
+        "ref": "MDR02",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1552234,
+          16.9415509
+        ]
+      },
+      "id": "way/396373723"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373727",
+        "highway": "secondary",
+        "ref": "MDR02",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1591408,
+          16.9385027
+        ]
+      },
+      "id": "way/396373727"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373736",
+        "highway": "secondary",
+        "ref": "MDR0163",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2233095,
+          16.8642642
+        ]
+      },
+      "id": "way/396373736"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373742",
+        "highway": "secondary",
+        "ref": "MDR02",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1621774,
+          16.9385296
+        ]
+      },
+      "id": "way/396373742"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373747",
+        "highway": "primary",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1821132,
+          16.8638793
+        ]
+      },
+      "id": "way/396373747"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/564839012",
+        "bridge": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "layer": "1",
+        "ref": "NH216",
+        "ref:old": "NH214",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.23893,
+          16.908538
+        ]
+      },
+      "id": "way/564839012"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/564839013",
+        "highway": "primary",
+        "lanes": "2",
+        "name": "Kakinada Main Road",
+        "ref:old": "NH214",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2371353,
+          16.9207797
+        ]
+      },
+      "id": "way/564839013"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/564839014",
+        "highway": "primary",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1927154,
+          16.9003407
+        ]
+      },
+      "id": "way/564839014"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/564839015",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1923533,
+          16.8941326
+        ]
+      },
+      "id": "way/564839015"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/564839019",
+        "highway": "primary",
+        "name": "Ramachandrapuram - Penuguduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH197",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1790706,
+          16.9014519
+        ]
+      },
+      "id": "way/564839019"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/564839020",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Ramachandrapuram - Penuguduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH197",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.162189,
+          16.8935458
+        ]
+      },
+      "id": "way/564839020"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/564839042",
+        "highway": "secondary",
+        "ref": "MDR0164",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.170576,
+          16.9043058
+        ]
+      },
+      "id": "way/564839042"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/564839136",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1930856,
+          16.906732
+        ]
+      },
+      "id": "way/564839136"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/564839137",
+        "highway": "primary",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2225201,
+          16.9311509
+        ]
+      },
+      "id": "way/564839137"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/637293550",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2332426,
+          16.9423705
+        ]
+      },
+      "id": "way/637293550"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/707196204",
+        "highway": "secondary",
+        "ref": "MDR02",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1626126,
+          16.9399402
+        ]
+      },
+      "id": "way/707196204"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/761950028",
+        "highway": "secondary",
+        "ref": "MDR0163",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2018242,
+          16.8678804
+        ]
+      },
+      "id": "way/761950028"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/761950029",
+        "bridge": "yes",
+        "highway": "secondary",
+        "ref": "MDR0163",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2154709,
+          16.8667777
+        ]
+      },
+      "id": "way/761950029"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848848687",
+        "dual_carriageway": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "oneway": "yes",
+        "ref": "NH216",
+        "ref:old": "NH214",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2355132,
+          16.8971181
+        ]
+      },
+      "id": "way/848848687"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848848688",
+        "dual_carriageway": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "oneway": "yes",
+        "ref": "NH216",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2355131,
+          16.8971181
+        ]
+      },
+      "id": "way/848848688"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848848689",
+        "highway": "trunk",
+        "lanes": "2",
+        "ref": "NH216",
+        "ref:old": "NH214",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2376866,
+          16.9044898
+        ]
+      },
+      "id": "way/848848689"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850372040",
+        "bridge": "yes",
+        "highway": "trunk_link",
+        "lanes": "2",
+        "layer": "1",
+        "oneway": "yes",
+        "source": "maxar",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2177274,
+          16.9263731
+        ]
+      },
+      "id": "way/850372040"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850372041",
+        "highway": "trunk_link",
+        "lanes": "2",
+        "oneway": "yes",
+        "source": "maxar",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2173074,
+          16.9267025
+        ]
+      },
+      "id": "way/850372041"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850372042",
+        "highway": "trunk_link",
+        "lanes": "2",
+        "oneway": "yes",
+        "source": "maxar",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2191359,
+          16.9256642
+        ]
+      },
+      "id": "way/850372042"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850372045",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2100384,
+          16.9196806
+        ]
+      },
+      "id": "way/850372045"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850372046",
+        "highway": "primary",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2015991,
+          16.9132126
+        ]
+      },
+      "id": "way/850372046"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850381160",
+        "highway": "primary",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1524254,
+          16.9479905
+        ]
+      },
+      "id": "way/850381160"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850386024",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Ramachandrapuram - Penuguduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH197",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1655874,
+          16.8964278
+        ]
+      },
+      "id": "way/850386024"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850386025",
+        "highway": "primary",
+        "name": "Ramachandrapuram - Penuguduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH197",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1639019,
+          16.8949999
+        ]
+      },
+      "id": "way/850386025"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850732486",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR02",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.155658,
+          16.9374637
+        ]
+      },
+      "id": "way/850732486"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850768100",
+        "highway": "primary",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1713271,
+          16.855109
+        ]
+      },
+      "id": "way/850768100"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850808853",
+        "highway": "trunk",
+        "lanes": "2",
+        "name": "Kakinada Bypass",
+        "ref": "NH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2293109,
+          16.9204427
+        ]
+      },
+      "id": "way/850808853"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850866081",
+        "highway": "primary",
+        "name": "Ramachandrapuram - Penuguduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH197",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.146371,
+          16.8840484
+        ]
+      },
+      "id": "way/850866081"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851365266",
+        "highway": "secondary",
+        "ref": "MDR0163",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1871709,
+          16.8665438
+        ]
+      },
+      "id": "way/851365266"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851365267",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR0163",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1881064,
+          16.866261
+        ]
+      },
+      "id": "way/851365267"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851442450",
+        "highway": "primary",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2297206,
+          16.939402
+        ]
+      },
+      "id": "way/851442450"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851442853",
+        "highway": "primary",
+        "name": "Ramachandrapuram - Penuguduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.192751,
+          16.9065653
+        ]
+      },
+      "id": "way/851442853"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851481208",
+        "bridge": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "layer": "1",
+        "ref": "NH216",
+        "ref:old": "NH214",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2365062,
+          16.9005317
+        ]
+      },
+      "id": "way/851481208"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851481209",
+        "highway": "trunk",
+        "lanes": "2",
+        "ref": "NH216",
+        "ref:old": "NH214",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2362468,
+          16.8995695
+        ]
+      },
+      "id": "way/851481209"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851486981",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2347554,
+          16.9290571
+        ]
+      },
+      "id": "way/851486981"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851486982",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2334321,
+          16.936621
+        ]
+      },
+      "id": "way/851486982"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851486983",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2347502,
+          16.9290571
+        ]
+      },
+      "id": "way/851486983"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851507433",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2332862,
+          16.9423462
+        ]
+      },
+      "id": "way/851507433"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851507434",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2332819,
+          16.942429
+        ]
+      },
+      "id": "way/851507434"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851507435",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2330782,
+          16.9416873
+        ]
+      },
+      "id": "way/851507435"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851507436",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2331255,
+          16.9416631
+        ]
+      },
+      "id": "way/851507436"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851605446",
+        "highway": "primary",
+        "oneway": "yes",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.231578,
+          16.9443959
+        ]
+      },
+      "id": "way/851605446"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851871703",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1547271,
+          16.9455549
+        ]
+      },
+      "id": "way/851871703"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851871704",
+        "highway": "primary",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1620607,
+          16.9498464
+        ]
+      },
+      "id": "way/851871704"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852278898",
+        "highway": "primary",
+        "oneway": "yes",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2284222,
+          16.9358746
+        ]
+      },
+      "id": "way/852278898"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852278899",
+        "highway": "primary",
+        "oneway": "yes",
+        "ref": "SH216",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2284575,
+          16.9358559
+        ]
+      },
+      "id": "way/852278899"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852278900",
+        "highway": "primary",
+        "oneway": "yes",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2282333,
+          16.9354167
+        ]
+      },
+      "id": "way/852278900"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852278901",
+        "highway": "primary",
+        "oneway": "yes",
+        "ref": "SH14",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2281789,
+          16.9354293
+        ]
+      },
+      "id": "way/852278901"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852278902",
+        "highway": "primary",
+        "junction": "roundabout",
+        "ref": "SH14;SH216",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2283116,
+          16.9356512
+        ]
+      },
+      "id": "way/852278902"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852278904",
+        "highway": "primary",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2135153,
+          16.9233722
+        ]
+      },
+      "id": "way/852278904"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852347490",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "surface": "concrete",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2334501,
+          16.9433157
+        ]
+      },
+      "id": "way/852347490"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1080015886",
+        "highway": "primary",
+        "oneway": "yes",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2325472,
+          16.9440427
+        ]
+      },
+      "id": "way/1080015886"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1081715334",
+        "highway": "trunk_link",
+        "lanes": "2",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2158198,
+          16.9284629
+        ]
+      },
+      "id": "way/1081715334"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1081715335",
+        "highway": "trunk_link",
+        "oneway": "yes",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2148355,
+          16.9292325
+        ]
+      },
+      "id": "way/1081715335"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1081715336",
+        "highway": "trunk_link",
+        "lanes": "2",
+        "oneway": "yes",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2187112,
+          16.9261486
+        ]
+      },
+      "id": "way/1081715336"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1081715337",
+        "highway": "trunk_link",
+        "lanes": "2",
+        "oneway": "yes",
+        "source": "maxar",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2159822,
+          16.9279109
+        ]
+      },
+      "id": "way/1081715337"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1115206355",
+        "highway": "primary",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2316251,
+          16.9445164
+        ]
+      },
+      "id": "way/1115206355"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1187546652",
+        "highway": "secondary",
+        "ref": "MDR02",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1626712,
+          16.9404707
+        ]
+      },
+      "id": "way/1187546652"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1238802980",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2310266,
+          16.9429444
+        ]
+      },
+      "id": "way/1238802980"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1238803139",
+        "highway": "trunk",
+        "lanes": "2",
+        "name": "Kakinada Bypass",
+        "ref": "NH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2093246,
+          16.9511752
+        ]
+      },
+      "id": "way/1238803139"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1238803140",
+        "bridge": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "layer": "1",
+        "name": "Kakinada Bypass",
+        "ref": "NH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2105732,
+          16.9433839
+        ]
+      },
+      "id": "way/1238803140"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1270213227",
+        "highway": "trunk",
+        "lanes": "2",
+        "name": "Kakinada Bypass",
+        "ref": "NH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2127208,
+          16.9362694
+        ]
+      },
+      "id": "way/1270213227"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1270213228",
+        "bridge": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "layer": "1",
+        "name": "Kakinada Bypass",
+        "ref": "NH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2170076,
+          16.9270935
+        ]
+      },
+      "id": "way/1270213228"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1270213229",
+        "highway": "primary",
+        "junction": "roundabout",
+        "ref": "SH14;SH216",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2283581,
+          16.9356145
+        ]
+      },
+      "id": "way/1270213229"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1270213230",
+        "highway": "primary",
+        "junction": "roundabout",
+        "ref": "SH14;SH216",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2283858,
+          16.9356909
+        ]
+      },
+      "id": "way/1270213230"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1270213231",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2334761,
+          16.9434903
+        ]
+      },
+      "id": "way/1270213231"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1270213232",
+        "highway": "primary",
+        "name": "Kakinada - Rajanagaram (ADB) Road",
+        "network": "IN:SH:AP",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2346021,
+          16.9430424
+        ]
+      },
+      "id": "way/1270213232"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1524091247",
+        "embankment": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "name": "Kakinada Bypass",
+        "ref": "NH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2186144,
+          16.9261033
+        ]
+      },
+      "id": "way/1524091247"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1524091248",
+        "embankment": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "name": "Kakinada Bypass",
+        "ref": "NH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2158466,
+          16.9283034
+        ]
+      },
+      "id": "way/1524091248"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1558315739",
+        "highway": "trunk",
+        "lanes": "2",
+        "ref": "NH216",
+        "ref:old": "NH214",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2389773,
+          16.9121994
+        ]
+      },
+      "id": "way/1558315739"
+    }
+  ]
+}

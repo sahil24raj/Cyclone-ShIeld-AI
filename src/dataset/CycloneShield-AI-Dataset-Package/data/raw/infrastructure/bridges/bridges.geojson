@@ -1,0 +1,4753 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2026-09-28T08:37:16Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/238763090",
+        "bridge": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "layer": "1",
+        "ref": "NH216",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2337512,
+          16.8219474
+        ]
+      },
+      "id": "way/238763090"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/288611512",
+        "bridge": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "layer": "1",
+        "ref": "NH216",
+        "ref:old": "NH214",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2237727,
+          16.7529335
+        ]
+      },
+      "id": "way/288611512"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/288611513",
+        "bridge": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "layer": "1",
+        "ref": "NH216",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2310509,
+          16.8552533
+        ]
+      },
+      "id": "way/288611513"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/325064198",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1058375,
+          16.821073
+        ]
+      },
+      "id": "way/325064198"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362421202",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "surface": "concrete",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2333643,
+          16.942861
+        ]
+      },
+      "id": "way/362421202"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362422171",
+        "bridge": "yes",
+        "highway": "residential",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2504315,
+          16.9596321
+        ]
+      },
+      "id": "way/362422171"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362422181",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2308716,
+          16.972461
+        ]
+      },
+      "id": "way/362422181"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362422185",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2286454,
+          16.9679841
+        ]
+      },
+      "id": "way/362422185"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362422193",
+        "bridge": "yes",
+        "highway": "residential",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2506154,
+          16.958841
+        ]
+      },
+      "id": "way/362422193"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362422216",
+        "bridge": "yes",
+        "highway": "residential",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2505531,
+          16.9592259
+        ]
+      },
+      "id": "way/362422216"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362422334",
+        "bridge": "yes",
+        "highway": "residential",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.227749,
+          16.9666089
+        ]
+      },
+      "id": "way/362422334"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362422443",
+        "bridge": "yes",
+        "highway": "residential",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2243692,
+          16.9353488
+        ]
+      },
+      "id": "way/362422443"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362422684",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "name": "Nukalamma Temple Street",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2261096,
+          16.9644542
+        ]
+      },
+      "id": "way/362422684"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362422756",
+        "bridge": "yes",
+        "highway": "residential",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2276131,
+          16.9425763
+        ]
+      },
+      "id": "way/362422756"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362422795",
+        "bridge": "yes",
+        "highway": "trunk",
+        "layer": "1",
+        "name": "Kakinada - Rajanagaram (ADB) Road",
+        "network": "IN:SH:AP",
+        "ref": "NH516F",
+        "ref:old": "SH15",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.268395,
+          16.9569669
+        ]
+      },
+      "id": "way/362422795"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362422877",
+        "bridge": "yes",
+        "highway": "residential",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2283366,
+          16.9391846
+        ]
+      },
+      "id": "way/362422877"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362425818",
+        "bridge": "yes",
+        "electrified": "contact_line",
+        "frequency": "50",
+        "gauge": "1676",
+        "layer": "1",
+        "passenger_lines": "2",
+        "railway": "rail",
+        "voltage": "25000",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2204976,
+          16.9813253
+        ]
+      },
+      "id": "way/362425818"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362425819",
+        "bridge": "yes",
+        "electrified": "contact_line",
+        "frequency": "50",
+        "gauge": "1676",
+        "layer": "1",
+        "passenger_lines": "2",
+        "railway": "rail",
+        "voltage": "25000",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2204051,
+          16.9812604
+        ]
+      },
+      "id": "way/362425819"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/366343220",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "oneway": "yes",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2313302,
+          16.9437214
+        ]
+      },
+      "id": "way/366343220"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/394351810",
+        "bridge": "yes",
+        "electrified": "no",
+        "gauge": "1676",
+        "layer": "1",
+        "passenger_lines": "1",
+        "railway": "rail",
+        "source": "landsat",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2157413,
+          16.9803995
+        ]
+      },
+      "id": "way/394351810"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/394357819",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Kakinada Main Road",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2363874,
+          16.965878
+        ]
+      },
+      "id": "way/394357819"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/394357824",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR0211",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2389931,
+          16.9666613
+        ]
+      },
+      "id": "way/394357824"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396367645",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Dwarapudi - Yanam Road",
+        "name:fr": "Route Dwarapudi - Yanaon",
+        "network": "IN:SH:AP",
+        "ref": "SH206",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1495088,
+          16.7598675
+        ]
+      },
+      "id": "way/396367645"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373698",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR02",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1627232,
+          16.9403585
+        ]
+      },
+      "id": "way/396373698"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373699",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR016",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.263077,
+          16.7810641
+        ]
+      },
+      "id": "way/396373699"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373700",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR0156",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1258022,
+          16.8966665
+        ]
+      },
+      "id": "way/396373700"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373702",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR0157",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1017456,
+          16.9178234
+        ]
+      },
+      "id": "way/396373702"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373704",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2228558,
+          16.9597949
+        ]
+      },
+      "id": "way/396373704"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373708",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR0156",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1196819,
+          16.9392981
+        ]
+      },
+      "id": "way/396373708"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373709",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Ramachandrapuram - Penuguduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH197",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1088467,
+          16.864063
+        ]
+      },
+      "id": "way/396373709"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373710",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1856952,
+          16.8662436
+        ]
+      },
+      "id": "way/396373710"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373713",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR0156",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1158242,
+          16.880719
+        ]
+      },
+      "id": "way/396373713"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373716",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1697718,
+          16.9542778
+        ]
+      },
+      "id": "way/396373716"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373750",
+        "bridge": "yes",
+        "electrified": "no",
+        "gauge": "1676",
+        "layer": "1",
+        "passenger_lines": "1",
+        "railway": "rail",
+        "source": "landsat",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1037564,
+          16.8681807
+        ]
+      },
+      "id": "way/396373750"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396560802",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2220599,
+          16.9841527
+        ]
+      },
+      "id": "way/396560802"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396560806",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "name": "Pratap Nagar Road",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.219493,
+          16.9712886
+        ]
+      },
+      "id": "way/396560806"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/487737363",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR0211",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2378217,
+          16.9626175
+        ]
+      },
+      "id": "way/487737363"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/487737371",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR0211",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2383519,
+          16.96446
+        ]
+      },
+      "id": "way/487737371"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/564839012",
+        "bridge": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "layer": "1",
+        "ref": "NH216",
+        "ref:old": "NH214",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.23893,
+          16.908538
+        ]
+      },
+      "id": "way/564839012"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/564839015",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1923533,
+          16.8941326
+        ]
+      },
+      "id": "way/564839015"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/564839020",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Ramachandrapuram - Penuguduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH197",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.162189,
+          16.8935458
+        ]
+      },
+      "id": "way/564839020"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/564839136",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1930856,
+          16.906732
+        ]
+      },
+      "id": "way/564839136"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/637293548",
+        "bridge": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "layer": "1",
+        "ref": "NH216",
+        "ref:old": "NH214",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2287807,
+          16.7672522
+        ]
+      },
+      "id": "way/637293548"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/651036844",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "ref": "SH185",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2100928,
+          16.9930932
+        ]
+      },
+      "id": "way/651036844"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/671000961",
+        "bridge": "yes",
+        "electrified": "no",
+        "gauge": "1676",
+        "passenger_lines": "1",
+        "railway": "rail",
+        "source": "landsat",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1777074,
+          16.9503721
+        ]
+      },
+      "id": "way/671000961"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/758968621",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2231083,
+          16.960018
+        ]
+      },
+      "id": "way/758968621"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/761938606",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2071851,
+          16.9065906
+        ]
+      },
+      "id": "way/761938606"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/761938607",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2154194,
+          16.8991334
+        ]
+      },
+      "id": "way/761938607"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/761938611",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2274448,
+          16.8982696
+        ]
+      },
+      "id": "way/761938611"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/761950029",
+        "bridge": "yes",
+        "highway": "secondary",
+        "ref": "MDR0163",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2154709,
+          16.8667777
+        ]
+      },
+      "id": "way/761950029"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/761959964",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2061451,
+          16.845186
+        ]
+      },
+      "id": "way/761959964"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/762003919",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR01",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1673214,
+          16.8081224
+        ]
+      },
+      "id": "way/762003919"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/762003920",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1243504,
+          16.8199472
+        ]
+      },
+      "id": "way/762003920"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/762003925",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR01",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1638715,
+          16.7893348
+        ]
+      },
+      "id": "way/762003925"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/765773266",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR015",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2473122,
+          16.8002337
+        ]
+      },
+      "id": "way/765773266"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/765773272",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR015",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2481526,
+          16.8054622
+        ]
+      },
+      "id": "way/765773272"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/765773279",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2501372,
+          16.8066397
+        ]
+      },
+      "id": "way/765773279"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/765773286",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1988028,
+          16.8156284
+        ]
+      },
+      "id": "way/765773286"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/765780269",
+        "bridge": "yes",
+        "highway": "footway",
+        "layer": "1",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.205121,
+          16.8142166
+        ]
+      },
+      "id": "way/765780269"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/765780274",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR0161",
+        "surface": "concrete",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2249621,
+          16.7799955
+        ]
+      },
+      "id": "way/765780274"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/847082069",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR019",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.117126,
+          16.7506233
+        ]
+      },
+      "id": "way/847082069"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/847095459",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR019",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1130808,
+          16.7689959
+        ]
+      },
+      "id": "way/847095459"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/847104599",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR019",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1130706,
+          16.7688086
+        ]
+      },
+      "id": "way/847104599"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/847481469",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2497383,
+          16.8072024
+        ]
+      },
+      "id": "way/847481469"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/847845655",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2539588,
+          16.7756081
+        ]
+      },
+      "id": "way/847845655"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/847855028",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2328289,
+          16.7589723
+        ]
+      },
+      "id": "way/847855028"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/847859186",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2462864,
+          16.7697291
+        ]
+      },
+      "id": "way/847859186"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/847878164",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2606995,
+          16.7649798
+        ]
+      },
+      "id": "way/847878164"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/847920479",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR016",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2407556,
+          16.7921594
+        ]
+      },
+      "id": "way/847920479"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848259682",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1887354,
+          16.7530586
+        ]
+      },
+      "id": "way/848259682"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848325027",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2046479,
+          16.7607436
+        ]
+      },
+      "id": "way/848325027"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848327926",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1067212,
+          16.9065017
+        ]
+      },
+      "id": "way/848327926"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848365133",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Karapa - Chintapalli Road",
+        "network": "IN:SH:AP",
+        "ref": "SH195",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1184471,
+          16.9146793
+        ]
+      },
+      "id": "way/848365133"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848378690",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "source": "digitalglobe",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1482375,
+          16.7575279
+        ]
+      },
+      "id": "way/848378690"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848382490",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2212613,
+          16.7674847
+        ]
+      },
+      "id": "way/848382490"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848382493",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2164977,
+          16.7666484
+        ]
+      },
+      "id": "way/848382493"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848409542",
+        "bridge": "yes",
+        "highway": "service",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1770608,
+          16.7695177
+        ]
+      },
+      "id": "way/848409542"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848412479",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1871686,
+          16.7742357
+        ]
+      },
+      "id": "way/848412479"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848412482",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1753209,
+          16.788128
+        ]
+      },
+      "id": "way/848412482"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848421251",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1058608,
+          16.9838776
+        ]
+      },
+      "id": "way/848421251"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848702443",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2112389,
+          16.8026001
+        ]
+      },
+      "id": "way/848702443"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848702449",
+        "bridge": "yes",
+        "embankment": "both",
+        "highway": "unclassified",
+        "layer": "1",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2069648,
+          16.8094697
+        ]
+      },
+      "id": "way/848702449"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848710440",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2307871,
+          16.8085301
+        ]
+      },
+      "id": "way/848710440"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848798283",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2417621,
+          16.9102989
+        ]
+      },
+      "id": "way/848798283"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848798292",
+        "bridge": "yes",
+        "highway": "service",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2421153,
+          16.8991628
+        ]
+      },
+      "id": "way/848798292"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848860081",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.220512,
+          16.9049121
+        ]
+      },
+      "id": "way/848860081"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848860083",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2342238,
+          16.9183644
+        ]
+      },
+      "id": "way/848860083"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848862705",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2195076,
+          16.9023934
+        ]
+      },
+      "id": "way/848862705"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/849661541",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR0156",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.128537,
+          16.956125
+        ]
+      },
+      "id": "way/849661541"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/849662932",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1269789,
+          16.9549993
+        ]
+      },
+      "id": "way/849662932"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/849662935",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1254565,
+          16.9544831
+        ]
+      },
+      "id": "way/849662935"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/849662937",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1278797,
+          16.9556575
+        ]
+      },
+      "id": "way/849662937"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/849758921",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2451282,
+          16.9324589
+        ]
+      },
+      "id": "way/849758921"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/849758928",
+        "bridge": "yes",
+        "highway": "service",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.26077,
+          16.9393804
+        ]
+      },
+      "id": "way/849758928"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850003463",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1537584,
+          16.9043614
+        ]
+      },
+      "id": "way/850003463"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850050918",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1052811,
+          16.785194
+        ]
+      },
+      "id": "way/850050918"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850067520",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1170212,
+          16.7854239
+        ]
+      },
+      "id": "way/850067520"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850090411",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1752278,
+          16.9702449
+        ]
+      },
+      "id": "way/850090411"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850090413",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1536484,
+          16.981534
+        ]
+      },
+      "id": "way/850090413"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850090426",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1421193,
+          16.9839854
+        ]
+      },
+      "id": "way/850090426"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850092631",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR0156",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1320912,
+          16.9855957
+        ]
+      },
+      "id": "way/850092631"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850352520",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2046233,
+          16.919555
+        ]
+      },
+      "id": "way/850352520"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850355734",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2228842,
+          16.8287254
+        ]
+      },
+      "id": "way/850355734"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850365363",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1206525,
+          16.852804
+        ]
+      },
+      "id": "way/850365363"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850372038",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2170735,
+          16.9256378
+        ]
+      },
+      "id": "way/850372038"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850372040",
+        "bridge": "yes",
+        "highway": "trunk_link",
+        "lanes": "2",
+        "layer": "1",
+        "oneway": "yes",
+        "source": "maxar",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2177274,
+          16.9263731
+        ]
+      },
+      "id": "way/850372040"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850372045",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2100384,
+          16.9196806
+        ]
+      },
+      "id": "way/850372045"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850372047",
+        "bridge": "yes",
+        "highway": "service",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2026318,
+          16.9200867
+        ]
+      },
+      "id": "way/850372047"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850377213",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2086218,
+          16.929412
+        ]
+      },
+      "id": "way/850377213"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850380378",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1271043,
+          16.8319823
+        ]
+      },
+      "id": "way/850380378"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850381159",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1501436,
+          16.9504844
+        ]
+      },
+      "id": "way/850381159"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850386024",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Ramachandrapuram - Penuguduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH197",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1655874,
+          16.8964278
+        ]
+      },
+      "id": "way/850386024"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850394276",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1681356,
+          16.8958584
+        ]
+      },
+      "id": "way/850394276"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850395762",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2005083,
+          16.8296056
+        ]
+      },
+      "id": "way/850395762"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850395765",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2015263,
+          16.8183321
+        ]
+      },
+      "id": "way/850395765"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850408933",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.145918,
+          16.9479835
+        ]
+      },
+      "id": "way/850408933"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850410251",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1960476,
+          16.8479833
+        ]
+      },
+      "id": "way/850410251"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850411629",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1986213,
+          16.9211534
+        ]
+      },
+      "id": "way/850411629"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850416270",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1887342,
+          16.8801163
+        ]
+      },
+      "id": "way/850416270"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850416287",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1892913,
+          16.8815127
+        ]
+      },
+      "id": "way/850416287"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850416295",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "motor_vehicle": "no",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1919307,
+          16.8887115
+        ]
+      },
+      "id": "way/850416295"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850418062",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1434688,
+          16.8187834
+        ]
+      },
+      "id": "way/850418062"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850418086",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1363298,
+          16.8192025
+        ]
+      },
+      "id": "way/850418086"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850428582",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1893888,
+          16.8813866
+        ]
+      },
+      "id": "way/850428582"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850439601",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1954102,
+          16.8937506
+        ]
+      },
+      "id": "way/850439601"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850442471",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.183944,
+          16.8154963
+        ]
+      },
+      "id": "way/850442471"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850451087",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1997441,
+          16.8828233
+        ]
+      },
+      "id": "way/850451087"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850451088",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2112526,
+          16.8844128
+        ]
+      },
+      "id": "way/850451088"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850451097",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2155646,
+          16.8840828
+        ]
+      },
+      "id": "way/850451097"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850451099",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2122641,
+          16.8959164
+        ]
+      },
+      "id": "way/850451099"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850461441",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1514692,
+          16.8431273
+        ]
+      },
+      "id": "way/850461441"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850461443",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1309872,
+          16.8405887
+        ]
+      },
+      "id": "way/850461443"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850466646",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1987509,
+          16.8969023
+        ]
+      },
+      "id": "way/850466646"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850466663",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1958369,
+          16.895972
+        ]
+      },
+      "id": "way/850466663"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850558657",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1805936,
+          16.9850365
+        ]
+      },
+      "id": "way/850558657"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850704090",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR01",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1568682,
+          16.7827442
+        ]
+      },
+      "id": "way/850704090"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850709677",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1826463,
+          16.9338414
+        ]
+      },
+      "id": "way/850709677"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850709680",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1807686,
+          16.939331
+        ]
+      },
+      "id": "way/850709680"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850713774",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.200182,
+          16.8308014
+        ]
+      },
+      "id": "way/850713774"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850719351",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1886282,
+          16.9273454
+        ]
+      },
+      "id": "way/850719351"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850723945",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1840529,
+          16.8162122
+        ]
+      },
+      "id": "way/850723945"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850723947",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1840731,
+          16.8164374
+        ]
+      },
+      "id": "way/850723947"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850725658",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1726813,
+          16.9224698
+        ]
+      },
+      "id": "way/850725658"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850727663",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1525676,
+          16.7837716
+        ]
+      },
+      "id": "way/850727663"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850732486",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR02",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.155658,
+          16.9374637
+        ]
+      },
+      "id": "way/850732486"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850735380",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1589402,
+          16.8678191
+        ]
+      },
+      "id": "way/850735380"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850736926",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.133076,
+          16.8244196
+        ]
+      },
+      "id": "way/850736926"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850736928",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1337213,
+          16.8255191
+        ]
+      },
+      "id": "way/850736928"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850754054",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR01",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1360121,
+          16.7772176
+        ]
+      },
+      "id": "way/850754054"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850758926",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1851359,
+          16.929876
+        ]
+      },
+      "id": "way/850758926"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850768096",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR01",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1693163,
+          16.8441695
+        ]
+      },
+      "id": "way/850768096"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850768099",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1639056,
+          16.8485298
+        ]
+      },
+      "id": "way/850768099"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850768101",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1568903,
+          16.8544453
+        ]
+      },
+      "id": "way/850768101"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850768103",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1596469,
+          16.8519113
+        ]
+      },
+      "id": "way/850768103"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850782652",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1455401,
+          16.7893585
+        ]
+      },
+      "id": "way/850782652"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850792601",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR0157",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1088482,
+          16.9215557
+        ]
+      },
+      "id": "way/850792601"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850810961",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR0161",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1569218,
+          16.8024311
+        ]
+      },
+      "id": "way/850810961"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850826665",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1810167,
+          16.8703679
+        ]
+      },
+      "id": "way/850826665"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850843148",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR0156",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1286527,
+          16.9385577
+        ]
+      },
+      "id": "way/850843148"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850844208",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR0156",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1469597,
+          16.9229455
+        ]
+      },
+      "id": "way/850844208"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850851579",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR0156",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1368193,
+          16.9261665
+        ]
+      },
+      "id": "way/850851579"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850854757",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1379941,
+          16.8909074
+        ]
+      },
+      "id": "way/850854757"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850864160",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1637088,
+          16.7980377
+        ]
+      },
+      "id": "way/850864160"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850865070",
+        "bridge": "yes",
+        "highway": "service",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1457429,
+          16.863025
+        ]
+      },
+      "id": "way/850865070"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850865072",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1376451,
+          16.8682329
+        ]
+      },
+      "id": "way/850865072"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850866082",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Ramachandrapuram - Penuguduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH197",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1305248,
+          16.8745478
+        ]
+      },
+      "id": "way/850866082"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850866140",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1793789,
+          16.8757189
+        ]
+      },
+      "id": "way/850866140"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850874726",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1268793,
+          16.9364056
+        ]
+      },
+      "id": "way/850874726"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850891738",
+        "bridge": "yes",
+        "highway": "service",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1701993,
+          16.859183
+        ]
+      },
+      "id": "way/850891738"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850910606",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1685361,
+          16.8554823
+        ]
+      },
+      "id": "way/850910606"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851353691",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1210066,
+          16.8670038
+        ]
+      },
+      "id": "way/851353691"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851365267",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR0163",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1881064,
+          16.866261
+        ]
+      },
+      "id": "way/851365267"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851373437",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1786064,
+          16.8366843
+        ]
+      },
+      "id": "way/851373437"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851380556",
+        "bridge": "yes",
+        "highway": "service",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2208019,
+          16.7580338
+        ]
+      },
+      "id": "way/851380556"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851383615",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2404487,
+          16.7665271
+        ]
+      },
+      "id": "way/851383615"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851394474",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2219188,
+          16.8648485
+        ]
+      },
+      "id": "way/851394474"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851397612",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR0160",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2337785,
+          16.7708559
+        ]
+      },
+      "id": "way/851397612"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851414520",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR0161",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.187462,
+          16.798177
+        ]
+      },
+      "id": "way/851414520"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851414523",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1862859,
+          16.8013142
+        ]
+      },
+      "id": "way/851414523"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851434937",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "ref": "SH185",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2098294,
+          16.9929475
+        ]
+      },
+      "id": "way/851434937"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851444623",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2122471,
+          16.8672333
+        ]
+      },
+      "id": "way/851444623"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851444625",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2043633,
+          16.8689504
+        ]
+      },
+      "id": "way/851444625"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851447711",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.196882,
+          16.8736963
+        ]
+      },
+      "id": "way/851447711"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851448965",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1998259,
+          16.8721696
+        ]
+      },
+      "id": "way/851448965"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851451069",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2176158,
+          16.8663762
+        ]
+      },
+      "id": "way/851451069"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851460541",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1857692,
+          16.8024824
+        ]
+      },
+      "id": "way/851460541"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851461688",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1491353,
+          16.8085991
+        ]
+      },
+      "id": "way/851461688"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851469903",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1838019,
+          16.8113155
+        ]
+      },
+      "id": "way/851469903"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851469905",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1833626,
+          16.8081397
+        ]
+      },
+      "id": "way/851469905"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851478876",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1454715,
+          16.8012522
+        ]
+      },
+      "id": "way/851478876"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851481208",
+        "bridge": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "layer": "1",
+        "ref": "NH216",
+        "ref:old": "NH214",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2365062,
+          16.9005317
+        ]
+      },
+      "id": "way/851481208"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851488723",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2021489,
+          16.8702254
+        ]
+      },
+      "id": "way/851488723"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851488725",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2085201,
+          16.867866
+        ]
+      },
+      "id": "way/851488725"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851605453",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2234332,
+          16.9601514
+        ]
+      },
+      "id": "way/851605453"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851871703",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1547271,
+          16.9455549
+        ]
+      },
+      "id": "way/851871703"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852245468",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR02",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1097784,
+          16.8605915
+        ]
+      },
+      "id": "way/852245468"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852245785",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2233689,
+          16.864207
+        ]
+      },
+      "id": "way/852245785"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852246130",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "ref": "MDR01",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1677187,
+          16.8174249
+        ]
+      },
+      "id": "way/852246130"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852246199",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1547469,
+          16.9466101
+        ]
+      },
+      "id": "way/852246199"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852246206",
+        "bridge": "yes",
+        "highway": "unclassified",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.167389,
+          16.9532097
+        ]
+      },
+      "id": "way/852246206"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852269407",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2185006,
+          16.9303491
+        ]
+      },
+      "id": "way/852269407"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852278905",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1166625,
+          16.8212694
+        ]
+      },
+      "id": "way/852278905"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852283895",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1099878,
+          16.8057887
+        ]
+      },
+      "id": "way/852283895"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852284173",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2190578,
+          16.9709568
+        ]
+      },
+      "id": "way/852284173"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852331973",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1542892,
+          16.9585181
+        ]
+      },
+      "id": "way/852331973"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852331975",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1543717,
+          16.9553347
+        ]
+      },
+      "id": "way/852331975"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852331978",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1546384,
+          16.9483515
+        ]
+      },
+      "id": "way/852331978"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852352857",
+        "bridge": "yes",
+        "highway": "primary",
+        "lanes": "1",
+        "layer": "1",
+        "maxspeed": "20",
+        "name": "Indrapalem road bridge",
+        "ref": "SH191",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2232487,
+          16.9597515
+        ]
+      },
+      "id": "way/852352857"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852367972",
+        "bridge": "yes",
+        "highway": "track",
+        "layer": "1",
+        "source": "maxar",
+        "surface": "unpaved",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1080551,
+          16.8087337
+        ]
+      },
+      "id": "way/852367972"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852367974",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.123356,
+          16.8077648
+        ]
+      },
+      "id": "way/852367974"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852367978",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1137759,
+          16.7956633
+        ]
+      },
+      "id": "way/852367978"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852600868",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2083216,
+          16.99243
+        ]
+      },
+      "id": "way/852600868"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852606844",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.214127,
+          16.9842497
+        ]
+      },
+      "id": "way/852606844"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852610856",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2131127,
+          16.9880667
+        ]
+      },
+      "id": "way/852610856"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852612766",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2144512,
+          16.985033
+        ]
+      },
+      "id": "way/852612766"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852623302",
+        "bridge": "yes",
+        "highway": "service",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.262761,
+          16.992347
+        ]
+      },
+      "id": "way/852623302"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852631417",
+        "bridge": "yes",
+        "highway": "service",
+        "layer": "1",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2623953,
+          16.9920109
+        ]
+      },
+      "id": "way/852631417"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852645549",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "ref": "SH185",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2032733,
+          16.9854934
+        ]
+      },
+      "id": "way/852645549"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852682462",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2101891,
+          16.961369
+        ]
+      },
+      "id": "way/852682462"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852694298",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "oneway": "yes",
+        "ref": "SH185",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2332624,
+          16.9964901
+        ]
+      },
+      "id": "way/852694298"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852694300",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "oneway": "yes",
+        "ref": "SH185",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.233339,
+          16.9965761
+        ]
+      },
+      "id": "way/852694300"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852694308",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2282051,
+          16.9902079
+        ]
+      },
+      "id": "way/852694308"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852694309",
+        "bridge": "yes",
+        "highway": "residential",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2233042,
+          16.990007
+        ]
+      },
+      "id": "way/852694309"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/987628355",
+        "bridge": "yes",
+        "electrified": "no",
+        "gauge": "1676",
+        "layer": "1",
+        "passenger_lines": "1",
+        "railway": "rail",
+        "source": "landsat",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1779805,
+          16.9408301
+        ]
+      },
+      "id": "way/987628355"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1014655914",
+        "bridge": "yes",
+        "electrified": "no",
+        "gauge": "1676",
+        "layer": "1",
+        "passenger_lines": "1",
+        "railway": "rail",
+        "source": "landsat",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2200504,
+          16.980807
+        ]
+      },
+      "id": "way/1014655914"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1103988851",
+        "bridge": "yes",
+        "highway": "secondary",
+        "layer": "1",
+        "maxweight:signed": "no",
+        "name": "Kalpana Bridge",
+        "ref": "MDR0212",
+        "smoothness": "intermediate",
+        "surface": "compacted",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.240145,
+          16.9559522
+        ]
+      },
+      "id": "way/1103988851"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1103988857",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "name": "MOOTHA GOPAL KRISHNA VARADHI",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2299883,
+          16.9692649
+        ]
+      },
+      "id": "way/1103988857"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1103988860",
+        "bridge": "yes",
+        "highway": "footway",
+        "layer": "1",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2330147,
+          16.9678116
+        ]
+      },
+      "id": "way/1103988860"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1103993336",
+        "bridge": "aqueduct",
+        "layer": "1",
+        "waterway": "canal",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2002322,
+          16.8308125
+        ]
+      },
+      "id": "way/1103993336"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1193899712",
+        "bridge": "yes",
+        "embankment": "yes",
+        "highway": "secondary",
+        "lanes": "1",
+        "layer": "1",
+        "maxweight:signed": "no",
+        "name": "Kalpana Bridge",
+        "ref": "MDR0212",
+        "smoothness": "intermediate",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2432495,
+          16.9560854
+        ]
+      },
+      "id": "way/1193899712"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1238802980",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2310266,
+          16.9429444
+        ]
+      },
+      "id": "way/1238802980"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1238803140",
+        "bridge": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "layer": "1",
+        "name": "Kakinada Bypass",
+        "ref": "NH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2105732,
+          16.9433839
+        ]
+      },
+      "id": "way/1238803140"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1270213228",
+        "bridge": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "layer": "1",
+        "name": "Kakinada Bypass",
+        "ref": "NH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2170076,
+          16.9270935
+        ]
+      },
+      "id": "way/1270213228"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1298717264",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "name": "MOOTHA GOPALA KRISHNA VARADHI",
+        "oneway": "yes",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2316073,
+          16.9735775
+        ]
+      },
+      "id": "way/1298717264"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1298717268",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "name": "MOOTHA GOPALA KRISHNA VARADHI",
+        "oneway": "yes",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2315078,
+          16.9735978
+        ]
+      },
+      "id": "way/1298717268"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1298717270",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "name": "MOOTHA GOPALA KRISHNA VARADHI",
+        "oneway": "yes",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2323828,
+          16.9750949
+        ]
+      },
+      "id": "way/1298717270"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1298717272",
+        "bridge": "yes",
+        "highway": "tertiary",
+        "layer": "1",
+        "name": "MOOTHA GOPALA KRISHNA VARADHI",
+        "oneway": "yes",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2323592,
+          16.9751963
+        ]
+      },
+      "id": "way/1298717272"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1299897025",
+        "bridge": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "layer": "1",
+        "name": "Kakinada Bypass",
+        "ref": "NH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2083979,
+          16.95912
+        ]
+      },
+      "id": "way/1299897025"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1299897027",
+        "bridge": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "layer": "1",
+        "name": "Kakinada Bypass",
+        "ref": "NH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2084325,
+          16.9614835
+        ]
+      },
+      "id": "way/1299897027"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1299897029",
+        "bridge": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "layer": "1",
+        "name": "Kakinada Bypass",
+        "ref": "NH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2093163,
+          16.9679253
+        ]
+      },
+      "id": "way/1299897029"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1324901726",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "ref": "SH185",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2103634,
+          16.9933961
+        ]
+      },
+      "id": "way/1324901726"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1391095695",
+        "bridge": "yes",
+        "electrified": "no",
+        "gauge": "1676",
+        "layer": "1",
+        "passenger_lines": "1",
+        "railway": "rail",
+        "source": "landsat",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1200999,
+          16.877823
+        ]
+      },
+      "id": "way/1391095695"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1524091239",
+        "bridge": "yes",
+        "highway": "trunk",
+        "lanes": "2",
+        "layer": "1",
+        "ref": "NH216",
+        "ref:old": "NH214",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2216671,
+          16.753085
+        ]
+      },
+      "id": "way/1524091239"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1541439608",
+        "bridge": "yes",
+        "highway": "track",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1149227,
+          16.887534
+        ]
+      },
+      "id": "way/1541439608"
+    }
+  ]
+}

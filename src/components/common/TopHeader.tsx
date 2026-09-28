@@ -21,6 +21,8 @@ export const TopHeader: React.FC = () => {
     alerts,
     setActiveTab,
     dataSources,
+    dataMode,
+    setDataMode,
     isStatusModalOpen,
     setIsStatusModalOpen,
   } = useAppState();
@@ -78,8 +80,36 @@ export const TopHeader: React.FC = () => {
           </button>
         </div>
 
-        {/* Center: Clean Strategic Status Chips (No clutter, no redundant prototype box) */}
+        {/* Center: Clean Strategic Status Chips & Data Mode Switcher */}
         <div className="hidden md:flex items-center gap-2.5">
+          {/* Interactive Data Mode Switcher */}
+          <div className="bg-navy-950 p-1 rounded-xl border border-navy-750 flex items-center gap-1 text-xs font-mono">
+            <button
+              onClick={() => setDataMode('mock')}
+              className={`px-2.5 py-1 rounded-lg flex items-center gap-1.5 transition-all ${
+                dataMode === 'mock'
+                  ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 font-bold shadow-sm'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+              title="Deterministic Historical / Calibration Simulation Mode"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+              <span>DEMO MODE</span>
+            </button>
+            <button
+              onClick={() => setDataMode('live')}
+              className={`px-2.5 py-1 rounded-lg flex items-center gap-1.5 transition-all ${
+                dataMode === 'live'
+                  ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold shadow-sm'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+              title="Direct Live Meteorological & Satellite Ingestion Mode"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>LIVE FEED</span>
+            </button>
+          </div>
+
           {/* Active Scenario Location */}
           <div className="bg-navy-950/80 px-3 py-1.5 rounded-lg border border-navy-750 flex items-center gap-2 text-xs backdrop-blur-sm">
             <Radio className="w-3.5 h-3.5 text-rose-400 animate-pulse" />
@@ -90,12 +120,6 @@ export const TopHeader: React.FC = () => {
           <div className="bg-navy-950/80 px-2.5 py-1.5 rounded-lg border border-navy-750 flex items-center gap-1.5 text-xs font-mono text-teal-300 backdrop-blur-sm">
             <Clock className="w-3.5 h-3.5 text-teal-400" />
             <span>{t('time_to_landfall')}</span>
-          </div>
-
-          {/* Confidence Pill */}
-          <div className="hidden lg:flex items-center gap-1.5 bg-navy-950/80 border border-navy-750 px-2.5 py-1.5 rounded-lg text-xs font-mono backdrop-blur-sm">
-            <Activity className="w-3.5 h-3.5 text-emerald-400" />
-            <span className="text-slate-300">{t('confidence_chip')}</span>
           </div>
         </div>
 

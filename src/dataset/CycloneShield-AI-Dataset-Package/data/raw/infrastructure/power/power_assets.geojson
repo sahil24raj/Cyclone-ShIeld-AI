@@ -1,0 +1,92 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2026-09-28T08:37:16Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/241988306",
+        "power": "substation",
+        "voltage": "132000",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2131155,
+          16.7504944
+        ]
+      },
+      "id": "way/241988306"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362421139",
+        "power": "plant",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2715207,
+          16.9493449
+        ]
+      },
+      "id": "way/362421139"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362421169",
+        "power": "substation",
+        "voltage": "132000",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2661404,
+          16.9721405
+        ]
+      },
+      "id": "way/362421169"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362421175",
+        "power": "substation",
+        "voltage": "220000",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2714562,
+          16.9492288
+        ]
+      },
+      "id": "way/362421175"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362421177",
+        "power": "substation",
+        "voltage": "132000",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2726646,
+          16.996139
+        ]
+      },
+      "id": "way/362421177"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "modelName": "CycloneShield-MultiHazard-DerivedRisk-v2.4",
+  "modelVersion": "2.4.0 (Real Data Exposure Pipeline)",
+  "predictionType": "DERIVED_ANALYSIS",
+  "dataQuality": "REAL",
+  "algorithm": "Deterministic Multi-Criteria Hydrodynamic & Spatial Vulnerability Engine (P-CHMVM v2.4)",
+  "datasetsUsed": [
+    "NOAA IBTrACS v04r01 (309,724 global records, 472 Bay of Bengal storm tracks)",
+    "Open-Meteo Hourly Kakinada Weather Archive (409,728 hourly real observations 1980-2026)",
+    "European Commission JRC Global Surface Water v1.5 (30m resolution raster, tile 80E_20N)",
+    "NASA GPM IMERG Final V07 Precipitation Mean (0.1 deg spatial subset for Kakinada)",
+    "OpenStreetMap Real Infrastructure (510 deduplicated hospitals, substations, bridges, roads)",
+    "Dartmouth Flood Observatory FloodArchive (283 India flood events for macro context)"
+  ],
+  "supervisedTargetAudit": {
+    "groundTruthFailureLabels": "ABSENT_IN_RAW_DATA",
+    "integrityDecision": "Supervised training on fabricated/circular labels is permanently disabled.",
+    "mode": "DERIVED_ANALYSIS / MODEL_ESTIMATE"
+  },
+  "formula": "Composite Risk = 0.35 * Hazard(Wind, Surge, Rain) + 0.25 * Vulnerability(Elev, RoadAccess, BackupPower) + 0.25 * Exposure(JRC Water %, CoastDist) + 0.15 * Criticality",
+  "confidencePolicy": "Confidence is set to null because empirical damage probability distributions cannot be scientifically verified without ground-truth damage logs.",
+  "status": "VERIFIED_REAL_DATA_PIPELINE",
+  "evaluatedAt": "2026-09-28T16:40:47.700264Z"
+}

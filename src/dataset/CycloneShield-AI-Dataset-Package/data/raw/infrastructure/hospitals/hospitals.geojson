@@ -1,0 +1,1998 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2026-09-28T08:35:11Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/487481615",
+        "addr:city": "KAKINADA",
+        "addr:housenumber": "2-24-8",
+        "addr:postcode": "533003",
+        "addr:street": "Bhanugudi Junction",
+        "amenity": "hospital",
+        "name": "SRI HOSPITALS",
+        "note": "Opens at 11:00 AM",
+        "phone": "+91 884 234 8181",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2382066,
+          16.9727639
+        ]
+      },
+      "id": "way/487481615"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758580043",
+        "addr:district": "East Godavari",
+        "addr:full": "Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "contact:mobile": "8842373223",
+        "name": "Bharani Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2368563,
+          16.9721394
+        ]
+      },
+      "id": "node/6758580043"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758668271",
+        "addr:district": "East Godavari",
+        "addr:full": "H.No: 10-7-39, Kopellavari Street, Ramaraopet(Near Duper Bazar), Kakinada",
+        "addr:postcode": "533004",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Sri Venkata Chalapathi Nursing Home",
+        "source": "OpenGovernmentData",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2279594,
+          16.9623125
+        ]
+      },
+      "id": "node/6758668271"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758704022",
+        "addr:district": "East Godavari",
+        "addr:full": "H.No: 3-29, Sarpavaram Junction",
+        "addr:postcode": "533005",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "contact:mobile": "9951516000",
+        "contact:phone": "08842382381; 2382382",
+        "email": "info@trusthospitals.com",
+        "fax": "238880",
+        "name": "Trust Hospital(A Unit Of Sarvottam Health Care)",
+        "opening_hours": "24/7",
+        "source": "OpenGovernmentData",
+        "website": "https://www.trusthospitals.in/",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.241119,
+          16.9956421
+        ]
+      },
+      "id": "node/6758704022"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758713152",
+        "addr:district": "East Godavari",
+        "addr:full": "H.No: 21-1-24, Jawahar Street, Shalypet",
+        "addr:postcode": "533004",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "contact:phone": "2361155; 2376634; 2376635",
+        "fax": "2352222/08842345979",
+        "name": "Sai Sudha Hospital",
+        "opening_hours": "24/7",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2324528,
+          16.9545355
+        ]
+      },
+      "id": "node/6758713152"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758715156",
+        "addr:district": "East Godavari",
+        "addr:full": "H.No: 10-5-8, Nageswara Rao Street, Rama Rao Pet 2nd Junction, Kakinada",
+        "addr:postcode": "533004",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "contact:mobile": "8842376333",
+        "name": "Sudha Urology And Andrology Hospital",
+        "source": "OpenGovernmentData",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2287956,
+          16.9635849
+        ]
+      },
+      "id": "node/6758715156"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758721151",
+        "addr:district": "East Godavari",
+        "addr:full": "Jawahar Street, Kakinada , East Godavari",
+        "addr:postcode": "533004",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "contact:phone": "08842362770; 2368770; 2368771",
+        "name": "Vijaya Nursing Home - Kakinada",
+        "opening_hours": "24/7",
+        "source": "OpenGovernmentData",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.233289,
+          16.9557901
+        ]
+      },
+      "id": "node/6758721151"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758722252",
+        "addr:district": "East Godavari",
+        "addr:full": "H.No: 13-1-3, Main Road, Kakinada",
+        "addr:postcode": "533001",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "contact:phone": "2345700; 2345800",
+        "name": "Apollo Hospitals - East Godavari",
+        "opening_hours": "24/7",
+        "source": "OpenGovernmentData",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2358967,
+          16.9605538
+        ]
+      },
+      "id": "node/6758722252"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758726581",
+        "addr:district": "East Godavari",
+        "addr:full": "H.No: 12-2-24, Dantuvari Street, Behind Chandana Brothers",
+        "addr:postcode": "533004",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "contact:mobile": "8842385499",
+        "fax": "8842356499",
+        "name": "Sree Bala Nursing Home Sree Bala Ent Care Centre",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2347313,
+          16.9588028
+        ]
+      },
+      "id": "node/6758726581"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758727383",
+        "addr:district": "East Godavari",
+        "addr:full": "Opp: Govt Hospital, P R College Road, Kakinada",
+        "addr:postcode": "533004",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "contact:mobile": "8842379292",
+        "name": "Haritha Hospitals",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2305846,
+          16.9562808
+        ]
+      },
+      "id": "node/6758727383"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758732669",
+        "addr:district": "East Godavari",
+        "addr:full": "H.No: 11-3-10, Veterinary Hospital Road, Beside GRT Grand Hotel, Ramaraopeta, Kakinada",
+        "addr:postcode": "533004",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "contact:mobile": "9949802577; 9440504492",
+        "contact:phone": "08842353577; 2353677",
+        "name": "Care Emergency Hospital",
+        "opening_hours": "24/7",
+        "source": "OpenGovernmentData",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2316454,
+          16.9640897
+        ]
+      },
+      "id": "node/6758732669"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758733079",
+        "addr:district": "East Godavari",
+        "addr:full": "Lig No.6, 100 Building Complex Road, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "contact:phone": "2371457",
+        "name": "Saipriya Maternity Hospital",
+        "opening_hours": "24/7",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2397484,
+          16.9689898
+        ]
+      },
+      "id": "node/6758733079"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758735035",
+        "addr:district": "East Godavari",
+        "addr:full": "D.No: 21-1-29, Jawahar St, Kakinada",
+        "addr:postcode": "533004",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Shravani Ent Hospital",
+        "source": "OpenGovernmentData",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.232603,
+          16.9550089
+        ]
+      },
+      "id": "node/6758735035"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758738398",
+        "addr:district": "East Godavari",
+        "addr:full": "P.R.College Road",
+        "addr:postcode": "533004",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "D V Raju Eye Hospital",
+        "source": "OpenGovernmentData",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2307804,
+          16.9571044
+        ]
+      },
+      "id": "node/6758738398"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758742619",
+        "addr:district": "East Godavari",
+        "addr:full": "Nageswara Rao Street, Ramrao Pet, Kakinada",
+        "addr:postcode": "533001",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Sri Gowthami Multispeciality Hospital",
+        "opening_hours": "24/7",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.228577,
+          16.9646907
+        ]
+      },
+      "id": "node/6758742619"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758764647",
+        "addr:district": "East Godavari",
+        "addr:full": "H.No: 13-1-13,Nfcl Road, Nagamallithota Junction,",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Lifeline Emergency and Neuro Centre",
+        "opening_hours": "24/7",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2387218,
+          16.9703437
+        ]
+      },
+      "id": "node/6758764647"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758765137",
+        "addr:district": "East Godavari",
+        "addr:full": "H.No: 11-11-1, Ramaraopet, East Godavari",
+        "addr:postcode": "533004",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "contact:phone": "08842361626; 2386604; 6699788",
+        "name": "Sanjivi Hospitals",
+        "opening_hours": "24/7",
+        "source": "OpenGovernmentData",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2338314,
+          16.9632976
+        ]
+      },
+      "id": "node/6758765137"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758770836",
+        "addr:district": "East Godavari",
+        "addr:full": "H.No: 9-11-130, Gandhi Nagar, Back Side Of Gandhi Statue",
+        "addr:postcode": "533001",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "fax": "2361531",
+        "name": "Ramya Hospitals",
+        "opening_hours": "24/7",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2238134,
+          16.9650704
+        ]
+      },
+      "id": "node/6758770836"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758773804",
+        "addr:district": "East Godavari",
+        "addr:full": "H.No: 6-1-37, Nookalamma Temple Street, Suryaraopet, Kakinada",
+        "addr:postcode": "533004",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "contact:mobile": "8843989000",
+        "name": "Vasan Eye Care Hospital - Kakinada",
+        "source": "OpenGovernmentData",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2342981,
+          16.9631732
+        ]
+      },
+      "id": "node/6758773804"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758775956",
+        "addr:district": "East Godavari",
+        "addr:full": "H.No: 2-4-10, Near Suruchi Sweet Stall, Behind Padmapriva Theatre, Bhanugudi Junction, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Mother and Child Hospital",
+        "opening_hours": "24/7",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2382671,
+          16.9700031
+        ]
+      },
+      "id": "node/6758775956"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758776088",
+        "addr:district": "East Godavari",
+        "addr:full": "H.No: 11-5-10, Gopala Krishna Street, Ramaraopet, Kakinada",
+        "addr:postcode": "533004",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "contact:mobile": "8842376549",
+        "fax": "8842361668",
+        "name": "Ravichandra Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2334895,
+          16.9635542
+        ]
+      },
+      "id": "node/6758776088"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758778869",
+        "addr:district": "East Godavari",
+        "addr:full": "H.No: 2- 27- 24/1, Gokul Street, Sree Nagar Colony, East Godavari",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "contact:phone": "2361669;",
+        "name": "Srujana Multi Speciality Hospital",
+        "opening_hours": "24/7",
+        "source": "OpenGovernmentData",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.239342,
+          16.9704091
+        ]
+      },
+      "id": "node/6758778869"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758781703",
+        "addr:district": "East Godavari",
+        "addr:full": "H.No: 2-2-7, Usha Priya Complex, Bhanugudi",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Safe Emergency Hospital",
+        "opening_hours": "24/7",
+        "source": "OpenGovernmentData",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2373022,
+          16.9706464
+        ]
+      },
+      "id": "node/6758781703"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758809334",
+        "addr:district": "East Godavari",
+        "addr:full": "H.No: 8-5-19/1, Ontimamidi Junction, Gandhinagar, Kakinada",
+        "addr:postcode": "533001",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Sri Sai Raghavendra Super Specialities Hospital",
+        "opening_hours": "24/7",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2241822,
+          16.9681284
+        ]
+      },
+      "id": "node/6758809334"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6768441008",
+        "addr:district": "East Godavari",
+        "addr:full": "H.No: 4-111, Manikyanagar Road, Valasapakala, Kakinada",
+        "addr:postcode": "533005",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "contact:mobile": "9848605653",
+        "name": "Sushrutha Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2546534,
+          16.9932193
+        ]
+      },
+      "id": "node/6768441008"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6768672060",
+        "addr:district": "East Godavari",
+        "addr:full": "Samalkot Road, Madhavapatnam Junction, Near Railway Crossing, Auto Nagar, Kakinada",
+        "addr:postcode": "533004",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "contact:mobile": "85006 69554, 85006 69557",
+        "contact:phone": "0884 232 6000, 0884 232 6001",
+        "email": "info@suryaglobalhospitals.com",
+        "name": "Surya Global Hospitals",
+        "opening_hours": "24/7",
+        "source": "OpenGovernmentData",
+        "website": "https://www.suryaglobalhospitals.com/",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2103903,
+          16.9939914
+        ]
+      },
+      "id": "node/6768672060"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6770940005",
+        "addr:district": "East Godavari",
+        "addr:full": "H.No: 34-1-20, Temple Street, East Godawari, Kakinada,",
+        "addr:postcode": "533001",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "contact:mobile": "995176441",
+        "contact:phone": "8842368521",
+        "fax": "0884 6662002",
+        "name": "Siddhartha Hospital",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2314349,
+          16.9473818
+        ]
+      },
+      "id": "node/6770940005"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6781927742",
+        "addr:district": "East Godavari",
+        "addr:full": "Jawahar Street, Salipeta",
+        "addr:postcode": "533001",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Sapthagiri Hospitals",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2324179,
+          16.9547376
+        ]
+      },
+      "id": "node/6781927742"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6804693330",
+        "addr:district": "East Godavari",
+        "addr:full": "Kakinada",
+        "addr:postcode": "533001",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "Christian Cancer Center",
+        "source": "OpenGovernmentData",
+        "website": "http://www.christiancancercenter.org/",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2403398,
+          16.9836551
+        ]
+      },
+      "id": "node/6804693330"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7116293090",
+        "addr:block": "Mandapeta",
+        "addr:district": "East Godavari",
+        "addr:full": "Near sivalayam, Pekeru",
+        "addr:postcode": "533263",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "contact:phone": "8857253047",
+        "name": "Government Hospital,Pekeru",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.118225,
+          16.7508039
+        ]
+      },
+      "id": "node/7116293090"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7116293216",
+        "addr:block": "Tallarevu",
+        "addr:district": "East Godavari",
+        "addr:full": "Near MPDO Office, Karapa",
+        "addr:postcode": "533462",
+        "addr:state": "Andhra Pradesh",
+        "addr:subdistrict": "Karapa Mandal",
+        "amenity": "hospital",
+        "contact:phone": "8842394847",
+        "name": "Government Hospital,Karapa",
+        "source": "OpenGovernmentData"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.167114,
+          16.89914
+        ]
+      },
+      "id": "node/7116293216"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7116293222",
+        "addr:district": "East Godavari",
+        "addr:full": "Opp DRDA Pragathi Bhavanam, Kakinada",
+        "addr:postcode": "533001",
+        "addr:state": "Andhra Pradesh",
+        "addr:subdistrict": "Kakinada (Urban) Mandal",
+        "amenity": "hospital",
+        "contact:phone": "8842302001",
+        "name": "Government General Hospital",
+        "source": "OpenGovernmentData",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2273127,
+          16.9557132
+        ]
+      },
+      "id": "node/7116293222"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467455",
+        "addr:district": "East Godavari",
+        "addr:full": "Kakinada",
+        "addr:postcode": "533001",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Mahaveer Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2326106,
+          16.9474991
+        ]
+      },
+      "id": "node/7790467455"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467459",
+        "addr:district": "East Godavari",
+        "addr:full": "Lalitha Nagar, Kakinada",
+        "addr:postcode": "533005",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Amrutha Children Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2416501,
+          16.9955426
+        ]
+      },
+      "id": "node/7790467459"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467460",
+        "addr:district": "East Godavari",
+        "addr:full": "Srinagar, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Padma Children's Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2396194,
+          16.9704041
+        ]
+      },
+      "id": "node/7790467460"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467462",
+        "addr:district": "East Godavari",
+        "addr:full": "Sriram Nagar, Kondayya Palem, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Pulse Emergency Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2361035,
+          16.9695905
+        ]
+      },
+      "id": "node/7790467462"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467465",
+        "addr:district": "East Godavari",
+        "addr:full": "Suryanarayana Puram, Kakinada",
+        "addr:postcode": "533001",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Choday Apparao Nature Cure Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2376901,
+          16.9445053
+        ]
+      },
+      "id": "node/7790467465"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467466",
+        "addr:district": "East Godavari",
+        "addr:full": "Sarpavaram Junction, Ramanayapeta, Kakinada",
+        "addr:postcode": "533005",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Kriti ENT Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2434043,
+          16.9960823
+        ]
+      },
+      "id": "node/7790467466"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467467",
+        "addr:district": "East Godavari",
+        "addr:full": "Jaganadha Puram, Kakinada",
+        "addr:postcode": "533001",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Srimathi Indira Gandhi First Referral Hospital",
+        "name:etymology:wikidata": "Q1149",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.237847,
+          16.941109
+        ]
+      },
+      "id": "node/7790467467"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467469",
+        "addr:district": "East Godavari",
+        "addr:full": "Turangi, Kakinada",
+        "addr:postcode": "533002",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Janapriya Maternity And Surgical Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.232101,
+          16.942605
+        ]
+      },
+      "id": "node/7790467469"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467470",
+        "addr:district": "East Godavari",
+        "addr:full": "Kondayya Palem, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Sai Krishna Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2349677,
+          16.971004
+        ]
+      },
+      "id": "node/7790467470"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467471",
+        "addr:district": "East Godavari",
+        "addr:full": "V.S. Raju Colony, Kakinada",
+        "addr:postcode": "533005",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "ESI Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2437368,
+          16.9894436
+        ]
+      },
+      "id": "node/7790467471"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467473",
+        "addr:district": "East Godavari",
+        "addr:full": "Venkat Nagar, Kannayya Kapu Nagar, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Laxmi Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2485709,
+          16.972555
+        ]
+      },
+      "id": "node/7790467473"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467475",
+        "addr:district": "East Godavari",
+        "addr:full": "Lalitha Nagar, Kakinada",
+        "addr:postcode": "533005",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Sri Devi Children Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2422084,
+          16.9956875
+        ]
+      },
+      "id": "node/7790467475"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467476",
+        "addr:district": "East Godavari",
+        "addr:full": "Balaji Cheruvu, Kakinada",
+        "addr:postcode": "533001",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Dr. Krishna Mohan Rao Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2311182,
+          16.9542975
+        ]
+      },
+      "id": "node/7790467476"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467477",
+        "addr:district": "East Godavari",
+        "addr:full": "Narasanna Nagar, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Dr. Kamalendranath Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2256425,
+          16.9758449
+        ]
+      },
+      "id": "node/7790467477"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467483",
+        "addr:district": "East Godavari",
+        "addr:full": "Tallarevu",
+        "addr:postcode": "533463",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Sathagna Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.229859,
+          16.782133
+        ]
+      },
+      "id": "node/7790467483"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467485",
+        "addr:district": "East Godavari",
+        "addr:full": "Kakinada",
+        "addr:postcode": "533001",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Sri Sai Krishna Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2365049,
+          16.9465004
+        ]
+      },
+      "id": "node/7790467485"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467487",
+        "addr:district": "East Godavari",
+        "addr:full": "RTC Colony, Ramanayapeta, Kakinada",
+        "addr:postcode": "533005",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Sowbhagya Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2472514,
+          16.9934117
+        ]
+      },
+      "id": "node/7790467487"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467488",
+        "addr:district": "East Godavari",
+        "addr:full": "Satyanarayana Puram, Ramanayapeta, Kakinada",
+        "addr:postcode": "533005",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Sriteja Homeo Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2445451,
+          16.996294
+        ]
+      },
+      "id": "node/7790467488"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467490",
+        "addr:district": "East Godavari",
+        "addr:full": "Suryanarayana Puram, Kakinada",
+        "addr:postcode": "533001",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Sri Bala Prabha Multispeciality Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.240397,
+          16.946555
+        ]
+      },
+      "id": "node/7790467490"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467493",
+        "addr:district": "East Godavari",
+        "addr:full": "Lankada Vari Peta, Jagannaickpur, Kakinada",
+        "addr:postcode": "533002",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Jaya Children Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2331104,
+          16.937795
+        ]
+      },
+      "id": "node/7790467493"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467494",
+        "addr:district": "East Godavari",
+        "addr:full": "Dwaraka Nagar, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Gide Children's Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.240553,
+          16.971849
+        ]
+      },
+      "id": "node/7790467494"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467496",
+        "addr:district": "East Godavari",
+        "addr:full": "Vidya Nagar, Ramanayapeta, Kakinada",
+        "addr:postcode": "533005",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "LifeLine Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2418716,
+          16.9849837
+        ]
+      },
+      "id": "node/7790467496"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467497",
+        "addr:district": "East Godavari",
+        "addr:full": "Rama Rao Peta, Kakinada",
+        "addr:postcode": "533004",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Sai Ragavendra Hospitals",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2285932,
+          16.9621362
+        ]
+      },
+      "id": "node/7790467497"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467499",
+        "addr:district": "East Godavari",
+        "addr:full": "Bhanugudi Junction, Perrajupeta, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Amulya Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2367622,
+          16.9672863
+        ]
+      },
+      "id": "node/7790467499"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467500",
+        "addr:district": "East Godavari",
+        "addr:full": "Surya Rao Peta, Kakinada",
+        "addr:postcode": "533001",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Dr. Sudhakar Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2363076,
+          16.9541642
+        ]
+      },
+      "id": "node/7790467500"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467501",
+        "addr:district": "East Godavari",
+        "addr:full": "Srinagar, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Dr. Damera Rama Rao Skin Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2388267,
+          16.9707477
+        ]
+      },
+      "id": "node/7790467501"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467502",
+        "addr:district": "East Godavari",
+        "addr:full": "Pratap Nagar, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Aruna Hospitals",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2234606,
+          16.9698191
+        ]
+      },
+      "id": "node/7790467502"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467504",
+        "addr:district": "East Godavari",
+        "addr:full": "GPT Colony, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Anurag Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.228501,
+          16.978848
+        ]
+      },
+      "id": "node/7790467504"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467507",
+        "addr:district": "East Godavari",
+        "addr:full": "Nageswara Rao Street, Rama Rao Peta, Kakinada",
+        "addr:postcode": "533004",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Best Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2284008,
+          16.9609927
+        ]
+      },
+      "id": "node/7790467507"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467508",
+        "addr:district": "East Godavari",
+        "addr:full": "Bhanugudi Junction, Srinagar, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Amrutha Emergency & Multispeciality Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.238566,
+          16.970882
+        ]
+      },
+      "id": "node/7790467508"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467509",
+        "addr:district": "East Godavari",
+        "addr:full": "Rama Rao Peta, Kakinada",
+        "addr:postcode": "533001",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Gadam Dental Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2327916,
+          16.9545567
+        ]
+      },
+      "id": "node/7790467509"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467512",
+        "addr:district": "East Godavari",
+        "addr:full": "Siddartha Nagar, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Triveni Super Speciality Dental Hospital & Implant Centre",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2428176,
+          16.9728496
+        ]
+      },
+      "id": "node/7790467512"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467514",
+        "addr:district": "East Godavari",
+        "addr:full": "Turangi, Kakinada",
+        "addr:postcode": "533002",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Sri Kiran Eye Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.232023,
+          16.937709
+        ]
+      },
+      "id": "node/7790467514"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467515",
+        "addr:district": "East Godavari",
+        "addr:full": "Gandhi Nagar, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Aswani Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2249715,
+          16.9687805
+        ]
+      },
+      "id": "node/7790467515"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467516",
+        "addr:district": "East Godavari",
+        "addr:full": "Ramanayapeta, Kakinada",
+        "addr:postcode": "533005",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Savitha Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2448291,
+          16.9956377
+        ]
+      },
+      "id": "node/7790467516"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467518",
+        "addr:district": "East Godavari",
+        "addr:full": "Jagannaickpur, Kakinada",
+        "addr:postcode": "533016",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Sharma Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2345712,
+          16.9411756
+        ]
+      },
+      "id": "node/7790467518"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467519",
+        "addr:district": "East Godavari",
+        "addr:full": "Santhi Nagar, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Vennela ENT Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2415835,
+          16.9682782
+        ]
+      },
+      "id": "node/7790467519"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467521",
+        "addr:district": "East Godavari",
+        "addr:full": "Santhi Nagar, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Vamsi Chest & Children's Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2426087,
+          16.9689064
+        ]
+      },
+      "id": "node/7790467521"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467522",
+        "addr:district": "East Godavari",
+        "addr:full": "Bhanugudi Junction, Srinagar, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Diet Hormone Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.237568,
+          16.971392
+        ]
+      },
+      "id": "node/7790467522"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467523",
+        "addr:district": "East Godavari",
+        "addr:full": "Madhav Nagar, Dwaraka Nagar, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Ishaan Gynec and Obstetric Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2406415,
+          16.9752695
+        ]
+      },
+      "id": "node/7790467523"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467527",
+        "addr:district": "East Godavari",
+        "addr:full": "Pratap Nagar, Kakinada",
+        "addr:postcode": "533004",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Sri Divya Hospitals",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.226032,
+          16.971001
+        ]
+      },
+      "id": "node/7790467527"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7790467528",
+        "addr:district": "East Godavari",
+        "addr:full": "Gandhi Nagar, Pratap Nagar, Kakinada",
+        "addr:postcode": "533004",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Gurudev Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2255793,
+          16.9704196
+        ]
+      },
+      "id": "node/7790467528"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8490876798",
+        "amenity": "hospital",
+        "name": "Foundation Hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2450283,
+          16.9658015
+        ]
+      },
+      "id": "node/8490876798"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8793974587",
+        "addr:district": "East Godavari",
+        "addr:full": "Srinagar, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Sanjivani Neuro Clinic",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.238929,
+          16.9720201
+        ]
+      },
+      "id": "node/8793974587"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8793991717",
+        "addr:district": "East Godavari",
+        "addr:full": "Bhanugudi , Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Janatha Hospitals",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2367698,
+          16.9719919
+        ]
+      },
+      "id": "node/8793991717"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8793998297",
+        "addr:district": "East Godavari",
+        "addr:full": "Sarpavaram, Kakinada",
+        "addr:postcode": "533005",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Trust Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.228235,
+          16.9986111
+        ]
+      },
+      "id": "node/8793998297"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8794042343",
+        "addr:district": "East Godavari",
+        "addr:full": "2-27-15, Bhanugudi Junction, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Sunrise Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2384462,
+          16.9695548
+        ]
+      },
+      "id": "node/8794042343"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8794052051",
+        "addr:district": "East Godavari",
+        "addr:full": "Sriram Nagar, Kondayya Palem, Kakinada",
+        "addr:postcode": "533003",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Pulse Emergency Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.236338,
+          16.9685055
+        ]
+      },
+      "id": "node/8794052051"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8794219012",
+        "addr:district": "East Godavari",
+        "addr:full": "13-3-2/3, Ramakrishna Rao Peta, Kakinada",
+        "addr:postcode": "533001",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Sri Lalitha Hospitals",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2366156,
+          16.9577791
+        ]
+      },
+      "id": "node/8794219012"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8794374524",
+        "addr:district": "East Godavari",
+        "addr:full": "Rama Rao Peta, Kakinada",
+        "addr:postcode": "533001",
+        "addr:state": "Andhra Pradesh",
+        "amenity": "hospital",
+        "name": "Sri Akshara Hospital",
+        "source": "Local Knowledge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2316562,
+          16.9668393
+        ]
+      },
+      "id": "node/8794374524"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10171081027",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "7star Hospitals"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.234443,
+          16.9558446
+        ]
+      },
+      "id": "node/10171081027"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11601697518",
+        "addr:city": "kakinada",
+        "addr:district": "KAKINADA CITY",
+        "addr:postcode": "533003",
+        "addr:street": "NAGAMALLI THOTA",
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "name": "TEAM",
+        "operator": "UNIT OF SURYA GLOBAL",
+        "operator:type": "private"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2391178,
+          16.9865457
+        ]
+      },
+      "id": "node/11601697518"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12596128972",
+        "amenity": "hospital",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2415822,
+          16.9683708
+        ]
+      },
+      "id": "node/12596128972"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12596129482",
+        "amenity": "hospital",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2451468,
+          16.9658397
+        ]
+      },
+      "id": "node/12596129482"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12596133159",
+        "amenity": "hospital",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2405815,
+          16.9719557
+        ]
+      },
+      "id": "node/12596133159"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12596223754",
+        "amenity": "hospital",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2365804,
+          16.9577802
+        ]
+      },
+      "id": "node/12596223754"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12596231366",
+        "amenity": "hospital",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2284244,
+          16.9609897
+        ]
+      },
+      "id": "node/12596231366"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12596234189",
+        "amenity": "hospital",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2382406,
+          16.9700099
+        ]
+      },
+      "id": "node/12596234189"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12596255224",
+        "amenity": "hospital",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2317186,
+          16.966884
+        ]
+      },
+      "id": "node/12596255224"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12596260296",
+        "amenity": "hospital",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2389334,
+          16.9720131
+        ]
+      },
+      "id": "node/12596260296"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12596274694",
+        "amenity": "hospital",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2285385,
+          16.9788404
+        ]
+      },
+      "id": "node/12596274694"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12596277705",
+        "amenity": "hospital",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2404494,
+          16.9837008
+        ]
+      },
+      "id": "node/12596277705"
+    }
+  ]
+}

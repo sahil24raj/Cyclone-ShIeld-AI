@@ -1,0 +1,2424 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2026-09-28T08:45:25Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/97477499",
+        "highway": "primary",
+        "name": "Ramachandrapuram - Penuguduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH197",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.0800285,
+          16.8584627
+        ]
+      },
+      "id": "way/97477499"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/103402763",
+        "highway": "primary",
+        "name": "Ramachandrapuram - Unduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH205",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.0859408,
+          16.8226103
+        ]
+      },
+      "id": "way/103402763"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/285872287",
+        "highway": "primary",
+        "ref": "SH246",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2252276,
+          16.7438978
+        ]
+      },
+      "id": "way/285872287"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/325064198",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1058375,
+          16.821073
+        ]
+      },
+      "id": "way/325064198"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/325064201",
+        "highway": "primary",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1340529,
+          16.832191
+        ]
+      },
+      "id": "way/325064201"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362421200",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2347191,
+          16.9531858
+        ]
+      },
+      "id": "way/362421200"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362421202",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "surface": "concrete",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2333643,
+          16.942861
+        ]
+      },
+      "id": "way/362421202"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362421954",
+        "highway": "primary",
+        "name": "Kakinada - Rajanagaram (ADB) Road",
+        "network": "IN:SH:AP",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2399096,
+          16.9420835
+        ]
+      },
+      "id": "way/362421954"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362422111",
+        "highway": "primary",
+        "name": "Karapa - Chintapalli Road",
+        "network": "IN:SH:AP",
+        "ref": "SH195",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1641776,
+          16.9033426
+        ]
+      },
+      "id": "way/362422111"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362422847",
+        "highway": "primary",
+        "name": "Karapa - Chintapalli Road",
+        "network": "IN:SH:AP",
+        "ref": "SH195",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1386218,
+          16.9096794
+        ]
+      },
+      "id": "way/362422847"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362422884",
+        "highway": "primary",
+        "name": "Karapa - Chintapalli Road",
+        "network": "IN:SH:AP",
+        "ref": "SH195",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1594149,
+          16.9044588
+        ]
+      },
+      "id": "way/362422884"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362423741",
+        "highway": "primary",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "oneway": "yes",
+        "ref": "SH185",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2379992,
+          16.9956464
+        ]
+      },
+      "id": "way/362423741"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362423743",
+        "highway": "primary",
+        "name": "Ramachandrapuram - Penuguduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH197",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1197277,
+          16.8693201
+        ]
+      },
+      "id": "way/362423743"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362424015",
+        "highway": "primary",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1891111,
+          16.8802064
+        ]
+      },
+      "id": "way/362424015"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/362425346",
+        "highway": "primary",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2076933,
+          16.9887553
+        ]
+      },
+      "id": "way/362425346"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/366343220",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "oneway": "yes",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2313302,
+          16.9437214
+        ]
+      },
+      "id": "way/366343220"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/366343229",
+        "highway": "primary",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.229106,
+          16.9501876
+        ]
+      },
+      "id": "way/366343229"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/394357819",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Kakinada Main Road",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2363874,
+          16.965878
+        ]
+      },
+      "id": "way/394357819"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/394357820",
+        "foot": "yes",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2397031,
+          16.9839141
+        ]
+      },
+      "id": "way/394357820"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396367645",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Dwarapudi - Yanam Road",
+        "name:fr": "Route Dwarapudi - Yanaon",
+        "network": "IN:SH:AP",
+        "ref": "SH206",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1495088,
+          16.7598675
+        ]
+      },
+      "id": "way/396367645"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396367653",
+        "highway": "primary",
+        "name": "Dwarapudi - Yanam Road",
+        "network": "IN:SH:AP",
+        "ref": "SH206",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1083913,
+          16.774363
+        ]
+      },
+      "id": "way/396367653"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373704",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2228558,
+          16.9597949
+        ]
+      },
+      "id": "way/396373704"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373709",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Ramachandrapuram - Penuguduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH197",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1088467,
+          16.864063
+        ]
+      },
+      "id": "way/396373709"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373710",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1856952,
+          16.8662436
+        ]
+      },
+      "id": "way/396373710"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373711",
+        "highway": "primary",
+        "ref": "SH246",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.231445,
+          16.7537268
+        ]
+      },
+      "id": "way/396373711"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373715",
+        "highway": "primary",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "ref": "SH185",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2103873,
+          16.992838
+        ]
+      },
+      "id": "way/396373715"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373716",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1697718,
+          16.9542778
+        ]
+      },
+      "id": "way/396373716"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373726",
+        "highway": "primary",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1242502,
+          16.9492999
+        ]
+      },
+      "id": "way/396373726"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373728",
+        "highway": "primary",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1997028,
+          16.9647575
+        ]
+      },
+      "id": "way/396373728"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373732",
+        "highway": "primary",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2231748,
+          16.9603018
+        ]
+      },
+      "id": "way/396373732"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373744",
+        "highway": "primary",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "ref": "SH185",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1962635,
+          16.9768812
+        ]
+      },
+      "id": "way/396373744"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373745",
+        "highway": "primary",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1394795,
+          16.9523349
+        ]
+      },
+      "id": "way/396373745"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/396373747",
+        "highway": "primary",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1821132,
+          16.8638793
+        ]
+      },
+      "id": "way/396373747"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/564839013",
+        "highway": "primary",
+        "lanes": "2",
+        "name": "Kakinada Main Road",
+        "ref:old": "NH214",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2371353,
+          16.9207797
+        ]
+      },
+      "id": "way/564839013"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/564839014",
+        "highway": "primary",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1927154,
+          16.9003407
+        ]
+      },
+      "id": "way/564839014"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/564839015",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1923533,
+          16.8941326
+        ]
+      },
+      "id": "way/564839015"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/564839019",
+        "highway": "primary",
+        "name": "Ramachandrapuram - Penuguduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH197",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1790706,
+          16.9014519
+        ]
+      },
+      "id": "way/564839019"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/564839020",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Ramachandrapuram - Penuguduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH197",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.162189,
+          16.8935458
+        ]
+      },
+      "id": "way/564839020"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/564839136",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1930856,
+          16.906732
+        ]
+      },
+      "id": "way/564839136"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/564839137",
+        "highway": "primary",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2225201,
+          16.9311509
+        ]
+      },
+      "id": "way/564839137"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/637293550",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2332426,
+          16.9423705
+        ]
+      },
+      "id": "way/637293550"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/651036844",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "ref": "SH185",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2100928,
+          16.9930932
+        ]
+      },
+      "id": "way/651036844"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/651036845",
+        "highway": "primary",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1797433,
+          16.9613593
+        ]
+      },
+      "id": "way/651036845"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/655926332",
+        "highway": "primary",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.0965051,
+          16.9399021
+        ]
+      },
+      "id": "way/655926332"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/758926816",
+        "highway": "primary",
+        "lanes": "1",
+        "maxspeed": "20",
+        "name": "Indrapalem road bridge",
+        "ref": "SH191",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2235737,
+          16.959731
+        ]
+      },
+      "id": "way/758926816"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/758968620",
+        "highway": "primary",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2230419,
+          16.9598074
+        ]
+      },
+      "id": "way/758968620"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/758968621",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2231083,
+          16.960018
+        ]
+      },
+      "id": "way/758968621"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848365132",
+        "highway": "primary",
+        "name": "Karapa - Chintapalli Road",
+        "network": "IN:SH:AP",
+        "ref": "SH195",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.0982635,
+          16.9152462
+        ]
+      },
+      "id": "way/848365132"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/848365133",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Karapa - Chintapalli Road",
+        "network": "IN:SH:AP",
+        "ref": "SH195",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1184471,
+          16.9146793
+        ]
+      },
+      "id": "way/848365133"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850058104",
+        "highway": "primary",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1026069,
+          16.8174005
+        ]
+      },
+      "id": "way/850058104"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850372045",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2100384,
+          16.9196806
+        ]
+      },
+      "id": "way/850372045"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850372046",
+        "highway": "primary",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2015991,
+          16.9132126
+        ]
+      },
+      "id": "way/850372046"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850381159",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1501436,
+          16.9504844
+        ]
+      },
+      "id": "way/850381159"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850381160",
+        "highway": "primary",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1524254,
+          16.9479905
+        ]
+      },
+      "id": "way/850381160"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850386024",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Ramachandrapuram - Penuguduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH197",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1655874,
+          16.8964278
+        ]
+      },
+      "id": "way/850386024"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850386025",
+        "highway": "primary",
+        "name": "Ramachandrapuram - Penuguduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH197",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1639019,
+          16.8949999
+        ]
+      },
+      "id": "way/850386025"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850461441",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1514692,
+          16.8431273
+        ]
+      },
+      "id": "way/850461441"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850461442",
+        "highway": "primary",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1577067,
+          16.8458382
+        ]
+      },
+      "id": "way/850461442"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850768099",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1639056,
+          16.8485298
+        ]
+      },
+      "id": "way/850768099"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850768100",
+        "highway": "primary",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1713271,
+          16.855109
+        ]
+      },
+      "id": "way/850768100"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850866081",
+        "highway": "primary",
+        "name": "Ramachandrapuram - Penuguduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH197",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.146371,
+          16.8840484
+        ]
+      },
+      "id": "way/850866081"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/850866082",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Ramachandrapuram - Penuguduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH197",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1305248,
+          16.8745478
+        ]
+      },
+      "id": "way/850866082"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851434937",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "ref": "SH185",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2098294,
+          16.9929475
+        ]
+      },
+      "id": "way/851434937"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851434938",
+        "highway": "primary",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "ref": "SH185",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.209959,
+          16.9930309
+        ]
+      },
+      "id": "way/851434938"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851442450",
+        "highway": "primary",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2297206,
+          16.939402
+        ]
+      },
+      "id": "way/851442450"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851442853",
+        "highway": "primary",
+        "name": "Ramachandrapuram - Penuguduru Road",
+        "network": "IN:SH:AP",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.192751,
+          16.9065653
+        ]
+      },
+      "id": "way/851442853"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851486981",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2347554,
+          16.9290571
+        ]
+      },
+      "id": "way/851486981"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851486982",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2334321,
+          16.936621
+        ]
+      },
+      "id": "way/851486982"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851486983",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2347502,
+          16.9290571
+        ]
+      },
+      "id": "way/851486983"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851507433",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2332862,
+          16.9423462
+        ]
+      },
+      "id": "way/851507433"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851507434",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2332819,
+          16.942429
+        ]
+      },
+      "id": "way/851507434"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851507435",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2330782,
+          16.9416873
+        ]
+      },
+      "id": "way/851507435"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851507436",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2331255,
+          16.9416631
+        ]
+      },
+      "id": "way/851507436"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851566741",
+        "foot": "yes",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2367814,
+          16.9685966
+        ]
+      },
+      "id": "way/851566741"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851566742",
+        "highway": "primary",
+        "junction": "roundabout",
+        "name": "Kakinada Main Road",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2427623,
+          16.9948556
+        ]
+      },
+      "id": "way/851566742"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851566743",
+        "foot": "yes",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2456759,
+          17.006006
+        ]
+      },
+      "id": "way/851566743"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851566744",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2394557,
+          16.9817026
+        ]
+      },
+      "id": "way/851566744"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851583844",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2457504,
+          17.0060953
+        ]
+      },
+      "id": "way/851583844"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851605446",
+        "highway": "primary",
+        "oneway": "yes",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.231578,
+          16.9443959
+        ]
+      },
+      "id": "way/851605446"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851605447",
+        "highway": "primary",
+        "oneway": "yes",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.226832,
+          16.9566894
+        ]
+      },
+      "id": "way/851605447"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851605448",
+        "highway": "primary",
+        "oneway": "yes",
+        "ref": "SH216",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2268998,
+          16.9566665
+        ]
+      },
+      "id": "way/851605448"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851605449",
+        "highway": "primary",
+        "junction": "roundabout",
+        "ref": "SH216",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2271692,
+          16.9575346
+        ]
+      },
+      "id": "way/851605449"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851605452",
+        "highway": "primary",
+        "oneway": "yes",
+        "ref": "SH216",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2255205,
+          16.9587018
+        ]
+      },
+      "id": "way/851605452"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851605453",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2234332,
+          16.9601514
+        ]
+      },
+      "id": "way/851605453"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851605454",
+        "highway": "primary",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2236521,
+          16.959917
+        ]
+      },
+      "id": "way/851605454"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851605455",
+        "highway": "primary",
+        "junction": "roundabout",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.223791,
+          16.9597706
+        ]
+      },
+      "id": "way/851605455"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851605456",
+        "highway": "primary",
+        "oneway": "yes",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2254396,
+          16.9586133
+        ]
+      },
+      "id": "way/851605456"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851861189",
+        "highway": "primary",
+        "name": "Dwarapudi - Yanam Road",
+        "name:fr": "Route Dwarapudi - Yanaon",
+        "network": "IN:SH:AP",
+        "ref": "SH206",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1517045,
+          16.7539515
+        ]
+      },
+      "id": "way/851861189"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851871703",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1547271,
+          16.9455549
+        ]
+      },
+      "id": "way/851871703"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/851871704",
+        "highway": "primary",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1620607,
+          16.9498464
+        ]
+      },
+      "id": "way/851871704"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852262892",
+        "highway": "primary",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "ref": "SH185",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2206412,
+          17.0007147
+        ]
+      },
+      "id": "way/852262892"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852262894",
+        "highway": "primary",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "oneway": "yes",
+        "ref": "SH185",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2152314,
+          16.9985527
+        ]
+      },
+      "id": "way/852262894"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852262899",
+        "highway": "primary",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "ref": "SH185",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2118677,
+          16.9949562
+        ]
+      },
+      "id": "way/852262899"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852262900",
+        "highway": "primary",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "oneway": "yes",
+        "ref": "SH185",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.215195,
+          16.9985871
+        ]
+      },
+      "id": "way/852262900"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852262901",
+        "highway": "primary",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "oneway": "yes",
+        "ref": "SH185",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2281033,
+          16.9982188
+        ]
+      },
+      "id": "way/852262901"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852278898",
+        "highway": "primary",
+        "oneway": "yes",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2284222,
+          16.9358746
+        ]
+      },
+      "id": "way/852278898"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852278899",
+        "highway": "primary",
+        "oneway": "yes",
+        "ref": "SH216",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2284575,
+          16.9358559
+        ]
+      },
+      "id": "way/852278899"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852278900",
+        "highway": "primary",
+        "oneway": "yes",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2282333,
+          16.9354167
+        ]
+      },
+      "id": "way/852278900"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852278901",
+        "highway": "primary",
+        "oneway": "yes",
+        "ref": "SH14",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2281789,
+          16.9354293
+        ]
+      },
+      "id": "way/852278901"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852278902",
+        "highway": "primary",
+        "junction": "roundabout",
+        "ref": "SH14;SH216",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2283116,
+          16.9356512
+        ]
+      },
+      "id": "way/852278902"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852278904",
+        "highway": "primary",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2135153,
+          16.9233722
+        ]
+      },
+      "id": "way/852278904"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852278905",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1166625,
+          16.8212694
+        ]
+      },
+      "id": "way/852278905"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852278906",
+        "highway": "primary",
+        "ref": "SH14",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.1112533,
+          16.8211308
+        ]
+      },
+      "id": "way/852278906"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852347490",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "surface": "concrete",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2334501,
+          16.9433157
+        ]
+      },
+      "id": "way/852347490"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852352857",
+        "bridge": "yes",
+        "highway": "primary",
+        "lanes": "1",
+        "layer": "1",
+        "maxspeed": "20",
+        "name": "Indrapalem road bridge",
+        "ref": "SH191",
+        "surface": "asphalt",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2232487,
+          16.9597515
+        ]
+      },
+      "id": "way/852352857"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852645549",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "ref": "SH185",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2032733,
+          16.9854934
+        ]
+      },
+      "id": "way/852645549"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852645550",
+        "highway": "primary",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "ref": "SH185",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2065406,
+          16.9892138
+        ]
+      },
+      "id": "way/852645550"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852682462",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2101891,
+          16.961369
+        ]
+      },
+      "id": "way/852682462"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852682463",
+        "highway": "primary",
+        "name": "Pyna - Kakinada Road",
+        "network": "IN:SH:AP",
+        "ref": "SH191",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2164675,
+          16.9610654
+        ]
+      },
+      "id": "way/852682463"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852694298",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "oneway": "yes",
+        "ref": "SH185",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2332624,
+          16.9964901
+        ]
+      },
+      "id": "way/852694298"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852694299",
+        "highway": "primary",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "oneway": "yes",
+        "ref": "SH185",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2280611,
+          16.9981759
+        ]
+      },
+      "id": "way/852694299"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852694300",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "oneway": "yes",
+        "ref": "SH185",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.233339,
+          16.9965761
+        ]
+      },
+      "id": "way/852694300"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/852694301",
+        "highway": "primary",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "oneway": "yes",
+        "ref": "SH185",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2380359,
+          16.9957323
+        ]
+      },
+      "id": "way/852694301"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1080009525",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2359942,
+          16.9631499
+        ]
+      },
+      "id": "way/1080009525"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1080015882",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2359726,
+          16.9629347
+        ]
+      },
+      "id": "way/1080015882"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1080015886",
+        "highway": "primary",
+        "oneway": "yes",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2325472,
+          16.9440427
+        ]
+      },
+      "id": "way/1080015886"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1115206355",
+        "highway": "primary",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2316251,
+          16.9445164
+        ]
+      },
+      "id": "way/1115206355"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1238802980",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "ref": "SH216",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2310266,
+          16.9429444
+        ]
+      },
+      "id": "way/1238802980"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1270213229",
+        "highway": "primary",
+        "junction": "roundabout",
+        "ref": "SH14;SH216",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2283581,
+          16.9356145
+        ]
+      },
+      "id": "way/1270213229"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1270213230",
+        "highway": "primary",
+        "junction": "roundabout",
+        "ref": "SH14;SH216",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2283858,
+          16.9356909
+        ]
+      },
+      "id": "way/1270213230"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1270213231",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2334761,
+          16.9434903
+        ]
+      },
+      "id": "way/1270213231"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1270213232",
+        "highway": "primary",
+        "name": "Kakinada - Rajanagaram (ADB) Road",
+        "network": "IN:SH:AP",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2346021,
+          16.9430424
+        ]
+      },
+      "id": "way/1270213232"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1270213242",
+        "foot": "yes",
+        "highway": "primary",
+        "name": "Kakinada Main Road",
+        "oneway": "yes",
+        "ref:old": "NH214",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2364855,
+          16.9708253
+        ]
+      },
+      "id": "way/1270213242"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1270213243",
+        "highway": "primary",
+        "junction": "roundabout",
+        "name": "Kakinada Main Road",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.242713,
+          16.9948771
+        ]
+      },
+      "id": "way/1270213243"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1270213244",
+        "highway": "primary",
+        "junction": "roundabout",
+        "name": "Kakinada Main Road",
+        "source": "maxar",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2427849,
+          16.9949413
+        ]
+      },
+      "id": "way/1270213244"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1324901726",
+        "bridge": "yes",
+        "highway": "primary",
+        "layer": "1",
+        "name": "KANF Road - Madhavapatnam - Rameswaram Road",
+        "network": "IN:SH:AP",
+        "ref": "SH185",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.2103634,
+          16.9933961
+        ]
+      },
+      "id": "way/1324901726"
+    }
+  ]
+}

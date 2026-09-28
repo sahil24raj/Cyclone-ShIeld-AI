@@ -1,0 +1,469 @@
+asset_id,name,category,asset_type,latitude,longitude,elevation_m,distance_to_coast_km,distance_to_cyclone_km,cyclone_max_wind_kmh,cyclone_min_pressure_hpa,local_wind_kmh,peak_storm_surge_m,rainfall_24h_mm,rainfall_72h_mm,surface_water_occurrence_pct,imerg_precipitation_rate_mm_hr,flood_exposure_index,road_accessibility_pct,asset_criticality,backup_power_ready,weather_data_available,cyclone_data_available,surface_water_data_available,imerg_data_available,data_source_mode
+way/487481615,SRI HOSPITALS,hospitals,Hospital / Healthcare Facility,16.972764,82.238207,4.3,2.54,21.97,175.0,964.0,128.1,2.16,184.2,295.6,0,0.0,25.8,69.1,95,1,1,1,1,1,REAL
+node/6758580043,Bharani Hospital,hospitals,Hospital / Healthcare Facility,16.972139,82.236856,4.3,2.48,22.04,175.0,964.0,128.6,2.19,184.2,295.6,0,0.0,25.8,69.1,100,1,1,1,1,1,REAL
+node/6758668271,Sri Venkata Chalapathi Nursing Home,hospitals,Hospital / Healthcare Facility,16.962312,82.227959,3.7,1.87,22.16,175.0,964.0,129.3,2.51,184.2,295.6,0,0.0,25.8,69.0,100,1,1,1,1,1,REAL
+node/6758704022,Trust Hospital(A Unit Of Sarvottam Health Care),hospitals,Hospital / Healthcare Facility,16.995642,82.241119,4.0,2.07,23.41,175.0,964.0,136.5,2.4,184.2,295.6,0,0.0,25.8,68.3,100,1,1,1,1,1,REAL
+node/6758713152,Sai Sudha Hospital,hospitals,Hospital / Healthcare Facility,16.954535,82.232453,3.0,0.95,21.28,175.0,964.0,124.1,3.08,184.2,295.6,0,0.0,27.8,68.1,100,1,1,1,1,1,REAL
+node/6758715156,Sudha Urology And Andrology Hospital,hospitals,Hospital / Healthcare Facility,16.963585,82.228796,3.8,1.92,22.16,175.0,964.0,129.3,2.48,184.2,295.6,0,0.0,25.8,69.0,100,1,1,1,1,1,REAL
+node/6758721151,Vijaya Nursing Home - Kakinada,hospitals,Hospital / Healthcare Facility,16.95579,82.233289,3.0,0.96,21.28,175.0,964.0,124.2,3.07,184.2,295.6,0,0.0,27.5,68.3,100,1,1,1,1,1,REAL
+node/6758722252,Apollo Hospitals - East Godavari,hospitals,Hospital / Healthcare Facility,16.960554,82.235897,3.2,1.25,21.35,175.0,964.0,124.6,2.88,184.2,295.6,0,0.0,25.8,69.5,100,1,1,1,1,1,REAL
+node/6758726581,Sree Bala Nursing Home Sree Bala Ent Care Centre,hospitals,Hospital / Healthcare Facility,16.958803,82.234731,3.1,1.13,21.34,175.0,964.0,124.5,2.96,184.2,295.6,0,0.0,25.8,69.5,100,1,1,1,1,1,REAL
+node/6758727383,Haritha Hospitals,hospitals,Hospital / Healthcare Facility,16.956281,82.230585,3.2,1.22,21.55,175.0,964.0,125.7,2.9,184.2,295.6,0,0.0,25.8,69.4,100,1,1,1,1,1,REAL
+node/6758732669,Care Emergency Hospital,hospitals,Hospital / Healthcare Facility,16.96409,82.231645,3.7,1.8,21.95,175.0,964.0,128.0,2.55,184.2,295.6,0,0.0,25.8,69.1,100,1,1,1,1,1,REAL
+node/6758733079,Saipriya Maternity Hospital,hospitals,Hospital / Healthcare Facility,16.96899,82.239748,4.0,2.11,21.58,175.0,964.0,125.9,2.38,184.2,295.6,0,0.0,25.8,69.3,100,1,1,1,1,1,REAL
+node/6758735035,Shravani Ent Hospital,hospitals,Hospital / Healthcare Facility,16.955009,82.232603,3.0,0.96,21.3,175.0,964.0,124.2,3.07,184.2,295.6,0,0.0,27.5,68.3,100,1,1,1,1,1,REAL
+node/6758738398,D V Raju Eye Hospital,hospitals,Hospital / Healthcare Facility,16.957104,82.23078,3.2,1.26,21.59,175.0,964.0,125.9,2.87,184.2,295.6,0,0.0,25.8,69.3,100,1,1,1,1,1,REAL
+node/6758742619,Sri Gowthami Multispeciality Hospital,hospitals,Hospital / Healthcare Facility,16.964691,82.228577,3.9,2.04,22.25,175.0,964.0,129.8,2.42,184.2,295.6,0,0.0,25.8,69.0,100,1,1,1,1,1,REAL
+node/6758764647,Lifeline Emergency and Neuro Centre,hospitals,Hospital / Healthcare Facility,16.970344,82.238722,4.1,2.27,21.76,175.0,964.0,126.9,2.3,184.2,295.6,0,0.0,25.8,69.2,100,1,1,1,1,1,REAL
+node/6758765137,Sanjivi Hospitals,hospitals,Hospital / Healthcare Facility,16.963298,82.233831,3.5,1.62,21.71,175.0,964.0,126.6,2.65,184.2,295.6,0,0.0,25.8,69.3,100,1,1,1,1,1,REAL
+node/6758770836,Ramya Hospitals,hospitals,Hospital / Healthcare Facility,16.96507,82.223813,4.2,2.4,22.7,175.0,964.0,132.4,2.23,184.2,295.6,0,0.0,25.8,68.7,100,1,1,1,1,1,REAL
+node/6758773804,Vasan Eye Care Hospital - Kakinada,hospitals,Hospital / Healthcare Facility,16.963173,82.234298,3.5,1.59,21.66,175.0,964.0,126.3,2.67,184.2,295.6,0,0.0,25.8,69.3,100,1,1,1,1,1,REAL
+node/6758775956,Mother and Child Hospital,hospitals,Hospital / Healthcare Facility,16.970003,82.238267,4.1,2.23,21.77,175.0,964.0,127.0,2.31,184.2,295.6,0,0.0,25.8,69.2,100,1,1,1,1,1,REAL
+node/6758776088,Ravichandra Hospital,hospitals,Hospital / Healthcare Facility,16.963554,82.23349,3.6,1.66,21.75,175.0,964.0,126.9,2.63,184.2,295.6,0,0.0,25.8,69.2,100,1,1,1,1,1,REAL
+node/6758778869,Srujana Multi Speciality Hospital,hospitals,Hospital / Healthcare Facility,16.970409,82.239342,4.1,2.27,21.71,175.0,964.0,126.7,2.29,184.2,295.6,0,0.0,25.8,69.3,100,1,1,1,1,1,REAL
+node/6758781703,Safe Emergency Hospital,hospitals,Hospital / Healthcare Facility,16.970646,82.237302,4.2,2.31,21.9,175.0,964.0,127.7,2.27,184.2,295.6,0,0.0,25.8,69.2,100,1,1,1,1,1,REAL
+node/6758809334,Sri Sai Raghavendra Super Specialities Hospital,hospitals,Hospital / Healthcare Facility,16.968128,82.224182,4.4,2.63,22.86,175.0,964.0,133.3,2.12,184.2,295.6,0,0.0,25.8,68.6,100,1,1,1,1,1,REAL
+node/6768441008,Sushrutha Hospital,hospitals,Hospital / Healthcare Facility,16.993219,82.254653,3.1,0.94,22.2,175.0,964.0,129.5,3.08,184.2,295.6,0,0.0,25.8,69.0,100,1,1,1,1,1,REAL
+node/6768672060,Surya Global Hospitals,hospitals,Hospital / Healthcare Facility,16.993991,82.21039,6.6,5.32,25.75,175.0,964.0,150.2,1.17,184.2,295.6,0,0.0,25.8,66.9,100,1,1,1,1,1,REAL
+node/6770940005,Siddhartha Hospital,hospitals,Hospital / Healthcare Facility,16.947382,82.231435,3.0,0.96,20.95,175.0,964.0,122.2,3.07,184.2,295.6,0,0.0,27.5,68.5,100,1,1,1,1,1,REAL
+node/6781927742,Sapthagiri Hospitals,hospitals,Hospital / Healthcare Facility,16.954738,82.232418,3.0,0.96,21.3,175.0,964.0,124.2,3.07,184.2,295.6,0,0.0,27.5,68.3,100,1,1,1,1,1,REAL
+node/6804693330,Christian Cancer Center,hospitals,Hospital / Healthcare Facility,16.983655,82.24034,4.6,2.77,22.57,175.0,964.0,131.7,2.05,184.2,295.6,0,0.0,25.8,68.8,100,1,1,1,1,1,REAL
+node/7116293090,"Government Hospital,Pekeru",hospitals,Hospital / Healthcare Facility,16.750804,82.118225,14.4,15.1,31.96,175.0,964.0,169.6,0.2,184.2,295.6,0,0.0,25.8,65.0,100,1,1,1,1,1,REAL
+node/7116293216,"Government Hospital,Karapa",hospitals,Hospital / Healthcare Facility,16.89914,82.167114,10.0,9.6,25.38,175.0,964.0,148.0,0.45,184.2,295.6,0,0.0,25.8,67.1,100,1,1,1,1,1,REAL
+node/7116293222,Government General Hospital,hospitals,Hospital / Healthcare Facility,16.955713,82.227313,3.4,1.49,21.81,175.0,964.0,127.2,2.73,184.2,295.6,0,0.0,25.8,69.2,100,1,1,1,1,1,REAL
+node/7790467455,Mahaveer Hospital,hospitals,Hospital / Healthcare Facility,16.947499,82.232611,2.9,0.83,20.85,175.0,964.0,121.6,3.16,184.2,295.6,0,0.0,32.3,65.2,95,1,1,1,1,1,REAL
+node/7790467459,Amrutha Children Hospital,hospitals,Hospital / Healthcare Facility,16.995543,82.24165,3.9,2.01,23.36,175.0,964.0,136.3,2.43,184.2,295.6,0,0.0,25.8,68.3,95,1,1,1,1,1,REAL
+node/7790467460,Padma Children's Hospital,hospitals,Hospital / Healthcare Facility,16.970404,82.239619,4.1,2.27,21.69,175.0,964.0,126.5,2.3,184.2,295.6,0,0.0,25.8,69.3,95,1,1,1,1,1,REAL
+node/7790467462,Pulse Emergency Hospital,hospitals,Hospital / Healthcare Facility,16.96959,82.236103,4.1,2.22,21.93,175.0,964.0,127.9,2.32,184.2,295.6,0,0.0,25.8,69.1,95,1,1,1,1,1,REAL
+node/7790467465,Choday Apparao Nature Cure Hospital,hospitals,Hospital / Healthcare Facility,16.944505,82.23769,2.7,0.66,20.21,175.0,964.0,117.9,3.28,184.2,295.6,0,0.0,40.3,60.0,95,1,1,1,1,1,REAL
+node/7790467466,Kriti ENT Hospital,hospitals,Hospital / Healthcare Facility,16.996082,82.243404,3.8,1.82,23.27,175.0,964.0,135.7,2.54,184.2,295.6,0,0.0,25.8,68.4,95,1,1,1,1,1,REAL
+node/7790467467,Srimathi Indira Gandhi First Referral Hospital,hospitals,Hospital / Healthcare Facility,16.941109,82.237847,3.1,1.01,20.01,175.0,964.0,116.7,3.03,184.2,295.6,0,0.0,25.8,70.3,100,1,1,1,1,1,REAL
+node/7790467469,Janapriya Maternity And Surgical Hospital,hospitals,Hospital / Healthcare Facility,16.942605,82.232101,3.2,1.18,20.62,175.0,964.0,120.3,2.93,184.2,295.6,0,0.0,25.8,69.9,95,1,1,1,1,1,REAL
+node/7790467470,Sai Krishna Hospital,hospitals,Hospital / Healthcare Facility,16.971004,82.234968,4.2,2.4,22.12,175.0,964.0,129.0,2.23,184.2,295.6,0,0.0,25.8,69.0,95,1,1,1,1,1,REAL
+node/7790467471,ESI Hospital,hospitals,Hospital / Healthcare Facility,16.989444,82.243737,4.0,2.09,22.73,175.0,964.0,132.6,2.39,184.2,295.6,0,0.0,25.8,68.7,95,1,1,1,1,1,REAL
+node/7790467473,Laxmi Hospital,hospitals,Hospital / Healthcare Facility,16.972555,82.248571,4.5,2.67,21.1,175.0,964.0,123.1,2.1,184.2,295.6,0,0.0,25.8,69.6,95,1,1,1,1,1,REAL
+node/7790467475,Sri Devi Children Hospital,hospitals,Hospital / Healthcare Facility,16.995687,82.242208,3.9,1.95,23.33,175.0,964.0,136.1,2.46,184.2,295.6,0,0.0,25.8,68.3,95,1,1,1,1,1,REAL
+node/7790467476,Dr. Krishna Mohan Rao Hospital,hospitals,Hospital / Healthcare Facility,16.954297,82.231118,3.1,1.06,21.39,175.0,964.0,124.7,3.0,184.2,295.6,0,0.0,25.8,69.5,95,1,1,1,1,1,REAL
+node/7790467477,Dr. Kamalendranath Hospital,hospitals,Hospital / Healthcare Facility,16.975845,82.225643,4.9,3.25,23.24,175.0,964.0,135.5,1.84,184.2,295.6,0,0.0,25.8,68.4,95,1,1,1,1,1,REAL
+node/7790467483,Sathagna Hospital,hospitals,Hospital / Healthcare Facility,16.782133,82.229859,6.2,4.8,19.62,175.0,964.0,114.4,1.31,184.2,295.6,0,0.0,25.8,70.5,95,1,1,1,1,1,REAL
+node/7790467485,Sri Sai Krishna Hospital,hospitals,Hospital / Healthcare Facility,16.9465,82.236505,2.6,0.54,20.44,175.0,964.0,119.2,3.37,184.2,295.6,0,0.0,45.0,56.6,95,1,1,1,1,1,REAL
+node/7790467487,Sowbhagya Hospital,hospitals,Hospital / Healthcare Facility,16.993412,82.247251,3.5,1.54,22.77,175.0,964.0,132.8,2.7,184.2,295.6,0,0.0,25.8,68.7,95,1,1,1,1,1,REAL
+node/7790467488,Sriteja Homeo Hospital,hospitals,Hospital / Healthcare Facility,16.996294,82.244545,3.7,1.69,23.2,175.0,964.0,135.3,2.61,184.2,295.6,0,0.0,25.8,68.4,95,1,1,1,1,1,REAL
+node/7790467490,Sri Bala Prabha Multispeciality Hospital,hospitals,Hospital / Healthcare Facility,16.946555,82.240397,2.5,0.39,20.09,175.0,964.0,117.2,3.49,184.2,295.6,0,0.0,50.5,52.9,95,1,1,1,1,1,REAL
+node/7790467493,Jaya Children Hospital,hospitals,Hospital / Healthcare Facility,16.937795,82.23311,3.5,1.54,20.26,175.0,964.0,118.2,2.7,184.2,295.6,0,0.0,25.8,70.1,95,1,1,1,1,1,REAL
+node/7790467494,Gide Children's Hospital,hospitals,Hospital / Healthcare Facility,16.971849,82.240553,4.3,2.43,21.71,175.0,964.0,126.6,2.21,184.2,295.6,0,0.0,25.8,69.3,95,1,1,1,1,1,REAL
+node/7790467496,LifeLine Hospital,hospitals,Hospital / Healthcare Facility,16.984984,82.241872,4.4,2.55,22.54,175.0,964.0,131.5,2.16,184.2,295.6,0,0.0,25.8,68.8,95,1,1,1,1,1,REAL
+node/7790467497,Sai Ragavendra Hospitals,hospitals,Hospital / Healthcare Facility,16.962136,82.228593,3.7,1.81,22.09,175.0,964.0,128.9,2.54,184.2,295.6,0,0.0,25.8,69.0,95,1,1,1,1,1,REAL
+node/7790467499,Amulya Hospital,hospitals,Hospital / Healthcare Facility,16.967286,82.236762,3.8,1.95,21.72,175.0,964.0,126.7,2.46,184.2,295.6,0,0.0,25.8,69.3,95,1,1,1,1,1,REAL
+node/7790467500,Dr. Sudhakar Hospital,hospitals,Hospital / Healthcare Facility,16.954164,82.236308,2.7,0.61,20.92,175.0,964.0,122.0,3.32,184.2,295.6,0,0.0,41.3,58.9,95,1,1,1,1,1,REAL
+node/7790467501,Dr. Damera Rama Rao Skin Hospital,hospitals,Hospital / Healthcare Facility,16.970748,82.238827,4.2,2.31,21.78,175.0,964.0,127.0,2.27,184.2,295.6,0,0.0,25.8,69.2,95,1,1,1,1,1,REAL
+node/7790467502,Aruna Hospitals,hospitals,Hospital / Healthcare Facility,16.969819,82.223461,4.5,2.82,23.03,175.0,964.0,134.3,2.03,184.2,295.6,0,0.0,25.8,68.5,95,1,1,1,1,1,REAL
+node/7790467504,Anurag Hospital,hospitals,Hospital / Healthcare Facility,16.978848,82.228501,5.1,3.43,23.2,175.0,964.0,135.3,1.77,184.2,295.6,0,0.0,25.8,68.4,95,1,1,1,1,1,REAL
+node/7790467507,Best Hospital,hospitals,Hospital / Healthcare Facility,16.960993,82.228401,3.6,1.74,22.04,175.0,964.0,128.5,2.58,184.2,295.6,0,0.0,25.8,69.1,95,1,1,1,1,1,REAL
+node/7790467508,Amrutha Emergency & Multispeciality Hospital,hospitals,Hospital / Healthcare Facility,16.970882,82.238566,4.2,2.33,21.81,175.0,964.0,127.2,2.27,184.2,295.6,0,0.0,25.8,69.2,95,1,1,1,1,1,REAL
+node/7790467509,Gadam Dental Hospital,hospitals,Hospital / Healthcare Facility,16.954557,82.232792,2.9,0.92,21.25,175.0,964.0,124.0,3.1,184.2,295.6,0,0.0,30.8,66.0,95,1,1,1,1,1,REAL
+node/7790467512,Triveni Super Speciality Dental Hospital & Implant Centre,hospitals,Hospital / Healthcare Facility,16.97285,82.242818,4.4,2.56,21.59,175.0,964.0,126.0,2.15,184.2,295.6,0,0.0,25.8,69.3,95,1,1,1,1,1,REAL
+node/7790467514,Sri Kiran Eye Hospital,hospitals,Hospital / Healthcare Facility,16.937709,82.232023,3.5,1.61,20.36,175.0,964.0,118.8,2.66,184.2,295.6,0,0.0,25.8,70.1,95,1,1,1,1,1,REAL
+node/7790467515,Aswani Hospital,hospitals,Hospital / Healthcare Facility,16.968781,82.224971,4.4,2.63,22.83,175.0,964.0,133.2,2.12,184.2,295.6,0,0.0,25.8,68.6,95,1,1,1,1,1,REAL
+node/7790467516,Savitha Hospital,hospitals,Hospital / Healthcare Facility,16.995638,82.244829,3.7,1.68,23.12,175.0,964.0,134.9,2.61,184.2,295.6,0,0.0,25.8,68.5,95,1,1,1,1,1,REAL
+node/7790467518,Sharma Hospital,hospitals,Hospital / Healthcare Facility,16.941176,82.234571,3.1,1.14,20.31,175.0,964.0,118.5,2.95,184.2,295.6,0,0.0,25.8,70.1,95,1,1,1,1,1,REAL
+node/7790467519,Vennela ENT Hospital,hospitals,Hospital / Healthcare Facility,16.968278,82.241584,3.9,2.04,21.38,175.0,964.0,124.7,2.42,184.2,295.6,0,0.0,25.8,69.5,95,1,1,1,1,1,REAL
+node/7790467521,Vamsi Chest & Children's Hospital,hospitals,Hospital / Healthcare Facility,16.968906,82.242609,4.0,2.12,21.34,175.0,964.0,124.5,2.37,184.2,295.6,0,0.0,25.8,69.5,95,1,1,1,1,1,REAL
+node/7790467522,Diet Hormone Hospital,hospitals,Hospital / Healthcare Facility,16.971392,82.237568,4.2,2.39,21.93,175.0,964.0,127.9,2.23,184.2,295.6,0,0.0,25.8,69.1,95,1,1,1,1,1,REAL
+node/7790467523,Ishaan Gynec and Obstetric Hospital,hospitals,Hospital / Healthcare Facility,16.975269,82.240641,4.6,2.81,21.94,175.0,964.0,128.0,2.03,184.2,295.6,0,0.0,25.8,69.1,95,1,1,1,1,1,REAL
+node/7790467527,Sri Divya Hospitals,hospitals,Hospital / Healthcare Facility,16.971001,82.226032,4.5,2.77,22.88,175.0,964.0,133.5,2.05,184.2,295.6,0,0.0,25.8,68.6,95,1,1,1,1,1,REAL
+node/7790467528,Gurudev Hospital,hospitals,Hospital / Healthcare Facility,16.97042,82.225579,4.5,2.74,22.88,175.0,964.0,133.5,2.07,184.2,295.6,0,0.0,25.8,68.6,95,1,1,1,1,1,REAL
+node/8490876798,Foundation Hospital,hospitals,Hospital / Healthcare Facility,16.965802,82.245028,3.8,1.84,20.92,175.0,964.0,122.0,2.53,184.2,295.6,0,0.0,25.8,69.7,95,1,1,1,1,1,REAL
+node/8793974587,Sanjivani Neuro Clinic,hospitals,Hospital / Healthcare Facility,16.97202,82.238929,4.3,2.45,21.86,175.0,964.0,127.5,2.2,184.2,295.6,0,0.0,25.8,69.2,95,1,1,1,1,1,REAL
+node/8793991717,Janatha Hospitals,hospitals,Hospital / Healthcare Facility,16.971992,82.23677,4.3,2.47,22.04,175.0,964.0,128.5,2.2,184.2,295.6,0,0.0,25.8,69.1,95,1,1,1,1,1,REAL
+node/8793998297,Trust Hospital,hospitals,Hospital / Healthcare Facility,16.998611,82.228235,5.0,3.38,24.64,175.0,964.0,143.7,1.79,184.2,295.6,0,0.0,25.8,67.6,95,1,1,1,1,1,REAL
+node/8794042343,Sunrise Hospital,hospitals,Hospital / Healthcare Facility,16.969555,82.238446,4.0,2.18,21.73,175.0,964.0,126.8,2.34,184.2,295.6,0,0.0,25.8,69.3,95,1,1,1,1,1,REAL
+node/8794052051,Pulse Emergency Hospital,hospitals,Hospital / Healthcare Facility,16.968505,82.236338,4.0,2.09,21.84,175.0,964.0,127.4,2.39,184.2,295.6,0,0.0,25.8,69.2,95,1,1,1,1,1,REAL
+node/8794219012,Sri Lalitha Hospitals,hospitals,Hospital / Healthcare Facility,16.957779,82.236616,3.0,0.94,21.11,175.0,964.0,123.2,3.09,184.2,295.6,0,0.0,28.0,68.1,95,1,1,1,1,1,REAL
+node/8794374524,Sri Akshara Hospital,hospitals,Hospital / Healthcare Facility,16.966839,82.231656,3.9,2.07,22.13,175.0,964.0,129.1,2.4,184.2,295.6,0,0.0,25.8,69.0,95,1,1,1,1,1,REAL
+node/10171081027,7star Hospitals,hospitals,Hospital / Healthcare Facility,16.955845,82.234443,2.9,0.88,21.18,175.0,964.0,123.6,3.13,184.2,295.6,0,0.0,31.5,65.6,95,1,1,1,1,1,REAL
+node/11601697518,TEAM,hospitals,Hospital / Healthcare Facility,16.986546,82.239118,4.5,2.68,22.88,175.0,964.0,133.5,2.1,184.2,295.6,0,0.0,25.8,68.6,95,1,1,1,1,1,REAL
+node/12596128972,"Hospital #85 (82.242, 16.968)",hospitals,Hospital / Healthcare Facility,16.968371,82.241582,4.0,2.05,21.38,175.0,964.0,124.7,2.41,184.2,295.6,0,0.0,25.8,69.5,95,1,1,1,1,1,REAL
+node/12596129482,"Hospital #86 (82.245, 16.966)",hospitals,Hospital / Healthcare Facility,16.96584,82.245147,3.8,1.84,20.91,175.0,964.0,122.0,2.52,184.2,295.6,0,0.0,25.8,69.7,95,1,1,1,1,1,REAL
+node/12596133159,"Hospital #87 (82.241, 16.972)",hospitals,Hospital / Healthcare Facility,16.971956,82.240582,4.3,2.44,21.71,175.0,964.0,126.7,2.21,184.2,295.6,0,0.0,25.8,69.3,95,1,1,1,1,1,REAL
+node/12596223754,"Hospital #88 (82.237, 16.958)",hospitals,Hospital / Healthcare Facility,16.95778,82.23658,3.0,0.94,21.12,175.0,964.0,123.2,3.08,184.2,295.6,0,0.0,27.8,68.2,95,1,1,1,1,1,REAL
+node/12596231366,"Hospital #89 (82.228, 16.961)",hospitals,Hospital / Healthcare Facility,16.96099,82.228424,3.6,1.73,22.03,175.0,964.0,128.5,2.58,184.2,295.6,0,0.0,25.8,69.1,95,1,1,1,1,1,REAL
+node/12596234189,"Hospital #90 (82.238, 16.970)",hospitals,Hospital / Healthcare Facility,16.97001,82.238241,4.1,2.23,21.78,175.0,964.0,127.0,2.31,184.2,295.6,0,0.0,25.8,69.2,95,1,1,1,1,1,REAL
+node/12596255224,"Hospital #91 (82.232, 16.967)",hospitals,Hospital / Healthcare Facility,16.966884,82.231719,3.9,2.07,22.12,175.0,964.0,129.1,2.4,184.2,295.6,0,0.0,25.8,69.0,95,1,1,1,1,1,REAL
+node/12596260296,"Hospital #92 (82.239, 16.972)",hospitals,Hospital / Healthcare Facility,16.972013,82.238933,4.3,2.45,21.86,175.0,964.0,127.5,2.2,184.2,295.6,0,0.0,25.8,69.2,95,1,1,1,1,1,REAL
+node/12596274694,"Hospital #93 (82.229, 16.979)",hospitals,Hospital / Healthcare Facility,16.97884,82.228538,5.1,3.43,23.19,175.0,964.0,135.3,1.77,184.2,295.6,0,0.0,25.8,68.4,95,1,1,1,1,1,REAL
+node/12596277705,"Hospital #94 (82.240, 16.984)",hospitals,Hospital / Healthcare Facility,16.983701,82.240449,4.5,2.76,22.56,175.0,964.0,131.6,2.06,184.2,295.6,0,0.0,25.8,68.8,95,1,1,1,1,1,REAL
+way/241988306,"Power #95 (82.213, 16.750)",power,Power Grid Substation,16.750494,82.213116,6.3,4.99,22.76,175.0,964.0,132.8,1.25,184.2,295.6,0,0.0,25.8,68.7,90,1,1,1,1,1,REAL
+way/362421139,"Power #96 (82.272, 16.949)",power,Power Grid Substation,16.949345,82.271521,5.2,3.35,17.57,175.0,964.0,102.5,1.8,184.2,295.6,36,0.0,40.2,61.6,90,1,1,1,1,1,REAL
+way/362421169,"Power #97 (82.266, 16.972)",power,Power Grid Substation,16.97214,82.26614,5.0,3.17,19.68,175.0,964.0,114.8,1.88,184.2,295.6,0,0.0,25.8,70.5,90,1,1,1,1,1,REAL
+way/362421175,"Power #98 (82.271, 16.949)",power,Power Grid Substation,16.949229,82.271456,5.2,3.35,17.57,175.0,964.0,102.5,1.81,184.2,295.6,36,0.0,40.2,61.6,90,1,1,1,1,1,REAL
+way/362421177,"Power #99 (82.273, 16.996)",power,Power Grid Substation,16.996139,82.272665,3.6,1.41,21.16,175.0,964.0,123.4,2.78,184.2,295.6,0,0.0,25.8,69.6,90,1,1,1,1,1,REAL
+way/238763090,NH216,bridges,Transport Bridge / Culvert,16.821947,82.233751,5.2,3.57,17.97,175.0,964.0,104.8,1.72,184.2,295.6,31,0.0,38.2,62.8,85,0,1,1,1,1,REAL
+way/288611512,NH216,bridges,Transport Bridge / Culvert,16.752934,82.223773,5.4,3.87,21.64,175.0,964.0,126.2,1.61,184.2,295.6,0,0.0,25.8,69.3,85,0,1,1,1,1,REAL
+way/288611513,NH216,bridges,Transport Bridge / Culvert,16.855253,82.231051,3.9,2.1,17.99,175.0,964.0,104.9,2.38,184.2,295.6,0,0.0,25.8,71.4,85,0,1,1,1,1,REAL
+way/325064198,SH14,bridges,Transport Bridge / Culvert,16.821073,82.105838,14.9,15.68,31.47,175.0,964.0,170.9,0.2,184.2,295.6,0,0.0,25.8,64.8,85,0,1,1,1,1,REAL
+way/362421202,Kakinada Main Road,bridges,Transport Bridge / Culvert,16.942861,82.233364,3.1,1.06,20.52,175.0,964.0,119.7,3.0,184.2,295.6,0,0.0,25.8,70.0,85,0,1,1,1,1,REAL
+way/362422171,"Bridge #105 (82.250, 16.960)",bridges,Transport Bridge / Culvert,16.959632,82.250432,3.6,1.54,20.05,175.0,964.0,116.9,2.7,184.2,295.6,0,0.0,25.8,70.2,85,0,1,1,1,1,REAL
+way/362422181,"Bridge #106 (82.231, 16.972)",bridges,Transport Bridge / Culvert,16.972461,82.230872,4.4,2.68,22.56,175.0,964.0,131.6,2.09,184.2,295.6,0,0.0,25.8,68.8,85,0,1,1,1,1,REAL
+way/362422185,"Bridge #107 (82.229, 16.968)",bridges,Transport Bridge / Culvert,16.967984,82.228645,4.1,2.34,22.46,175.0,964.0,131.0,2.26,184.2,295.6,0,0.0,25.8,68.8,85,0,1,1,1,1,REAL
+way/362422193,"Bridge #108 (82.251, 16.959)",bridges,Transport Bridge / Culvert,16.958841,82.250615,3.5,1.5,19.98,175.0,964.0,116.5,2.72,184.2,295.6,0,0.0,25.8,70.3,85,0,1,1,1,1,REAL
+way/362422216,"Bridge #109 (82.251, 16.959)",bridges,Transport Bridge / Culvert,16.959226,82.250553,3.5,1.52,20.01,175.0,964.0,116.7,2.71,184.2,295.6,0,0.0,25.8,70.3,85,0,1,1,1,1,REAL
+way/362422334,"Bridge #110 (82.228, 16.967)",bridges,Transport Bridge / Culvert,16.966609,82.227749,4.1,2.26,22.45,175.0,964.0,131.0,2.3,184.2,295.6,0,0.0,25.8,68.8,85,0,1,1,1,1,REAL
+way/362422443,"Bridge #111 (82.224, 16.935)",bridges,Transport Bridge / Culvert,16.935349,82.224369,4.1,2.33,20.96,175.0,964.0,122.3,2.27,184.2,295.6,0,0.0,25.8,69.7,85,0,1,1,1,1,REAL
+way/362422684,Nukalamma Temple Street,bridges,Transport Bridge / Culvert,16.964454,82.22611,4.0,2.18,22.45,175.0,964.0,131.0,2.34,184.2,295.6,0,0.0,25.8,68.8,85,0,1,1,1,1,REAL
+way/362422756,"Bridge #113 (82.228, 16.943)",bridges,Transport Bridge / Culvert,16.942576,82.227613,3.5,1.55,21.03,175.0,964.0,122.7,2.69,184.2,295.6,0,0.0,25.8,69.7,85,0,1,1,1,1,REAL
+way/362422795,Kakinada - Rajanagaram (ADB) Road,bridges,Transport Bridge / Culvert,16.956967,82.268395,5.0,3.12,18.37,175.0,964.0,107.2,1.9,184.2,295.6,0,0.0,25.8,71.2,85,0,1,1,1,1,REAL
+way/362422877,"Bridge #115 (82.228, 16.939)",bridges,Transport Bridge / Culvert,16.939185,82.228337,3.6,1.73,20.78,175.0,964.0,121.2,2.59,184.2,295.6,0,0.0,25.8,69.8,85,0,1,1,1,1,REAL
+way/362425818,"Bridge #116 (82.220, 16.981)",bridges,Transport Bridge / Culvert,16.981325,82.220498,5.5,4.05,24.04,175.0,964.0,140.2,1.54,184.2,295.6,0,0.0,25.8,67.9,85,0,1,1,1,1,REAL
+way/362425819,"Bridge #117 (82.220, 16.981)",bridges,Transport Bridge / Culvert,16.98126,82.220405,5.5,4.05,24.04,175.0,964.0,140.3,1.54,184.2,295.6,0,0.0,25.8,67.9,85,0,1,1,1,1,REAL
+way/366343220,SH216,bridges,Transport Bridge / Culvert,16.943721,82.23133,3.1,1.16,20.75,175.0,964.0,121.1,2.94,184.2,295.6,10,0.0,29.8,67.0,85,0,1,1,1,1,REAL
+way/394351810,"Bridge #119 (82.216, 16.980)",bridges,Transport Bridge / Culvert,16.9804,82.215741,5.7,4.25,24.38,175.0,964.0,142.2,1.48,184.2,295.6,0,0.0,25.8,67.7,85,0,1,1,1,1,REAL
+way/394357819,Kakinada Main Road,bridges,Transport Bridge / Culvert,16.965878,82.236387,3.7,1.81,21.66,175.0,964.0,126.3,2.54,184.2,295.6,0,0.0,25.8,69.3,85,0,1,1,1,1,REAL
+way/394357824,MDR0211,bridges,Transport Bridge / Culvert,16.966661,82.238993,3.8,1.86,21.49,175.0,964.0,125.3,2.52,184.2,295.6,0,0.0,25.8,69.4,85,0,1,1,1,1,REAL
+way/396367645,Dwarapudi - Yanam Road,bridges,Transport Bridge / Culvert,16.759867,82.149509,11.8,11.82,28.49,175.0,964.0,166.2,0.28,184.2,295.6,0,0.0,25.8,65.3,85,0,1,1,1,1,REAL
+way/396373698,MDR02,bridges,Transport Bridge / Culvert,16.940358,82.162723,8.9,8.29,27.17,175.0,964.0,158.5,0.6,184.2,295.6,0,0.0,25.8,66.1,85,0,1,1,1,1,REAL
+way/396373699,MDR016,bridges,Transport Bridge / Culvert,16.781064,82.263077,5.3,3.47,16.47,175.0,964.0,96.1,1.76,184.2,295.6,0,0.0,25.8,72.3,85,0,1,1,1,1,REAL
+way/396373700,MDR0156,bridges,Transport Bridge / Culvert,16.896666,82.125802,13.1,13.52,29.63,175.0,964.0,172.9,0.2,184.2,295.6,0,0.0,25.8,64.7,85,0,1,1,1,1,REAL
+way/396373702,MDR0157,bridges,Transport Bridge / Culvert,16.917823,82.101746,14.4,15.14,32.62,175.0,964.0,167.8,0.2,184.2,295.6,0,0.0,25.8,65.2,85,0,1,1,1,1,REAL
+way/396373704,Pyna - Kakinada Road,bridges,Transport Bridge / Culvert,16.959795,82.222856,3.9,2.12,22.46,175.0,964.0,131.0,2.37,184.2,295.6,0,0.0,25.8,68.8,85,0,1,1,1,1,REAL
+way/396373708,MDR0156,bridges,Transport Bridge / Culvert,16.939298,82.119682,12.5,12.85,31.43,175.0,964.0,171.0,0.22,184.2,295.6,0,0.0,25.8,64.8,85,0,1,1,1,1,REAL
+way/396373709,Ramachandrapuram - Penuguduru Road,bridges,Transport Bridge / Culvert,16.864063,82.108847,14.4,15.1,31.02,175.0,964.0,172.1,0.2,184.2,295.6,0,0.0,25.8,64.7,85,0,1,1,1,1,REAL
+way/396373710,SH14,bridges,Transport Bridge / Culvert,16.866244,82.185695,7.9,7.08,22.88,175.0,964.0,133.4,0.79,184.2,295.6,0,0.0,25.8,68.6,85,0,1,1,1,1,REAL
+way/396373713,MDR0156,bridges,Transport Bridge / Culvert,16.880719,82.115824,14.1,14.68,30.43,175.0,964.0,173.8,0.2,184.2,295.6,0,0.0,25.8,64.6,85,0,1,1,1,1,REAL
+way/396373716,Pyna - Kakinada Road,bridges,Transport Bridge / Culvert,16.954278,82.169772,8.2,7.48,27.1,175.0,964.0,158.1,0.72,184.2,295.6,0,0.0,25.8,66.1,85,0,1,1,1,1,REAL
+way/396373750,"Bridge #133 (82.104, 16.868)",bridges,Transport Bridge / Culvert,16.868181,82.103756,14.9,15.69,31.59,175.0,964.0,170.5,0.2,184.2,295.6,0,0.0,25.8,64.9,85,0,1,1,1,1,REAL
+way/396560802,"Bridge #134 (82.222, 16.984)",bridges,Transport Bridge / Culvert,16.984153,82.22206,5.7,4.25,24.1,175.0,964.0,140.6,1.48,184.2,295.6,0,0.0,25.8,67.9,85,0,1,1,1,1,REAL
+way/396560806,Pratap Nagar Road,bridges,Transport Bridge / Culvert,16.971289,82.219493,4.8,3.22,23.47,175.0,964.0,136.9,1.86,184.2,295.6,0,0.0,25.8,68.2,85,0,1,1,1,1,REAL
+way/487737363,MDR0211,bridges,Transport Bridge / Culvert,16.962618,82.237822,3.4,1.42,21.32,175.0,964.0,124.4,2.77,184.2,295.6,0,0.0,25.8,69.5,85,0,1,1,1,1,REAL
+way/487737371,MDR0211,bridges,Transport Bridge / Culvert,16.96446,82.238352,3.6,1.62,21.39,175.0,964.0,124.8,2.65,184.2,295.6,0,0.0,25.8,69.5,85,0,1,1,1,1,REAL
+way/564839012,NH216,bridges,Transport Bridge / Culvert,16.908538,82.23893,6.1,4.61,18.33,175.0,964.0,106.9,1.36,184.2,295.6,0,0.0,25.8,71.2,85,0,1,1,1,1,REAL
+way/564839015,SH14,bridges,Transport Bridge / Culvert,16.894133,82.192353,8.6,7.86,22.63,175.0,964.0,132.0,0.66,184.2,295.6,0,0.0,25.8,68.7,85,0,1,1,1,1,REAL
+way/564839020,Ramachandrapuram - Penuguduru Road,bridges,Transport Bridge / Culvert,16.893546,82.162189,10.6,10.39,25.76,175.0,964.0,150.3,0.38,184.2,295.6,0,0.0,25.8,66.9,85,0,1,1,1,1,REAL
+way/564839136,SH14,bridges,Transport Bridge / Culvert,16.906732,82.193086,7.9,6.93,22.9,175.0,964.0,133.6,0.81,184.2,295.6,0,0.0,25.8,68.6,85,0,1,1,1,1,REAL
+way/637293548,NH216,bridges,Transport Bridge / Culvert,16.767252,82.228781,5.4,3.84,20.42,175.0,964.0,119.1,1.62,184.2,295.6,0,0.0,25.8,70.0,85,0,1,1,1,1,REAL
+way/651036844,KANF Road - Madhavapatnam - Rameswaram Road,bridges,Transport Bridge / Culvert,16.993093,82.210093,6.6,5.36,25.72,175.0,964.0,150.0,1.15,184.2,295.6,0,0.0,25.8,66.9,85,0,1,1,1,1,REAL
+way/671000961,"Bridge #144 (82.178, 16.950)",bridges,Transport Bridge / Culvert,16.950372,82.177707,7.5,6.63,26.15,175.0,964.0,152.6,0.87,184.2,295.6,5,0.0,27.8,65.3,85,0,1,1,1,1,REAL
+way/758968621,Pyna - Kakinada Road,bridges,Transport Bridge / Culvert,16.960018,82.223108,3.9,2.11,22.45,175.0,964.0,130.9,2.38,184.2,295.6,0,0.0,25.8,68.8,85,0,1,1,1,1,REAL
+way/761938606,"Bridge #146 (82.207, 16.907)",bridges,Transport Bridge / Culvert,16.906591,82.207185,7.1,5.96,21.46,175.0,964.0,125.2,1.01,184.2,295.6,0,0.0,25.8,69.4,85,0,1,1,1,1,REAL
+way/761938607,"Bridge #147 (82.215, 16.899)",bridges,Transport Bridge / Culvert,16.899133,82.215419,7.4,6.23,20.39,175.0,964.0,118.9,0.95,184.2,295.6,0,0.0,25.8,70.0,85,0,1,1,1,1,REAL
+way/761938611,"Bridge #148 (82.227, 16.898)",bridges,Transport Bridge / Culvert,16.89827,82.227445,7.1,5.88,19.13,175.0,964.0,111.6,1.03,184.2,295.6,0,0.0,25.8,70.8,85,0,1,1,1,1,REAL
+way/761950029,MDR0163,bridges,Transport Bridge / Culvert,16.866778,82.215471,5.6,4.12,19.73,175.0,964.0,115.1,1.52,184.2,295.6,0,0.0,25.8,70.4,85,0,1,1,1,1,REAL
+way/761959964,"Bridge #150 (82.206, 16.845)",bridges,Transport Bridge / Culvert,16.845186,82.206145,6.0,4.7,20.64,175.0,964.0,120.4,1.34,184.2,295.6,0,0.0,25.8,69.9,85,0,1,1,1,1,REAL
+way/762003919,MDR01,bridges,Transport Bridge / Culvert,16.808122,82.167321,10.3,9.96,25.2,175.0,964.0,147.0,0.42,184.2,295.6,0,0.0,25.8,67.2,85,0,1,1,1,1,REAL
+way/762003920,"Bridge #152 (82.124, 16.820)",bridges,Transport Bridge / Culvert,16.819947,82.12435,13.3,13.78,29.53,175.0,964.0,172.2,0.2,184.2,295.6,0,0.0,25.8,64.7,85,0,1,1,1,1,REAL
+way/762003925,MDR01,bridges,Transport Bridge / Culvert,16.789335,82.163871,11.3,11.13,26.02,175.0,964.0,151.8,0.32,184.2,295.6,0,0.0,25.8,66.8,85,0,1,1,1,1,REAL
+way/765773266,MDR015,bridges,Transport Bridge / Culvert,16.800234,82.247312,6.9,5.54,17.17,175.0,964.0,100.1,1.11,184.2,295.6,0,0.0,25.8,71.9,85,0,1,1,1,1,REAL
+way/765773272,MDR015,bridges,Transport Bridge / Culvert,16.805462,82.248153,6.5,4.96,16.9,175.0,964.0,98.6,1.26,184.2,295.6,0,0.0,25.8,72.1,85,0,1,1,1,1,REAL
+way/765773279,"Bridge #156 (82.250, 16.807)",bridges,Transport Bridge / Culvert,16.80664,82.250137,6.3,4.82,16.66,175.0,964.0,97.2,1.3,184.2,295.6,0,0.0,25.8,72.2,85,0,1,1,1,1,REAL
+way/765773286,"Bridge #157 (82.199, 16.816)",bridges,Transport Bridge / Culvert,16.815628,82.198803,7.7,6.66,21.75,175.0,964.0,126.9,0.87,184.2,295.6,0,0.0,25.8,69.2,85,0,1,1,1,1,REAL
+way/765780269,"Bridge #158 (82.205, 16.814)",bridges,Transport Bridge / Culvert,16.814217,82.205121,7.3,6.22,21.12,175.0,964.0,123.2,0.95,184.2,295.6,0,0.0,25.8,69.6,85,0,1,1,1,1,REAL
+way/765780274,MDR0161,bridges,Transport Bridge / Culvert,16.779995,82.224962,6.4,5.0,20.19,175.0,964.0,117.8,1.25,184.2,295.6,0,0.0,25.8,70.2,85,0,1,1,1,1,REAL
+way/847082069,MDR019,bridges,Transport Bridge / Culvert,16.750623,82.117126,14.5,15.21,32.08,175.0,964.0,169.2,0.2,184.2,295.6,1,0.0,26.2,64.7,85,0,1,1,1,1,REAL
+way/847095459,MDR019,bridges,Transport Bridge / Culvert,16.768996,82.113081,15.0,15.78,31.84,175.0,964.0,169.9,0.2,184.2,295.6,0,0.0,25.8,64.9,85,0,1,1,1,1,REAL
+way/847104599,MDR019,bridges,Transport Bridge / Culvert,16.768809,82.113071,15.0,15.78,31.85,175.0,964.0,169.8,0.2,184.2,295.6,0,0.0,25.8,65.0,85,0,1,1,1,1,REAL
+way/847481469,"Bridge #163 (82.250, 16.807)",bridges,Transport Bridge / Culvert,16.807202,82.249738,6.3,4.76,16.69,175.0,964.0,97.3,1.32,184.2,295.6,0,0.0,25.8,72.2,85,0,1,1,1,1,REAL
+way/847845655,"Bridge #164 (82.254, 16.776)",bridges,Transport Bridge / Culvert,16.775608,82.253959,4.8,2.92,17.61,175.0,964.0,102.7,1.99,184.2,295.6,0,0.0,25.8,71.7,85,0,1,1,1,1,REAL
+way/847855028,"Bridge #165 (82.233, 16.759)",bridges,Transport Bridge / Culvert,16.758972,82.232829,4.8,3.06,20.47,175.0,964.0,119.4,1.93,184.2,295.6,0,0.0,25.8,70.0,85,0,1,1,1,1,REAL
+way/847859186,"Bridge #166 (82.246, 16.770)",bridges,Transport Bridge / Culvert,16.769729,82.246286,4.5,2.64,18.64,175.0,964.0,108.7,2.12,184.2,295.6,0,0.0,25.8,71.1,85,0,1,1,1,1,REAL
+way/847878164,"Bridge #167 (82.261, 16.765)",bridges,Transport Bridge / Culvert,16.76498,82.2607,3.7,1.67,17.59,175.0,964.0,102.6,2.62,184.2,295.6,0,0.0,25.8,71.7,85,0,1,1,1,1,REAL
+way/847920479,MDR016,bridges,Transport Bridge / Culvert,16.792159,82.240756,6.6,5.12,18.13,175.0,964.0,105.8,1.22,184.2,295.6,0,0.0,25.8,71.4,85,0,1,1,1,1,REAL
+way/848259682,"Bridge #169 (82.189, 16.753)",bridges,Transport Bridge / Culvert,16.753059,82.188735,8.4,7.6,24.94,175.0,964.0,145.5,0.7,184.2,295.6,0,0.0,25.8,67.4,85,0,1,1,1,1,REAL
+way/848325027,"Bridge #170 (82.205, 16.761)",bridges,Transport Bridge / Culvert,16.760744,82.204648,7.1,6.01,23.04,175.0,964.0,134.4,1.0,184.2,295.6,0,0.0,25.8,68.5,85,0,1,1,1,1,REAL
+way/848327926,"Bridge #171 (82.107, 16.907)",bridges,Transport Bridge / Culvert,16.906502,82.106721,14.3,14.98,31.83,175.0,964.0,169.9,0.2,184.2,295.6,0,0.0,25.8,64.9,85,0,1,1,1,1,REAL
+way/848365133,Karapa - Chintapalli Road,bridges,Transport Bridge / Culvert,16.914679,82.118447,13.1,13.51,30.81,175.0,964.0,172.7,0.2,184.2,295.6,0,0.0,25.8,64.7,85,0,1,1,1,1,REAL
+way/848378690,"Bridge #173 (82.148, 16.758)",bridges,Transport Bridge / Culvert,16.757528,82.148237,11.9,11.93,28.7,175.0,964.0,167.4,0.27,184.2,295.6,0,0.0,25.8,65.2,85,0,1,1,1,1,REAL
+way/848382490,"Bridge #174 (82.221, 16.767)",bridges,Transport Bridge / Culvert,16.767485,82.221261,6.0,4.56,21.12,175.0,964.0,123.2,1.38,184.2,295.6,0,0.0,25.8,69.6,85,0,1,1,1,1,REAL
+way/848382493,"Bridge #175 (82.216, 16.767)",bridges,Transport Bridge / Culvert,16.766648,82.216498,6.3,4.99,21.62,175.0,964.0,126.1,1.25,184.2,295.6,0,0.0,25.8,69.3,85,0,1,1,1,1,REAL
+way/848409542,"Bridge #176 (82.177, 16.770)",bridges,Transport Bridge / Culvert,16.769518,82.177061,9.6,9.09,25.36,175.0,964.0,147.9,0.5,184.2,295.6,0,0.0,25.8,67.1,85,0,1,1,1,1,REAL
+way/848412479,"Bridge #177 (82.187, 16.774)",bridges,Transport Bridge / Culvert,16.774236,82.187169,8.9,8.21,24.17,175.0,964.0,141.0,0.61,184.2,295.6,10,0.0,29.8,65.0,85,0,1,1,1,1,REAL
+way/848412482,"Bridge #178 (82.175, 16.788)",bridges,Transport Bridge / Culvert,16.788128,82.175321,10.3,9.96,24.88,175.0,964.0,145.2,0.42,184.2,295.6,0,0.0,25.8,67.4,85,0,1,1,1,1,REAL
+way/848421251,"Bridge #179 (82.106, 16.984)",bridges,Transport Bridge / Culvert,16.983878,82.105861,14.1,14.76,34.65,175.0,964.0,162.8,0.2,184.2,295.6,0,0.0,25.8,65.7,85,0,1,1,1,1,REAL
+way/848702443,"Bridge #180 (82.211, 16.803)",bridges,Transport Bridge / Culvert,16.8026,82.211239,7.7,6.69,20.77,175.0,964.0,121.2,0.86,184.2,295.6,0,0.0,25.8,69.8,85,0,1,1,1,1,REAL
+way/848702449,"Bridge #181 (82.207, 16.809)",bridges,Transport Bridge / Culvert,16.80947,82.206965,7.5,6.43,21.03,175.0,964.0,122.7,0.91,184.2,295.6,0,0.0,25.8,69.7,85,0,1,1,1,1,REAL
+way/848710440,"Bridge #182 (82.231, 16.809)",bridges,Transport Bridge / Culvert,16.80853,82.230787,6.4,5.04,18.59,175.0,964.0,108.4,1.24,184.2,295.6,10,0.0,29.8,68.3,85,0,1,1,1,1,REAL
+way/848798283,"Bridge #183 (82.242, 16.910)",bridges,Transport Bridge / Culvert,16.910299,82.241762,6.0,4.42,18.12,175.0,964.0,105.7,1.42,184.2,295.6,1,0.0,26.2,71.1,85,0,1,1,1,1,REAL
+way/848798292,"Bridge #184 (82.242, 16.899)",bridges,Transport Bridge / Culvert,16.899163,82.242115,6.9,5.53,17.67,175.0,964.0,103.1,1.11,184.2,295.6,0,0.0,25.8,71.6,85,0,1,1,1,1,REAL
+way/848860081,"Bridge #185 (82.221, 16.905)",bridges,Transport Bridge / Culvert,16.904912,82.220512,6.7,5.43,20.05,175.0,964.0,117.0,1.14,184.2,295.6,0,0.0,25.8,70.2,85,0,1,1,1,1,REAL
+way/848860083,"Bridge #186 (82.234, 16.918)",bridges,Transport Bridge / Culvert,16.918364,82.234224,5.2,3.57,19.21,175.0,964.0,112.0,1.72,184.2,295.6,0,0.0,25.8,70.7,85,0,1,1,1,1,REAL
+way/848862705,"Bridge #187 (82.220, 16.902)",bridges,Transport Bridge / Culvert,16.902393,82.219508,7.0,5.72,20.07,175.0,964.0,117.1,1.06,184.2,295.6,0,0.0,25.8,70.2,85,0,1,1,1,1,REAL
+way/849661541,MDR0156,bridges,Transport Bridge / Culvert,16.956125,82.128537,11.7,11.88,31.2,175.0,964.0,171.6,0.27,184.2,295.6,0,0.0,25.8,64.8,85,0,1,1,1,1,REAL
+way/849662932,"Bridge #189 (82.127, 16.955)",bridges,Transport Bridge / Culvert,16.954999,82.126979,11.9,12.03,31.31,175.0,964.0,171.3,0.26,184.2,295.6,0,0.0,25.8,64.8,85,0,1,1,1,1,REAL
+way/849662935,"Bridge #190 (82.125, 16.954)",bridges,Transport Bridge / Culvert,16.954483,82.125456,12.0,12.19,31.43,175.0,964.0,171.0,0.25,184.2,295.6,0,0.0,25.8,64.8,85,0,1,1,1,1,REAL
+way/849662937,"Bridge #191 (82.128, 16.956)",bridges,Transport Bridge / Culvert,16.955658,82.12788,11.8,11.94,31.24,175.0,964.0,171.5,0.27,184.2,295.6,0,0.0,25.8,64.8,85,0,1,1,1,1,REAL
+way/849758921,"Bridge #192 (82.245, 16.932)",bridges,Transport Bridge / Culvert,16.932459,82.245128,3.9,2.03,18.86,175.0,964.0,110.0,2.42,184.2,295.6,0,0.0,25.8,70.9,85,0,1,1,1,1,REAL
+way/849758928,"Bridge #193 (82.261, 16.939)",bridges,Transport Bridge / Culvert,16.93938,82.26077,4.4,2.51,17.84,175.0,964.0,104.1,2.18,184.2,295.6,0,0.0,25.8,71.5,85,0,1,1,1,1,REAL
+way/850003463,"Bridge #194 (82.154, 16.904)",bridges,Transport Bridge / Culvert,16.904361,82.153758,10.7,10.48,26.89,175.0,964.0,156.9,0.37,184.2,295.6,0,0.0,25.8,66.2,85,0,1,1,1,1,REAL
+way/850050918,"Bridge #195 (82.105, 16.785)",bridges,Transport Bridge / Culvert,16.785194,82.105281,15.9,16.93,32.19,175.0,964.0,169.0,0.2,184.2,295.6,0,0.0,25.8,65.0,85,0,1,1,1,1,REAL
+way/850067520,"Bridge #196 (82.117, 16.785)",bridges,Transport Bridge / Culvert,16.785424,82.117021,15.0,15.72,30.96,175.0,964.0,172.3,0.2,184.2,295.6,0,0.0,25.8,64.7,85,0,1,1,1,1,REAL
+way/850090411,"Bridge #197 (82.175, 16.970)",bridges,Transport Bridge / Culvert,16.970245,82.175228,8.0,7.25,27.4,175.0,964.0,159.8,0.76,184.2,295.6,1,0.0,26.2,65.7,85,0,1,1,1,1,REAL
+way/850090413,"Bridge #198 (82.154, 16.982)",bridges,Transport Bridge / Culvert,16.981534,82.153648,10.1,9.83,30.01,175.0,964.0,175.0,0.43,184.2,295.6,0,0.0,25.8,64.4,85,0,1,1,1,1,REAL
+way/850090426,"Bridge #199 (82.142, 16.984)",bridges,Transport Bridge / Culvert,16.983985,82.142119,11.1,11.07,31.22,175.0,964.0,171.6,0.32,184.2,295.6,1,0.0,26.2,64.5,85,0,1,1,1,1,REAL
+way/850092631,MDR0156,bridges,Transport Bridge / Culvert,16.985596,82.132091,12.0,12.14,32.24,175.0,964.0,168.8,0.26,184.2,295.6,0,0.0,25.8,65.1,85,0,1,1,1,1,REAL
+way/850352520,"Bridge #201 (82.205, 16.920)",bridges,Transport Bridge / Culvert,16.919555,82.204623,6.3,5.06,22.18,175.0,964.0,129.4,1.23,184.2,295.6,0,0.0,25.8,69.0,85,0,1,1,1,1,REAL
+way/850355734,"Bridge #202 (82.223, 16.829)",bridges,Transport Bridge / Culvert,16.828725,82.222884,5.3,3.73,19.0,175.0,964.0,110.8,1.66,184.2,295.6,0,0.0,25.8,70.9,85,0,1,1,1,1,REAL
+way/850365363,"Bridge #203 (82.121, 16.853)",bridges,Transport Bridge / Culvert,16.852804,82.120653,13.3,13.77,29.73,175.0,964.0,173.4,0.2,184.2,295.6,0,0.0,25.8,64.6,85,0,1,1,1,1,REAL
+way/850372038,"Bridge #204 (82.217, 16.926)",bridges,Transport Bridge / Culvert,16.925638,82.217073,5.2,3.64,21.2,175.0,964.0,123.7,1.69,184.2,295.6,0,0.0,25.8,69.6,85,0,1,1,1,1,REAL
+way/850372040,"Bridge #205 (82.218, 16.926)",bridges,Transport Bridge / Culvert,16.926373,82.217727,5.1,3.54,21.17,175.0,964.0,123.5,1.73,184.2,295.6,0,0.0,25.8,69.6,85,0,1,1,1,1,REAL
+way/850372045,SH14,bridges,Transport Bridge / Culvert,16.919681,82.210038,6.0,4.64,21.65,175.0,964.0,126.3,1.36,184.2,295.6,0,0.0,25.8,69.3,85,0,1,1,1,1,REAL
+way/850372047,"Bridge #207 (82.203, 16.920)",bridges,Transport Bridge / Culvert,16.920087,82.202632,6.4,5.18,22.4,175.0,964.0,130.7,1.2,184.2,295.6,3,0.0,27.0,68.0,85,0,1,1,1,1,REAL
+way/850377213,"Bridge #208 (82.209, 16.929)",bridges,Transport Bridge / Culvert,16.929412,82.208622,5.5,4.05,22.19,175.0,964.0,129.5,1.55,184.2,295.6,0,0.0,25.8,69.0,85,0,1,1,1,1,REAL
+way/850380378,"Bridge #209 (82.127, 16.832)",bridges,Transport Bridge / Culvert,16.831982,82.127104,12.9,13.23,29.11,175.0,964.0,169.8,0.2,184.2,295.6,0,0.0,25.8,65.0,85,0,1,1,1,1,REAL
+way/850381159,Pyna - Kakinada Road,bridges,Transport Bridge / Culvert,16.950484,82.150144,9.9,9.56,28.84,175.0,964.0,168.2,0.45,184.2,295.6,0,0.0,25.8,65.1,85,0,1,1,1,1,REAL
+way/850386024,Ramachandrapuram - Penuguduru Road,bridges,Transport Bridge / Culvert,16.896428,82.165587,10.2,9.91,25.47,175.0,964.0,148.6,0.42,184.2,295.6,0,0.0,25.8,67.1,85,0,1,1,1,1,REAL
+way/850394276,"Bridge #212 (82.168, 16.896)",bridges,Transport Bridge / Culvert,16.895858,82.168136,10.1,9.73,25.19,175.0,964.0,147.0,0.44,184.2,295.6,0,0.0,25.8,67.2,85,0,1,1,1,1,REAL
+way/850395762,"Bridge #213 (82.201, 16.830)",bridges,Transport Bridge / Culvert,16.829606,82.200508,6.9,5.73,21.35,175.0,964.0,124.6,1.06,184.2,295.6,0,0.0,25.8,69.5,85,0,1,1,1,1,REAL
+way/850395765,"Bridge #214 (82.202, 16.818)",bridges,Transport Bridge / Culvert,16.818332,82.201526,7.3,6.25,21.42,175.0,964.0,124.9,0.95,184.2,295.6,0,0.0,25.8,69.4,85,0,1,1,1,1,REAL
+way/850408933,"Bridge #215 (82.146, 16.948)",bridges,Transport Bridge / Culvert,16.947983,82.145918,10.2,10.01,29.15,175.0,964.0,170.0,0.41,184.2,295.6,0,0.0,25.8,64.9,85,0,1,1,1,1,REAL
+way/850410251,"Bridge #216 (82.196, 16.848)",bridges,Transport Bridge / Culvert,16.847983,82.196048,6.9,5.75,21.71,175.0,964.0,126.6,1.06,184.2,295.6,0,0.0,25.8,69.3,85,0,1,1,1,1,REAL
+way/850411629,"Bridge #217 (82.199, 16.921)",bridges,Transport Bridge / Culvert,16.921153,82.198621,6.6,5.45,22.84,175.0,964.0,133.2,1.13,184.2,295.6,0,0.0,25.8,68.6,85,0,1,1,1,1,REAL
+way/850416270,"Bridge #218 (82.189, 16.880)",bridges,Transport Bridge / Culvert,16.880116,82.188734,8.2,7.33,22.73,175.0,964.0,132.6,0.75,184.2,295.6,0,0.0,25.8,68.7,85,0,1,1,1,1,REAL
+way/850416287,"Bridge #219 (82.189, 16.882)",bridges,Transport Bridge / Culvert,16.881513,82.189291,8.2,7.35,22.69,175.0,964.0,132.4,0.74,184.2,295.6,0,0.0,25.8,68.7,85,0,1,1,1,1,REAL
+way/850416295,"Bridge #220 (82.192, 16.889)",bridges,Transport Bridge / Culvert,16.888711,82.191931,8.4,7.53,22.56,175.0,964.0,131.6,0.71,184.2,295.6,0,0.0,25.8,68.8,85,0,1,1,1,1,REAL
+way/850418062,"Bridge #221 (82.143, 16.819)",bridges,Transport Bridge / Culvert,16.818783,82.143469,11.8,11.86,27.52,175.0,964.0,160.5,0.27,184.2,295.6,0,0.0,25.8,65.9,85,0,1,1,1,1,REAL
+way/850418086,"Bridge #222 (82.136, 16.819)",bridges,Transport Bridge / Culvert,16.819202,82.13633,12.4,12.57,28.27,175.0,964.0,164.9,0.23,184.2,295.6,0,0.0,25.8,65.4,85,0,1,1,1,1,REAL
+way/850428582,"Bridge #223 (82.189, 16.881)",bridges,Transport Bridge / Culvert,16.881387,82.189389,8.2,7.33,22.68,175.0,964.0,132.3,0.74,184.2,295.6,0,0.0,25.8,68.7,85,0,1,1,1,1,REAL
+way/850439601,"Bridge #224 (82.195, 16.894)",bridges,Transport Bridge / Culvert,16.893751,82.19541,8.4,7.58,22.31,175.0,964.0,130.1,0.71,184.2,295.6,1,0.0,26.2,68.6,85,0,1,1,1,1,REAL
+way/850442471,"Bridge #225 (82.184, 16.815)",bridges,Transport Bridge / Culvert,16.815496,82.183944,8.7,8.01,23.31,175.0,964.0,136.0,0.64,184.2,295.6,0,0.0,25.8,68.3,85,0,1,1,1,1,REAL
+way/850451087,"Bridge #226 (82.200, 16.883)",bridges,Transport Bridge / Culvert,16.882823,82.199744,7.5,6.47,21.62,175.0,964.0,126.1,0.9,184.2,295.6,0,0.0,25.8,69.3,85,0,1,1,1,1,REAL
+way/850451088,"Bridge #227 (82.211, 16.884)",bridges,Transport Bridge / Culvert,16.884413,82.211253,6.8,5.63,20.45,175.0,964.0,119.3,1.09,184.2,295.6,0,0.0,25.8,70.0,85,0,1,1,1,1,REAL
+way/850451097,"Bridge #228 (82.216, 16.884)",bridges,Transport Bridge / Culvert,16.884083,82.215565,6.6,5.27,19.99,175.0,964.0,116.6,1.18,184.2,295.6,0,0.0,25.8,70.3,85,0,1,1,1,1,REAL
+way/850451099,"Bridge #229 (82.212, 16.896)",bridges,Transport Bridge / Culvert,16.895916,82.212264,7.6,6.5,20.62,175.0,964.0,120.3,0.9,184.2,295.6,0,0.0,25.8,69.9,85,0,1,1,1,1,REAL
+way/850461441,SH14,bridges,Transport Bridge / Culvert,16.843127,82.151469,10.7,10.51,26.46,175.0,964.0,154.4,0.37,184.2,295.6,0,0.0,25.8,66.5,85,0,1,1,1,1,REAL
+way/850461443,"Bridge #231 (82.131, 16.841)",bridges,Transport Bridge / Culvert,16.840589,82.130987,12.5,12.71,28.65,175.0,964.0,167.1,0.23,184.2,295.6,0,0.0,25.8,65.2,85,0,1,1,1,1,REAL
+way/850466646,"Bridge #232 (82.199, 16.897)",bridges,Transport Bridge / Culvert,16.896902,82.198751,8.2,7.36,22.04,175.0,964.0,128.6,0.74,184.2,295.6,0,0.0,25.8,69.1,85,0,1,1,1,1,REAL
+way/850466663,"Bridge #233 (82.196, 16.896)",bridges,Transport Bridge / Culvert,16.895972,82.195837,8.5,7.63,22.32,175.0,964.0,130.2,0.7,184.2,295.6,0,0.0,25.8,68.9,85,0,1,1,1,1,REAL
+way/850558657,"Bridge #234 (82.181, 16.985)",bridges,Transport Bridge / Culvert,16.985036,82.180594,8.2,7.42,27.75,175.0,964.0,161.9,0.73,184.2,295.6,0,0.0,25.8,65.8,85,0,1,1,1,1,REAL
+way/850704090,MDR01,bridges,Transport Bridge / Culvert,16.782744,82.156868,11.6,11.57,26.94,175.0,964.0,157.1,0.29,184.2,295.6,0,0.0,25.8,66.2,85,0,1,1,1,1,REAL
+way/850709677,"Bridge #236 (82.183, 16.934)",bridges,Transport Bridge / Culvert,16.933841,82.182646,7.3,6.36,24.93,175.0,964.0,145.5,0.92,184.2,295.6,0,0.0,25.8,67.4,85,0,1,1,1,1,REAL
+way/850709680,"Bridge #237 (82.181, 16.939)",bridges,Transport Bridge / Culvert,16.939331,82.180769,7.4,6.41,25.35,175.0,964.0,147.9,0.91,184.2,295.6,0,0.0,25.8,67.1,85,0,1,1,1,1,REAL
+way/850713774,"Bridge #238 (82.200, 16.831)",bridges,Transport Bridge / Culvert,16.830801,82.200182,6.9,5.72,21.37,175.0,964.0,124.7,1.07,184.2,295.6,0,0.0,25.8,69.5,85,0,1,1,1,1,REAL
+way/850719351,"Bridge #239 (82.189, 16.927)",bridges,Transport Bridge / Culvert,16.927345,82.188628,7.1,6.02,24.08,175.0,964.0,140.5,1.0,184.2,295.6,0,0.0,25.8,67.9,85,0,1,1,1,1,REAL
+way/850723945,"Bridge #240 (82.184, 16.816)",bridges,Transport Bridge / Culvert,16.816212,82.184053,8.7,7.96,23.29,175.0,964.0,135.8,0.65,184.2,295.6,0,0.0,25.8,68.4,85,0,1,1,1,1,REAL
+way/850723947,"Bridge #241 (82.184, 16.816)",bridges,Transport Bridge / Culvert,16.816437,82.184073,8.7,7.95,23.28,175.0,964.0,135.8,0.65,184.2,295.6,0,0.0,25.8,68.4,85,0,1,1,1,1,REAL
+way/850725658,"Bridge #242 (82.173, 16.922)",bridges,Transport Bridge / Culvert,16.92247,82.172681,8.5,7.79,25.49,175.0,964.0,148.7,0.67,184.2,295.6,0,0.0,25.8,67.1,85,0,1,1,1,1,REAL
+way/850727663,"Bridge #243 (82.153, 16.784)",bridges,Transport Bridge / Culvert,16.783772,82.152568,12.0,12.04,27.35,175.0,964.0,159.5,0.26,184.2,295.6,0,0.0,25.8,66.0,85,0,1,1,1,1,REAL
+way/850732486,MDR02,bridges,Transport Bridge / Culvert,16.937464,82.155658,9.5,9.08,27.76,175.0,964.0,161.9,0.51,184.2,295.6,0,0.0,25.8,65.8,85,0,1,1,1,1,REAL
+way/850735380,"Bridge #245 (82.159, 16.868)",bridges,Transport Bridge / Culvert,16.867819,82.15894,10.2,9.89,25.73,175.0,964.0,150.1,0.42,184.2,295.6,0,0.0,25.8,66.9,85,0,1,1,1,1,REAL
+way/850736926,"Bridge #246 (82.133, 16.824)",bridges,Transport Bridge / Culvert,16.82442,82.133076,12.5,12.76,28.55,175.0,964.0,166.5,0.22,184.2,295.6,0,0.0,25.8,65.3,85,0,1,1,1,1,REAL
+way/850736928,"Bridge #247 (82.134, 16.826)",bridges,Transport Bridge / Culvert,16.825519,82.133721,12.4,12.67,28.47,175.0,964.0,166.1,0.23,184.2,295.6,0,0.0,25.8,65.3,85,0,1,1,1,1,REAL
+way/850754054,MDR01,bridges,Transport Bridge / Culvert,16.777218,82.136012,13.2,13.54,29.24,175.0,964.0,170.6,0.2,184.2,295.6,0,0.0,25.8,64.9,85,0,1,1,1,1,REAL
+way/850758926,"Bridge #249 (82.185, 16.930)",bridges,Transport Bridge / Culvert,16.929876,82.185136,7.2,6.25,24.53,175.0,964.0,143.1,0.95,184.2,295.6,0,0.0,25.8,67.6,85,0,1,1,1,1,REAL
+way/850768096,MDR01,bridges,Transport Bridge / Culvert,16.844169,82.169316,9.2,8.61,24.56,175.0,964.0,143.3,0.56,184.2,295.6,0,0.0,25.8,67.6,85,0,1,1,1,1,REAL
+way/850768099,SH14,bridges,Transport Bridge / Culvert,16.84853,82.163906,9.6,9.16,25.13,175.0,964.0,146.6,0.5,184.2,295.6,0,0.0,25.8,67.3,85,0,1,1,1,1,REAL
+way/850768101,"Bridge #252 (82.157, 16.854)",bridges,Transport Bridge / Culvert,16.854445,82.15689,10.2,9.92,25.88,175.0,964.0,150.9,0.42,184.2,295.6,0,0.0,25.8,66.8,85,0,1,1,1,1,REAL
+way/850768103,"Bridge #253 (82.160, 16.852)",bridges,Transport Bridge / Culvert,16.851911,82.159647,10.0,9.62,25.58,175.0,964.0,149.2,0.45,184.2,295.6,0,0.0,25.8,67.0,85,0,1,1,1,1,REAL
+way/850782652,"Bridge #254 (82.146, 16.789)",bridges,Transport Bridge / Culvert,16.789358,82.14554,12.7,12.95,27.91,175.0,964.0,162.8,0.21,184.2,295.6,0,0.0,25.8,65.7,85,0,1,1,1,1,REAL
+way/850792601,MDR0157,bridges,Transport Bridge / Culvert,16.921556,82.108848,13.7,14.31,31.98,175.0,964.0,169.5,0.2,184.2,295.6,0,0.0,25.8,65.0,85,0,1,1,1,1,REAL
+way/850810961,MDR0161,bridges,Transport Bridge / Culvert,16.802431,82.156922,11.3,11.23,26.41,175.0,964.0,154.0,0.31,184.2,295.6,0,0.0,25.8,66.5,85,0,1,1,1,1,REAL
+way/850826665,"Bridge #257 (82.181, 16.870)",bridges,Transport Bridge / Culvert,16.870368,82.181017,8.4,7.68,23.41,175.0,964.0,136.6,0.69,184.2,295.6,0,0.0,25.8,68.3,85,0,1,1,1,1,REAL
+way/850843148,MDR0156,bridges,Transport Bridge / Culvert,16.938558,82.128653,11.8,11.91,30.5,175.0,964.0,173.5,0.27,184.2,295.6,0,0.0,25.8,64.6,85,0,1,1,1,1,REAL
+way/850844208,MDR0156,bridges,Transport Bridge / Culvert,16.922946,82.14696,10.5,10.34,28.12,175.0,964.0,164.0,0.38,184.2,295.6,0,0.0,25.8,65.5,85,0,1,1,1,1,REAL
+way/850851579,MDR0156,bridges,Transport Bridge / Culvert,16.926167,82.136819,11.3,11.29,29.26,175.0,964.0,170.7,0.31,184.2,295.6,0,0.0,25.8,64.9,85,0,1,1,1,1,REAL
+way/850854757,"Bridge #261 (82.138, 16.891)",bridges,Transport Bridge / Culvert,16.890907,82.137994,12.5,12.69,28.25,175.0,964.0,164.8,0.23,184.2,295.6,0,0.0,25.8,65.5,85,0,1,1,1,1,REAL
+way/850864160,"Bridge #262 (82.164, 16.798)",bridges,Transport Bridge / Culvert,16.798038,82.163709,11.0,10.85,25.8,175.0,964.0,150.5,0.34,184.2,295.6,0,0.0,25.8,66.9,85,0,1,1,1,1,REAL
+way/850865070,"Bridge #263 (82.146, 16.863)",bridges,Transport Bridge / Culvert,16.863025,82.145743,11.2,11.19,27.1,175.0,964.0,158.1,0.32,184.2,295.6,0,0.0,25.8,66.1,85,0,1,1,1,1,REAL
+way/850865072,"Bridge #264 (82.138, 16.868)",bridges,Transport Bridge / Culvert,16.868233,82.137645,12.0,12.13,27.99,175.0,964.0,163.3,0.26,184.2,295.6,0,0.0,25.8,65.6,85,0,1,1,1,1,REAL
+way/850866082,Ramachandrapuram - Penuguduru Road,bridges,Transport Bridge / Culvert,16.874548,82.130525,12.7,13.0,28.81,175.0,964.0,168.0,0.21,184.2,295.6,0,0.0,25.8,65.1,85,0,1,1,1,1,REAL
+way/850866140,"Bridge #266 (82.179, 16.876)",bridges,Transport Bridge / Culvert,16.875719,82.179379,8.7,8.04,23.65,175.0,964.0,138.0,0.64,184.2,295.6,0,0.0,25.8,68.1,85,0,1,1,1,1,REAL
+way/850874726,"Bridge #267 (82.127, 16.936)",bridges,Transport Bridge / Culvert,16.936406,82.126879,11.9,12.13,30.61,175.0,964.0,173.3,0.26,184.2,295.6,0,0.0,25.8,64.6,85,0,1,1,1,1,REAL
+way/850891738,"Bridge #268 (82.170, 16.859)",bridges,Transport Bridge / Culvert,16.859183,82.170199,9.1,8.55,24.48,175.0,964.0,142.8,0.57,184.2,295.6,0,0.0,25.8,67.7,85,0,1,1,1,1,REAL
+way/850910606,"Bridge #269 (82.169, 16.855)",bridges,Transport Bridge / Culvert,16.855482,82.168536,9.2,8.69,24.64,175.0,964.0,143.7,0.55,184.2,295.6,0,0.0,25.8,67.6,85,0,1,1,1,1,REAL
+way/851353691,"Bridge #270 (82.121, 16.867)",bridges,Transport Bridge / Culvert,16.867004,82.121007,13.4,13.86,29.75,175.0,964.0,173.5,0.2,184.2,295.6,0,0.0,25.8,64.6,85,0,1,1,1,1,REAL
+way/851365267,MDR0163,bridges,Transport Bridge / Culvert,16.866261,82.188106,7.7,6.83,22.62,175.0,964.0,132.0,0.83,184.2,295.6,0,0.0,25.8,68.7,85,0,1,1,1,1,REAL
+way/851373437,"Bridge #272 (82.179, 16.837)",bridges,Transport Bridge / Culvert,16.836684,82.178606,8.5,7.74,23.61,175.0,964.0,137.7,0.68,184.2,295.6,0,0.0,25.8,68.2,85,0,1,1,1,1,REAL
+way/851380556,"Bridge #273 (82.221, 16.758)",bridges,Transport Bridge / Culvert,16.758034,82.220802,5.7,4.27,21.64,175.0,964.0,126.3,1.47,184.2,295.6,0,0.0,25.8,69.3,85,0,1,1,1,1,REAL
+way/851383615,"Bridge #274 (82.240, 16.767)",bridges,Transport Bridge / Culvert,16.766527,82.240449,4.6,2.78,19.35,175.0,964.0,112.9,2.05,184.2,295.6,0,0.0,25.8,70.7,85,0,1,1,1,1,REAL
+way/851394474,"Bridge #275 (82.222, 16.865)",bridges,Transport Bridge / Culvert,16.864849,82.221919,5.0,3.41,19.02,175.0,964.0,111.0,1.78,184.2,295.6,0,0.0,25.8,70.8,85,0,1,1,1,1,REAL
+way/851397612,MDR0160,bridges,Transport Bridge / Culvert,16.770856,82.233778,5.3,3.63,19.76,175.0,964.0,115.3,1.7,184.2,295.6,0,0.0,25.8,70.4,85,0,1,1,1,1,REAL
+way/851414520,MDR0161,bridges,Transport Bridge / Culvert,16.798177,82.187462,9.4,8.8,23.34,175.0,964.0,136.2,0.54,184.2,295.6,0,0.0,25.8,68.3,85,0,1,1,1,1,REAL
+way/851414523,"Bridge #278 (82.186, 16.801)",bridges,Transport Bridge / Culvert,16.801314,82.186286,9.3,8.68,23.38,175.0,964.0,136.4,0.55,184.2,295.6,0,0.0,25.8,68.3,85,0,1,1,1,1,REAL
+way/851434937,KANF Road - Madhavapatnam - Rameswaram Road,bridges,Transport Bridge / Culvert,16.992947,82.209829,6.6,5.39,25.73,175.0,964.0,150.1,1.15,184.2,295.6,0,0.0,25.8,66.9,85,0,1,1,1,1,REAL
+way/851444623,"Bridge #280 (82.212, 16.867)",bridges,Transport Bridge / Culvert,16.867233,82.212247,5.8,4.45,20.07,175.0,964.0,117.1,1.41,184.2,295.6,0,0.0,25.8,70.2,85,0,1,1,1,1,REAL
+way/851444625,"Bridge #281 (82.204, 16.869)",bridges,Transport Bridge / Culvert,16.86895,82.204363,6.5,5.29,20.93,175.0,964.0,122.1,1.17,184.2,295.6,0,0.0,25.8,69.7,85,0,1,1,1,1,REAL
+way/851447711,"Bridge #282 (82.197, 16.874)",bridges,Transport Bridge / Culvert,16.873696,82.196882,7.3,6.24,21.77,175.0,964.0,127.0,0.95,184.2,295.6,0,0.0,25.8,69.2,85,0,1,1,1,1,REAL
+way/851448965,"Bridge #283 (82.200, 16.872)",bridges,Transport Bridge / Culvert,16.87217,82.199826,7.0,5.88,21.44,175.0,964.0,125.1,1.03,184.2,295.6,0,0.0,25.8,69.4,85,0,1,1,1,1,REAL
+way/851451069,"Bridge #284 (82.218, 16.866)",bridges,Transport Bridge / Culvert,16.866376,82.217616,5.4,3.9,19.49,175.0,964.0,113.7,1.6,184.2,295.6,0,0.0,25.8,70.6,85,0,1,1,1,1,REAL
+way/851460541,"Bridge #285 (82.186, 16.802)",bridges,Transport Bridge / Culvert,16.802482,82.185769,9.3,8.64,23.41,175.0,964.0,136.5,0.56,184.2,295.6,0,0.0,25.8,68.3,85,0,1,1,1,1,REAL
+way/851461688,"Bridge #286 (82.149, 16.809)",bridges,Transport Bridge / Culvert,16.808599,82.149135,11.7,11.68,27.09,175.0,964.0,158.0,0.28,184.2,295.6,0,0.0,25.8,66.1,85,0,1,1,1,1,REAL
+way/851469903,"Bridge #287 (82.184, 16.811)",bridges,Transport Bridge / Culvert,16.811315,82.183802,8.9,8.25,23.41,175.0,964.0,136.6,0.61,184.2,295.6,0,0.0,25.8,68.3,85,0,1,1,1,1,REAL
+way/851469905,"Bridge #288 (82.183, 16.808)",bridges,Transport Bridge / Culvert,16.80814,82.183363,9.1,8.48,23.52,175.0,964.0,137.2,0.58,184.2,295.6,0,0.0,25.8,68.2,85,0,1,1,1,1,REAL
+way/851478876,"Bridge #289 (82.145, 16.801)",bridges,Transport Bridge / Culvert,16.801252,82.145471,12.2,12.38,27.63,175.0,964.0,161.2,0.24,184.2,295.6,0,0.0,25.8,65.8,85,0,1,1,1,1,REAL
+way/851481208,NH216,bridges,Transport Bridge / Culvert,16.900532,82.236506,6.9,5.51,18.28,175.0,964.0,106.6,1.12,184.2,295.6,0,0.0,25.8,71.3,85,0,1,1,1,1,REAL
+way/851488723,"Bridge #291 (82.202, 16.870)",bridges,Transport Bridge / Culvert,16.870225,82.202149,6.7,5.57,21.17,175.0,964.0,123.5,1.1,184.2,295.6,0,0.0,25.8,69.6,85,0,1,1,1,1,REAL
+way/851488725,"Bridge #292 (82.209, 16.868)",bridges,Transport Bridge / Culvert,16.867866,82.20852,6.2,4.84,20.47,175.0,964.0,119.4,1.3,184.2,295.6,0,0.0,25.8,70.0,85,0,1,1,1,1,REAL
+way/851605453,SH216,bridges,Transport Bridge / Culvert,16.960151,82.223433,3.9,2.09,22.43,175.0,964.0,130.8,2.39,184.2,295.6,0,0.0,25.8,68.9,85,0,1,1,1,1,REAL
+way/851871703,Pyna - Kakinada Road,bridges,Transport Bridge / Culvert,16.945555,82.154727,9.5,9.08,28.18,175.0,964.0,164.4,0.5,184.2,295.6,0,0.0,25.8,65.5,85,0,1,1,1,1,REAL
+way/852245468,MDR02,bridges,Transport Bridge / Culvert,16.860592,82.109778,14.3,14.97,30.91,175.0,964.0,172.4,0.2,184.2,295.6,0,0.0,25.8,64.7,85,0,1,1,1,1,REAL
+way/852245785,"Bridge #296 (82.223, 16.864)",bridges,Transport Bridge / Culvert,16.864207,82.223369,4.9,3.24,18.86,175.0,964.0,110.0,1.85,184.2,295.6,0,0.0,25.8,70.9,85,0,1,1,1,1,REAL
+way/852246130,MDR01,bridges,Transport Bridge / Culvert,16.817425,82.167719,9.9,9.48,24.99,175.0,964.0,145.7,0.46,184.2,295.6,0,0.0,25.8,67.4,85,0,1,1,1,1,REAL
+way/852246199,"Bridge #298 (82.155, 16.947)",bridges,Transport Bridge / Culvert,16.94661,82.154747,9.5,9.08,28.22,175.0,964.0,164.6,0.51,184.2,295.6,0,0.0,25.8,65.5,85,0,1,1,1,1,REAL
+way/852246206,"Bridge #299 (82.167, 16.953)",bridges,Transport Bridge / Culvert,16.95321,82.167389,8.4,7.73,27.28,175.0,964.0,159.1,0.68,184.2,295.6,0,0.0,25.8,66.0,85,0,1,1,1,1,REAL
+way/852269407,"Bridge #300 (82.219, 16.930)",bridges,Transport Bridge / Culvert,16.930349,82.218501,4.8,3.16,21.28,175.0,964.0,124.1,1.88,184.2,295.6,0,0.0,25.8,69.5,85,0,1,1,1,1,REAL
+way/852278905,SH14,bridges,Transport Bridge / Culvert,16.821269,82.116663,13.9,14.55,30.32,175.0,964.0,174.1,0.2,184.2,295.6,0,0.0,25.8,64.5,85,0,1,1,1,1,REAL
+way/852283895,"Bridge #302 (82.110, 16.806)",bridges,Transport Bridge / Culvert,16.805789,82.109988,14.9,15.69,31.26,175.0,964.0,171.4,0.2,184.2,295.6,0,0.0,25.8,64.8,85,0,1,1,1,1,REAL
+way/852284173,"Bridge #303 (82.219, 16.971)",bridges,Transport Bridge / Culvert,16.970957,82.219058,4.8,3.22,23.48,175.0,964.0,137.0,1.86,184.2,295.6,0,0.0,25.8,68.2,85,0,1,1,1,1,REAL
+way/852331973,"Bridge #304 (82.154, 16.959)",bridges,Transport Bridge / Culvert,16.958518,82.154289,9.6,9.17,28.79,175.0,964.0,168.0,0.5,184.2,295.6,0,0.0,25.8,65.1,85,0,1,1,1,1,REAL
+way/852331975,"Bridge #305 (82.154, 16.955)",bridges,Transport Bridge / Culvert,16.955335,82.154372,9.5,9.13,28.64,175.0,964.0,167.1,0.5,184.2,295.6,0,0.0,25.8,65.2,85,0,1,1,1,1,REAL
+way/852331978,"Bridge #306 (82.155, 16.948)",bridges,Transport Bridge / Culvert,16.948352,82.154638,9.5,9.08,28.3,175.0,964.0,165.1,0.51,184.2,295.6,0,0.0,25.8,65.4,85,0,1,1,1,1,REAL
+way/852352857,Indrapalem road bridge,bridges,Transport Bridge / Culvert,16.959751,82.223249,3.9,2.09,22.42,175.0,964.0,130.8,2.39,184.2,295.6,0,0.0,25.8,68.9,85,0,1,1,1,1,REAL
+way/852367972,"Bridge #308 (82.108, 16.809)",bridges,Transport Bridge / Culvert,16.808734,82.108055,15.0,15.79,31.41,175.0,964.0,171.0,0.2,184.2,295.6,0,0.0,25.8,64.8,85,0,1,1,1,1,REAL
+way/852367974,"Bridge #309 (82.123, 16.808)",bridges,Transport Bridge / Culvert,16.807765,82.123356,13.7,14.27,29.82,175.0,964.0,173.9,0.2,184.2,295.6,0,0.0,25.8,64.5,85,0,1,1,1,1,REAL
+way/852367978,"Bridge #310 (82.114, 16.796)",bridges,Transport Bridge / Culvert,16.795663,82.113776,14.9,15.71,31.06,175.0,964.0,172.0,0.2,184.2,295.6,0,0.0,25.8,64.7,85,0,1,1,1,1,REAL
+way/852600868,"Bridge #311 (82.208, 16.992)",bridges,Transport Bridge / Culvert,16.99243,82.208322,6.8,5.56,25.82,175.0,964.0,150.6,1.1,184.2,295.6,0,0.0,25.8,66.9,85,0,1,1,1,1,REAL
+way/852606844,"Bridge #312 (82.214, 16.984)",bridges,Transport Bridge / Culvert,16.98425,82.214127,6.1,4.7,24.78,175.0,964.0,144.5,1.34,184.2,295.6,0,0.0,25.8,67.5,85,0,1,1,1,1,REAL
+way/852610856,"Bridge #313 (82.213, 16.988)",bridges,Transport Bridge / Culvert,16.988067,82.213113,6.4,5.11,25.12,175.0,964.0,146.5,1.22,184.2,295.6,0,0.0,25.8,67.3,85,0,1,1,1,1,REAL
+way/852612766,"Bridge #314 (82.214, 16.985)",bridges,Transport Bridge / Culvert,16.985033,82.214451,6.1,4.75,24.8,175.0,964.0,144.7,1.32,184.2,295.6,0,0.0,25.8,67.5,85,0,1,1,1,1,REAL
+way/852623302,"Bridge #315 (82.263, 16.992)",bridges,Transport Bridge / Culvert,16.992347,82.262761,3.1,0.9,21.53,175.0,964.0,125.6,3.11,184.2,295.6,0,0.0,26.0,69.2,85,0,1,1,1,1,REAL
+way/852631417,"Bridge #316 (82.262, 16.992)",bridges,Transport Bridge / Culvert,16.992011,82.262395,3.1,0.92,21.53,175.0,964.0,125.6,3.09,184.2,295.6,0,0.0,25.8,69.4,85,0,1,1,1,1,REAL
+way/852645549,KANF Road - Madhavapatnam - Rameswaram Road,bridges,Transport Bridge / Culvert,16.985493,82.203273,6.7,5.55,25.79,175.0,964.0,150.4,1.11,184.2,295.6,0,0.0,25.8,66.9,85,0,1,1,1,1,REAL
+way/852682462,Pyna - Kakinada Road,bridges,Transport Bridge / Culvert,16.961369,82.210189,5.0,3.41,23.69,175.0,964.0,138.2,1.78,184.2,295.6,0,0.0,25.8,68.1,85,0,1,1,1,1,REAL
+way/852694298,KANF Road - Madhavapatnam - Rameswaram Road,bridges,Transport Bridge / Culvert,16.99649,82.233262,4.6,2.87,24.08,175.0,964.0,140.5,2.01,184.2,295.6,0,0.0,25.8,67.9,85,0,1,1,1,1,REAL
+way/852694300,KANF Road - Madhavapatnam - Rameswaram Road,bridges,Transport Bridge / Culvert,16.996576,82.233339,4.6,2.86,24.08,175.0,964.0,140.5,2.01,184.2,295.6,0,0.0,25.8,67.9,85,0,1,1,1,1,REAL
+way/852694308,"Bridge #321 (82.228, 16.990)",bridges,Transport Bridge / Culvert,16.990208,82.228205,5.2,3.55,24.02,175.0,964.0,140.1,1.73,184.2,295.6,0,0.0,25.8,67.9,85,0,1,1,1,1,REAL
+way/852694309,"Bridge #322 (82.223, 16.990)",bridges,Transport Bridge / Culvert,16.990007,82.223304,5.6,4.06,24.41,175.0,964.0,142.4,1.54,184.2,295.6,0,0.0,25.8,67.7,85,0,1,1,1,1,REAL
+way/987628355,"Bridge #323 (82.178, 16.941)",bridges,Transport Bridge / Culvert,16.94083,82.177981,7.6,6.68,25.69,175.0,964.0,149.9,0.86,184.2,295.6,0,0.0,25.8,66.9,85,0,1,1,1,1,REAL
+way/1014655914,"Bridge #324 (82.220, 16.981)",bridges,Transport Bridge / Culvert,16.980807,82.22005,5.5,4.03,24.04,175.0,964.0,140.2,1.55,184.2,295.6,0,0.0,25.8,67.9,85,0,1,1,1,1,REAL
+way/1103988851,Kalpana Bridge,bridges,Transport Bridge / Culvert,16.955952,82.240145,2.8,0.66,20.69,175.0,964.0,120.7,3.28,184.2,295.6,0,0.0,37.8,61.5,85,0,1,1,1,1,REAL
+way/1103988857,MOOTHA GOPAL KRISHNA VARADHI,bridges,Transport Bridge / Culvert,16.969265,82.229988,4.2,2.39,22.43,175.0,964.0,130.8,2.23,184.2,295.6,0,0.0,25.8,68.9,85,0,1,1,1,1,REAL
+way/1103988860,"Bridge #327 (82.233, 16.968)",bridges,Transport Bridge / Culvert,16.967812,82.233015,4.0,2.12,22.07,175.0,964.0,128.8,2.37,184.2,295.6,0,0.0,25.8,69.1,85,0,1,1,1,1,REAL
+way/1103993336,"Bridge #328 (82.200, 16.831)",bridges,Transport Bridge / Culvert,16.830813,82.200232,6.9,5.71,21.37,175.0,964.0,124.6,1.07,184.2,295.6,0,0.0,25.8,69.5,85,0,1,1,1,1,REAL
+way/1193899712,Kalpana Bridge,bridges,Transport Bridge / Culvert,16.956085,82.24325,2.9,0.76,20.43,175.0,964.0,119.2,3.21,184.2,295.6,0,0.0,33.5,64.6,85,0,1,1,1,1,REAL
+way/1238802980,SH216,bridges,Transport Bridge / Culvert,16.942944,82.231027,3.2,1.24,20.74,175.0,964.0,121.0,2.89,184.2,295.6,0,0.0,25.8,69.8,85,0,1,1,1,1,REAL
+way/1238803140,Kakinada Bypass,bridges,Transport Bridge / Culvert,16.943384,82.210573,4.8,3.22,22.67,175.0,964.0,132.3,1.86,184.2,295.6,0,0.0,25.8,68.7,85,0,1,1,1,1,REAL
+way/1270213228,Kakinada Bypass,bridges,Transport Bridge / Culvert,16.927094,82.217008,5.1,3.53,21.27,175.0,964.0,124.1,1.73,184.2,295.6,0,0.0,25.8,69.5,85,0,1,1,1,1,REAL
+way/1298717264,MOOTHA GOPALA KRISHNA VARADHI,bridges,Transport Bridge / Culvert,16.973578,82.231607,4.5,2.77,22.58,175.0,964.0,131.7,2.05,184.2,295.6,0,0.0,25.8,68.8,85,0,1,1,1,1,REAL
+way/1298717268,MOOTHA GOPALA KRISHNA VARADHI,bridges,Transport Bridge / Culvert,16.973598,82.231508,4.5,2.78,22.59,175.0,964.0,131.8,2.05,184.2,295.6,0,0.0,25.8,68.8,85,0,1,1,1,1,REAL
+way/1298717270,MOOTHA GOPALA KRISHNA VARADHI,bridges,Transport Bridge / Culvert,16.975095,82.232383,4.6,2.91,22.62,175.0,964.0,131.9,1.99,184.2,295.6,0,0.0,25.8,68.8,85,0,1,1,1,1,REAL
+way/1298717272,MOOTHA GOPALA KRISHNA VARADHI,bridges,Transport Bridge / Culvert,16.975196,82.232359,4.6,2.92,22.62,175.0,964.0,132.0,1.99,184.2,295.6,0,0.0,25.8,68.7,85,0,1,1,1,1,REAL
+way/1299897025,Kakinada Bypass,bridges,Transport Bridge / Culvert,16.95912,82.208398,5.0,3.51,23.72,175.0,964.0,138.4,1.74,184.2,295.6,12,0.0,30.6,64.7,85,0,1,1,1,1,REAL
+way/1299897027,Kakinada Bypass,bridges,Transport Bridge / Culvert,16.961483,82.208433,5.1,3.59,23.85,175.0,964.0,139.2,1.71,184.2,295.6,0,0.0,25.8,68.0,85,0,1,1,1,1,REAL
+way/1299897029,Kakinada Bypass,bridges,Transport Bridge / Culvert,16.967925,82.209316,5.3,3.82,24.16,175.0,964.0,140.9,1.62,184.2,295.6,0,0.0,25.8,67.8,85,0,1,1,1,1,REAL
+way/1324901726,KANF Road - Madhavapatnam - Rameswaram Road,bridges,Transport Bridge / Culvert,16.993396,82.210363,6.6,5.33,25.71,175.0,964.0,150.0,1.16,184.2,295.6,0,0.0,25.8,66.9,85,0,1,1,1,1,REAL
+way/1391095695,"Bridge #341 (82.120, 16.878)",bridges,Transport Bridge / Culvert,16.877823,82.1201,13.6,14.17,29.95,175.0,964.0,174.7,0.2,184.2,295.6,0,0.0,25.8,64.5,85,0,1,1,1,1,REAL
+way/1524091239,NH216,bridges,Transport Bridge / Culvert,16.753085,82.221667,5.6,4.1,21.83,175.0,964.0,127.3,1.53,184.2,295.6,0,0.0,25.8,69.2,85,0,1,1,1,1,REAL
+way/1541439608,"Bridge #343 (82.115, 16.888)",bridges,Transport Bridge / Culvert,16.887534,82.114923,14.3,14.97,30.62,175.0,964.0,173.2,0.2,184.2,295.6,0,0.0,25.8,64.6,85,0,1,1,1,1,REAL
+way/238763089,NH216,roads,Highway / Road Segment,16.838457,82.231848,4.1,2.32,17.94,175.0,964.0,104.7,2.27,184.2,295.6,0,0.0,25.8,71.5,60,0,1,1,1,1,REAL
+way/362421200,Kakinada Main Road,roads,Highway / Road Segment,16.953186,82.234719,2.7,0.66,21.0,175.0,964.0,122.5,3.28,184.2,295.6,0,0.0,40.3,59.5,60,0,1,1,1,1,REAL
+way/362421201,NH216,roads,Highway / Road Segment,16.875636,82.232984,5.0,3.38,18.0,175.0,964.0,105.0,1.79,184.2,295.6,0,0.0,25.8,71.4,60,0,1,1,1,1,REAL
+way/362421954,Kakinada - Rajanagaram (ADB) Road,roads,Highway / Road Segment,16.942083,82.23991,2.9,0.88,19.87,175.0,964.0,115.9,3.12,184.2,295.6,0,0.0,31.3,66.5,60,0,1,1,1,1,REAL
+way/362422111,Karapa - Chintapalli Road,roads,Highway / Road Segment,16.903343,82.164178,10.0,9.59,25.78,175.0,964.0,150.4,0.45,184.2,295.6,0,0.0,25.8,66.9,60,0,1,1,1,1,REAL
+way/362422847,Karapa - Chintapalli Road,roads,Highway / Road Segment,16.909679,82.138622,11.6,11.68,28.59,175.0,964.0,166.8,0.28,184.2,295.6,0,0.0,25.8,65.3,60,0,1,1,1,1,REAL
+way/362422884,Karapa - Chintapalli Road,roads,Highway / Road Segment,16.904459,82.159415,10.3,9.96,26.31,175.0,964.0,153.5,0.42,184.2,295.6,0,0.0,25.8,66.6,60,0,1,1,1,1,REAL
+way/362423206,MDR02,roads,Highway / Road Segment,16.921628,82.16729,8.9,8.35,26.01,175.0,964.0,151.7,0.59,184.2,295.6,0,0.0,25.8,66.8,60,0,1,1,1,1,REAL
+way/362423966,MDR0211,roads,Highway / Road Segment,16.943953,82.235915,2.9,0.8,20.34,175.0,964.0,118.7,3.18,184.2,295.6,0,0.0,32.8,65.2,60,0,1,1,1,1,REAL
+way/362424014,MDR0211,roads,Highway / Road Segment,16.950539,82.236383,2.5,0.39,20.69,175.0,964.0,120.7,3.49,184.2,295.6,0,0.0,50.5,52.6,60,0,1,1,1,1,REAL
+way/362424015,SH14,roads,Highway / Road Segment,16.880206,82.189111,8.1,7.3,22.69,175.0,964.0,132.4,0.75,184.2,295.6,0,0.0,25.8,68.7,60,0,1,1,1,1,REAL
+way/362424467,Kakinada - Rajanagaram (ADB) Road,roads,Highway / Road Segment,16.948374,82.256687,3.8,1.78,18.77,175.0,964.0,109.5,2.56,184.2,295.6,0,0.0,25.8,71.0,60,0,1,1,1,1,REAL
+way/366343229,SH216,roads,Highway / Road Segment,16.950188,82.229106,3.1,1.16,21.32,175.0,964.0,124.4,2.94,184.2,295.6,0,0.0,25.8,69.5,60,0,1,1,1,1,REAL
+way/396373723,MDR02,roads,Highway / Road Segment,16.941551,82.155223,9.5,9.07,27.96,175.0,964.0,163.1,0.51,184.2,295.6,0,0.0,25.8,65.6,60,0,1,1,1,1,REAL
+way/396373727,MDR02,roads,Highway / Road Segment,16.938503,82.159141,9.2,8.7,27.45,175.0,964.0,160.1,0.55,184.2,295.6,0,0.0,25.8,65.9,60,0,1,1,1,1,REAL
+way/396373736,MDR0163,roads,Highway / Road Segment,16.864264,82.223309,4.9,3.25,18.87,175.0,964.0,110.1,1.84,184.2,295.6,0,0.0,25.8,70.9,60,0,1,1,1,1,REAL
+way/396373742,MDR02,roads,Highway / Road Segment,16.93853,82.162177,8.9,8.38,27.15,175.0,964.0,158.4,0.59,184.2,295.6,0,0.0,25.8,66.1,60,0,1,1,1,1,REAL
+way/396373747,SH14,roads,Highway / Road Segment,16.863879,82.182113,8.2,7.39,23.24,175.0,964.0,135.6,0.74,184.2,295.6,0,0.0,25.8,68.4,60,0,1,1,1,1,REAL
+way/564839013,Kakinada Main Road,roads,Highway / Road Segment,16.92078,82.237135,5.0,3.26,19.03,175.0,964.0,111.0,1.84,184.2,295.6,0,0.0,25.8,70.8,60,0,1,1,1,1,REAL
+way/564839014,SH14,roads,Highway / Road Segment,16.900341,82.192715,8.3,7.47,22.76,175.0,964.0,132.7,0.72,184.2,295.6,0,0.0,25.8,68.7,60,0,1,1,1,1,REAL
+way/564839019,Ramachandrapuram - Penuguduru Road,roads,Highway / Road Segment,16.901452,82.179071,9.1,8.44,24.19,175.0,964.0,141.1,0.58,184.2,295.6,0,0.0,25.8,67.8,60,0,1,1,1,1,REAL
+way/564839042,MDR0164,roads,Highway / Road Segment,16.904306,82.170576,9.5,8.96,25.15,175.0,964.0,146.7,0.52,184.2,295.6,0,0.0,25.8,67.3,60,0,1,1,1,1,REAL
+way/564839137,SH14,roads,Highway / Road Segment,16.931151,82.22252,4.5,2.8,20.93,175.0,964.0,122.1,2.04,184.2,295.6,0,0.0,25.8,69.7,60,0,1,1,1,1,REAL
+way/637293550,Kakinada Main Road,roads,Highway / Road Segment,16.94237,82.233243,3.1,1.11,20.5,175.0,964.0,119.6,2.97,184.2,295.6,0,0.0,25.8,70.0,60,0,1,1,1,1,REAL
+way/707196204,MDR02,roads,Highway / Road Segment,16.93994,82.162613,8.9,8.31,27.16,175.0,964.0,158.5,0.6,184.2,295.6,0,0.0,25.8,66.1,60,0,1,1,1,1,REAL
+way/761950028,MDR0163,roads,Highway / Road Segment,16.86788,82.201824,6.7,5.5,21.18,175.0,964.0,123.6,1.12,184.2,295.6,0,0.0,25.8,69.6,60,0,1,1,1,1,REAL
+way/848848687,NH216,roads,Highway / Road Segment,16.897118,82.235513,6.8,5.46,18.27,175.0,964.0,106.6,1.13,184.2,295.6,0,0.0,25.8,71.3,60,0,1,1,1,1,REAL
+way/848848688,NH216,roads,Highway / Road Segment,16.897118,82.235513,6.8,5.46,18.27,175.0,964.0,106.6,1.13,184.2,295.6,0,0.0,25.8,71.3,60,0,1,1,1,1,REAL
+way/848848689,NH216,roads,Highway / Road Segment,16.90449,82.237687,6.5,5.07,18.3,175.0,964.0,106.8,1.23,184.2,295.6,6,0.0,28.2,69.6,60,0,1,1,1,1,REAL
+way/850372041,"Road #373 (82.217, 16.927)",roads,Highway / Road Segment,16.926703,82.217307,5.1,3.54,21.23,175.0,964.0,123.8,1.73,184.2,295.6,0,0.0,25.8,69.6,60,0,1,1,1,1,REAL
+way/850372042,"Road #374 (82.219, 16.926)",roads,Highway / Road Segment,16.925664,82.219136,5.1,3.5,21.0,175.0,964.0,122.5,1.75,184.2,295.6,0,0.0,25.8,69.7,60,0,1,1,1,1,REAL
+way/850372046,SH14,roads,Highway / Road Segment,16.913213,82.201599,6.9,5.78,22.25,175.0,964.0,129.8,1.05,184.2,295.6,0,0.0,25.8,69.0,60,0,1,1,1,1,REAL
+way/850381160,Pyna - Kakinada Road,roads,Highway / Road Segment,16.94799,82.152425,9.7,9.32,28.51,175.0,964.0,166.3,0.48,184.2,295.6,0,0.0,25.8,65.3,60,0,1,1,1,1,REAL
+way/850386025,Ramachandrapuram - Penuguduru Road,roads,Highway / Road Segment,16.895,82.163902,10.4,10.15,25.62,175.0,964.0,149.4,0.4,184.2,295.6,0,0.0,25.8,67.0,60,0,1,1,1,1,REAL
+way/850768100,SH14,roads,Highway / Road Segment,16.855109,82.171327,9.0,8.39,24.34,175.0,964.0,142.0,0.59,184.2,295.6,0,0.0,25.8,67.7,60,0,1,1,1,1,REAL
+way/850808853,Kakinada Bypass,roads,Highway / Road Segment,16.920443,82.229311,5.1,3.48,19.78,175.0,964.0,115.4,1.75,184.2,295.6,0,0.0,25.8,70.4,60,0,1,1,1,1,REAL
+way/850866081,Ramachandrapuram - Penuguduru Road,roads,Highway / Road Segment,16.884048,82.146371,11.6,11.66,27.25,175.0,964.0,159.0,0.28,184.2,295.6,0,0.0,25.8,66.0,60,0,1,1,1,1,REAL
+way/851365266,MDR0163,roads,Highway / Road Segment,16.866544,82.187171,7.8,6.93,22.72,175.0,964.0,132.6,0.81,184.2,295.6,0,0.0,25.8,68.7,60,0,1,1,1,1,REAL
+way/851442450,SH216,roads,Highway / Road Segment,16.939402,82.229721,3.5,1.61,20.67,175.0,964.0,120.5,2.66,184.2,295.6,0,0.0,25.8,69.9,60,0,1,1,1,1,REAL
+way/851442853,Ramachandrapuram - Penuguduru Road,roads,Highway / Road Segment,16.906565,82.192751,7.9,6.97,22.93,175.0,964.0,133.8,0.81,184.2,295.6,0,0.0,25.8,68.6,60,0,1,1,1,1,REAL
+way/851481209,NH216,roads,Highway / Road Segment,16.899569,82.236247,7.0,5.62,18.28,175.0,964.0,106.6,1.09,184.2,295.6,0,0.0,25.8,71.3,60,0,1,1,1,1,REAL
+way/851486981,Kakinada Main Road,roads,Highway / Road Segment,16.929057,82.234755,4.2,2.39,19.66,175.0,964.0,114.7,2.23,184.2,295.6,0,0.0,25.8,70.5,60,0,1,1,1,1,REAL
+way/851486982,Kakinada Main Road,roads,Highway / Road Segment,16.936621,82.233432,3.6,1.64,20.17,175.0,964.0,117.7,2.64,184.2,295.6,0,0.0,25.8,70.2,60,0,1,1,1,1,REAL
+way/851486983,Kakinada Main Road,roads,Highway / Road Segment,16.929057,82.23475,4.2,2.39,19.66,175.0,964.0,114.7,2.23,184.2,295.6,0,0.0,25.8,70.5,60,0,1,1,1,1,REAL
+way/851507433,Kakinada Main Road,roads,Highway / Road Segment,16.942346,82.233286,3.1,1.11,20.5,175.0,964.0,119.6,2.97,184.2,295.6,4,0.0,27.4,68.9,60,0,1,1,1,1,REAL
+way/851507434,Kakinada Main Road,roads,Highway / Road Segment,16.942429,82.233282,3.1,1.1,20.5,175.0,964.0,119.6,2.97,184.2,295.6,4,0.0,27.4,68.9,60,0,1,1,1,1,REAL
+way/851507435,Kakinada Main Road,roads,Highway / Road Segment,16.941687,82.233078,3.2,1.18,20.48,175.0,964.0,119.5,2.92,184.2,295.6,0,0.0,25.8,70.0,60,0,1,1,1,1,REAL
+way/851507436,Kakinada Main Road,roads,Highway / Road Segment,16.941663,82.233125,3.2,1.18,20.47,175.0,964.0,119.4,2.92,184.2,295.6,0,0.0,25.8,70.0,60,0,1,1,1,1,REAL
+way/851605446,SH216,roads,Highway / Road Segment,16.944396,82.231578,3.1,1.09,20.77,175.0,964.0,121.1,2.98,184.2,295.6,0,0.0,25.8,69.8,60,0,1,1,1,1,REAL
+way/851871704,Pyna - Kakinada Road,roads,Highway / Road Segment,16.949846,82.162061,8.9,8.29,27.64,175.0,964.0,161.2,0.6,184.2,295.6,0,0.0,25.8,65.8,60,0,1,1,1,1,REAL
+way/852278898,SH216,roads,Highway / Road Segment,16.935875,82.228422,3.8,2.0,20.6,175.0,964.0,120.2,2.44,184.2,295.6,0,0.0,25.8,69.9,60,0,1,1,1,1,REAL
+way/852278899,SH216,roads,Highway / Road Segment,16.935856,82.228458,3.8,2.0,20.6,175.0,964.0,120.2,2.44,184.2,295.6,0,0.0,25.8,69.9,60,0,1,1,1,1,REAL
+way/852278900,SH14,roads,Highway / Road Segment,16.935417,82.228233,3.9,2.05,20.6,175.0,964.0,120.1,2.41,184.2,295.6,0,0.0,25.8,69.9,60,0,1,1,1,1,REAL
+way/852278901,SH14,roads,Highway / Road Segment,16.935429,82.228179,3.9,2.05,20.6,175.0,964.0,120.2,2.41,184.2,295.6,0,0.0,25.8,69.9,60,0,1,1,1,1,REAL
+way/852278902,SH14;SH216,roads,Highway / Road Segment,16.935651,82.228312,3.9,2.02,20.6,175.0,964.0,120.2,2.42,184.2,295.6,0,0.0,25.8,69.9,60,0,1,1,1,1,REAL
+way/852278904,SH14,roads,Highway / Road Segment,16.923372,82.213515,5.5,4.09,21.45,175.0,964.0,125.1,1.53,184.2,295.6,0,0.0,25.8,69.4,60,0,1,1,1,1,REAL
+way/852347490,Kakinada Main Road,roads,Highway / Road Segment,16.943316,82.23345,3.0,1.02,20.53,175.0,964.0,119.8,3.03,184.2,295.6,0,0.0,26.5,69.5,60,0,1,1,1,1,REAL
+way/1080015886,SH216,roads,Highway / Road Segment,16.944043,82.232547,3.0,1.03,20.66,175.0,964.0,120.5,3.02,184.2,295.6,0,0.0,26.3,69.5,60,0,1,1,1,1,REAL
+way/1081715334,"Road #402 (82.216, 16.928)",roads,Highway / Road Segment,16.928463,82.21582,5.1,3.51,21.45,175.0,964.0,125.1,1.74,184.2,295.6,0,0.0,25.8,69.4,60,0,1,1,1,1,REAL
+way/1081715335,"Road #403 (82.215, 16.929)",roads,Highway / Road Segment,16.929233,82.214836,5.1,3.54,21.58,175.0,964.0,125.9,1.73,184.2,295.6,0,0.0,25.8,69.3,60,0,1,1,1,1,REAL
+way/1081715336,"Road #404 (82.219, 16.926)",roads,Highway / Road Segment,16.926149,82.218711,5.1,3.49,21.07,175.0,964.0,122.9,1.75,184.2,295.6,0,0.0,25.8,69.6,60,0,1,1,1,1,REAL
+way/1081715337,"Road #405 (82.216, 16.928)",roads,Highway / Road Segment,16.927911,82.215982,5.1,3.54,21.41,175.0,964.0,124.9,1.73,184.2,295.6,0,0.0,25.8,69.4,60,0,1,1,1,1,REAL
+way/1115206355,"Road #406 (82.232, 16.945)",roads,Highway / Road Segment,16.944516,82.231625,3.1,1.08,20.77,175.0,964.0,121.2,2.99,184.2,295.6,0,0.0,25.8,69.8,60,0,1,1,1,1,REAL
+way/1187546652,MDR02,roads,Highway / Road Segment,16.940471,82.162671,8.9,8.29,27.18,175.0,964.0,158.6,0.6,184.2,295.6,0,0.0,25.8,66.1,60,0,1,1,1,1,REAL
+way/1238803139,Kakinada Bypass,roads,Highway / Road Segment,16.951175,82.209325,4.8,3.27,23.2,175.0,964.0,135.3,1.84,184.2,295.6,0,0.0,25.8,68.4,60,0,1,1,1,1,REAL
+way/1270213227,Kakinada Bypass,roads,Highway / Road Segment,16.936269,82.212721,4.9,3.28,22.11,175.0,964.0,129.0,1.83,184.2,295.6,0,0.0,25.8,69.0,60,0,1,1,1,1,REAL
+way/1270213229,SH14;SH216,roads,Highway / Road Segment,16.935614,82.228358,3.9,2.02,20.59,175.0,964.0,120.1,2.42,184.2,295.6,0,0.0,25.8,69.9,60,0,1,1,1,1,REAL
+way/1270213230,SH14;SH216,roads,Highway / Road Segment,16.935691,82.228386,3.9,2.01,20.6,175.0,964.0,120.1,2.43,184.2,295.6,0,0.0,25.8,69.9,60,0,1,1,1,1,REAL
+way/1270213231,Kakinada Main Road,roads,Highway / Road Segment,16.94349,82.233476,3.0,1.0,20.54,175.0,964.0,119.8,3.04,184.2,295.6,0,0.0,26.8,69.3,60,0,1,1,1,1,REAL
+way/1270213232,Kakinada - Rajanagaram (ADB) Road,roads,Highway / Road Segment,16.943042,82.234602,3.0,0.96,20.41,175.0,964.0,119.1,3.07,184.2,295.6,0,0.0,27.5,68.8,60,0,1,1,1,1,REAL
+way/1524091247,Kakinada Bypass,roads,Highway / Road Segment,16.926103,82.218614,5.1,3.5,21.07,175.0,964.0,122.9,1.75,184.2,295.6,0,0.0,25.8,69.6,60,0,1,1,1,1,REAL
+way/1524091248,Kakinada Bypass,roads,Highway / Road Segment,16.928303,82.215847,5.1,3.52,21.44,175.0,964.0,125.1,1.74,184.2,295.6,0,0.0,25.8,69.4,60,0,1,1,1,1,REAL
+way/1558315739,NH216,roads,Highway / Road Segment,16.912199,82.238977,5.8,4.2,18.48,175.0,964.0,107.8,1.49,184.2,295.6,0,0.0,25.8,71.2,60,0,1,1,1,1,REAL
+way/97477499,Ramachandrapuram - Penuguduru Road,roads,Highway / Road Segment,16.858463,82.080028,16.8,18.11,34.06,175.0,964.0,164.2,0.2,184.2,295.6,0,0.0,25.8,65.5,60,0,1,1,1,1,REAL
+way/103402763,Ramachandrapuram - Unduru Road,roads,Highway / Road Segment,16.82261,82.085941,16.5,17.72,33.56,175.0,964.0,165.4,0.2,184.2,295.6,0,0.0,25.8,65.4,60,0,1,1,1,1,REAL
+way/285872287,SH246,roads,Highway / Road Segment,16.743898,82.225228,5.3,3.76,22.03,175.0,964.0,128.5,1.65,184.2,295.6,0,0.0,25.8,69.1,60,0,1,1,1,1,REAL
+way/325064201,SH14,roads,Highway / Road Segment,16.832191,82.134053,12.3,12.5,28.37,175.0,964.0,165.5,0.24,184.2,295.6,0,0.0,25.8,65.4,60,0,1,1,1,1,REAL
+way/362423741,KANF Road - Madhavapatnam - Rameswaram Road,roads,Highway / Road Segment,16.995646,82.237999,4.2,2.39,23.65,175.0,964.0,138.0,2.23,184.2,295.6,0,0.0,25.8,68.1,60,0,1,1,1,1,REAL
+way/362423743,Ramachandrapuram - Penuguduru Road,roads,Highway / Road Segment,16.86932,82.119728,13.5,14.03,29.9,175.0,964.0,174.4,0.2,184.2,295.6,0,0.0,25.8,64.5,60,0,1,1,1,1,REAL
+way/362425346,SH216,roads,Highway / Road Segment,16.988755,82.207693,6.7,5.51,25.62,175.0,964.0,149.5,1.12,184.2,295.6,0,0.0,25.8,67.0,60,0,1,1,1,1,REAL
+way/394357820,Kakinada Main Road,roads,Highway / Road Segment,16.983914,82.239703,4.6,2.8,22.64,175.0,964.0,132.1,2.04,184.2,295.6,0,0.0,25.8,68.7,60,0,1,1,1,1,REAL
+way/396367653,Dwarapudi - Yanam Road,roads,Highway / Road Segment,16.774363,82.108391,15.5,16.37,32.16,175.0,964.0,169.0,0.2,184.2,295.6,0,0.0,25.8,65.0,60,0,1,1,1,1,REAL
+way/396373711,SH246,roads,Highway / Road Segment,16.753727,82.231445,4.8,3.07,20.89,175.0,964.0,121.9,1.92,184.2,295.6,0,0.0,25.8,69.8,60,0,1,1,1,1,REAL
+way/396373715,KANF Road - Madhavapatnam - Rameswaram Road,roads,Highway / Road Segment,16.992838,82.210387,6.6,5.34,25.67,175.0,964.0,149.8,1.16,184.2,295.6,0,0.0,25.8,67.0,60,0,1,1,1,1,REAL
+way/396373726,Pyna - Kakinada Road,roads,Highway / Road Segment,16.9493,82.12425,12.1,12.31,31.35,175.0,964.0,171.2,0.25,184.2,295.6,0,0.0,25.8,64.8,60,0,1,1,1,1,REAL
+way/396373728,Pyna - Kakinada Road,roads,Highway / Road Segment,16.964758,82.199703,5.9,4.59,24.84,175.0,964.0,144.9,1.37,184.2,295.6,0,0.0,25.8,67.5,60,0,1,1,1,1,REAL
+way/396373732,Pyna - Kakinada Road,roads,Highway / Road Segment,16.960302,82.223175,3.9,2.12,22.46,175.0,964.0,131.0,2.37,184.2,295.6,0,0.0,25.8,68.8,60,0,1,1,1,1,REAL
+way/396373744,KANF Road - Madhavapatnam - Rameswaram Road,roads,Highway / Road Segment,16.976881,82.196264,6.7,5.53,25.86,175.0,964.0,150.9,1.11,184.2,295.6,0,0.0,25.8,66.8,60,0,1,1,1,1,REAL
+way/396373745,Pyna - Kakinada Road,roads,Highway / Road Segment,16.952335,82.139479,10.8,10.69,29.96,175.0,964.0,174.8,0.35,184.2,295.6,0,0.0,25.8,64.5,60,0,1,1,1,1,REAL
+way/651036845,Pyna - Kakinada Road,roads,Highway / Road Segment,16.961359,82.179743,7.5,6.53,26.5,175.0,964.0,154.6,0.89,184.2,295.6,0,0.0,25.8,66.5,60,0,1,1,1,1,REAL
+way/655926332,Pyna - Kakinada Road,roads,Highway / Road Segment,16.939902,82.096505,14.5,15.3,33.8,175.0,964.0,164.9,0.2,184.2,295.6,0,0.0,25.8,65.4,60,0,1,1,1,1,REAL
+way/758926816,Indrapalem road bridge,roads,Highway / Road Segment,16.959731,82.223574,3.9,2.06,22.39,175.0,964.0,130.6,2.41,184.2,295.6,0,0.0,25.8,68.9,60,0,1,1,1,1,REAL
+way/758968620,Pyna - Kakinada Road,roads,Highway / Road Segment,16.959807,82.223042,3.9,2.11,22.44,175.0,964.0,130.9,2.38,184.2,295.6,0,0.0,25.8,68.8,60,0,1,1,1,1,REAL
+way/848365132,Karapa - Chintapalli Road,roads,Highway / Road Segment,16.915246,82.098264,14.7,15.56,32.92,175.0,964.0,167.1,0.2,184.2,295.6,0,0.0,25.8,65.2,60,0,1,1,1,1,REAL
+way/850058104,SH14,roads,Highway / Road Segment,16.817401,82.102607,15.2,16.1,31.86,175.0,964.0,169.8,0.2,184.2,295.6,0,0.0,25.8,65.0,60,0,1,1,1,1,REAL
+way/850461442,SH14,roads,Highway / Road Segment,16.845838,82.157707,10.1,9.83,25.79,175.0,964.0,150.4,0.43,184.2,295.6,0,0.0,25.8,66.9,60,0,1,1,1,1,REAL
+way/851434938,KANF Road - Madhavapatnam - Rameswaram Road,roads,Highway / Road Segment,16.993031,82.209959,6.6,5.38,25.72,175.0,964.0,150.0,1.15,184.2,295.6,0,0.0,25.8,66.9,60,0,1,1,1,1,REAL
+way/851566741,Kakinada Main Road,roads,Highway / Road Segment,16.968597,82.236781,4.0,2.1,21.8,175.0,964.0,127.2,2.39,184.2,295.6,0,0.0,25.8,69.2,60,0,1,1,1,1,REAL
+way/851566742,Kakinada Main Road,roads,Highway / Road Segment,16.994856,82.242762,3.8,1.92,23.22,175.0,964.0,135.5,2.48,184.2,295.6,0,0.0,25.8,68.4,60,0,1,1,1,1,REAL
+way/851566743,Kakinada Main Road,roads,Highway / Road Segment,17.006006,82.245676,3.6,1.66,23.88,175.0,964.0,139.3,2.63,184.2,295.6,0,0.0,25.8,68.0,60,0,1,1,1,1,REAL
+way/851566744,Kakinada Main Road,roads,Highway / Road Segment,16.981703,82.239456,4.7,2.99,22.5,175.0,964.0,131.2,1.96,184.2,295.6,0,0.0,25.8,68.8,60,0,1,1,1,1,REAL
+way/851583844,Kakinada Main Road,roads,Highway / Road Segment,17.006095,82.24575,3.6,1.66,23.89,175.0,964.0,139.3,2.63,184.2,295.6,0,0.0,25.8,68.0,60,0,1,1,1,1,REAL
+way/851605447,SH216,roads,Highway / Road Segment,16.956689,82.226832,3.5,1.59,21.91,175.0,964.0,127.8,2.67,184.2,295.6,0,0.0,25.8,69.2,60,0,1,1,1,1,REAL
+way/851605448,SH216,roads,Highway / Road Segment,16.956667,82.2269,3.5,1.58,21.91,175.0,964.0,127.8,2.68,184.2,295.6,0,0.0,25.8,69.2,60,0,1,1,1,1,REAL
+way/851605449,SH216,roads,Highway / Road Segment,16.957535,82.227169,3.5,1.6,21.93,175.0,964.0,127.9,2.66,184.2,295.6,0,0.0,25.8,69.1,60,0,1,1,1,1,REAL
+way/851605452,SH216,roads,Highway / Road Segment,16.958702,82.225521,3.7,1.82,22.15,175.0,964.0,129.2,2.54,184.2,295.6,0,0.0,25.8,69.0,60,0,1,1,1,1,REAL
+way/851605454,SH216,roads,Highway / Road Segment,16.959917,82.223652,3.9,2.06,22.39,175.0,964.0,130.6,2.4,184.2,295.6,0,0.0,25.8,68.9,60,0,1,1,1,1,REAL
+way/851605455,SH216,roads,Highway / Road Segment,16.959771,82.223791,3.9,2.04,22.37,175.0,964.0,130.5,2.42,184.2,295.6,0,0.0,25.8,68.9,60,0,1,1,1,1,REAL
+way/851605456,SH216,roads,Highway / Road Segment,16.958613,82.22544,3.7,1.82,22.15,175.0,964.0,129.2,2.54,184.2,295.6,0,0.0,25.8,69.0,60,0,1,1,1,1,REAL
+way/851861189,Dwarapudi - Yanam Road,roads,Highway / Road Segment,16.753951,82.151704,11.6,11.54,28.51,175.0,964.0,166.3,0.29,184.2,295.6,0,0.0,25.8,65.3,60,0,1,1,1,1,REAL
+way/852262892,KANF Road - Madhavapatnam - Rameswaram Road,roads,Highway / Road Segment,17.000715,82.220641,5.7,4.19,25.39,175.0,964.0,148.1,1.5,184.2,295.6,0,0.0,25.8,67.1,60,0,1,1,1,1,REAL
+way/852262894,KANF Road - Madhavapatnam - Rameswaram Road,roads,Highway / Road Segment,16.998553,82.215231,6.1,4.76,25.67,175.0,964.0,149.8,1.32,184.2,295.6,0,0.0,25.8,67.0,60,0,1,1,1,1,REAL
+way/852262899,KANF Road - Madhavapatnam - Rameswaram Road,roads,Highway / Road Segment,16.994956,82.211868,6.4,5.15,25.7,175.0,964.0,149.9,1.21,184.2,295.6,0,0.0,25.8,66.9,60,0,1,1,1,1,REAL
+way/852262900,KANF Road - Madhavapatnam - Rameswaram Road,roads,Highway / Road Segment,16.998587,82.215195,6.1,4.77,25.68,175.0,964.0,149.8,1.32,184.2,295.6,0,0.0,25.8,67.0,60,0,1,1,1,1,REAL
+way/852262901,KANF Road - Madhavapatnam - Rameswaram Road,roads,Highway / Road Segment,16.998219,82.228103,5.0,3.4,24.62,175.0,964.0,143.6,1.79,184.2,295.6,0,0.0,25.8,67.6,60,0,1,1,1,1,REAL
+way/852278906,SH14,roads,Highway / Road Segment,16.821131,82.111253,14.4,15.11,30.9,175.0,964.0,172.4,0.2,184.2,295.6,0,0.0,25.8,64.7,60,0,1,1,1,1,REAL
+way/852645550,KANF Road - Madhavapatnam - Rameswaram Road,roads,Highway / Road Segment,16.989214,82.206541,6.8,5.63,25.75,175.0,964.0,150.2,1.09,184.2,295.6,0,0.0,25.8,66.9,60,0,1,1,1,1,REAL
+way/852682463,Pyna - Kakinada Road,roads,Highway / Road Segment,16.961065,82.216467,4.5,2.79,23.1,175.0,964.0,134.8,2.04,184.2,295.6,0,0.0,25.8,68.5,60,0,1,1,1,1,REAL
+way/852694299,KANF Road - Madhavapatnam - Rameswaram Road,roads,Highway / Road Segment,16.998176,82.228061,5.0,3.4,24.62,175.0,964.0,143.6,1.78,184.2,295.6,0,0.0,25.8,67.6,60,0,1,1,1,1,REAL
+way/852694301,KANF Road - Madhavapatnam - Rameswaram Road,roads,Highway / Road Segment,16.995732,82.238036,4.2,2.38,23.65,175.0,964.0,138.0,2.24,184.2,295.6,0,0.0,25.8,68.1,60,0,1,1,1,1,REAL
+way/1080009525,Kakinada Main Road,roads,Highway / Road Segment,16.96315,82.235994,3.5,1.52,21.51,175.0,964.0,125.5,2.71,184.2,295.6,0,0.0,25.8,69.4,60,0,1,1,1,1,REAL
+way/1080015882,Kakinada Main Road,roads,Highway / Road Segment,16.962935,82.235973,3.5,1.5,21.5,175.0,964.0,125.4,2.72,184.2,295.6,0,0.0,25.8,69.4,60,0,1,1,1,1,REAL
+way/1270213242,Kakinada Main Road,roads,Highway / Road Segment,16.970825,82.236486,4.2,2.35,21.98,175.0,964.0,128.2,2.26,184.2,295.6,0,0.0,25.8,69.1,60,0,1,1,1,1,REAL
+way/1270213243,Kakinada Main Road,roads,Highway / Road Segment,16.994877,82.242713,3.8,1.92,23.23,175.0,964.0,135.5,2.48,184.2,295.6,0,0.0,25.8,68.4,60,0,1,1,1,1,REAL
+way/1270213244,Kakinada Main Road,roads,Highway / Road Segment,16.994941,82.242785,3.8,1.92,23.23,175.0,964.0,135.5,2.48,184.2,295.6,0,0.0,25.8,68.4,60,0,1,1,1,1,REAL

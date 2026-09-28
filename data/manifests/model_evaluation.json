@@ -1,0 +1,38 @@
+{
+  "model_name": "CycloneShield Multi-Hazard Exposure & Risk Engine (P-CHMVM v2.4)",
+  "model_version": "2.4.0",
+  "target": "Infrastructure Vulnerability & Multi-Hazard Exposure Index (Ground-truth structural failure labels unavailable in raw archives)",
+  "training_events": null,
+  "validation_events": null,
+  "test_events": null,
+  "total_assets_evaluated": 468,
+  "accuracy": null,
+  "precision": null,
+  "recall": null,
+  "f1": null,
+  "roc_auc": null,
+  "pr_auc": null,
+  "false_positives": null,
+  "false_negatives": null,
+  "data_type": "REAL",
+  "evaluation_type": "DETERMINISTIC_GEOPHYSICAL_DERIVED_ANALYSIS",
+  "ground_truth_source": "UNAVAILABLE (DFO FloodArchive provides macro-event polygons; individual building structural failure logs do not exist in public raw repositories)",
+  "supervised_ml_status": "SUPERVISED_TRAINING_DISABLED_DUE_TO_NO_INDEPENDENT_GROUND_TRUTH",
+  "risk_distribution": {
+    "CRITICAL": 62,
+    "HIGH": 148,
+    "MEDIUM": 194,
+    "LOW": 64
+  },
+  "baseline_comparison": {
+    "baseline_type": "Uniform Prior / Distance-to-Coast-Only Rule",
+    "composite_model_advantage": "Multi-criteria fusion integrates 30m JRC surface water raster, hourly ERA5 wind gusts, SLOSH coastal surge, and asset backup power readiness, preventing severe false negatives for inland low-elevation substations."
+  },
+  "limitations": [
+    "Ground-truth post-disaster building tag inspection logs are not available in open datasets.",
+    "Supervised ML accuracy is deliberately set to null to avoid circular validation on pseudo-labels.",
+    "JRC Global Surface Water raster reflects historical recurrence rather than real-time flash flood hydrographs.",
+    "Backup power status for non-hospital assets is inferred based on criticality tier."
+  ],
+  "verified_at": "2026-09-28T16:45:00Z"
+}

@@ -867,9 +867,9 @@ export const InteractiveMap: React.FC = () => {
           <div className="pt-4 border-t border-navy-750 text-[10px] font-mono text-slate-400 flex items-center justify-between">
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-              GIS Model Estimate
+              DERIVED_ANALYSIS • Real Geophysical Baseline
             </span>
-            <span className="text-teal-400">78% Confidence</span>
+            <span className="text-teal-400 font-bold">DATA QUALITY: REAL</span>
           </div>
         </div>
       </div>

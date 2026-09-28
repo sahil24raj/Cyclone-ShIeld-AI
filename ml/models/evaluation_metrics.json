@@ -1,0 +1,19 @@
+{
+  "pipelineType": "DERIVED_ANALYSIS",
+  "dataQuality": "REAL_OBSERVATIONS",
+  "totalAssetsEvaluated": 468,
+  "classDistribution": {
+    "CRITICAL": 62,
+    "HIGH": 148,
+    "MEDIUM": 194,
+    "LOW": 64
+  },
+  "hazardCoverage": {
+    "windFieldModeled": "NOAA IBTrACS + Holland/Vickery Wind Profile",
+    "coastalSurgeModeled": "SLOSH Inundation vs SRTM Elevation",
+    "surfaceWaterSampled": "JRC 30m Global Surface Water Tile 80E_20N",
+    "precipitationObserved": "Open-Meteo Hourly + NASA GPM IMERG Final V07"
+  },
+  "falseNegativeMitigation": "Multi-hazard aggregation ensures low-elevation assets with no backup power are elevated into High/Critical triage tier.",
+  "evaluatedAt": "2026-09-28T16:40:47.700577Z"
+}

@@ -75,6 +75,7 @@ interface AppStateContextType {
   resetScenarioInputs: () => void;
   simulationSummary: SimulationSummaryOutput;
   dataMode: DataMode;
+  setDataMode: (mode: DataMode) => void;
   modeBadgeText: string;
 
   mapLayers: MapLayerConfig;
@@ -491,6 +492,7 @@ export const AppStateProvider: React.FC<{ children: ReactNode }> = ({ children }
         resetScenarioInputs,
         simulationSummary,
         dataMode,
+        setDataMode,
         modeBadgeText,
         mapLayers,
         toggleMapLayer,
