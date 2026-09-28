@@ -190,18 +190,18 @@ export const TopHeader: React.FC = () => {
 
       {/* Clean Single Information Sub-Strip */}
       <div className="bg-navy-950 border-b border-navy-800 px-4 py-1.5 text-xs text-slate-300 flex items-center justify-between font-sans shadow-sm">
-        <div className="flex items-center gap-2">
-          <span className="inline-block w-2 h-2 rounded-full bg-amber-400 flex-shrink-0" />
-          <span>{t('simulation_notice')}</span>
+        <div className="flex items-center gap-2 overflow-hidden">
+          <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
+          <span className="font-mono text-[11px] text-slate-200 truncate">
+            <strong className="text-emerald-400">REAL DATA PIPELINE:</strong> NOAA IBTrACS • Open-Meteo ERA5 • JRC 30m Water • NASA GPM IMERG • 468 OSM Critical Assets
+          </span>
         </div>
-        <div className="hidden lg:flex items-center gap-3 font-mono text-[11px] text-slate-400">
-          <span>{t('hero_subtitle')}</span>
-          <span className="text-slate-600">|</span>
+        <div className="flex items-center gap-3 font-mono text-[11px] text-slate-400 flex-shrink-0">
           <button
             onClick={() => setActiveTab('methodology')}
-            className="text-teal-400 hover:text-teal-300 hover:underline font-semibold"
+            className="text-teal-300 hover:text-teal-200 hover:underline font-bold bg-teal-500/10 hover:bg-teal-500/20 px-2.5 py-0.5 rounded border border-teal-500/30 flex items-center gap-1.5 transition-colors"
           >
-            {t('model_methodology_link')}
+            <span>View Data Provenance &amp; Method →</span>
           </button>
         </div>
       </div>
