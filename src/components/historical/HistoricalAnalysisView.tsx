@@ -212,7 +212,7 @@ export const HistoricalAnalysisView: React.FC = () => {
           <div className="space-y-2 text-xs">
             <h4 className="font-bold text-amber-300 font-mono flex items-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Operational Lessons Encoded into CYCLONE-X</span>
+              <span>Operational Lessons Encoded into CycloneShield AI</span>
             </h4>
             <div className="space-y-1.5">
               {selectedEvent.lessonsLearned.map((lesson, idx) => (

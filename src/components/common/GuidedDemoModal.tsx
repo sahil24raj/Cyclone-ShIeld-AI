@@ -35,6 +35,7 @@ export const GuidedDemoModal: React.FC<GuidedDemoModalProps> = ({ isOpen, onClos
   const {
     setActiveTab,
     setSelectedVillage,
+    setSelectedAsset,
     setScenarioInputs,
     simulationSummary,
     scenarioInputs,
@@ -45,11 +46,11 @@ export const GuidedDemoModal: React.FC<GuidedDemoModalProps> = ({ isOpen, onClos
   const STEPS: DemoStep[] = [
     {
       title: 'Step 1: Situation Overview',
-      subtitle: 'Cyclone Varuna T-24h Decision Baseline',
+      subtitle: 'T–24h Cyclone Threat & Response Priority',
       tab: 'command',
       description:
-        'Cyclone Varuna is advancing in the Bay of Bengal with 135 km/h sustained winds and a 1.8m storm surge projected at landfall in 24 hours. 3 coastal wards require immediate action.',
-      keyHighlight: 'Storm Status: 135 km/h Wind • 1.8m Surge • 24h Landfall',
+        'Cyclone Varuna is expected to make landfall in 24 hours. CycloneShield AI identifies where the impact will be highest and what action should be taken first.',
+      keyHighlight: 'Storm Threat: 135 km/h Winds • 1.8m Surge • 24h to Landfall',
       onEnter: (ctx) => {
         ctx.setActiveTab('command');
         ctx.setScenarioInputs({
@@ -62,80 +63,82 @@ export const GuidedDemoModal: React.FC<GuidedDemoModalProps> = ({ isOpen, onClos
       },
     },
     {
-      title: 'Step 2: Inspect Coastal Ward 7',
-      subtitle: 'Critical Multi-Hazard Risk Attribution',
+      title: 'Step 2: Inspect Coastal Ward 7 on Map',
+      subtitle: 'Multi-Hazard Risk Attribution & Why At Risk',
       tab: 'map',
       description:
-        'Coastal Ward 7 is evaluated at Critical Risk (76/100). Low elevation (2.1m) and 1.8m surge create severe flooding. 1,515 vulnerable residents need immediate evacuation.',
-      keyHighlight: 'Coastal Ward 7: Critical Risk (76/100) • 4,850 exposed residents',
+        'Coastal Ward 7 is at Critical Risk (Score 78/100, 78% flood probability, 1.6m estimated depth). 1,515 vulnerable residents (elderly & children) face severe inundation due to 2.1m low elevation and surge.',
+      keyHighlight: 'Coastal Ward 7: Critical Risk (78/100) • 4,850 exposed • 1.6m water depth',
       onEnter: (ctx) => {
         ctx.setActiveTab('map');
+        const ward7 = ctx.simulationSummary.villages.find((v: any) => v.id === 'vil-01');
+        if (ward7) {
+          ctx.setSelectedVillage(ward7);
+          ctx.setSelectedAsset(null);
+        }
+      },
+    },
+    {
+      title: 'Step 3: Evacuation Plan & Safe Corridor Allocation',
+      subtitle: 'Shelter A Rejection & Elevated Route 2 Assignment',
+      tab: 'evacuation',
+      description:
+        'High School Cyclone Shelter A is closer, but rejected because its access road is projected to flood. Municipal Cyclone Shelter B is recommended through Elevated Route 2 (P0 Priority, 1,120+ beds available).',
+      keyHighlight: 'Shelter A Rejected (Road Flooded) ➔ Municipal Shelter B via Elevated Route 2',
+      onEnter: (ctx) => {
+        ctx.setActiveTab('evacuation');
         const ward7 = ctx.simulationSummary.villages.find((v: any) => v.id === 'vil-01');
         if (ward7) ctx.setSelectedVillage(ward7);
       },
     },
     {
-      title: 'Step 3: Evacuation Plan & Shelter A Rejection',
-      subtitle: 'Flood-Avoidance Shelter Rerouting',
-      tab: 'evacuation',
+      title: 'Step 4: Infrastructure Defense Matrix',
+      subtitle: 'Criticality vs Risk & Preventative Actions',
+      tab: 'infrastructure',
       description:
-        'The evacuation engine automatically detects that the nearest shelter (High School Shelter A) has a flooded access road. Shelter A is safely rejected.',
-      keyHighlight: 'Shelter A Rejected: Access road flooded under storm surge',
+        'Coastal Power Substation (Criticality 90/100, Risk 85/100) faces severe surge inundation. Potential impact: Total power outage across 3 wards. Recommended Action: De-energize 33kV Feeders 3 & 4 before surge crest to prevent transformer explosion.',
+      keyHighlight: 'Coastal Power Substation: Risk 85/100 ➔ De-energize 33kV Feeders before surge crest',
       onEnter: (ctx) => {
-        ctx.setActiveTab('evacuation');
+        ctx.setActiveTab('infrastructure');
+        const powerSub = ctx.simulationSummary.assets.find((a: any) => a.id === 'infra-power-1');
+        if (powerSub) ctx.setSelectedAsset(powerSub);
       },
     },
     {
-      title: 'Step 4: Shelter B & Elevated Route 2 Assigned',
-      subtitle: 'Guaranteed Accessible Corridor',
-      tab: 'evacuation',
-      description:
-        'Municipal Cyclone Shelter B is automatically assigned via Elevated Route 2, providing 1,120+ available beds and guaranteed flood-free access.',
-      keyHighlight: 'Assigned: Municipal Shelter B via Elevated Route 2',
-      onEnter: (ctx) => {
-        ctx.setActiveTab('evacuation');
-      },
-    },
-    {
-      title: 'Step 5: Scenario Simulator (What-If)',
-      subtitle: 'Testing Track Shift Sensitivity',
+      title: 'Step 5: Scenario Simulator (What-If Sensitivity)',
+      subtitle: 'Shift Track +30 km North & Surge Increase',
       tab: 'simulator',
       description:
-        'Emergency managers can test sensitivity to forecast shifts. What if the cyclone shifts 30 km North toward the Mahanadi delta?',
-      keyHighlight: 'Interactive Controls: Wind, Rainfall, Surge, Track Shift',
+        'Simulating a +30 km North track shift toward the delta immediately recalculates all 8 villages, 42 assets, and routes. Observe changed risk zones, 7 additional high/critical villages, and an expanded shelter capacity gap.',
+      keyHighlight: '+30 km Track Shift ➔ Dynamic recalculation across all villages, assets & routes',
       onEnter: (ctx) => {
         ctx.setActiveTab('simulator');
+        ctx.setScenarioInputs({
+          windSpeedKmh: 145,
+          rainfallMm: 225,
+          stormSurgeMeters: 2.4,
+          trackShiftKm: 30,
+          landfallHours: 20,
+        });
       },
     },
     {
-      title: 'Step 6: Shift Track 30 km North',
-      subtitle: 'Real-Time Impact Recalculation',
-      tab: 'simulator',
-      description:
-        'Shifting the track +30 km North recalculates the entire district. 7 additional villages move to High/Critical risk, Delta Hospital enters flood risk, and the shelter deficit increases.',
-      keyHighlight: 'Delta Impact: +7 Critical Villages • +4,200 Shelter Deficit',
-      onEnter: (ctx) => {
-        ctx.setActiveTab('simulator');
-        ctx.setScenarioInputs((prev: any) => ({ ...prev, trackShiftKm: 30 }));
-      },
-    },
-    {
-      title: 'Step 7: AI Situation Brief (SITREP)',
-      subtitle: 'Automated Decision Support',
+      title: 'Step 6: AI Situation Brief (SITREP)',
+      subtitle: 'Structured Operational Advisory with English & Hindi',
       tab: 'briefing',
       description:
-        'Generates a comprehensive 10-section operational briefing with executive summary, top 5 risks, evacuation priorities, and dual English/Hindi public advisories.',
-      keyHighlight: 'SITREP: Structured priorities + Dual-language public advisories',
+        'Generates a structured, transparent SITREP advisory with executive summary, immediate action checklist, P0 evacuation queue, critical infrastructure defenses, and bilingual English/Hindi public broadcasts.',
+      keyHighlight: 'SITREP Advisory: Structured priorities + Dual-language public advisories',
       onEnter: (ctx) => {
         ctx.setActiveTab('briefing');
       },
     },
     {
-      title: 'Step 8: Standardized CAP Alert Draft',
-      subtitle: 'Simulated Common Alerting Protocol',
+      title: 'Step 7: CAP-Compliant Alert Drafts',
+      subtitle: 'Standardized Public Warnings (Human Approval Required)',
       tab: 'alert',
       description:
-        'Produces standardized CAP v1.2 XML/JSON alert payloads for multi-channel siren, SMS, and WhatsApp dispatch with strict "Simulation draft — human approval required" guardrails.',
+        'Inspect structured OASIS CAP v1.2 XML/JSON emergency alert payloads with simulated multi-channel mobile dispatch and strict "Human approval required before dispatch" governance.',
       keyHighlight: 'CAP v1.2 Draft: Validated payload with simulated dispatch safeguard',
       onEnter: (ctx) => {
         ctx.setActiveTab('alert');
@@ -154,6 +157,7 @@ export const GuidedDemoModal: React.FC<GuidedDemoModalProps> = ({ isOpen, onClos
       STEPS[nextIdx].onEnter?.({
         setActiveTab,
         setSelectedVillage,
+        setSelectedAsset,
         setScenarioInputs,
         simulationSummary,
       });
@@ -169,6 +173,7 @@ export const GuidedDemoModal: React.FC<GuidedDemoModalProps> = ({ isOpen, onClos
       STEPS[prevIdx].onEnter?.({
         setActiveTab,
         setSelectedVillage,
+        setSelectedAsset,
         setScenarioInputs,
         simulationSummary,
       });

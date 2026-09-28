@@ -24,15 +24,20 @@ import {
 import { useAppState } from '../../context/AppStateContext';
 import { CriticalAsset, AssetType } from '../../types';
 import { formatIndianNumber } from '../../utils/formatters';
+import { TacticalMatrixCanvas } from './TacticalMatrixCanvas';
+import { EvidenceChainModal } from '../common/EvidenceChainModal';
 
 export const InfrastructureView: React.FC = () => {
-  const { simulationSummary, setSelectedAsset, setActiveTab } = useAppState();
+  const { simulationSummary, setSelectedAsset, setActiveTab, scenarioInputs } = useAppState();
   const assets = simulationSummary.assets;
 
   const [selectedAssetId, setSelectedAssetId] = useState<string>(assets[0]?.id || 'infra-power-1');
   const [selectedTypeFilter, setSelectedTypeFilter] = useState<string>('all');
   const [activeQueueTab, setActiveQueueTab] = useState<'immediate' | 'next6h' | 'monitor'>('immediate');
   const [viewMode, setViewMode] = useState<'matrix' | 'list'>('matrix');
+  const [isEvidenceModalOpen, setIsEvidenceModalOpen] = useState<boolean>(false);
+  const [evidenceAsset, setEvidenceAsset] = useState<CriticalAsset | null>(null);
+  const [actionStatusMap, setActionStatusMap] = useState<{ [id: string]: 'pending' | 'in_progress' | 'completed' }>({});
 
   const selectedAsset = assets.find((a) => a.id === selectedAssetId) || assets[0];
 
@@ -212,153 +217,14 @@ export const InfrastructureView: React.FC = () => {
 
           {viewMode === 'matrix' ? (
             /* PROFESSIONAL 2D QUADRANT GRAPH */
-            <div className="relative bg-navy-950 rounded-2xl p-6 border border-navy-800 h-[420px] select-none flex flex-col justify-between overflow-hidden shadow-inner">
-              
-              {/* 4 QUADRANT BACKGROUND ZONES */}
-              <div className="absolute inset-x-12 inset-y-8 grid grid-cols-2 grid-rows-2 rounded-xl overflow-hidden border border-navy-800/80">
-                
-                {/* Quadrant II: Top Left (Amber - Vital Lifeline Standby) */}
-                <div className="bg-amber-950/15 border-r border-b border-navy-800/80 p-3 relative flex flex-col justify-between">
-                  <div className="text-[10px] font-mono text-amber-400/90 font-bold bg-amber-950/70 border border-amber-800/60 px-2 py-0.5 rounded self-start">
-                    QUADRANT II: VITAL LIFELINE STANDBY
-                  </div>
-                  <span className="text-[9px] font-mono text-amber-300/40">High Criticality • Moderate/Low Risk</span>
-                </div>
-
-                {/* Quadrant I: Top Right (Red - Critical P0 Urgent Action) */}
-                <div className="bg-red-950/25 border-b border-navy-800/80 p-3 relative flex flex-col justify-between">
-                  <div className="text-[10px] font-mono text-red-300 font-bold bg-red-950/80 border border-red-700/80 px-2 py-0.5 rounded self-end animate-pulse">
-                    QUADRANT I: CRITICAL P0 URGENT ACTION
-                  </div>
-                  <span className="text-[9px] font-mono text-red-300/50 text-right">High Criticality • Critical Risk &gt; 70</span>
-                </div>
-
-                {/* Quadrant IV: Bottom Left (Teal/Navy - Routine Standby) */}
-                <div className="bg-navy-900/30 border-r border-navy-800/80 p-3 relative flex flex-col justify-between">
-                  <span className="text-[9px] font-mono text-slate-500">Standard Criticality • Low Risk</span>
-                  <div className="text-[10px] font-mono text-slate-400 font-bold bg-navy-900/80 border border-navy-750 px-2 py-0.5 rounded self-start">
-                    QUADRANT IV: ROUTINE MONITORING
-                  </div>
-                </div>
-
-                {/* Quadrant III: Bottom Right (Orange - Secondary Hazard Mitigation) */}
-                <div className="bg-orange-950/15 p-3 relative flex flex-col justify-between">
-                  <span className="text-[9px] font-mono text-orange-400/40 text-right">Standard Criticality • High Risk</span>
-                  <div className="text-[10px] font-mono text-orange-400 font-bold bg-orange-950/70 border border-orange-800/60 px-2 py-0.5 rounded self-end">
-                    QUADRANT III: SECONDARY ACCESS MITIGATION
-                  </div>
-                </div>
-              </div>
-
-              {/* GRID TICK LINES */}
-              <div className="absolute inset-x-12 inset-y-8 pointer-events-none">
-                {/* 50% Center Lines */}
-                <div className="absolute top-0 bottom-0 left-1/2 w-px bg-cyan-500/20 border-dashed border-cyan-500/30" />
-                <div className="absolute left-0 right-0 top-1/2 h-px bg-cyan-500/20 border-dashed border-cyan-500/30" />
-
-                {/* 25% and 75% subtle lines */}
-                <div className="absolute top-0 bottom-0 left-1/4 w-px bg-navy-800/40" />
-                <div className="absolute top-0 bottom-0 left-3/4 w-px bg-navy-800/40" />
-                <div className="absolute left-0 right-0 top-1/4 h-px bg-navy-800/40" />
-                <div className="absolute left-0 right-0 top-3/4 h-px bg-navy-800/40" />
-              </div>
-
-              {/* Y-AXIS TICKS & LABELS (Left margin: 48px) */}
-              <div className="absolute left-2 top-8 bottom-8 flex flex-col justify-between text-[10px] font-mono text-slate-400 pointer-events-none">
-                <span className="text-red-400 font-bold">100 -</span>
-                <span>75 -</span>
-                <span className="text-cyan-400">50 -</span>
-                <span>25 -</span>
-                <span>0 -</span>
-              </div>
-
-              {/* Y-AXIS TITLE */}
-              <div className="absolute -left-10 top-1/2 -translate-y-1/2 -rotate-90 text-[10px] font-mono uppercase tracking-widest text-slate-400 font-bold pointer-events-none">
-                Criticality Weight &rarr;
-              </div>
-
-              {/* ASSET DOTS CANVAS */}
-              <div className="absolute inset-x-12 inset-y-8">
-                {filteredAssets.map((asset, index) => {
-                  const isSelected = selectedAsset.id === asset.id;
-                  const crit = getCriticalityScore(asset);
-                  const risk = getRiskScore(asset);
-
-                  // Calculate exact mathematical coordinates with collision spread
-                  const rawX = (risk / 100) * 88 + 6;
-                  const rawY = (crit / 100) * 84 + 8;
-
-                  // Small deterministic offset to avoid overlap for assets with close scores
-                  const offsetX = ((index % 3) - 1) * 2.2;
-                  const offsetY = (((index * 2) % 3) - 1) * 2.2;
-
-                  const posX = Math.min(94, Math.max(6, rawX + offsetX));
-                  const posY = Math.min(92, Math.max(8, rawY + offsetY));
-
-                  return (
-                    <div
-                      key={asset.id}
-                      style={{
-                        left: `${posX}%`,
-                        bottom: `${posY}%`,
-                      }}
-                      className="absolute -translate-x-1/2 translate-y-1/2 z-20 group"
-                    >
-                      <button
-                        onClick={() => setSelectedAssetId(asset.id)}
-                        className={`relative rounded-xl p-1.5 transition-all flex items-center gap-1.5 border-2 shadow-lg ${
-                          isSelected
-                            ? 'bg-navy-900 border-cyan-300 ring-4 ring-cyan-400/40 scale-110 z-30'
-                            : 'bg-navy-950/90 border-navy-700 hover:border-cyan-400 hover:scale-105 z-10'
-                        }`}
-                      >
-                        {/* Icon Container */}
-                        <div className={`p-1 rounded-lg ${getRiskColor(risk)}`}>
-                          {getAssetIcon(asset.type, "w-3.5 h-3.5")}
-                        </div>
-
-                        {/* Text Label Pill */}
-                        <span className={`text-[10px] font-mono font-bold whitespace-nowrap max-w-[110px] truncate ${
-                          isSelected ? 'text-cyan-300' : 'text-slate-200'
-                        }`}>
-                          {asset.name.replace('Sundar ', '').replace('Emergency ', '')}
-                        </span>
-
-                        {/* Selected Indicator Ping */}
-                        {isSelected && (
-                          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping absolute -top-1 -right-1" />
-                        )}
-                      </button>
-
-                      {/* Tooltip on Hover */}
-                      <div className="absolute left-1/2 -top-10 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition pointer-events-none bg-navy-900 border border-cyan-500 text-[10px] text-white p-1.5 rounded-lg font-mono whitespace-nowrap shadow-2xl z-40">
-                        <div className="font-bold text-cyan-300">{asset.name}</div>
-                        <div className="text-slate-300">
-                          Risk: <b className="text-red-400">{risk}/100</b> • Criticality: <b className="text-white">{crit}/100</b>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* X-AXIS TICKS & LABELS (Bottom margin: 32px) */}
-              <div className="absolute inset-x-12 bottom-1 flex justify-between text-[10px] font-mono text-slate-400 pointer-events-none">
-                <span>| 0 (Safe)</span>
-                <span>| 25</span>
-                <span className="text-cyan-400">| 50 (Elevated)</span>
-                <span>| 75</span>
-                <span className="text-red-400 font-bold">| 100 (Extreme)</span>
-              </div>
-
-              {/* X-AXIS TITLE */}
-              <div className="absolute inset-x-0 bottom-0 text-center text-[10px] font-mono uppercase tracking-widest text-slate-400 font-bold pointer-events-none">
-                Calculated Hazard Risk Score &rarr;
-              </div>
-            </div>
+            <TacticalMatrixCanvas
+              assets={filteredAssets}
+              selectedAssetId={selectedAssetId}
+              onSelectAsset={(id) => setSelectedAssetId(id)}
+            />
           ) : (
             /* TABULAR / GRID INVENTORY VIEW */
-            <div className="h-[420px] overflow-y-auto space-y-2 pr-1">
+            <div className="h-[460px] overflow-y-auto space-y-2 pr-1 custom-scrollbar">
               {filteredAssets.map((asset) => {
                 const isSelected = selectedAsset.id === asset.id;
                 const risk = getRiskScore(asset);
@@ -403,23 +269,38 @@ export const InfrastructureView: React.FC = () => {
             </div>
           )}
 
-          {/* Matrix Legend */}
-          <div className="flex flex-wrap items-center justify-between text-[11px] font-mono text-slate-400 pt-1">
-            <div className="flex items-center gap-3">
+          {/* Upgraded Tactical Matrix Legend */}
+          <div className="flex flex-wrap items-center justify-between text-[11px] font-mono text-slate-400 pt-2 border-t border-navy-800/80 gap-2">
+            <div className="flex flex-wrap items-center gap-3">
               <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
-                <span>Critical Risk (&ge;80)</span>
+                <span className="w-2.5 h-2.5 rounded-full bg-red-500 shadow-sm shadow-red-500/50" />
+                <span className="text-slate-300">Critical (&ge;80)</span>
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-orange-500" />
-                <span>High Risk (60-79)</span>
+                <span className="w-2.5 h-2.5 rounded-full bg-orange-500 shadow-sm shadow-orange-500/50" />
+                <span className="text-slate-300">High (60-79)</span>
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-                <span>Medium (40-59)</span>
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-sm shadow-amber-500/50" />
+                <span className="text-slate-300">Medium (40-59)</span>
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-teal-400 shadow-sm shadow-teal-400/50" />
+                <span className="text-slate-300">Low (&lt;40)</span>
+              </span>
+              <span className="hidden sm:flex items-center gap-1.5 text-cyan-400 bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-800/40">
+                <span className="text-cyan-300 font-bold">━━</span>
+                <span>Connector = True Position</span>
               </span>
             </div>
-            <span className="text-cyan-400">{filteredAssets.length} Lifelines Mapped</span>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] text-slate-400 bg-navy-950 px-2 py-0.5 rounded border border-navy-800">
+                X: Risk • Y: Criticality
+              </span>
+              <span className="text-cyan-300 font-bold bg-navy-950 px-2 py-0.5 rounded border border-navy-800">
+                {filteredAssets.length} Lifelines
+              </span>
+            </div>
           </div>
         </div>
 
@@ -452,77 +333,123 @@ export const InfrastructureView: React.FC = () => {
           </div>
 
           {/* Structured Detail Grid */}
-          <div className="space-y-2.5 text-xs">
-            <div className="bg-navy-950 p-3 rounded-xl border border-navy-800 grid grid-cols-2 gap-2 font-mono">
-              <div>
-                <span className="text-[10px] text-slate-400 block">Criticality Score</span>
-                <span className="text-sm font-bold text-white">{getCriticalityScore(selectedAsset)}/100</span>
+          <div className="space-y-3 text-xs">
+            {/* Top Scores & Formula */}
+            <div className="bg-navy-950 p-3 rounded-xl border border-navy-800 space-y-2">
+              <div className="grid grid-cols-2 gap-2 font-mono">
+                <div>
+                  <span className="text-[10px] text-slate-400 block">Criticality Score</span>
+                  <span className="text-sm font-bold text-white">{getCriticalityScore(selectedAsset)}/100</span>
+                </div>
+                <div>
+                  <span className="text-[10px] text-slate-400 block">Operational Status</span>
+                  <span className="text-sm font-bold text-teal-300">
+                    {(selectedAsset as any).status || selectedAsset.current_status || 'Operational (Standby)'}
+                  </span>
+                </div>
               </div>
-              <div>
-                <span className="text-[10px] text-slate-400 block">Operational Status</span>
-                <span className="text-sm font-bold text-teal-300">
-                  {selectedAsset.status || 'Operational (Standby)'}
+              <div className="text-[9px] font-mono text-slate-400 bg-navy-900/90 p-1.5 rounded border border-navy-800 flex items-center justify-between">
+                <span>FORMULA: 0.35H + 0.25V + 0.25C + 0.15D</span>
+                <span className="text-cyan-400 font-bold">Deterministic</span>
+              </div>
+            </div>
+
+            {/* WHY THIS RISK? Breakdown */}
+            <div className="bg-navy-950 p-3 rounded-xl border border-navy-800 space-y-2">
+              <div className="flex items-center justify-between font-mono text-[11px] font-bold text-cyan-300 border-b border-navy-850 pb-1">
+                <span className="flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Why This Risk? (Attribution Drivers)</span>
+                </span>
+                <span className="text-[9px] text-slate-400 font-normal">Score {getRiskScore(selectedAsset)}/100</span>
+              </div>
+              <div className="space-y-1.5 text-[11px]">
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-300">• Storm Surge Inundation Depth ({scenarioInputs.stormSurgeMeters.toFixed(1)}m)</span>
+                  <span className="font-mono text-red-400 font-bold">+28 pts</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-300">• Gale Wind Exposure ({scenarioInputs.windSpeedKmh} km/h)</span>
+                  <span className="font-mono text-orange-400 font-bold">+22 pts</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-300">• Access Arterial Severance Risk</span>
+                  <span className="font-mono text-amber-400 font-bold">+18 pts</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-300">• Criticality Weight ({getCriticalityScore(selectedAsset)}/100)</span>
+                  <span className="font-mono text-cyan-400 font-bold">+16 pts</span>
+                </div>
+              </div>
+            </div>
+
+            {/* WHY DID RISK CHANGE? (Scenario Delta) */}
+            <div className="bg-navy-950 p-3 rounded-xl border border-navy-800 space-y-1.5">
+              <div className="flex items-center justify-between font-mono text-[11px] font-bold text-amber-300">
+                <span className="flex items-center gap-1.5">
+                  <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Why Did Risk Change?</span>
+                </span>
+                <span className="text-[9px] bg-amber-950/80 text-amber-300 px-1.5 py-0.2 rounded border border-amber-800/60 font-mono">
+                  Scenario Delta
                 </span>
               </div>
+              <p className="text-[11px] text-slate-300">
+                {scenarioInputs.stormSurgeMeters > 2.0
+                  ? `Elevated +${Math.round((scenarioInputs.stormSurgeMeters - 1.8) * 12)} pts due to heightened storm surge (${scenarioInputs.stormSurgeMeters.toFixed(1)}m) and proximity to the projected T-24h landfall path.`
+                  : 'Baseline parameters calibrated to standard 135 km/h landfall projection.'}
+              </p>
             </div>
 
-            <div className="bg-navy-950 p-3 rounded-xl border border-navy-800 space-y-1.5">
-              <div className="flex items-center gap-1.5 text-amber-400 font-mono text-[11px] font-bold">
-                <AlertTriangle className="w-3.5 h-3.5" />
-                <span>Primary Hazard Threat</span>
-              </div>
-              <div className="text-slate-200">
-                {selectedAsset.hazard_exposure ||
-                  `Storm surge flood risk ${selectedAsset.calculatedFloodRisk || 85}% • Wind shear ${selectedAsset.calculatedWindRisk || 80}%`}
-              </div>
-            </div>
-
-            <div className="bg-navy-950 p-3 rounded-xl border border-navy-800 space-y-1.5">
-              <div className="flex items-center gap-1.5 text-red-400 font-mono text-[11px] font-bold">
-                <AlertOctagon className="w-3.5 h-3.5" />
-                <span>Potential Service Disruption</span>
-              </div>
-              <div className="text-slate-200">
-                {formatIndianNumber(18000)} households and regional relief nodes may lose essential lifeline continuity upon asset failure.
-              </div>
-            </div>
-
+            {/* Recommended Protective Action */}
             <div className="bg-emerald-950/30 p-3 rounded-xl border border-emerald-800/60 space-y-1.5">
-              <div className="flex items-center gap-1.5 text-emerald-400 font-mono text-[11px] font-bold">
-                <ShieldCheck className="w-3.5 h-3.5" />
-                <span>Recommended Protective Action</span>
+              <div className="flex items-center justify-between text-[11px] font-mono font-bold text-emerald-400">
+                <span className="flex items-center gap-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  <span>Recommended Protective Action</span>
+                </span>
+                <span className="text-red-400 text-[10px]">Deadline: 4h</span>
               </div>
-              <div className="text-slate-100 font-medium">
+              <div className="text-slate-100 font-medium text-[11px]">
                 {selectedAsset.recommendedAction ||
                   selectedAsset.recommended_actions?.[0] ||
                   'Activate backup generator, elevate electrical control modules, and pre-position repair crew.'}
               </div>
-              <div className="pt-2 flex items-center justify-between text-[11px] font-mono text-slate-400 border-t border-navy-800">
-                <span>Contact: <b>{selectedAsset.contact_person || 'District Response Team'}</b></span>
-                <span className="text-red-400 font-bold">Deadline: Within 4 hrs</span>
+              <div className="pt-2 flex items-center justify-between text-[10px] font-mono text-slate-400 border-t border-navy-800">
+                <span>Owner: <b>{selectedAsset.contact_person ? selectedAsset.contact_person.split('(')[0] : 'District EOC'}</b></span>
+                <span className="text-cyan-300 font-bold">
+                  {selectedAsset.backupPowerAvailable || selectedAsset.backup_power_ready
+                    ? 'Auxiliary Ready'
+                    : 'Mobile Genset Reqd'}
+                </span>
               </div>
-            </div>
-
-            <div className="bg-navy-950 p-2.5 rounded-xl border border-navy-800 flex items-center justify-between text-[11px] font-mono">
-              <span className="text-slate-400">Backup Option:</span>
-              <span className="text-cyan-300 font-bold">
-                {selectedAsset.backupPowerAvailable || selectedAsset.backup_power_ready
-                  ? 'Auxiliary Rooftop Generator Verified'
-                  : 'Mobile Diesel Genset Required'}
-              </span>
             </div>
           </div>
 
-          <button
-            onClick={() => {
-              setSelectedAsset(selectedAsset);
-              setActiveTab('map');
-            }}
-            className="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-mono text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-2 shadow-lg"
-          >
-            <MapPin className="w-3.5 h-3.5" />
-            <span>Locate Asset on Live Impact Map</span>
-          </button>
+          {/* Action Buttons */}
+          <div className="grid grid-cols-2 gap-2 pt-1">
+            <button
+              onClick={() => {
+                setEvidenceAsset(selectedAsset);
+                setIsEvidenceModalOpen(true);
+              }}
+              className="bg-navy-950 hover:bg-navy-850 text-cyan-300 border border-cyan-500/40 font-mono text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 shadow-md"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>View Evidence</span>
+            </button>
+
+            <button
+              onClick={() => {
+                setSelectedAsset(selectedAsset);
+                setActiveTab('map');
+              }}
+              className="bg-cyan-600 hover:bg-cyan-500 text-white font-mono text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 shadow-lg"
+            >
+              <MapPin className="w-3.5 h-3.5" />
+              <span>Locate on GIS Map</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -535,7 +462,7 @@ export const InfrastructureView: React.FC = () => {
               <span>Tactical Infrastructure Action Queue</span>
             </h3>
             <p className="text-[11px] text-slate-400">
-              Time-staged operational directives for municipal departments and utility operators.
+              Operational orders for municipal departments and utility operators with deterministic risk prioritization.
             </p>
           </div>
 
@@ -578,50 +505,110 @@ export const InfrastructureView: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {displayQueue.map((asset) => {
             const risk = getRiskScore(asset);
+            const crit = getCriticalityScore(asset);
+            const isCompleted = actionStatusMap[asset.id] === 'completed';
+            const isInProgress = actionStatusMap[asset.id] === 'in_progress';
+
             return (
               <div
                 key={asset.id}
-                onClick={() => setSelectedAssetId(asset.id)}
-                className={`p-3.5 rounded-xl border transition cursor-pointer bg-navy-950 ${
+                className={`p-3.5 rounded-xl border transition bg-navy-950 flex flex-col justify-between space-y-3 ${
                   selectedAsset.id === asset.id
                     ? 'border-cyan-400 ring-1 ring-cyan-500/40'
+                    : isCompleted
+                    ? 'border-emerald-700/60 opacity-80'
                     : 'border-navy-800 hover:border-navy-700'
                 }`}
               >
-                <div className="flex items-start justify-between gap-2">
-                  <div className="flex items-center gap-2">
-                    <div className="p-1.5 rounded-lg bg-navy-900 border border-navy-800">
-                      {getAssetIcon(asset.type)}
+                <div>
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <div className="p-1.5 rounded-lg bg-navy-900 border border-navy-800">
+                        {getAssetIcon(asset.type)}
+                      </div>
+                      <div>
+                        <h5 className="font-bold text-white text-xs leading-snug">{asset.name}</h5>
+                        <span className="text-[10px] font-mono text-slate-400 uppercase">
+                          {asset.type.replace('_', ' ')} • ID: {asset.id}
+                        </span>
+                      </div>
                     </div>
-                    <div>
-                      <h5 className="font-bold text-white text-xs leading-snug">{asset.name}</h5>
-                      <span className="text-[10px] font-mono text-slate-400">{asset.type}</span>
+                    <span
+                      className={`text-[10px] font-mono px-1.5 py-0.5 rounded font-bold ${
+                        risk >= 80 ? 'bg-red-500/20 text-red-300' : 'bg-orange-500/20 text-orange-300'
+                      }`}
+                    >
+                      {risk} Risk
+                    </span>
+                  </div>
+
+                  <p className="text-[11px] text-slate-300 mt-2 line-clamp-2">
+                    {asset.recommendedAction ||
+                      asset.recommended_actions?.[0] ||
+                      'Inspect foundations and prepare emergency mitigation team.'}
+                  </p>
+
+                  <div className="mt-2 text-[10px] font-mono text-slate-400 space-y-0.5 pt-1.5 border-t border-navy-900">
+                    <div className="flex justify-between">
+                      <span>Owner: <b>{asset.contact_person ? asset.contact_person.split('(')[0] : 'District EOC'}</b></span>
+                      <span className="text-red-400 font-bold">Within 4h</span>
+                    </div>
+                    <div className="flex justify-between text-teal-300">
+                      <span>Backup Plan:</span>
+                      <span>{asset.backupPowerAvailable || asset.backup_power_ready ? 'Generator Verified' : 'Mobile Genset Staged'}</span>
                     </div>
                   </div>
-                  <span
-                    className={`text-[10px] font-mono px-1.5 py-0.5 rounded font-bold ${
-                      risk >= 80 ? 'bg-red-500/20 text-red-300' : 'bg-orange-500/20 text-orange-300'
-                    }`}
-                  >
-                    {risk} Risk
-                  </span>
                 </div>
 
-                <p className="text-[11px] text-slate-300 mt-2 line-clamp-2">
-                  {asset.recommendedAction || asset.recommended_actions?.[0] || 'Inspect foundations and prepare emergency mitigation team.'}
-                </p>
+                {/* Card Action Footer */}
+                <div className="pt-2 border-t border-navy-900 flex items-center justify-between gap-2">
+                  <button
+                    onClick={() => {
+                      setEvidenceAsset(asset);
+                      setIsEvidenceModalOpen(true);
+                    }}
+                    className="text-[10px] font-mono text-cyan-400 hover:text-cyan-300 font-bold flex items-center gap-0.5"
+                  >
+                    <Sparkles className="w-3 h-3" />
+                    <span>Evidence</span>
+                  </button>
 
-                <div className="mt-2.5 pt-2 border-t border-navy-900 flex items-center justify-between text-[10px] font-mono text-slate-400">
-                  <span>Contact: {asset.contact_person ? asset.contact_person.split(' ')[0] : 'Field Ops'}</span>
-                  <span className="text-cyan-400 font-bold flex items-center gap-0.5">
-                    Inspect <ChevronRight className="w-3 h-3" />
-                  </span>
+                  <button
+                    onClick={() => {
+                      setActionStatusMap((prev) => ({
+                        ...prev,
+                        [asset.id]:
+                          prev[asset.id] === 'completed'
+                            ? 'pending'
+                            : prev[asset.id] === 'in_progress'
+                            ? 'completed'
+                            : 'in_progress',
+                      }));
+                    }}
+                    className={`px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold transition-all border ${
+                      isCompleted
+                        ? 'bg-emerald-600 text-white border-emerald-500'
+                        : isInProgress
+                        ? 'bg-amber-600 text-white border-amber-500'
+                        : 'bg-navy-900 text-slate-300 hover:text-white border-navy-800'
+                    }`}
+                  >
+                    {isCompleted ? '✓ Completed' : isInProgress ? '⚡ In Progress' : 'Mark In Progress'}
+                  </button>
                 </div>
               </div>
             );
           })}
         </div>
       </div>
+
+      {/* Evidence Lineage Modal */}
+      <EvidenceChainModal
+        isOpen={isEvidenceModalOpen}
+        onClose={() => setIsEvidenceModalOpen(false)}
+        asset={evidenceAsset}
+        scenarioInputs={scenarioInputs}
+      />
     </div>
   );
 };

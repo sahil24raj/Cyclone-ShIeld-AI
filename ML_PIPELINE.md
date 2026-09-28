@@ -1,6 +1,6 @@
-# Cyclone Shield AI — Machine Learning Pipeline & Roadmap
+# CycloneShield AI — Machine Learning Pipeline & Roadmap
 
-This document outlines the machine learning architecture for Cyclone Shield AI / Cyclone-X, clearly delineating what is currently implemented, the standard feature vector interface, and what is required to connect a trained production model.
+This document outlines the machine learning architecture for CycloneShield AI, clearly delineating what is currently implemented, the standard feature vector interface, and what is required to connect a trained production model.
 
 ---
 
@@ -54,7 +54,7 @@ export interface PredictionResult {
     landfallMarginHours: number;
   };
   modelMetadata?: {
-    modelName: string;               // e.g. "Cyclone-X XGBoost Intensity Estimator v2.1"
+    modelName: string;               // e.g. "CycloneShield AI XGBoost Intensity Estimator v2.1"
     architecture: string;            // e.g. "Temporal ConvNet + ResNet-18"
     trainedOnDataset: string;        // e.g. "IBTrACS North Indian Ocean 1982-2023"
     trainingLossMse: number;

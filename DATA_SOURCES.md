@@ -1,6 +1,6 @@
-# Cyclone Shield AI — Data Sources & Provenance Catalog
+# CycloneShield AI — Data Sources & Provenance Catalog
 
-This document details every metric displayed in the Cyclone Shield AI / Cyclone-X platform, its provenance type, authoritative source requirements, integration method, and current status.
+This document details every metric displayed in the CycloneShield AI platform, its provenance type, authoritative source requirements, integration method, and current status.
 
 ---
 

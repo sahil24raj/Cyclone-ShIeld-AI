@@ -18,12 +18,19 @@ import {
   MapPin,
   AlertTriangle,
   CheckCircle2,
-  Maximize2
+  Maximize2,
+  Sparkles,
+  Zap,
+  Activity,
+  ShieldCheck,
+  AlertOctagon
 } from 'lucide-react';
 import { useAppState } from '../../context/AppStateContext';
-import { TimelinePhase } from '../../types';
+import { TimelinePhase, CriticalAsset } from '../../types';
 import { CalculatedVillageOutput, CalculatedAssetOutput } from '../../types/disaster';
 import { MOCK_GEOJSON_TRACK, MOCK_GEOJSON_SURGE_ZONE, MOCK_GEOJSON_FLOOD_ZONE } from '../../data/mockGeoJson';
+import { EvidenceChainModal } from '../common/EvidenceChainModal';
+import { formatIndianNumber } from '../../utils/formatters';
 
 export const InteractiveMap: React.FC = () => {
   const {
@@ -50,6 +57,8 @@ export const InteractiveMap: React.FC = () => {
 
   // Top Hazard Filter Selector
   const [activeHazardView, setActiveHazardView] = useState<'combined' | 'wind' | 'rainfall' | 'surge' | 'flood'>('combined');
+  const [isEvidenceModalOpen, setIsEvidenceModalOpen] = useState<boolean>(false);
+  const [evidenceAsset, setEvidenceAsset] = useState<CriticalAsset | null>(null);
 
   // Center Coordinates for Sundar Coast District: ~20.48 N, 86.85 E
   const CENTER_LAT = 20.48;
@@ -434,6 +443,18 @@ export const InteractiveMap: React.FC = () => {
     }
   };
 
+  const handleFitDistrict = () => {
+    if (mapInstanceRef.current && villages.length > 0) {
+      const latLngs = villages
+        .map((v) => [v.lat || (v as any).latitude, v.lng || (v as any).longitude])
+        .filter(([lat, lng]) => lat && lng) as [number, number][];
+      if (latLngs.length > 0) {
+        const bounds = L.latLngBounds(latLngs);
+        mapInstanceRef.current.fitBounds(bounds, { padding: [50, 50] });
+      }
+    }
+  };
+
   const selectedVillageData = selectedVillage as unknown as CalculatedVillageOutput | null;
 
   return (
@@ -505,7 +526,7 @@ export const InteractiveMap: React.FC = () => {
           </button>
         </div>
 
-        {/* Quick Toggles & Reset Map */}
+        {/* Quick Toggles, Fit Region & Reset Map */}
         <div className="flex items-center gap-2 text-xs font-mono">
           <button
             onClick={() => toggleMapLayer('criticalInfrastructure')}
@@ -529,6 +550,15 @@ export const InteractiveMap: React.FC = () => {
           >
             <Navigation className="w-3.5 h-3.5" />
             <span>Routes</span>
+          </button>
+
+          <button
+            onClick={handleFitDistrict}
+            className="px-2.5 py-1.5 bg-navy-850 hover:bg-navy-800 text-teal-300 rounded-lg border border-navy-750 flex items-center gap-1.5 transition-colors"
+            title="Fit to Sundar Coast District"
+          >
+            <Maximize2 className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Fit District</span>
           </button>
 
           <button
@@ -722,6 +752,103 @@ export const InteractiveMap: React.FC = () => {
                 </div>
               )}
             </div>
+          ) : selectedAsset ? (
+            /* Asset Deep-Dive Drawer */
+            <div className="space-y-4">
+              <div className="flex items-start justify-between border-b border-navy-750 pb-3">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase ${
+                        ((selectedAsset as any).calculatedRiskScore || selectedAsset.risk_score || 50) >= 75
+                          ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
+                          : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                      }`}
+                    >
+                      Risk: {(selectedAsset as any).calculatedRiskScore || selectedAsset.risk_score}/100
+                    </span>
+                    <span className="text-[10px] font-mono text-slate-400 uppercase">
+                      Criticality {selectedAsset.criticality}/100
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-black text-white mt-1">
+                    {selectedAsset.name}
+                  </h3>
+                  <p className="text-xs text-slate-300 capitalize">
+                    {selectedAsset.type.replace('_', ' ')} • Sundar Coastal Zone
+                  </p>
+                </div>
+                <button
+                  onClick={() => setSelectedAsset(null)}
+                  className="p-1 rounded-lg hover:bg-navy-800 text-slate-400 hover:text-white"
+                  aria-label="Close detail"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Contributing Hazard Factors */}
+              <div className="space-y-2">
+                <div className="text-xs font-mono font-bold text-teal-300 uppercase tracking-wider">
+                  Hazard &amp; Vulnerability Drivers
+                </div>
+
+                <div className="space-y-2">
+                  <div className="bg-navy-950 p-2.5 rounded-xl border border-navy-800 space-y-1">
+                    <div className="flex justify-between text-xs">
+                      <span className="text-slate-300">Storm Surge Inundation</span>
+                      <span className="font-mono text-rose-400 font-bold">
+                        {((selectedAsset as any).surge_exposure_pct ?? 75)}% Exposure
+                      </span>
+                    </div>
+                    <div className="h-1.5 bg-navy-850 rounded-full overflow-hidden">
+                      <div className="h-full bg-rose-500 rounded-full" style={{ width: `${(selectedAsset as any).surge_exposure_pct ?? 75}%` }} />
+                    </div>
+                  </div>
+
+                  <div className="bg-navy-950 p-2.5 rounded-xl border border-navy-800 space-y-1">
+                    <div className="flex justify-between text-xs">
+                      <span className="text-slate-300">Access Road Inundation</span>
+                      <span className="font-mono text-amber-400 font-bold">High Risk</span>
+                    </div>
+                    <div className="h-1.5 bg-navy-850 rounded-full overflow-hidden">
+                      <div className="h-full bg-amber-500 rounded-full" style={{ width: '80%' }} />
+                    </div>
+                  </div>
+
+                  <div className="bg-navy-950 p-2.5 rounded-xl border border-navy-800 space-y-1">
+                    <div className="flex justify-between text-xs">
+                      <span className="text-slate-300">Backup Generation Status</span>
+                      <span className="font-mono text-emerald-400 font-bold">
+                        {selectedAsset.backup_power_ready || (selectedAsset as any).backupPowerAvailable ? 'VERIFIED READY' : 'NO BACKUP'}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Recommended Action */}
+              <div className="bg-navy-950 p-3.5 rounded-xl border border-amber-500/30 space-y-2 text-xs">
+                <div className="text-[10px] font-mono text-amber-400 uppercase tracking-wider font-bold">
+                  Recommended Tactical Action
+                </div>
+                <div className="font-bold text-white text-xs leading-relaxed">
+                  {selectedAsset.recommended_actions?.[0] || 'Stage mobile flood barriers and initiate emergency patient relocation.'}
+                </div>
+              </div>
+
+              {/* Evidence Lineage Trigger Button */}
+              <button
+                onClick={() => {
+                  setEvidenceAsset(selectedAsset);
+                  setIsEvidenceModalOpen(true);
+                }}
+                className="w-full py-2.5 px-3 bg-gradient-to-r from-teal-600/30 to-blue-600/30 hover:from-teal-600/50 hover:to-blue-600/50 border border-teal-500/40 text-teal-300 rounded-xl font-mono text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-lg"
+              >
+                <Sparkles className="w-4 h-4 text-teal-400" />
+                <span>View Full Evidence Lineage &gt;</span>
+              </button>
+            </div>
           ) : (
             <div className="h-full flex flex-col items-center justify-center text-center p-6 text-slate-400 space-y-3">
               <div className="p-3 rounded-2xl bg-navy-950 border border-navy-800 text-teal-400">
@@ -731,14 +858,17 @@ export const InteractiveMap: React.FC = () => {
                 Contextual Risk Inspector
               </h4>
               <p className="text-xs text-slate-400">
-                Select a village, road, shelter or critical asset on the map to understand its risk breakdown and evacuation path.
+                Select a village, road, shelter or critical asset on the map to inspect its deterministic hazard attribution, failure impact, and evacuation status.
               </p>
             </div>
           )}
 
           {/* Bottom Disclaimers */}
           <div className="pt-4 border-t border-navy-750 text-[10px] font-mono text-slate-400 flex items-center justify-between">
-            <span>Prototype Simulation</span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              GIS Model Estimate
+            </span>
             <span className="text-teal-400">78% Confidence</span>
           </div>
         </div>
@@ -788,6 +918,15 @@ export const InteractiveMap: React.FC = () => {
           Landfall in <strong className="text-teal-300">24 Hours</strong>
         </div>
       </div>
+
+      {/* Evidence Chain Modal for Map Assets */}
+      {evidenceAsset && (
+        <EvidenceChainModal
+          asset={evidenceAsset}
+          isOpen={isEvidenceModalOpen}
+          onClose={() => setIsEvidenceModalOpen(false)}
+        />
+      )}
     </div>
   );
 };

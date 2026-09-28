@@ -1,8 +1,8 @@
-# Cyclone Shield AI — Production Architecture Specification
+# CycloneShield AI — Production Architecture Specification
 
 ## 1. High-Level Architecture Overview
 
-Cyclone Shield AI / Cyclone-X is designed as a disaster intelligence decision-support platform with a clear separation of data ingestion, validation, deterministic risk computation, ML prediction, and presentation layers.
+CycloneShield AI is designed as a disaster intelligence decision-support platform with a clear separation of data ingestion, validation, deterministic risk computation, ML prediction, and presentation layers.
 
 ```
 +-------------------------------------------------------------------------+

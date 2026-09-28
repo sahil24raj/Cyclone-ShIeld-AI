@@ -100,7 +100,7 @@ export const SystemStatusModal: React.FC<SystemStatusModalProps> = ({ isOpen, on
         {/* Content */}
         <div className="p-5 space-y-4 overflow-y-auto">
           <div className="bg-navy-950/80 p-3 rounded-xl border border-navy-800 text-xs text-slate-300">
-            <strong>Production Data Policy:</strong> Cyclone Shield AI enforces strict data provenance. When real API endpoints or sensors are not connected, the platform renders explicit unconfigured states rather than synthetic or fabricated data.
+            <strong>Production Data Policy:</strong> CycloneShield AI enforces strict data provenance. When real API endpoints or sensors are not connected, the platform renders explicit unconfigured states rather than synthetic or fabricated data.
           </div>
 
           <div className="space-y-2.5">
